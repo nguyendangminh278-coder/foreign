@@ -3,15 +3,17 @@
 
   if (document.querySelector("#studyAiRoot")) return;
 
-  const MODEL_KEY = "foreign.ai.model";
-  const DEFAULT_MODEL = "gpt-5.6-luna";
-  const API_URL = "https://api.openai.com/v1/responses";
+  const MODEL_KEY = "foreign.ai.gemini.model";
+  const DEFAULT_MODEL = "gemini-3.6-flash";
+  const API_URL = "https://generativelanguage.googleapis.com/v1beta/interactions";
   const proxyEndpoint = typeof window.FOREIGN_AI_ENDPOINT === "string" ? window.FOREIGN_AI_ENDPOINT.trim() : "";
   const languageLabels = { zh: "Tiếng Trung", ko: "Tiếng Hàn", en: "Tiếng Anh", all: "Ngoại ngữ" };
   const state = {
     apiKey: "",
     model: readStoredModel(),
     messages: [],
+    previousInteractionId: "",
+    activeLanguage: "",
     sending: false,
     settingsOpen: false,
   };
@@ -49,19 +51,6 @@
     if (window.lucide?.createIcons) window.lucide.createIcons();
   }
 
-  function createSafetyIdentifier() {
-    const key = "foreign.ai.safety-id";
-    try {
-      const existing = localStorage.getItem(key);
-      if (existing) return existing;
-      const value = `study-${crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)}`;
-      localStorage.setItem(key, value);
-      return value;
-    } catch {
-      return `study-${Math.random().toString(36).slice(2)}`;
-    }
-  }
-
   function mount() {
     const root = document.createElement("div");
     root.className = "study-ai";
@@ -87,28 +76,28 @@
 
         <section class="study-ai-settings" id="studyAiSettings" hidden>
           <div class="study-ai-settings-head">
-            <div><small>Kết nối OpenAI</small><strong>Cài đặt API cho phiên này</strong></div>
+            <div><small>Gemini Flash miễn phí</small><strong>Cài đặt API cho phiên này</strong></div>
             <span class="study-ai-security"><i data-lucide="shield-check"></i>Không ghi vào Git</span>
           </div>
           <label class="study-ai-field" id="studyAiKeyField">
-            <span>OpenAI API key</span>
-            <div><input id="studyAiApiKey" type="password" inputmode="text" autocomplete="off" spellcheck="false" placeholder="sk-…" /><button type="button" data-ai-action="toggle-key" aria-label="Hiện hoặc ẩn API key"><i data-lucide="eye"></i></button></div>
+            <span>Gemini API key</span>
+            <div><input id="studyAiApiKey" type="password" inputmode="text" autocomplete="off" spellcheck="false" placeholder="AIza…" /><button type="button" data-ai-action="toggle-key" aria-label="Hiện hoặc ẩn API key"><i data-lucide="eye"></i></button></div>
             <small>Khóa chỉ nằm trong bộ nhớ của tab và mất khi tải lại trang.</small>
           </label>
           <label class="study-ai-field">
             <span>Model</span>
             <input id="studyAiModel" type="text" list="studyAiModels" autocomplete="off" spellcheck="false" />
             <datalist id="studyAiModels">
-              <option value="gpt-5.6-luna">Nhanh và tiết kiệm</option>
-              <option value="gpt-5.6-terra">Cân bằng</option>
-              <option value="gpt-5.6-sol">Chất lượng cao</option>
+              <option value="gemini-3.6-flash">Flash mới nhất · miễn phí</option>
+              <option value="gemini-3.5-flash-lite">Flash Lite · nhẹ và nhanh</option>
+              <option value="gemini-2.5-flash">Flash 2.5 · ổn định</option>
             </datalist>
           </label>
           <div class="study-ai-settings-actions">
             <button class="study-ai-text-button" type="button" data-ai-action="clear-key">Xóa khóa</button>
             <button class="study-ai-save-button" type="button" data-ai-action="save-settings"><i data-lucide="plug-zap"></i>Kết nối</button>
           </div>
-          <p class="study-ai-settings-note">Dùng khóa cá nhân có giới hạn chi tiêu. Với website công khai, nên cấu hình backend proxy bằng <code>window.FOREIGN_AI_ENDPOINT</code>.</p>
+          <p class="study-ai-settings-note"><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">Tạo Gemini API key miễn phí</a>. Free tier có giới hạn lượt dùng; khóa chỉ dùng trong tab này. Với website công khai nhiều người dùng, nên cấu hình backend proxy bằng <code>window.FOREIGN_AI_ENDPOINT</code>.</p>
         </section>
 
         <div class="study-ai-connection" id="studyAiConnection" role="status"></div>
@@ -203,17 +192,18 @@
     const candidate = keyInput.value.trim();
     const model = modelInput.value.trim() || DEFAULT_MODEL;
 
-    if (!proxyEndpoint && candidate && (!candidate.startsWith("sk-") || candidate.length < 20)) {
-      showConnection("Khóa API chưa đúng định dạng. Khóa OpenAI thường bắt đầu bằng sk-.", "error");
+    if (!proxyEndpoint && candidate && candidate.length < 20) {
+      showConnection("Gemini API key quá ngắn. Hãy sao chép lại khóa từ Google AI Studio.", "error");
       keyInput.focus();
       return;
     }
     if (!proxyEndpoint && !candidate && !state.apiKey) {
-      showConnection("Nhập API key để bật trả lời bằng AI.", "warning");
+      showConnection("Nhập Gemini API key miễn phí để bật trả lời bằng AI.", "warning");
       keyInput.focus();
       return;
     }
 
+    if (candidate || state.model !== model) state.previousInteractionId = "";
     if (candidate) state.apiKey = candidate;
     state.model = model;
     saveModel(model);
@@ -225,6 +215,7 @@
 
   function clearApiKey() {
     state.apiKey = "";
+    state.previousInteractionId = "";
     document.querySelector("#studyAiApiKey").value = "";
     updateConnectionUI();
     addToast("Đã xóa API key khỏi bộ nhớ.");
@@ -242,8 +233,8 @@
       return;
     }
     document.querySelector("#studyAiKeyField").hidden = false;
-    if (state.apiKey) showConnection(`API cá nhân đã sẵn sàng · ${state.model}`, "connected");
-    else showConnection("Chưa kết nối API · vẫn có thể tra nhanh dữ liệu bài học", "idle");
+    if (state.apiKey) showConnection(`Gemini Flash đã sẵn sàng · ${state.model}`, "connected");
+    else showConnection("Chưa kết nối Gemini · vẫn có thể tra nhanh dữ liệu bài học", "idle");
   }
 
   function showConnection(message, type) {
@@ -264,6 +255,7 @@
   }
 
   function resetConversation() {
+    state.previousInteractionId = "";
     const language = currentLanguage();
     const label = languageLabels[language] || languageLabels.all;
     state.messages = [{
@@ -277,6 +269,8 @@
 
   function updateLanguageUI() {
     const language = currentLanguage();
+    if (state.activeLanguage && state.activeLanguage !== language) state.previousInteractionId = "";
+    state.activeLanguage = language;
     const label = languageLabels[language] || languageLabels.all;
     const node = document.querySelector("#studyAiLanguage");
     if (node) node.textContent = `Đang hỗ trợ ${label}`;
@@ -340,7 +334,7 @@
         : "";
       state.messages.push({
         role: "assistant",
-        content: `Bạn cần kết nối OpenAI API để nhận câu trả lời AI.${matchText}\n\nMở biểu tượng cài đặt, nhập khóa cá nhân rồi gửi lại câu hỏi. Khóa không được lưu vào source hoặc GitHub.`,
+        content: `Bạn cần kết nối Gemini Flash để nhận câu trả lời AI.${matchText}\n\nMở biểu tượng cài đặt, tạo Gemini API key miễn phí rồi gửi lại câu hỏi. Khóa không được lưu vào source hoặc GitHub.`,
         local: true,
       });
       renderMessages();
@@ -351,7 +345,8 @@
     setSending(true);
     try {
       const answer = await requestAnswer(question);
-      state.messages.push({ role: "assistant", content: answer });
+      if (answer.interactionId) state.previousInteractionId = answer.interactionId;
+      state.messages.push({ role: "assistant", content: answer.text });
     } catch (error) {
       state.messages.push({ role: "assistant", content: friendlyError(error), error: true });
     } finally {
@@ -441,20 +436,26 @@
       return parseResponse(response);
     }
 
+    const requestBody = {
+      model: state.model,
+      system_instruction: `${systemInstructions(language)}\n\nDỮ LIỆU BÀI HỌC LIÊN QUAN:\n${context}`,
+      input: question,
+      store: true,
+      generation_config: {
+        max_output_tokens: 900,
+        thinking_level: "low",
+        temperature: 0.7,
+      },
+    };
+    if (state.previousInteractionId) requestBody.previous_interaction_id = state.previousInteractionId;
+
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${state.apiKey}`,
+        "x-goog-api-key": state.apiKey,
       },
-      body: JSON.stringify({
-        model: state.model,
-        instructions: `${systemInstructions(language)}\n\nDỮ LIỆU BÀI HỌC LIÊN QUAN:\n${context}`,
-        input: conversation,
-        max_output_tokens: 900,
-        text: { verbosity: "medium" },
-        safety_identifier: createSafetyIdentifier(),
-      }),
+      body: JSON.stringify(requestBody),
     });
     return parseResponse(response);
   }
@@ -467,21 +468,24 @@
       throw new Error(`Máy chủ trả về dữ liệu không hợp lệ (${response.status}).`);
     }
     if (!response.ok) throw new Error(payload?.error?.message || payload?.message || `Yêu cầu thất bại (${response.status}).`);
-    const text = payload.text || payload.output_text || (payload.output || [])
-      .flatMap((item) => item.content || [])
-      .filter((item) => item.type === "output_text" || typeof item.text === "string")
+    const geminiText = (payload.steps || [])
+      .filter((step) => step.type === "model_output")
+      .flatMap((step) => step.content || [])
+      .filter((item) => item.type === "text" && typeof item.text === "string")
       .map((item) => item.text)
       .join("\n")
       .trim();
-    if (!text) throw new Error("AI chưa trả về nội dung văn bản.");
-    return text;
+    const proxyText = payload.text || payload.output_text || "";
+    const text = (geminiText || proxyText).trim();
+    if (!text) throw new Error("Gemini chưa trả về nội dung văn bản.");
+    return { text, interactionId: payload.id || "" };
   }
 
   function friendlyError(error) {
     const message = String(error?.message || error || "Lỗi không xác định");
-    if (/401|api key|authentication|incorrect/i.test(message)) return "API key không hợp lệ hoặc đã hết hiệu lực. Hãy mở cài đặt và nhập lại khóa.";
-    if (/429|quota|rate limit|billing/i.test(message)) return "Tài khoản API đang hết hạn mức hoặc bị giới hạn tốc độ. Hãy kiểm tra Billing/Usage rồi thử lại.";
-    if (/failed to fetch|network|cors/i.test(message)) return "Không kết nối được OpenAI API từ trình duyệt. Hãy kiểm tra mạng; với website công khai nên sử dụng backend proxy.";
+    if (/400|401|403|api key|authentication|permission|invalid/i.test(message)) return "Gemini API key không hợp lệ hoặc chưa được cấp quyền. Hãy tạo lại khóa trong Google AI Studio.";
+    if (/429|quota|rate limit|resource exhausted/i.test(message)) return "Bạn đã chạm giới hạn miễn phí của Gemini. Hãy chờ hạn mức được làm mới rồi thử lại.";
+    if (/failed to fetch|network|cors/i.test(message)) return "Không kết nối được Gemini API từ trình duyệt. Hãy kiểm tra mạng và giới hạn website của API key.";
     return `Không thể nhận câu trả lời: ${message}`;
   }
 
