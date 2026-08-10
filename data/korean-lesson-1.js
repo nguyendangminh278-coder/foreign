@@ -10,10 +10,11 @@ window.KOREAN_LESSON_ONE = {
   "title": "안녕하세요? 저는 노아예요.",
   "romanization": "Annyeonghaseyo? Jeoneun Noayeyo.",
   "meaning": "Xin chào! Mình là Noa.",
-  "summary": "Chào hỏi, giới thiệu bản thân, trường học, đồ ăn và các mẫu câu danh từ cơ bản.",
+  "summary": "Chào hỏi, giới thiệu bản thân, gia đình, quốc tịch, trường học, đồ ăn và các mẫu câu danh từ cơ bản.",
   "outcomes": [
     "Chào hỏi và tạm biệt đúng hoàn cảnh.",
     "Tự giới thiệu tên, vai trò và quốc tịch.",
+    "Phân biệt cách gọi ba mẹ thân mật và lịch sự.",
     "Dùng 들, 은/는, 이에요/예요 và 도.",
     "Nói về lịch học và món ăn vặt yêu thích."
   ],
@@ -61,6 +62,98 @@ window.KOREAN_LESSON_ONE = {
           "romanization": "annyeonghi gyeseyo",
           "reading": "an-nyơng-hi kyê-sê-yô",
           "meaning": "tạm biệt người ở lại"
+        }
+      ]
+    },
+    {
+      "id": "identity-family",
+      "title": "Bản thân, gia đình & quốc tịch",
+      "icon": "contact-round",
+      "page": "Ghi chú 10/8",
+      "words": [
+        {
+          "text": "저",
+          "romanization": "jeo",
+          "reading": "chơ",
+          "meaning": "tôi (cách nói khiêm nhường, lịch sự)",
+          "note": "Thường đi với 는 thành 저는: còn tôi thì…"
+        },
+        {
+          "text": "제",
+          "romanization": "je",
+          "reading": "chê",
+          "meaning": "của tôi (dạng rút gọn của 저의)",
+          "note": "Dạng rút gọn của 저의. Ví dụ: 제 이름 = tên tôi, 제 어머니 = mẹ tôi."
+        },
+        {
+          "text": "우리",
+          "romanization": "uri",
+          "reading": "u-ri",
+          "meaning": "chúng ta; của chúng ta",
+          "note": "Người Hàn thường dùng 우리 엄마/우리 아빠 để nói “mẹ tôi/bố tôi” một cách tự nhiên."
+        },
+        {
+          "text": "사람",
+          "romanization": "saram",
+          "reading": "xa-ram",
+          "meaning": "người",
+          "note": "Đặt sau tên nước để nói quốc tịch: 한국 사람, 베트남 사람, 미국 사람."
+        },
+        {
+          "text": "아빠",
+          "romanization": "appa",
+          "reading": "a-ppa",
+          "meaning": "bố; ba (thân mật)",
+          "pronunciationTip": "ㅃ là âm căng pp, bật gọn và không thổi hơi."
+        },
+        {
+          "text": "엄마",
+          "romanization": "eomma",
+          "reading": "ơm-ma",
+          "meaning": "mẹ (thân mật)"
+        },
+        {
+          "text": "아버지",
+          "romanization": "abeoji",
+          "reading": "a-bơ-ji",
+          "meaning": "bố; cha (trung tính, lịch sự hơn 아빠)"
+        },
+        {
+          "text": "어머니",
+          "romanization": "eomeoni",
+          "reading": "ơ-mơ-ni",
+          "meaning": "mẹ (trung tính, lịch sự hơn 엄마)"
+        },
+        {
+          "text": "의사",
+          "romanization": "uisa",
+          "reading": "ưi-sa (thường nghe gần i-sa)",
+          "meaning": "bác sĩ",
+          "pronunciationTip": "의 ở đầu từ đọc chuẩn gần ưi; trong lời nói nhanh có thể nghe gần i."
+        },
+        {
+          "text": "회사원",
+          "romanization": "hoesawon",
+          "reading": "huê-sa-uôn",
+          "meaning": "nhân viên công ty; nhân viên văn phòng"
+        },
+        {
+          "text": "한국 사람",
+          "romanization": "Hanguk saram",
+          "reading": "han-guk xa-ram",
+          "meaning": "người Hàn Quốc"
+        },
+        {
+          "text": "베트남 사람",
+          "romanization": "Beteunam saram",
+          "reading": "bê-thư-nam xa-ram",
+          "meaning": "người Việt Nam"
+        },
+        {
+          "text": "미국 사람",
+          "romanization": "Miguk saram",
+          "reading": "mi-guk xa-ram",
+          "meaning": "người Mỹ"
         }
       ]
     },
@@ -877,13 +970,29 @@ window.KOREAN_LESSON_ONE = {
       "prompt": "Bố là bác sĩ.",
       "text": "아버지는 의사예요.",
       "romanization": "Abeojineun uisa-yeyo.",
-      "reading": "a-bơ-ji-nưn ưi-xa-yê-yô"
+      "reading": "a-bơ-ji-nưn ưi-xa-yê-yô",
+      "alternatives": [
+        {
+          "text": "아빠는 의사예요.",
+          "romanization": "Appaneun uisa-yeyo.",
+          "reading": "a-ppa-nưn ưi-sa-yê-yô",
+          "note": "아빠 là cách gọi bố thân mật."
+        }
+      ]
     },
     {
       "prompt": "Mẹ là người Hàn Quốc.",
       "text": "어머니는 한국 사람이에요.",
       "romanization": "Eomeonineun Hanguk saram-ieyo.",
-      "reading": "ơ-mơ-ni-nưn han-guk xa-ram-i-ê-yô"
+      "reading": "ơ-mơ-ni-nưn han-guk xa-ram-i-ê-yô",
+      "alternatives": [
+        {
+          "text": "엄마는 한국 사람이에요.",
+          "romanization": "Eommaneun Hanguk saram-ieyo.",
+          "reading": "ơm-ma-nưn han-guk xa-ram-i-ê-yô",
+          "note": "엄마 là cách gọi mẹ thân mật."
+        }
+      ]
     },
     {
       "prompt": "Tôi là sinh viên.",
@@ -908,7 +1017,15 @@ window.KOREAN_LESSON_ONE = {
       "prompt": "Mẹ tôi là nhân viên văn phòng.",
       "text": "제 어머니는 회사원이에요.",
       "romanization": "Je eomeonineun hoesawon-ieyo.",
-      "reading": "chê ơ-mơ-ni-nưn huê-xa-uôn-i-ê-yô"
+      "reading": "chê ơ-mơ-ni-nưn huê-xa-uôn-i-ê-yô",
+      "alternatives": [
+        {
+          "text": "제 엄마는 회사원이에요.",
+          "romanization": "Je eommaneun hoesawon-ieyo.",
+          "reading": "chê ơm-ma-nưn huê-sa-uôn-i-ê-yô",
+          "note": "Cách nói gần gũi; 우리 엄마는 회사원이에요 cũng rất tự nhiên."
+        }
+      ]
     },
     {
       "prompt": "Tôi là người Việt Nam.",
@@ -929,5 +1046,30 @@ window.KOREAN_LESSON_ONE = {
       "reading": "chơ-nưn ______ i-ê-yô/yê-yô",
       "note": "Điền danh từ rồi chọn 이에요 nếu có 받침, 예요 nếu không có 받침."
     }
-  ]
+  ],
+  "familyUsage": {
+    "title": "아빠/엄마 hay 아버지/어머니?",
+    "intro": "Cả hai cặp đều có nghĩa là bố và mẹ, nhưng sắc thái sử dụng khác nhau.",
+    "items": [
+      {
+        "terms": "아빠 · 엄마",
+        "label": "Thân mật",
+        "detail": "Dùng trong gia đình hoặc khi nói chuyện gần gũi về bố mẹ.",
+        "example": "아빠는 의사예요. · Bố là bác sĩ."
+      },
+      {
+        "terms": "아버지 · 어머니",
+        "label": "Trung tính/lịch sự",
+        "detail": "Phù hợp trong bài học, hoàn cảnh trang trọng hoặc khi muốn nói lịch sự hơn.",
+        "example": "어머니는 한국 사람이에요. · Mẹ là người Hàn Quốc."
+      },
+      {
+        "terms": "제 · 우리",
+        "label": "Nói “của tôi”",
+        "detail": "제 nghĩa là “của tôi”. Người Hàn cũng thường nói 우리 엄마/우리 아빠 khi nhắc đến mẹ/bố của mình.",
+        "example": "제 어머니는 회사원이에요. · Mẹ tôi là nhân viên công ty."
+      }
+    ],
+    "note": "Trong câu A은/는 B이에요/예요, chọn 은/는 theo 받침 của A và chọn 이에요/예요 theo 받침 của B."
+  }
 };
