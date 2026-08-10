@@ -7192,6 +7192,24 @@ body[data-current-language="en"] {
 #koreanApp .grammar-examples small { grid-area: meaning; color: #78858a; }
 #koreanApp .grammar-examples svg { grid-area: icon; width: 16px; }
 
+#koreanApp .lesson-family-usage { margin: 18px 0 20px; padding: 22px; border: 1px solid #dcebef; border-radius: 24px; background: linear-gradient(145deg, rgba(240,249,252,.95), rgba(255,250,245,.95)); box-shadow: 0 14px 34px rgba(80,128,148,.08); }
+#koreanApp .family-usage-head { display: flex; gap: 14px; align-items: flex-start; }
+#koreanApp .family-usage-head > span { display: grid; place-items: center; flex: 0 0 auto; width: 42px; height: 42px; border-radius: 15px; color: #4f8aa1; background: rgba(255,255,255,.88); box-shadow: 0 8px 18px rgba(76,132,154,.1); }
+#koreanApp .family-usage-head > span svg { width: 20px; }
+#koreanApp .family-usage-head h3 { margin: 2px 0 5px; color: #2e5e72; }
+#koreanApp .family-usage-head p { margin: 0; color: #76858b; line-height: 1.5; }
+#koreanApp .family-usage-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; margin-top: 17px; }
+#koreanApp .family-usage-grid article { padding: 14px; border: 1px solid rgba(216,232,237,.9); border-radius: 17px; background: rgba(255,255,255,.76); }
+#koreanApp .family-usage-grid article:nth-child(2) { border-color: #ebe2d8; }
+#koreanApp .family-usage-grid article:nth-child(3) { border-color: #e5dfee; }
+#koreanApp .family-usage-grid article > span { display: inline-flex; padding: 4px 7px; border-radius: 8px; color: #56879b; background: #ecf6f9; font-size: .62rem; font-weight: 900; }
+#koreanApp .family-usage-grid strong { display: block; margin: 9px 0 5px; color: #315f73; }
+#koreanApp .family-usage-grid p { margin: 0; color: #748288; font-size: .76rem; line-height: 1.48; }
+#koreanApp .family-usage-grid small { display: block; margin-top: 9px; color: #8b7392; font-size: .68rem; line-height: 1.45; }
+#koreanApp .family-usage-note { display: flex; gap: 9px; align-items: flex-start; margin-top: 12px; padding: 11px 13px; border-radius: 14px; color: #537b8d; background: rgba(255,255,255,.64); }
+#koreanApp .family-usage-note svg { flex: 0 0 auto; width: 16px; margin-top: 2px; }
+#koreanApp .family-usage-note p { margin: 0; font-size: .72rem; line-height: 1.5; }
+
 #koreanApp .lesson-translation-panel { margin-bottom: 20px; }
 #koreanApp .lesson-translation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
 #koreanApp .lesson-translation-card { padding: 15px; border: 1px solid #deeaee; border-radius: 18px; background: linear-gradient(145deg, #fff, #f7fbfd); }
@@ -7210,6 +7228,16 @@ body[data-current-language="en"] {
 #koreanApp .translation-answer > span { display: block; margin-top: 6px; color: #5f8fa2; font-size: .74rem; font-weight: 800; }
 #koreanApp .translation-answer > small { display: block; margin-top: 3px; color: #8a7393; font-size: .68rem; }
 #koreanApp .translation-answer > p { margin: 8px 0 0; color: #7b878d; font-size: .7rem; line-height: 1.45; }
+#koreanApp .translation-alternatives { margin-top: 12px; padding: 11px; border: 1px solid #e7e0ef; border-radius: 14px; background: rgba(250,247,255,.88); }
+#koreanApp .translation-alternatives > b { display: block; margin-bottom: 8px; color: #826d8b; font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; }
+#koreanApp .translation-alternatives article + article { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #e3dbe9; }
+#koreanApp .translation-alternatives article > div { display: flex; justify-content: space-between; gap: 9px; align-items: center; }
+#koreanApp .translation-alternatives article strong { color: #365f71; font-size: .92rem; }
+#koreanApp .translation-alternatives article button { display: grid; place-items: center; flex: 0 0 auto; width: 28px; height: 28px; border: 0; border-radius: 9px; color: #647f9d; background: #fff; cursor: pointer; }
+#koreanApp .translation-alternatives article button svg { width: 14px; }
+#koreanApp .translation-alternatives article > span, #koreanApp .translation-alternatives article > small { display: block; margin-top: 4px; color: #738f9b; font-size: .68rem; }
+#koreanApp .translation-alternatives article > small { color: #8a7891; }
+#koreanApp .translation-alternatives article > p { margin: 6px 0 0; color: #818a8e; font-size: .67rem; line-height: 1.4; }
 
 #koreanApp .lesson-practice-grid {
   display: grid;
@@ -7267,7 +7295,8 @@ body[data-current-language="en"] {
   #koreanApp .korean-path-grid,
   #koreanApp .lesson-one-hero,
   #koreanApp .lesson-grammar-grid,
-  #koreanApp .lesson-translation-grid { grid-template-columns: 1fr; }
+  #koreanApp .lesson-translation-grid,
+  #koreanApp .family-usage-grid { grid-template-columns: 1fr; }
   #koreanApp .foundation-intro .korean-module-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   #koreanApp .korean-lesson-slide-card { grid-template-columns: 1fr; }
   #koreanApp .lesson-practice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

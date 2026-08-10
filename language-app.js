@@ -334,6 +334,7 @@
           <button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-1"><i data-lucide="arrow-left"></i><span>Về Bài 1</span></button>
         </div>
         <div class="lesson-grammar-grid" id="koLessonGrammar"></div>
+        <section class="lesson-family-usage" id="koLessonFamilyUsage"></section>
         <section class="korean-panel lesson-translation-panel">
           <div class="korean-panel-head"><div><span class="section-number">01</span><h3>Luyện dịch mẫu câu “A là B”</h3></div><p>Tự dịch trước, sau đó mở đáp án và nghe câu tiếng Hàn.</p></div>
           <div class="lesson-translation-grid" id="koLessonSentencePractice"></div>
@@ -579,6 +580,18 @@
     `).join("");
   }
 
+  function renderLessonFamilyUsage() {
+    const usage = koreanLessonOne.familyUsage;
+    if (!usage) return;
+    koreanApp.querySelector("#koLessonFamilyUsage").innerHTML = `
+      <div class="family-usage-head"><span><i data-lucide="heart-handshake"></i></span><div><p class="eyebrow">Ghi chú sử dụng</p><h3>${escapeHtml(usage.title)}</h3><p>${escapeHtml(usage.intro)}</p></div></div>
+      <div class="family-usage-grid">
+        ${usage.items.map((item) => `<article><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.terms)}</strong><p>${escapeHtml(item.detail)}</p><small>${escapeHtml(item.example)}</small></article>`).join("")}
+      </div>
+      <div class="family-usage-note"><i data-lucide="lightbulb"></i><p>${escapeHtml(usage.note)}</p></div>
+    `;
+  }
+
   function renderLessonSentencePractice() {
     const items = koreanLessonOne.sentencePractice || [];
     koreanApp.querySelector("#koLessonSentencePractice").innerHTML = items.map((item, index) => `
@@ -590,6 +603,7 @@
           <span>${escapeHtml(item.romanization)}</span>
           <small>Đọc gần đúng: ${escapeHtml(item.reading)}</small>
           ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}
+          ${item.alternatives?.length ? `<div class="translation-alternatives"><b>Cách nói khác</b>${item.alternatives.map((alternative) => `<article><div><strong>${escapeHtml(alternative.text)}</strong><button type="button" data-speak-ko="${escapeHtml(alternative.text)}" aria-label="Nghe ${escapeHtml(alternative.text)}"><i data-lucide="volume-2"></i></button></div><span>${escapeHtml(alternative.romanization)}</span><small>Đọc gần đúng: ${escapeHtml(alternative.reading)}</small>${alternative.note ? `<p>${escapeHtml(alternative.note)}</p>` : ""}</article>`).join("")}</div>` : ""}
         </div>
       </article>
     `).join("");
@@ -933,6 +947,7 @@
     renderLessonReadingGuide();
     renderLessonVocabulary();
     renderLessonGrammar();
+    renderLessonFamilyUsage();
     renderLessonSentencePractice();
     renderLessonPractice();
     nextKoreanQuestion();
