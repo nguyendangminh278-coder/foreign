@@ -1,0 +1,365 @@
+#koreanApp .interactive-practice-panel {
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#koreanApp #koInteractivePractice { margin-top: 18px; }
+#koreanApp .ip-dashboard { display: grid; gap: 16px; }
+
+#koreanApp .ip-overview {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  padding: 22px;
+  border: 1px solid rgba(204, 228, 237, .9);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(253, 222, 226, .55), transparent 35%),
+    radial-gradient(circle at 7% 100%, rgba(205, 237, 229, .65), transparent 34%),
+    rgba(255, 255, 255, .88);
+  box-shadow: 0 18px 45px rgba(59, 111, 133, .1);
+  backdrop-filter: blur(18px);
+}
+
+#koreanApp .ip-progress-ring {
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: conic-gradient(#72b7c5 var(--ip-progress), #eaf3f5 0);
+}
+
+#koreanApp .ip-progress-ring::before {
+  grid-area: 1 / 1;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: inset 0 0 0 1px rgba(218, 234, 239, .8);
+  content: "";
+}
+
+#koreanApp .ip-progress-ring > span { z-index: 1; grid-area: 1 / 1; color: #39748b; text-align: center; }
+#koreanApp .ip-progress-ring strong { font-size: 1.5rem; }
+#koreanApp .ip-progress-ring small { margin-left: 3px; color: #91a5ad; font-size: .72rem; font-weight: 850; }
+#koreanApp .ip-overview-copy h3 { margin: 2px 0 5px; color: #28596d; font-size: 1.35rem; }
+#koreanApp .ip-overview-copy > p:last-of-type { margin: 0; color: #71848c; line-height: 1.55; }
+
+#koreanApp .ip-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+#koreanApp .ip-stats span { display: inline-flex; gap: 6px; align-items: center; padding: 7px 9px; border: 1px solid #e1edf0; border-radius: 10px; color: #587887; background: rgba(255, 255, 255, .72); font-size: .69rem; font-weight: 800; }
+#koreanApp .ip-stats svg { width: 14px; }
+
+#koreanApp .ip-reset-all,
+#koreanApp .ip-primary,
+#koreanApp .ip-secondary,
+#koreanApp .ip-stage-nav button {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: .72rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+#koreanApp .ip-reset-all { border: 1px solid #e5e1e8; color: #806f83; background: rgba(255, 255, 255, .72); }
+#koreanApp .ip-reset-all:hover,
+#koreanApp .ip-secondary:hover,
+#koreanApp .ip-stage-nav button:hover:not(:disabled) { transform: translateY(-1px); border-color: #a8ccd7; }
+#koreanApp .ip-reset-all svg,
+#koreanApp .ip-primary svg,
+#koreanApp .ip-secondary svg,
+#koreanApp .ip-stage-nav svg { width: 15px; }
+
+#koreanApp .ip-mission-rail {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 9px;
+  padding: 10px;
+  border: 1px solid #e0ecef;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .8);
+  box-shadow: 0 12px 32px rgba(59, 109, 128, .07);
+}
+
+#koreanApp .ip-mission {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 3px 8px;
+  align-items: center;
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  color: #637e89;
+  background: #f7fbfc;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+#koreanApp .ip-mission:nth-child(4n + 2) { background: #fff9f3; }
+#koreanApp .ip-mission:nth-child(4n + 3) { background: #fbf8ff; }
+#koreanApp .ip-mission:nth-child(4n) { background: #f5fafc; }
+#koreanApp .ip-mission:hover { transform: translateY(-2px); border-color: #c8e0e7; }
+#koreanApp .ip-mission.active { border-color: #86bdcd; background: #edf8fa; box-shadow: 0 8px 18px rgba(76, 139, 162, .12); }
+#koreanApp .ip-mission.completed::after { position: absolute; top: 8px; right: 8px; width: 7px; height: 7px; border-radius: 50%; background: #62b998; box-shadow: 0 0 0 3px #e4f5ee; content: ""; }
+#koreanApp .ip-mission-number { display: grid; place-items: center; grid-row: 1 / span 2; width: 28px; height: 28px; border-radius: 9px; color: #4d8297; background: rgba(255, 255, 255, .85); font-size: .62rem; font-weight: 950; }
+#koreanApp .ip-mission > svg { display: none; }
+#koreanApp .ip-mission b { overflow: hidden; color: #416779; font-size: .71rem; text-overflow: ellipsis; white-space: nowrap; }
+#koreanApp .ip-mission small { color: #91a1a7; font-size: .6rem; }
+
+#koreanApp .ip-stage {
+  --ip-accent: #73b8c7;
+  --ip-soft: #edf8fa;
+  overflow: hidden;
+  scroll-margin-top: 18px;
+  border: 1px solid #dbe9ed;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 0 22px 58px rgba(52, 102, 122, .11);
+}
+
+#koreanApp .ip-accent-peach { --ip-accent: #eeb28e; --ip-soft: #fff5ed; }
+#koreanApp .ip-accent-lavender { --ip-accent: #ac98c7; --ip-soft: #f8f4fc; }
+#koreanApp .ip-accent-sky { --ip-accent: #78aacd; --ip-soft: #eff7fc; }
+
+#koreanApp .ip-stage-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e3edef;
+  background: linear-gradient(135deg, var(--ip-soft), rgba(255, 255, 255, .96));
+}
+
+#koreanApp .ip-stage-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 16px; color: #fff; background: var(--ip-accent); box-shadow: 0 10px 24px color-mix(in srgb, var(--ip-accent) 28%, transparent); }
+#koreanApp .ip-stage-icon svg { width: 22px; }
+#koreanApp .ip-stage-head h3 { margin: 2px 0 5px; color: #28566a; font-size: 1.25rem; }
+#koreanApp .ip-stage-head > div > p:not(.eyebrow) { margin: 0; color: #76858c; line-height: 1.5; }
+#koreanApp .ip-skill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+#koreanApp .ip-skill-row span { padding: 5px 8px; border-radius: 8px; color: #5c7d8a; background: rgba(255, 255, 255, .72); font-size: .62rem; font-weight: 850; }
+#koreanApp .ip-stage-content { padding: 22px 24px 24px; }
+
+#koreanApp .ip-question-list { display: grid; gap: 11px; }
+#koreanApp .ip-question {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 15px;
+  border: 1px solid #e1ebee;
+  border-radius: 18px;
+  background: #fff;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+#koreanApp .ip-question:nth-child(3n + 2) { background: #fffdf9; }
+#koreanApp .ip-question:nth-child(3n) { background: #fcfaff; }
+#koreanApp .ip-question.correct { border-color: #a9dbc7; box-shadow: inset 3px 0 #65bd99; }
+#koreanApp .ip-question.wrong { border-color: #efc5bc; box-shadow: inset 3px 0 #e08d7d; }
+#koreanApp .ip-question-index { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; color: #5a8799; background: #edf6f8; font-size: .65rem; font-weight: 950; }
+#koreanApp .ip-question-visual { grid-column: 1; text-align: center; }
+#koreanApp .ip-question-visual > span { display: block; font-size: 2.2rem; line-height: 1; }
+#koreanApp .ip-question-visual small { display: block; margin-top: 5px; color: #8a9ba2; font-size: .56rem; }
+#koreanApp .ip-fill-question:has(.ip-question-visual) .ip-question-body { grid-column: 2; grid-row: 1 / span 2; }
+#koreanApp .ip-korean-sentence { color: #244f62; font-size: 1.03rem; font-weight: 850; line-height: 2.15; }
+#koreanApp .ip-question-body > p { margin: 5px 0 0; color: #77868c; font-size: .78rem; line-height: 1.48; }
+#koreanApp .ip-question-body > small { display: block; margin-top: 4px; color: #8a7493; font-size: .68rem; }
+
+#koreanApp .ip-inline-select {
+  min-width: 76px;
+  margin: 0 3px;
+  padding: 6px 25px 6px 9px;
+  border: 1px solid #bcd8e1;
+  border-radius: 10px;
+  color: #376c82;
+  background: #f5fbfc;
+  font: inherit;
+  font-size: .83rem;
+  cursor: pointer;
+}
+
+#koreanApp .ip-inline-select:focus { outline: 3px solid rgba(112, 179, 198, .18); border-color: #6eb0c4; }
+#koreanApp .ip-choice-question { grid-template-columns: 34px auto minmax(0, 1fr); }
+#koreanApp .ip-choice-question .ip-question-body { grid-column: 2 / -1; }
+#koreanApp .ip-choice-question:has(.ip-choice-visual) .ip-question-body { grid-column: 3; }
+#koreanApp .ip-choice-visual { display: grid; place-items: center; min-width: 64px; min-height: 58px; padding: 8px; border-radius: 15px; background: var(--ip-soft); font-size: 1.8rem; }
+#koreanApp .ip-choice-title { display: flex; gap: 8px; align-items: center; }
+#koreanApp .ip-choice-title h4 { margin: 0; color: #2e5b6e; font-size: .96rem; }
+#koreanApp .ip-choice-title button { display: grid; place-items: center; flex: 0 0 auto; width: 30px; height: 30px; border: 0; border-radius: 10px; color: #4c8398; background: #edf7fa; cursor: pointer; }
+#koreanApp .ip-choice-title svg { width: 15px; }
+
+#koreanApp .ip-option-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 11px; }
+#koreanApp .ip-option { position: relative; min-width: 0; padding: 10px 11px; border: 1px solid #dfebee; border-radius: 12px; color: #5b7480; background: #fafcfd; font-size: .73rem; font-weight: 800; line-height: 1.4; cursor: pointer; }
+#koreanApp .ip-option input { position: absolute; opacity: 0; pointer-events: none; }
+#koreanApp .ip-option:hover { border-color: #acd0db; background: #f3fafb; }
+#koreanApp .ip-option.selected { border-color: var(--ip-accent); color: #326276; background: var(--ip-soft); box-shadow: 0 6px 14px rgba(69, 124, 146, .08); }
+#koreanApp .ip-option.answer-correct { border-color: #85c9ac; color: #36765d; background: #eef9f4; }
+#koreanApp .ip-option.answer-wrong { border-color: #e5a79b; color: #995e52; background: #fff3f0; }
+
+#koreanApp .ip-answer-explanation { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 9px; align-items: start; margin-top: 12px; padding: 10px 11px; border-radius: 13px; color: #4e7382; background: #eff8fa; }
+#koreanApp .ip-question.correct .ip-answer-explanation { color: #4c7765; background: #edf8f3; }
+#koreanApp .ip-question.wrong .ip-answer-explanation { color: #805e57; background: #fff3f0; }
+#koreanApp .ip-answer-explanation > svg { width: 17px; margin-top: 2px; }
+#koreanApp .ip-answer-explanation b { display: block; font-size: .72rem; }
+#koreanApp .ip-answer-explanation p { margin: 3px 0 0; font-size: .68rem; line-height: 1.45; }
+#koreanApp .ip-answer-explanation button { display: grid; place-items: center; width: 29px; height: 29px; border: 0; border-radius: 9px; color: inherit; background: rgba(255,255,255,.75); cursor: pointer; }
+#koreanApp .ip-answer-explanation button svg { width: 14px; }
+
+#koreanApp .ip-passage { margin-bottom: 14px; padding: 16px; border: 1px solid #dce9ed; border-radius: 18px; background: linear-gradient(145deg, #f4fbfc, #fff); }
+#koreanApp .ip-passage > div { display: flex; gap: 10px; align-items: center; }
+#koreanApp .ip-passage > div > span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; color: #51869b; background: #e7f4f7; }
+#koreanApp .ip-passage > div > span svg { width: 17px; }
+#koreanApp .ip-passage h4 { margin: 2px 0 0; color: #305f72; }
+#koreanApp .ip-passage small { color: #87a0aa; font-size: .62rem; }
+#koreanApp .ip-passage > div > button { display: inline-flex; gap: 6px; align-items: center; margin-left: auto; padding: 8px 10px; border: 1px solid #cfe3e9; border-radius: 10px; color: #4a7d91; background: #fff; font-size: .68rem; font-weight: 850; cursor: pointer; }
+#koreanApp .ip-passage > div > button svg { width: 14px; }
+#koreanApp .ip-passage-korean { margin: 14px 0 0; padding: 13px; border-radius: 13px; color: #355d6f; background: rgba(255,255,255,.78); font-size: .8rem; line-height: 1.75; }
+#koreanApp .ip-passage-translation { margin: 9px 0 0; color: #7b898e; font-size: .72rem; line-height: 1.5; }
+
+#koreanApp .ip-profile-strip,
+#koreanApp .ip-schedule-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+#koreanApp .ip-schedule-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+#koreanApp .ip-profile-strip article,
+#koreanApp .ip-schedule-strip article { padding: 10px; border: 1px solid #e0ebee; border-radius: 14px; background: #fbfdfd; text-align: center; }
+#koreanApp .ip-profile-strip span,
+#koreanApp .ip-schedule-strip span { display: block; font-size: 1.7rem; }
+#koreanApp .ip-profile-strip strong,
+#koreanApp .ip-schedule-strip strong { display: block; margin-top: 5px; color: #3b6879; font-size: .73rem; }
+#koreanApp .ip-profile-strip small,
+#koreanApp .ip-schedule-strip small { display: block; margin-top: 3px; color: #87999f; font-size: .6rem; line-height: 1.35; }
+
+#koreanApp .ip-checkbar { display: flex; gap: 14px; align-items: center; justify-content: space-between; margin-top: 15px; padding: 13px; border: 1px solid #e0eaed; border-radius: 16px; background: #f9fbfc; }
+#koreanApp .ip-checkbar > div:last-child { display: flex; gap: 8px; }
+#koreanApp .ip-check-feedback { display: flex; gap: 10px; align-items: center; }
+#koreanApp .ip-check-feedback > span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: #5a8b9e; background: #eaf5f8; }
+#koreanApp .ip-check-feedback > span svg { width: 16px; }
+#koreanApp .ip-check-feedback strong { display: block; color: #3a6576; font-size: .78rem; }
+#koreanApp .ip-check-feedback small { display: block; margin-top: 2px; color: #89999f; font-size: .64rem; }
+#koreanApp .ip-check-feedback.perfect > span { color: #4c9677; background: #e7f6ef; }
+#koreanApp .ip-check-feedback.needs-answer small { color: #b36a5d; }
+#koreanApp .ip-primary { border: 1px solid var(--ip-accent); color: #fff; background: var(--ip-accent); box-shadow: 0 8px 18px color-mix(in srgb, var(--ip-accent) 24%, transparent); }
+#koreanApp .ip-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px color-mix(in srgb, var(--ip-accent) 32%, transparent); }
+#koreanApp .ip-secondary { border: 1px solid #d4e4e9; color: #557987; background: #fff; }
+
+#koreanApp .ip-builder-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+#koreanApp .ip-builder-grid label,
+#koreanApp .ip-intro-form label { display: grid; gap: 6px; }
+#koreanApp .ip-builder-grid label > span,
+#koreanApp .ip-intro-form label > span { color: #4d7180; font-size: .69rem; font-weight: 850; }
+#koreanApp .ip-builder-grid select,
+#koreanApp .ip-intro-form select,
+#koreanApp .ip-intro-form input { width: 100%; min-height: 42px; padding: 9px 11px; border: 1px solid #d6e6eb; border-radius: 12px; color: #3e6676; background: #fbfdfd; font: inherit; font-size: .76rem; }
+#koreanApp .ip-builder-grid .snack-field { grid-column: 1 / -1; }
+
+#koreanApp .ip-live-preview { margin-top: 14px; padding: 17px; border: 1px solid #dbe9ed; border-radius: 18px; background: linear-gradient(145deg, var(--ip-soft), #fff); }
+#koreanApp .ip-live-preview > div:first-child { display: flex; gap: 10px; align-items: center; }
+#koreanApp .ip-live-preview > div:first-child > span { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 12px; color: #fff; background: var(--ip-accent); }
+#koreanApp .ip-live-preview > div:first-child svg { width: 17px; }
+#koreanApp .ip-live-preview h4 { margin: 2px 0 0; color: #315f71; }
+#koreanApp .ip-live-preview small { color: #879ca4; font-size: .62rem; }
+#koreanApp .ip-live-preview > p { min-height: 52px; margin: 13px 0; padding: 12px; border-radius: 13px; color: #335d6e; background: rgba(255,255,255,.78); font-size: .82rem; line-height: 1.7; }
+#koreanApp .ip-live-preview > div:nth-last-of-type(1) { display: flex; flex-wrap: wrap; gap: 8px; }
+#koreanApp .ip-builder-feedback { display: block; margin-top: 9px; color: #4f9174 !important; }
+#koreanApp .ip-builder-feedback.error { color: #b56d60 !important; }
+
+#koreanApp .ip-snack-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 9px; }
+#koreanApp .ip-snack-card { position: relative; display: grid; gap: 4px; justify-items: center; padding: 14px 8px; border: 1px solid #e0eaed; border-radius: 17px; color: #547584; background: #fff; cursor: pointer; transition: transform .18s ease, border-color .18s ease; }
+#koreanApp .ip-snack-card:hover { transform: translateY(-3px); border-color: #bcd8e1; }
+#koreanApp .ip-snack-card.selected { border-color: var(--ip-accent); background: var(--ip-soft); box-shadow: 0 10px 20px rgba(66, 120, 143, .1); }
+#koreanApp .ip-snack-card > span { font-size: 2rem; }
+#koreanApp .ip-snack-card strong { color: #3c6879; font-size: .78rem; }
+#koreanApp .ip-snack-card small { color: #8d9ba0; font-size: .61rem; }
+#koreanApp .ip-snack-card > svg { position: absolute; top: 7px; right: 7px; width: 15px; color: #5ab18d; opacity: 0; }
+#koreanApp .ip-snack-card.selected > svg { opacity: 1; }
+
+#koreanApp .ip-intro-studio { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); gap: 14px; }
+#koreanApp .ip-intro-form { display: grid; gap: 11px; padding: 16px; border: 1px solid #e0eaed; border-radius: 18px; background: #fbfdfd; }
+#koreanApp .ip-intro-tip { display: flex; gap: 8px; align-items: flex-start; padding: 10px; border-radius: 12px; color: #697d85; background: #f4f1fa; }
+#koreanApp .ip-intro-tip svg { flex: 0 0 auto; width: 15px; margin-top: 2px; color: #8c78a0; }
+#koreanApp .ip-intro-tip p { margin: 0; font-size: .66rem; line-height: 1.45; }
+#koreanApp .ip-intro-preview { position: relative; padding: 20px; border: 1px solid #d7e7ec; border-radius: 20px; background: radial-gradient(circle at 90% 8%, rgba(248, 211, 219, .58), transparent 27%), linear-gradient(145deg, #eef8fb, #fff); }
+#koreanApp .ip-avatar { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 18px; color: #fff; background: #77afc6; font-size: 1.05rem; font-weight: 950; box-shadow: 0 10px 22px rgba(72, 130, 154, .18); }
+#koreanApp .ip-avatar svg { position: absolute; top: -6px; right: -6px; width: 17px; color: #e6a95d; }
+#koreanApp .ip-intro-preview > small { color: #7f99a3; font-size: .65rem; font-weight: 850; }
+#koreanApp .ip-intro-preview > p { min-height: 130px; margin: 13px 70px 14px 0; color: #305b6d; font-size: .92rem; font-weight: 750; line-height: 1.8; }
+#koreanApp .ip-intro-preview > div:last-of-type { display: flex; flex-wrap: wrap; gap: 7px; }
+#koreanApp .ip-intro-preview button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+#koreanApp .ip-stage-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-top: 1px solid #e2ecef; background: #fbfdfd; }
+#koreanApp .ip-stage-nav button { border: 1px solid #d9e6ea; color: #5a7b88; background: #fff; }
+#koreanApp .ip-stage-nav button:disabled { opacity: .38; cursor: not-allowed; }
+#koreanApp .ip-stage-nav > span { color: #8c9da3; font-size: .68rem; font-weight: 850; }
+
+#koreanApp .ip-dashboard button:focus-visible,
+#koreanApp .ip-dashboard select:focus-visible,
+#koreanApp .ip-dashboard input:focus-visible { outline: 3px solid rgba(94, 165, 188, .22); outline-offset: 2px; }
+
+@media (max-width: 1000px) {
+  #koreanApp .ip-mission-rail { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #koreanApp .ip-option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .ip-profile-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #koreanApp .ip-builder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .ip-snack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  #koreanApp .ip-overview { grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding: 18px; }
+  #koreanApp .ip-progress-ring { width: 78px; height: 78px; }
+  #koreanApp .ip-progress-ring::before { width: 60px; height: 60px; }
+  #koreanApp .ip-reset-all { grid-column: 1 / -1; justify-self: start; }
+  #koreanApp .ip-mission-rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+  #koreanApp .ip-mission { flex: 0 0 150px; scroll-snap-align: start; }
+  #koreanApp .ip-stage-head { padding: 18px; }
+  #koreanApp .ip-stage-content { padding: 17px; }
+  #koreanApp .ip-question { grid-template-columns: 30px minmax(0, 1fr); padding: 13px; }
+  #koreanApp .ip-choice-question { grid-template-columns: 30px minmax(0, 1fr); }
+  #koreanApp .ip-choice-visual { grid-column: 2; justify-self: start; }
+  #koreanApp .ip-choice-question .ip-question-body,
+  #koreanApp .ip-choice-question:has(.ip-choice-visual) .ip-question-body { grid-column: 2; }
+  #koreanApp .ip-option-grid { grid-template-columns: 1fr; }
+  #koreanApp .ip-schedule-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .ip-intro-studio { grid-template-columns: 1fr; }
+  #koreanApp .ip-checkbar { align-items: stretch; flex-direction: column; }
+  #koreanApp .ip-checkbar > div:last-child { justify-content: flex-end; }
+}
+
+@media (max-width: 480px) {
+  #koreanApp .ip-overview { grid-template-columns: 1fr; }
+  #koreanApp .ip-progress-ring { justify-self: start; }
+  #koreanApp .ip-stats { display: grid; }
+  #koreanApp .ip-stage { border-radius: 22px; }
+  #koreanApp .ip-stage-head { grid-template-columns: 1fr; }
+  #koreanApp .ip-stage-icon { width: 42px; height: 42px; }
+  #koreanApp .ip-question { grid-template-columns: 1fr; }
+  #koreanApp .ip-question-index { width: 29px; height: 29px; }
+  #koreanApp .ip-question-visual,
+  #koreanApp .ip-choice-visual,
+  #koreanApp .ip-fill-question:has(.ip-question-visual) .ip-question-body,
+  #koreanApp .ip-choice-question .ip-question-body,
+  #koreanApp .ip-choice-question:has(.ip-choice-visual) .ip-question-body { grid-column: 1; grid-row: auto; }
+  #koreanApp .ip-question-visual { text-align: left; }
+  #koreanApp .ip-korean-sentence { font-size: .92rem; line-height: 2.35; }
+  #koreanApp .ip-inline-select { min-width: 70px; font-size: .76rem; }
+  #koreanApp .ip-profile-strip,
+  #koreanApp .ip-schedule-strip,
+  #koreanApp .ip-builder-grid,
+  #koreanApp .ip-snack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .ip-builder-grid .snack-field { grid-column: 1 / -1; }
+  #koreanApp .ip-passage > div { align-items: flex-start; flex-wrap: wrap; }
+  #koreanApp .ip-passage > div > button { margin-left: 0; }
+  #koreanApp .ip-intro-preview > p { margin-right: 0; padding-top: 55px; }
+  #koreanApp .ip-stage-nav { padding: 12px 16px; }
+  #koreanApp .ip-stage-nav button span { display: none; }
+}
