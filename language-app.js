@@ -31,7 +31,7 @@
       <div class="header-stats korean-stats" aria-label="Tiến độ tiếng Hàn">
         <div><strong>1</strong><span>bài chính</span></div>
         <div><strong>40</strong><span>chữ cái</span></div>
-        <div><strong>24</strong><span>slide bài 1</span></div>
+        <div><strong>12</strong><span>bài tương tác</span></div>
         <div><strong id="koStatCompleted">0/5</strong><span>đã học</span></div>
       </div>
     </header>
@@ -90,7 +90,7 @@
             <span class="path-number">BÀI 01</span>
             <div class="path-glyph" aria-hidden="true">안</div>
             <div>
-              <p class="eyebrow">24 slide · ${getLessonVocabulary().length} từ</p>
+              <p class="eyebrow">12 chặng nền tảng · 12 bài tương tác · ${getLessonVocabulary().length} từ</p>
               <h3>안녕하세요? 저는 노아예요.</h3>
               <p>Xin chào! Mình là Noa · giao tiếp, trường học và đồ ăn.</p>
               <button class="lesson-review-button" type="button" data-open-korean-tab="ko-lesson-1"><span>Học Bài 1</span><i data-lucide="arrow-right"></i></button>
@@ -282,7 +282,7 @@
 
       <section class="course-view" id="ko-lesson-1">
         <div class="section-head">
-          <div><p class="eyebrow">Bài 01 · 24 slide</p><h2>안녕하세요? 저는 노아예요.</h2><p class="section-subtitle">Annyeonghaseyo? Jeoneun Noayeyo. · Xin chào! Mình là Noa.</p></div>
+          <div><p class="eyebrow">Bài 01 · học và thực hành</p><h2>안녕하세요? 저는 노아예요.</h2><p class="section-subtitle">12 chặng nền tảng và 12 nhiệm vụ tương tác trực tiếp trên web.</p></div>
           <button class="secondary-button module-complete" type="button" data-complete-module="lesson-1"><i data-lucide="circle-check"></i><span>Đánh dấu đã học</span></button>
         </div>
         <section class="lesson-one-hero">
@@ -298,15 +298,13 @@
           </button>
         </section>
         <section class="korean-panel lesson-browser-panel">
-          <div class="korean-panel-head lesson-browser-head"><div><span class="section-number">01</span><h3>Nội dung 24 slide</h3></div><p>Lọc theo chặng hoặc tìm bằng tiếng Hàn/tiếng Việt.</p></div>
+          <div class="korean-panel-head lesson-browser-head"><div><span class="section-number">01</span><h3>12 chặng kiến thức nền tảng</h3></div><p>Lọc theo từ vựng/ngữ pháp; phần luyện tập đã được chuyển thành bài web tương tác.</p></div>
           <div class="lesson-slide-toolbar">
             <label class="lesson-search-field"><i data-lucide="search"></i><input id="koLessonSlideSearch" type="search" placeholder="Tìm trong Bài 1…" /></label>
             <div class="lesson-filter-row" id="koLessonSlideFilters">
               <button class="active" type="button" data-ko-slide-filter="all">Tất cả</button>
               <button type="button" data-ko-slide-filter="vocabulary">Từ vựng</button>
               <button type="button" data-ko-slide-filter="grammar">Ngữ pháp</button>
-              <button type="button" data-ko-slide-filter="grammar-practice">Luyện ngữ pháp</button>
-              <button type="button" data-ko-slide-filter="general-practice">Luyện tập chung</button>
             </div>
           </div>
           <div class="korean-slide-list" id="koLessonSlideList"></div>
@@ -316,7 +314,7 @@
       <section class="course-view" id="ko-lesson-vocab">
         <div class="section-head">
           <div><p class="eyebrow">Bài 01 · I. Từ vựng</p><h2>${getLessonVocabulary().length} từ và cụm từ theo chủ đề</h2><p class="section-subtitle">Mỗi thẻ có chữ Hàn, phiên âm, nghĩa Việt và nút nghe.</p></div>
-          <button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-1"><i data-lucide="presentation"></i><span>Xem slide</span></button>
+          <button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-1"><i data-lucide="book-open-text"></i><span>Xem bài học</span></button>
         </div>
         <section class="lesson-reading-guide" id="koLessonReadingGuide"></section>
         <section class="korean-panel lesson-vocab-panel">
@@ -330,7 +328,7 @@
 
       <section class="course-view" id="ko-lesson-practice">
         <div class="section-head">
-          <div><p class="eyebrow">Bài 01 · II–IV</p><h2>Ngữ pháp và luyện tập</h2><p class="section-subtitle">Học quy tắc trước, sau đó mở bài tập gốc để làm theo từng slide.</p></div>
+          <div><p class="eyebrow">Bài 01 · II–IV</p><h2>Ngữ pháp và luyện tập</h2><p class="section-subtitle">Học quy tắc, làm bài trực tiếp, nhận phản hồi và lưu tiến độ ngay trên web.</p></div>
           <button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-1"><i data-lucide="arrow-left"></i><span>Về Bài 1</span></button>
         </div>
         <div class="lesson-grammar-grid" id="koLessonGrammar"></div>
@@ -339,9 +337,9 @@
           <div class="korean-panel-head"><div><span class="section-number">01</span><h3>Luyện dịch mẫu câu “A là B”</h3></div><p>Tự dịch trước, sau đó mở đáp án và nghe câu tiếng Hàn.</p></div>
           <div class="lesson-translation-grid" id="koLessonSentencePractice"></div>
         </section>
-        <section class="korean-panel lesson-practice-panel">
-          <div class="korean-panel-head"><div><span class="section-number">02</span><h3>12 slide luyện tập</h3></div><p>Nhấn ảnh để phóng to nội dung gốc.</p></div>
-          <div class="lesson-practice-grid" id="koLessonPracticeSlides"></div>
+        <section class="interactive-practice-panel">
+          <div class="korean-panel-head"><div><span class="section-number">02</span><h3>12 bài luyện tập trực quan</h3></div><p>Chọn, ghép, sửa lỗi, nghe, tự tạo câu và nhận phản hồi tức thì.</p></div>
+          <div id="koInteractivePractice"></div>
         </section>
       </section>
 
@@ -485,9 +483,10 @@
   function renderLessonSlides() {
     const query = normalizeCourseSearch(koreanApp.querySelector("#koLessonSlideSearch")?.value);
     const slides = koreanLessonOne.slides.filter((slide) => {
+      const isFoundation = ["intro", "vocabulary", "grammar"].includes(slide.section);
       const bySection = koreanSlideFilter === "all" || slide.section === koreanSlideFilter;
       const content = normalizeCourseSearch([slide.title, slide.summary, ...slide.lines].join(" "));
-      return bySection && (!query || content.includes(query));
+      return isFoundation && bySection && (!query || content.includes(query));
     });
     koreanApp.querySelector("#koLessonSlideList").innerHTML = slides.length ? slides.map((slide) => `
       <article class="korean-lesson-slide-card">
@@ -605,19 +604,6 @@
           ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}
           ${item.alternatives?.length ? `<div class="translation-alternatives"><b>Cách nói khác</b>${item.alternatives.map((alternative) => `<article><div><strong>${escapeHtml(alternative.text)}</strong><button type="button" data-speak-ko="${escapeHtml(alternative.text)}" aria-label="Nghe ${escapeHtml(alternative.text)}"><i data-lucide="volume-2"></i></button></div><span>${escapeHtml(alternative.romanization)}</span><small>Đọc gần đúng: ${escapeHtml(alternative.reading)}</small>${alternative.note ? `<p>${escapeHtml(alternative.note)}</p>` : ""}</article>`).join("")}</div>` : ""}
         </div>
-      </article>
-    `).join("");
-  }
-
-  function renderLessonPractice() {
-    const slides = koreanLessonOne.slides.filter((slide) => ["grammar-practice", "general-practice"].includes(slide.section));
-    koreanApp.querySelector("#koLessonPracticeSlides").innerHTML = slides.map((slide) => `
-      <article class="lesson-practice-card">
-        <button type="button" data-open-ko-slide="${escapeHtml(slide.image)}" data-ko-slide-title="Slide ${slide.index} · ${escapeHtml(slide.title)}">
-          <img src="${escapeHtml(slide.image)}" alt="Bài tập slide ${slide.index}: ${escapeHtml(slide.title)}" loading="lazy" />
-          <span><i data-lucide="maximize-2"></i></span>
-        </button>
-        <div><small>${escapeHtml(koreanSlideSectionLabels[slide.section])} · Slide ${slide.index}</small><strong>${escapeHtml(slide.title)}</strong><p>${escapeHtml(slide.summary)}</p></div>
       </article>
     `).join("");
   }
@@ -949,7 +935,6 @@
     renderLessonGrammar();
     renderLessonFamilyUsage();
     renderLessonSentencePractice();
-    renderLessonPractice();
     nextKoreanQuestion();
     updateCompletedUI();
     bindLanguageEvents();
