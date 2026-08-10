@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sổ học ngoại ngữ</title>
+    <link rel="stylesheet" href="styles.css?v=korean-vocab-pdf-1" />
+    <link rel="stylesheet" href="ai-chat.css?v=ai-chat-1" />
+  </head>
+  <body>
+    <section class="language-gate" id="languageGate" aria-labelledby="languageGateTitle">
+      <div class="gate-shell">
+        <div class="gate-heading">
+          <span class="gate-mark" aria-hidden="true">語</span>
+          <p class="eyebrow">Sổ học ngoại ngữ</p>
+          <h1 id="languageGateTitle">Hôm nay bạn muốn học tiếng gì?</h1>
+          <p>Chọn một ngôn ngữ để vào đúng không gian bài học của bạn.</p>
+        </div>
+
+        <div class="language-grid" aria-label="Chọn ngôn ngữ">
+          <button class="language-card chinese" type="button" data-enter-language="zh">
+            <span class="language-code" aria-hidden="true">中</span>
+            <span class="language-copy">
+              <strong>Tiếng Trung</strong>
+              <small>15 bài · từ vựng · nghe · flashcard</small>
+            </span>
+            <span class="language-status ready">Vào học</span>
+          </button>
+
+          <button class="language-card korean" type="button" data-enter-language="ko">
+            <span class="language-code" aria-hidden="true">한</span>
+            <span class="language-copy">
+              <strong>Tiếng Hàn</strong>
+              <small>Bảng chữ cái · Bài 1: Chào hỏi</small>
+            </span>
+            <span class="language-status new">Bài mới</span>
+          </button>
+
+          <button class="language-card english" type="button" data-enter-language="en">
+            <span class="language-code" aria-hidden="true">EN</span>
+            <span class="language-copy">
+              <strong>Tiếng Anh</strong>
+              <small>7 tài liệu · Reading · Writing</small>
+            </span>
+            <span class="language-status ready">Vào học</span>
+          </button>
+        </div>
+
+        <p class="gate-footnote">Tiến độ của từng ngôn ngữ được lưu riêng trên thiết bị này.</p>
+      </div>
+    </section>
+
+    <div class="language-app" id="chineseApp" data-language="zh" hidden>
+    <header class="app-header">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Logo lớp tiếng Trung" class="brand-logo" />
+        <div>
+          <h1>Sổ ôn tiếng Trung</h1>
+          <p>Bài 1–15 · từ vựng · nghe · flashcard</p>
+        </div>
+      </div>
+      <button class="language-switch" type="button" data-switch-language>
+        <i data-lucide="languages"></i><span>Đổi ngôn ngữ</span>
+      </button>
+      <div class="header-stats" aria-label="Tổng quan nhanh">
+        <div><strong id="statLessons">5</strong><span>bài</span></div>
+        <div><strong id="statSlides">0</strong><span>slide</span></div>
+        <div><strong id="statWords">0</strong><span>từ</span></div>
+        <div><strong id="statSaved">0</strong><span>đã nhớ</span></div>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <nav class="tabbar" aria-label="Khu vực học">
+        <button class="tab active" data-tab="overview">
+          <i data-lucide="layout-dashboard"></i><span>Tổng quan</span>
+        </button>
+        <button class="tab" data-tab="vocab">
+          <i data-lucide="book-open-text"></i><span>Từ vựng</span>
+        </button>
+        <button class="tab" data-tab="radicals">
+          <i data-lucide="graduation-cap"></i><span>Tân thủ</span>
+        </button>
+        <button class="tab" data-tab="cards">
+          <i data-lucide="copy"></i><span>Thẻ học</span>
+        </button>
+        <button class="tab" data-tab="audio">
+          <i data-lucide="headphones"></i><span>Nghe</span>
+        </button>
+        <button class="tab" data-tab="quiz">
+          <i data-lucide="circle-help"></i><span>Kiểm tra</span>
+        </button>
+        <button class="tab" data-tab="add">
+          <i data-lucide="plus"></i><span>Thêm mới</span>
+        </button>
+        <button class="tab dictionary-tab" data-tab="dictionary">
+          <i data-lucide="library-big"></i><span>Từ điển+</span>
+        </button>
+      </nav>
+
+      <section id="overview" class="view active">
+        <div class="dashboard-band">
+          <div>
+            <p class="eyebrow">Bộ học hiện tại</p>
+            <h2>Nhập môn, gia đình, ngôn ngữ, địa điểm và chào hỏi lịch sự</h2>
+            <p class="band-copy">Dữ liệu được tổng hợp từ Bài 1 đến Bài 15 của bạn.</p>
+          </div>
+          <div class="image-rail" aria-label="Ảnh từ bài học">
+            <img src="assets/numbers.jpg" alt="Ảnh số đếm từ slide" />
+            <img src="assets/languages.jpg" alt="Ảnh minh họa tiếng Anh từ slide" />
+            <img src="assets/beijing.jpg" alt="Ảnh minh họa Bắc Kinh từ slide" />
+          </div>
+        </div>
+
+        <div class="lesson-grid" id="lessonCards"></div>
+
+        <section class="character-writing-showcase" id="writingShowcase" aria-labelledby="writingShowcaseTitle">
+          <div class="writing-diagram-card" aria-label="Sơ đồ thứ tự hai nét của chữ 十">
+            <svg viewBox="0 0 220 220" role="img" aria-labelledby="shiDiagramTitle shiDiagramDesc">
+              <title id="shiDiagramTitle">Sơ đồ viết chữ 十</title>
+              <desc id="shiDiagramDesc">Viết nét ngang trước, sau đó viết nét sổ thẳng.</desc>
+              <rect x="10" y="10" width="200" height="200" rx="18" class="writing-paper"></rect>
+              <path d="M110 14V206M14 110H206M32 32L188 188M188 32L32 188" class="writing-grid-line"></path>
+              <path d="M48 101 C82 98, 137 97, 173 100" class="han-stroke stroke-one"></path>
+              <path d="M111 48 C109 91, 111 142, 109 176" class="han-stroke stroke-two"></path>
+              <g class="stroke-label label-one"><circle cx="43" cy="88" r="13"></circle><text x="43" y="93">1</text></g>
+              <g class="stroke-label label-two"><circle cx="126" cy="45" r="13"></circle><text x="126" y="50">2</text></g>
+            </svg>
+          </div>
+          <div class="writing-showcase-copy">
+            <p class="eyebrow">Minh họa cách viết · 书写顺序</p>
+            <h2 id="writingShowcaseTitle"><span lang="zh-CN">十</span><small>shí · mười</small></h2>
+            <p class="band-copy">Chữ có hai nét, rất phù hợp để ghi nhớ quy tắc <strong>ngang trước – sổ sau</strong>.</p>
+            <div class="stroke-step-grid">
+              <article><span>01</span><strong>一 · héng</strong><p>Kéo nét ngang từ trái sang phải.</p></article>
+              <article><span>02</span><strong>丨 · shù</strong><p>Kéo nét sổ từ trên xuống dưới.</p></article>
+            </div>
+            <div class="writing-equation" aria-label="Một cộng nét sổ tạo thành chữ mười">
+              <span>一</span><b>+</b><span>丨</span><b>→</b><strong>十</strong>
+            </div>
+            <button class="secondary-button writing-speak-button" type="button" data-showcase-speak="十">
+              <i data-lucide="volume-2"></i><span>Nghe “shí”</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="tool-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Xem lại bài</p>
+              <h2>Nội dung slide</h2>
+            </div>
+            <div class="control-row">
+              <label class="field compact">
+                <span>Bài</span>
+                <select id="slideLessonFilter"></select>
+              </label>
+              <label class="field search-field">
+                <span>Tìm</span>
+                <input id="slideSearch" type="search" placeholder="汉语, pinyin, nghĩa..." />
+              </label>
+            </div>
+          </div>
+          <div class="slide-list" id="slideList"></div>
+        </section>
+      </section>
+
+      <section id="vocab" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Kho từ</p>
+            <h2>Từ vựng đã học</h2>
+          </div>
+          <div class="control-row">
+            <label class="field compact">
+              <span>Bài</span>
+              <select id="vocabLessonFilter"></select>
+            </label>
+            <label class="field compact">
+              <span>Trạng thái</span>
+              <select id="statusFilter">
+                <option value="all">Tất cả</option>
+                <option value="saved">Đã nhớ</option>
+                <option value="open">Chưa nhớ</option>
+              </select>
+            </label>
+            <label class="field search-field">
+              <span>Tìm</span>
+              <input id="vocabSearch" type="search" placeholder="你, nǐ, bạn..." />
+            </label>
+          </div>
+        </div>
+        <div class="vocab-list" id="vocabList"></div>
+      </section>
+
+      <section id="radicals" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Tân thủ</p>
+            <h2>Kiến thức nền tảng</h2>
+          </div>
+          <div class="control-row">
+            <div class="segmented foundation-filter" role="group" aria-label="Nhóm kiến thức nền">
+              <button class="segment active" data-foundation-filter="all">Tất cả</button>
+              <button class="segment" data-foundation-filter="Nét">Nét viết</button>
+              <button class="segment" data-foundation-filter="Quy tắc">Quy tắc viết</button>
+              <button class="segment" data-foundation-filter="Bộ thủ">Bộ thủ</button>
+            </div>
+            <label class="field search-field">
+              <span>Tìm</span>
+              <input id="radicalSearch" type="search" placeholder="口, bộ khẩu, nét..." />
+            </label>
+          </div>
+        </div>
+        <div class="visual-strip">
+          <img src="assets/radicals.png" alt="Ảnh bộ thủ từ slide" />
+          <div>
+            <p class="eyebrow">Nền tảng Bài 1</p>
+            <h3>Khu để quay lại base: nét viết, quy tắc viết và bộ thủ được tách riêng để ôn nhanh.</h3>
+          </div>
+        </div>
+        <div class="foundation-summary" aria-label="Tổng quan kiến thức nền">
+          <article class="foundation-stat">
+            <strong id="strokeCount">0</strong>
+            <span>Nét viết</span>
+          </article>
+          <article class="foundation-stat">
+            <strong id="ruleCount">0</strong>
+            <span>Quy tắc viết</span>
+          </article>
+          <article class="foundation-stat">
+            <strong id="radicalCount">0</strong>
+            <span>Bộ thủ</span>
+          </article>
+        </div>
+        <div class="foundation-sections" id="foundationSections"></div>
+      </section>
+
+      <section id="cards" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Flashcard</p>
+            <h2>Thẻ tự kiểm tra</h2>
+          </div>
+          <div class="control-row">
+            <div class="segmented" role="group" aria-label="Loại thẻ">
+              <button class="segment active" data-card-mode="vocab">Từ</button>
+              <button class="segment" data-card-mode="radicals">Tân thủ</button>
+            </div>
+            <label class="field compact" id="cardLessonWrap">
+              <span>Bài</span>
+              <select id="cardLessonFilter"></select>
+            </label>
+            <button class="icon-button text-button" id="shuffleCards" title="Xáo thẻ">
+              <i data-lucide="shuffle"></i><span>Xáo</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flashcard-zone">
+          <button class="icon-button round" id="prevCard" title="Thẻ trước">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <article class="flashcard" id="flashcard" tabindex="0" aria-live="polite">
+            <div class="card-face front" id="cardFront"></div>
+            <div class="card-face back" id="cardBack"></div>
+          </article>
+          <button class="icon-button round" id="nextCard" title="Thẻ sau">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+        <div class="card-actions">
+          <button class="primary-button" id="flipCard">
+            <i data-lucide="rotate-cw"></i><span>Lật thẻ</span>
+          </button>
+          <button class="secondary-button" id="markKnown">
+            <i data-lucide="check"></i><span>Đã nhớ</span>
+          </button>
+          <button class="secondary-button" id="markAgain">
+            <i data-lucide="refresh-cw"></i><span>Ôn lại</span>
+          </button>
+        </div>
+        <p class="progress-line" id="cardProgress"></p>
+      </section>
+
+      <section id="audio" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Nghe ghi âm</p>
+            <h2>Luyện nghe theo bài</h2>
+          </div>
+          <div class="control-row">
+            <div class="segmented" role="group" aria-label="Tốc độ nghe">
+              <button class="segment" data-audio-speed="0.75">0.75x</button>
+              <button class="segment active" data-audio-speed="1">1x</button>
+              <button class="segment" data-audio-speed="1.25">1.25x</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-layout">
+          <section class="tool-panel audio-player-panel">
+            <p class="eyebrow" id="audioLessonLabel">Quyển 1</p>
+            <h3 id="audioTitle">Bài 1</h3>
+            <p class="audio-theme" id="audioTheme"></p>
+            <audio id="lessonAudio" controls preload="metadata"></audio>
+            <div class="audio-actions">
+              <button class="secondary-button" id="prevAudio">
+                <i data-lucide="skip-back"></i><span>Bài trước</span>
+              </button>
+              <button class="secondary-button" id="rewindAudio">
+                <i data-lucide="rotate-ccw"></i><span>10 giây</span>
+              </button>
+              <button class="secondary-button" id="forwardAudio">
+                <i data-lucide="rotate-cw"></i><span>10 giây</span>
+              </button>
+              <button class="secondary-button" id="nextAudio">
+                <i data-lucide="skip-forward"></i><span>Bài sau</span>
+              </button>
+              <button class="primary-button" id="markListened">
+                <i data-lucide="check"></i><span>Đã nghe</span>
+              </button>
+            </div>
+            <p class="progress-line" id="audioProgress"></p>
+            <section class="audio-transcript" aria-label="Transcript bài nghe">
+              <div class="transcript-head">
+                <h4>Transcript</h4>
+                <span id="audioTranscriptMeta"></span>
+              </div>
+              <div class="transcript-lines" id="audioTranscript"></div>
+            </section>
+          </section>
+
+          <aside class="audio-list" id="audioList" aria-label="Danh sách bài nghe"></aside>
+        </div>
+      </section>
+
+      <section id="quiz" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Quiz</p>
+            <h2>Kiểm tra từ vựng</h2>
+          </div>
+          <div class="control-row">
+            <label class="field compact">
+              <span>Bài</span>
+              <select id="quizLessonFilter"></select>
+            </label>
+            <div class="segmented" role="group" aria-label="Kiểu câu hỏi">
+              <button class="segment active" data-quiz-mode="meaning">Nghĩa</button>
+              <button class="segment" data-quiz-mode="hanzi">Chữ</button>
+            </div>
+          </div>
+        </div>
+        <div class="quiz-panel">
+          <div class="quiz-score" id="quizScore">0 đúng · 0 câu</div>
+          <div class="quiz-question" id="quizQuestion"></div>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
+          <button class="primary-button" id="nextQuestion">
+            <i data-lucide="arrow-right"></i><span>Câu tiếp</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="add" class="view">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Cập nhật sổ học</p>
+            <h2>Thêm từ và kiến thức nền mới</h2>
+          </div>
+          <button class="secondary-button" id="exportData">
+            <i data-lucide="download"></i><span>Sao lưu</span>
+          </button>
+        </div>
+
+        <div class="form-layout">
+          <form class="tool-panel" id="vocabForm">
+            <h3>Thêm từ vựng</h3>
+            <div class="form-grid">
+              <label class="field">
+                <span>Chữ Hán</span>
+                <input name="hanzi" required placeholder="例如: 谢谢" />
+              </label>
+              <label class="field">
+                <span>Pinyin</span>
+                <input name="pinyin" placeholder="xièxie" />
+              </label>
+              <label class="field">
+                <span>Hán Việt</span>
+                <input name="hanViet" placeholder="tạ tạ" />
+              </label>
+              <label class="field">
+                <span>Nghĩa</span>
+                <input name="meaning" required placeholder="cảm ơn" />
+              </label>
+              <label class="field">
+                <span>Bài</span>
+                <select name="lesson">
+                  <option>Bài 1</option>
+                  <option>Bài 2</option>
+                  <option>Bài 3</option>
+                  <option>Bài 4</option>
+                  <option>Bài 5</option>
+                  <option>Tự thêm</option>
+                </select>
+              </label>
+              <label class="field wide">
+                <span>Ghi chú</span>
+                <input name="note" placeholder="Mẹo nhớ, ví dụ, bộ thủ..." />
+              </label>
+            </div>
+            <button class="primary-button" type="submit">
+              <i data-lucide="save"></i><span>Lưu từ</span>
+            </button>
+          </form>
+
+          <form class="tool-panel" id="radicalForm">
+            <h3>Thêm mục tân thủ</h3>
+            <div class="form-grid">
+              <label class="field">
+                <span>Ký hiệu</span>
+                <input name="symbol" required placeholder="讠" />
+              </label>
+              <label class="field">
+                <span>Tên/đọc</span>
+                <input name="name" placeholder="bộ ngôn" />
+              </label>
+              <label class="field">
+                <span>Nghĩa</span>
+                <input name="meaning" required placeholder="ngôn ngữ, lời nói" />
+              </label>
+              <label class="field">
+                <span>Nhóm</span>
+                <select name="type">
+                  <option>Bộ thủ</option>
+                  <option>Nét</option>
+                  <option>Quy tắc</option>
+                  <option>Tự thêm</option>
+                </select>
+              </label>
+              <label class="field wide">
+                <span>Ghi chú</span>
+                <input name="note" placeholder="Xuất hiện trong 语, 说..." />
+              </label>
+            </div>
+            <button class="primary-button" type="submit">
+              <i data-lucide="save"></i><span>Lưu mục</span>
+            </button>
+          </form>
+        </div>
+
+        <section class="tool-panel">
+          <div class="section-head compact-head">
+            <div>
+              <p class="eyebrow">Mục tự thêm</p>
+              <h2>Dữ liệu của bạn</h2>
+            </div>
+            <label class="import-button">
+              <i data-lucide="upload"></i><span>Nhập</span>
+              <input id="importData" type="file" accept="application/json" />
+            </label>
+          </div>
+          <div class="custom-list" id="customList"></div>
+        </section>
+      </section>
+
+      <section id="dictionary" class="view dictionary-view" aria-labelledby="dictionaryTitle">
+        <div id="dictionaryWorkspace"></div>
+      </section>
+    </main>
+    </div>
+
+    <div class="language-app" id="koreanApp" data-language="ko" hidden></div>
+
+    <div class="language-app" id="englishApp" data-language="en" hidden>
+      <header class="app-header course-header">
+        <div class="brand">
+          <span class="course-logo english-logo" aria-hidden="true">EN</span>
+          <div>
+            <h1>Sổ học tiếng Anh</h1>
+            <p>Không gian dành cho các bài học tiếng Anh</p>
+          </div>
+        </div>
+        <button class="language-switch" type="button" data-switch-language>
+          <i data-lucide="languages"></i><span>Đổi ngôn ngữ</span>
+        </button>
+      </header>
+      <main class="app-shell empty-course-shell">
+        <section class="empty-course-card">
+          <span class="empty-course-mark" aria-hidden="true">A</span>
+          <p class="eyebrow">Tiếng Anh</p>
+          <h2>Sẵn sàng cho tài liệu đầu tiên</h2>
+          <p>Phần chọn ngôn ngữ đã hoạt động. Khi bạn cung cấp bài học tiếng Anh, nội dung sẽ được thêm vào khu vực này.</p>
+          <button class="primary-button" type="button" data-switch-language>
+            <i data-lucide="arrow-left"></i><span>Chọn ngôn ngữ khác</span>
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <script src="data/lessons.js?v=lesson-15"></script>
+    <script src="data/vocabulary.js?v=lesson-15"></script>
+    <script src="data/transcripts.js?v=lesson-15"></script>
+    <script src="data/korean.js?v=korean-vocab-pdf-1"></script>
+    <script src="data/korean-lesson-1.js?v=korean-vocab-pdf-1"></script>
+    <script src="data/ielts.js?v=multilingual-2"></script>
+    <script src="data/dictionary-sets.js?v=dictionary-1"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="app.js?v=slide-pinyin-1"></script>
+    <script src="dictionary-app.js?v=dictionary-1"></script>
+    <script src="ielts-app.js?v=multilingual-3"></script>
+    <script src="language-app.js?v=korean-vocab-pdf-1"></script>
+    <script src="ai-chat.js?v=ai-chat-1"></script>
+  </body>
+</html>
