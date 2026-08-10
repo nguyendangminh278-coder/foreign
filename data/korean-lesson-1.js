@@ -79,15 +79,15 @@ window.KOREAN_LESSON_ONE = {
         {
           "text": "학생",
           "romanization": "haksaeng",
-          "reading": "hak-sseng",
-          "meaning": "học sinh",
-          "pronunciationTip": "Thực tế đọc [학쌩], âm ㅅ căng thành ss."
+          "reading": "hắc-sseng",
+          "meaning": "học sinh; người học",
+          "pronunciationTip": "Đọc [학쌩], âm ㅅ căng thành ss."
         },
         {
           "text": "선생님",
           "romanization": "seonsaengnim",
-          "reading": "sơn-seng-nim",
-          "meaning": "giáo viên"
+          "reading": "xơn-xeng-nim",
+          "meaning": "giáo viên; thầy/cô (cách gọi lịch sự)"
         },
         {
           "text": "간식 시간",
@@ -106,9 +106,9 @@ window.KOREAN_LESSON_ONE = {
         {
           "text": "학교",
           "romanization": "hakgyo",
-          "reading": "hak-kkyo",
+          "reading": "hắc-kkyô",
           "meaning": "trường học",
-          "pronunciationTip": "Thực tế đọc [학꾜], ㄱ chuyển thành âm kk căng."
+          "pronunciationTip": "Đọc [학꾜], ㄱ chuyển thành âm kk căng."
         },
         {
           "text": "교시",
@@ -128,6 +128,131 @@ window.KOREAN_LESSON_ONE = {
           "reading": "hang-nyơn",
           "meaning": "năm học; khối lớp",
           "pronunciationTip": "Đọc [항년] do đồng hóa âm cuối ㄱ."
+        }
+      ]
+    },
+    {
+      "id": "academic-study",
+      "title": "Học tập & học thuật",
+      "icon": "book-open-check",
+      "page": "4–6 · bổ sung",
+      "words": [
+        {
+          "text": "학",
+          "romanization": "hak",
+          "reading": "hắc",
+          "meaning": "học; việc học"
+        },
+        {
+          "text": "학위",
+          "romanization": "hagwi",
+          "reading": "ha-gwi (ha-guy)",
+          "meaning": "học vị; bằng cấp học thuật",
+          "pronunciationTip": "학 + 위 nối âm thành [하귀], nghe gần ha-gwi."
+        },
+        {
+          "text": "학기",
+          "romanization": "hakgi",
+          "reading": "hắc-kki",
+          "meaning": "học kỳ",
+          "pronunciationTip": "Đọc [학끼], ㄱ đầu âm tiết sau được căng thành kk."
+        },
+        {
+          "text": "과학",
+          "romanization": "gwahak",
+          "reading": "koa-hắc",
+          "meaning": "khoa học"
+        },
+        {
+          "text": "선생",
+          "romanization": "seonsaeng",
+          "reading": "xơn-xeng",
+          "meaning": "thầy; tiên sinh",
+          "note": "Trong giao tiếp hiện đại, dạng lịch sự và tự nhiên hơn là 선생님."
+        }
+      ]
+    },
+    {
+      "id": "university-people",
+      "title": "Đại học & giảng viên",
+      "icon": "graduation-cap",
+      "page": "4–6 · bổ sung",
+      "words": [
+        {
+          "text": "강사",
+          "romanization": "gangsa",
+          "reading": "cang-xa",
+          "meaning": "giảng viên; giảng sư"
+        },
+        {
+          "text": "교수님",
+          "romanization": "gyosunim",
+          "reading": "kyô-xu-nim",
+          "meaning": "giáo sư (cách gọi kính trọng)"
+        },
+        {
+          "text": "한국어",
+          "romanization": "hangugeo",
+          "reading": "han-gu-gơ",
+          "meaning": "tiếng Hàn",
+          "pronunciationTip": "한국 + 어 nối âm thành [한구거]."
+        },
+        {
+          "text": "대학교",
+          "romanization": "daehakgyo",
+          "reading": "te-hắc-kkyô",
+          "meaning": "trường đại học; đại học",
+          "pronunciationTip": "Đọc [대학꾜], ㄱ chuyển thành kk căng."
+        },
+        {
+          "text": "대학생",
+          "romanization": "daehaksaeng",
+          "reading": "te-hắc-sseng",
+          "meaning": "sinh viên đại học",
+          "pronunciationTip": "Đọc [대학쌩], ㅅ được căng thành ss."
+        }
+      ]
+    },
+    {
+      "id": "campus-spaces",
+      "title": "Không gian trường học",
+      "icon": "building-2",
+      "page": "4–6 · bổ sung",
+      "words": [
+        {
+          "text": "강의실",
+          "romanization": "gang-uisil",
+          "reading": "cang-ưi-shil (hoặc cang-i-shil)",
+          "meaning": "phòng học; giảng đường",
+          "pronunciationTip": "의 có thể được đọc gần ưi hoặc i trong lời nói tự nhiên; giữ âm l cuối của 실."
+        },
+        {
+          "text": "강당",
+          "romanization": "gangdang",
+          "reading": "cang-dang",
+          "meaning": "hội trường; giảng đường lớn"
+        }
+      ]
+    },
+    {
+      "id": "university-phrases",
+      "title": "Tên trường & cụm học thuật",
+      "icon": "landmark",
+      "page": "4–6 · bổ sung",
+      "words": [
+        {
+          "text": "경제 국민 대학교",
+          "romanization": "gyeongje gungmin daehakgyo",
+          "reading": "kyơng-chê cung-min te-hắc-kkyô",
+          "meaning": "Đại học Kinh tế Quốc dân",
+          "note": "Cụm luyện dịch theo ghi chú của người học; khi dùng như tên riêng nên kiểm tra tên chính thức của trường."
+        },
+        {
+          "text": "외국어 국립 대학교",
+          "romanization": "oegugeo gungnip daehakgyo",
+          "reading": "uê-gu-gơ cung-nịp te-hắc-kkyô",
+          "meaning": "Đại học Ngoại ngữ Quốc gia",
+          "note": "Cụm luyện dịch theo ghi chú của người học; khi dùng như tên riêng nên kiểm tra tên chính thức của trường."
         }
       ]
     },
@@ -294,19 +419,38 @@ window.KOREAN_LESSON_ONE = {
       "id": "topic-eun-neun",
       "marker": "은 / 는",
       "romanization": "eun / neun",
-      "title": "Tiểu từ chủ đề 은/는",
-      "meaning": "Đánh dấu chủ đề đang được nói đến.",
-      "rule": "Có batchim + 은 · Không có batchim + 는.",
+      "title": "Tiểu từ chủ đề/đối chiếu 은/는",
+      "meaning": "은/는 đứng sau danh từ để nêu người hoặc sự vật mà câu sẽ nói đến, thường hiểu là “còn A thì…”. Nó cũng dùng để tạo sắc thái so sánh hoặc đối chiếu. Tiểu từ chủ ngữ thuần túy trong tiếng Hàn là 이/가.",
+      "rule": "Danh từ có 받침 (batchim) + 은 · Danh từ không có 받침 + 는.",
+      "details": [
+        "Chọn 은 hay 는 dựa vào âm cuối của danh từ, không dựa vào nghĩa của từ.",
+        "Dùng 은/는 khi giới thiệu chủ đề, quay lại một chủ đề đã biết hoặc muốn đối chiếu A với đối tượng khác.",
+        "Ví dụ có 받침: 학생 + 은 → 학생은. Không có 받침: 저 + 는 → 저는."
+      ],
       "examples": [
         {
-          "text": "선생님은",
-          "romanization": "seonsaengnimeun",
-          "meaning": "còn giáo viên thì…"
+          "text": "선생님은 한국 사람이에요.",
+          "romanization": "Seonsaengnim-eun Hanguk saram-ieyo.",
+          "reading": "xơn-xeng-nim-ưn han-guk xa-ram-i-ê-yô",
+          "meaning": "Còn thầy/cô thì là người Hàn Quốc."
         },
         {
-          "text": "저는",
-          "romanization": "jeoneun",
-          "meaning": "còn tôi thì…"
+          "text": "학생은 대학생이에요.",
+          "romanization": "Haksaeng-eun daehaksaeng-ieyo.",
+          "reading": "hắc-sseng-ưn te-hắc-sseng-i-ê-yô",
+          "meaning": "Còn người học đó thì là sinh viên đại học."
+        },
+        {
+          "text": "저는 대학생이에요.",
+          "romanization": "Jeoneun daehaksaeng-ieyo.",
+          "reading": "chơ-nưn te-hắc-sseng-i-ê-yô",
+          "meaning": "Tôi là sinh viên."
+        },
+        {
+          "text": "친구는 학생이에요.",
+          "romanization": "Chinguneun haksaeng-ieyo.",
+          "reading": "chin-gu-nưn hắc-sseng-i-ê-yô",
+          "meaning": "Bạn tôi là học sinh."
         }
       ]
     },
@@ -314,19 +458,77 @@ window.KOREAN_LESSON_ONE = {
       "id": "copula-ieyo-yeyo",
       "marker": "이에요 / 예요",
       "romanization": "ieyo / yeyo",
-      "title": "Nói “là” bằng 이에요/예요",
-      "meaning": "Dùng để gọi tên hoặc giới thiệu người, vật và vai trò.",
-      "rule": "Có batchim + 이에요 · Không có batchim + 예요.",
+      "title": "Danh từ + 이에요/예요 = “là danh từ”",
+      "meaning": "이에요/예요 là dạng lịch sự, thân thiện của động từ 이다 (là). Đặt sau danh từ B để xác nhận danh tính, nghề nghiệp, quốc tịch hoặc tên gọi của người/vật.",
+      "rule": "Danh từ B có 받침 + 이에요 · Danh từ B không có 받침 + 예요.",
+      "details": [
+        "이에요/예요 gắn liền với danh từ đứng trước, không viết cách ra.",
+        "Dùng 이에요 sau phụ âm cuối: 대학생이에요, 선생님이에요, 한국이에요.",
+        "Dùng 예요 sau nguyên âm cuối: 의사예요, 친구예요."
+      ],
       "examples": [
         {
-          "text": "이수진 선생님이에요.",
-          "romanization": "Isujin seonsaengnimieyo.",
-          "meaning": "Là cô giáo Lee Su-jin."
+          "text": "대학생이에요.",
+          "romanization": "Daehaksaeng-ieyo.",
+          "reading": "te-hắc-sseng-i-ê-yô",
+          "meaning": "Là sinh viên."
         },
         {
-          "text": "저는 박노아예요.",
-          "romanization": "Jeoneun Bak Noayeyo.",
-          "meaning": "Mình là Park Noa."
+          "text": "선생님이에요.",
+          "romanization": "Seonsaengnim-ieyo.",
+          "reading": "xơn-xeng-nim-i-ê-yô",
+          "meaning": "Là giáo viên."
+        },
+        {
+          "text": "한국이에요.",
+          "romanization": "Hanguk-ieyo.",
+          "reading": "han-gu-gi-ê-yô",
+          "meaning": "Là Hàn Quốc."
+        },
+        {
+          "text": "의사예요.",
+          "romanization": "Uisa-yeyo.",
+          "reading": "ưi-xa-yê-yô",
+          "meaning": "Là bác sĩ."
+        },
+        {
+          "text": "친구예요.",
+          "romanization": "Chingu-yeyo.",
+          "reading": "chin-gu-yê-yô",
+          "meaning": "Là bạn."
+        }
+      ]
+    },
+    {
+      "id": "topic-copula-pattern",
+      "marker": "A은/는 B이에요/예요",
+      "romanization": "A-eun/neun B-ieyo/yeyo",
+      "title": "Mẫu câu: A là B",
+      "meaning": "Dùng để giới thiệu A và cho biết A là ai, làm nghề gì, mang quốc tịch nào hoặc có tên gì.",
+      "rule": "A + 은/는 (chủ đề) · B + 이에요/예요 (là B). Chọn từng dạng dựa vào 받침 của A và B.",
+      "details": [
+        "A là chủ đề của câu; 은/는 cho biết câu đang nói về A.",
+        "B là thông tin nhận diện A; 이에요/예요 khép lại câu ở mức lịch sự thông dụng.",
+        "Mẫu đầy đủ: 저는 선생님이에요. → Tôi là giáo viên."
+      ],
+      "examples": [
+        {
+          "text": "저는 선생님이에요.",
+          "romanization": "Jeoneun seonsaengnim-ieyo.",
+          "reading": "chơ-nưn xơn-xeng-nim-i-ê-yô",
+          "meaning": "Tôi là giáo viên."
+        },
+        {
+          "text": "민수는 의사예요.",
+          "romanization": "Minsuneun uisa-yeyo.",
+          "reading": "min-xu-nưn ưi-xa-yê-yô",
+          "meaning": "Minsu là bác sĩ."
+        },
+        {
+          "text": "노아는 대학생이에요.",
+          "romanization": "Noaneun daehaksaeng-ieyo.",
+          "reading": "nô-a-nưn te-hắc-sseng-i-ê-yô",
+          "meaning": "Noa là sinh viên."
         }
       ]
     },
@@ -668,6 +870,64 @@ window.KOREAN_LESSON_ONE = {
       "symbol": "Nút loa",
       "title": "Nghe mẫu ko-KR và bắt chước theo cụm",
       "example": "Phiên âm Việt chỉ là cách đọc gần đúng"
+    }
+  ],
+  "sentencePractice": [
+    {
+      "prompt": "Bố là bác sĩ.",
+      "text": "아버지는 의사예요.",
+      "romanization": "Abeojineun uisa-yeyo.",
+      "reading": "a-bơ-ji-nưn ưi-xa-yê-yô"
+    },
+    {
+      "prompt": "Mẹ là người Hàn Quốc.",
+      "text": "어머니는 한국 사람이에요.",
+      "romanization": "Eomeonineun Hanguk saram-ieyo.",
+      "reading": "ơ-mơ-ni-nưn han-guk xa-ram-i-ê-yô"
+    },
+    {
+      "prompt": "Tôi là sinh viên.",
+      "text": "저는 대학생이에요.",
+      "romanization": "Jeoneun daehaksaeng-ieyo.",
+      "reading": "chơ-nưn te-hắc-sseng-i-ê-yô"
+    },
+    {
+      "prompt": "Tôi là Nguyễn Đăng Minh.",
+      "text": "저는 응우옌 당 민이에요.",
+      "romanization": "Jeoneun Eunguyen Dang Min-ieyo.",
+      "reading": "chơ-nưn ưng-u-yen đang min-i-ê-yô",
+      "note": "Tên nước ngoài được phiên âm gần đúng; có thể viết liền 응우옌당민."
+    },
+    {
+      "prompt": "Tên tôi là Nguyễn Đăng Minh.",
+      "text": "제 이름은 응우옌 당 민이에요.",
+      "romanization": "Je ireumeun Eunguyen Dang Min-ieyo.",
+      "reading": "chê i-rư-mưn ưng-u-yen đang min-i-ê-yô"
+    },
+    {
+      "prompt": "Mẹ tôi là nhân viên văn phòng.",
+      "text": "제 어머니는 회사원이에요.",
+      "romanization": "Je eomeonineun hoesawon-ieyo.",
+      "reading": "chê ơ-mơ-ni-nưn huê-xa-uôn-i-ê-yô"
+    },
+    {
+      "prompt": "Tôi là người Việt Nam.",
+      "text": "저는 베트남 사람이에요.",
+      "romanization": "Jeoneun Beteunam saram-ieyo.",
+      "reading": "chơ-nưn bê-thư-nam xa-ram-i-ê-yô"
+    },
+    {
+      "prompt": "Bố là người Mỹ.",
+      "text": "아버지는 미국 사람이에요.",
+      "romanization": "Abeojineun Miguk saram-ieyo.",
+      "reading": "a-bơ-ji-nưn mi-guk xa-ram-i-ê-yô"
+    },
+    {
+      "prompt": "Tôi là ______.",
+      "text": "저는 ______이에요/예요.",
+      "romanization": "Jeoneun ______-ieyo/yeyo.",
+      "reading": "chơ-nưn ______ i-ê-yô/yê-yô",
+      "note": "Điền danh từ rồi chọn 이에요 nếu có 받침, 예요 nếu không có 받침."
     }
   ]
 };
