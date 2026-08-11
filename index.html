@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sổ học ngoại ngữ</title>
     <link rel="stylesheet" href="styles.css?v=korean-docx-10-8-1" />
+    <link rel="stylesheet" href="chinese-course.css?v=chinese-course-1" />
     <link rel="stylesheet" href="korean-practice.css?v=interactive-practice-1" />
     <link rel="stylesheet" href="ai-chat.css?v=gemini-flash-1" />
   </head>
@@ -76,6 +77,9 @@
         <button class="tab active" data-tab="overview">
           <i data-lucide="layout-dashboard"></i><span>Tổng quan</span>
         </button>
+        <button class="tab course-book-tab" data-tab="course">
+          <i data-lucide="book-open-check"></i><span>Bài giảng</span>
+        </button>
         <button class="tab" data-tab="vocab">
           <i data-lucide="book-open-text"></i><span>Từ vựng</span>
         </button>
@@ -104,7 +108,7 @@
           <div>
             <p class="eyebrow">Bộ học hiện tại</p>
             <h2>Nhập môn, gia đình, ngôn ngữ, địa điểm và chào hỏi lịch sự</h2>
-            <p class="band-copy">Dữ liệu được tổng hợp từ Bài 1 đến Bài 15 của bạn.</p>
+            <p class="band-copy">Dữ liệu được đối chiếu theo đủ 15 PDF bài giảng của bạn.</p>
           </div>
           <div class="image-rail" aria-label="Ảnh từ bài học">
             <img src="assets/numbers.jpg" alt="Ảnh số đếm từ slide" />
@@ -148,8 +152,8 @@
         <section class="tool-panel">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Xem lại bài</p>
-              <h2>Nội dung slide</h2>
+              <p class="eyebrow">Nguồn đối chiếu</p>
+              <h2>Nội dung slide gốc</h2>
             </div>
             <div class="control-row">
               <label class="field compact">
@@ -164,6 +168,10 @@
           </div>
           <div class="slide-list" id="slideList"></div>
         </section>
+      </section>
+
+      <section id="course" class="view" aria-label="Sổ bài giảng tiếng Trung">
+        <div id="chineseCourseWorkspace"></div>
       </section>
 
       <section id="vocab" class="view">
@@ -503,13 +511,15 @@
     <script src="data/lessons.js?v=lesson-15"></script>
     <script src="data/vocabulary.js?v=lesson-15"></script>
     <script src="data/transcripts.js?v=lesson-15"></script>
+    <script src="data/chinese-course.js?v=chinese-course-1"></script>
     <script src="data/korean.js?v=korean-vocab-pdf-1"></script>
     <script src="data/korean-lesson-1.js?v=korean-docx-10-8-1"></script>
     <script src="data/korean-practice.js?v=interactive-practice-1"></script>
     <script src="data/ielts.js?v=multilingual-2"></script>
     <script src="data/dictionary-sets.js?v=dictionary-1"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="app.js?v=slide-pinyin-1"></script>
+    <script src="app.js?v=chinese-course-1"></script>
+    <script src="chinese-course.js?v=chinese-course-1"></script>
     <script src="dictionary-app.js?v=dictionary-1"></script>
     <script src="ielts-app.js?v=multilingual-3"></script>
     <script src="language-app.js?v=interactive-practice-1"></script>

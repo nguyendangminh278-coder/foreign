@@ -1,4 +1,13 @@
-const lessons = window.LESSON_DATA?.lessons || [];
+const sourceLessons = window.LESSON_DATA?.lessons || [];
+const pdfPageCounts = new Map((window.CHINESE_COURSE?.lessons || []).map((lesson) => [lesson.id, lesson.pageCount]));
+const lessons = sourceLessons.map((lesson) => {
+  const pageCount = pdfPageCounts.get(lesson.id) || lesson.slideCount;
+  return {
+    ...lesson,
+    slideCount: pageCount,
+    slides: lesson.slides.filter((slide) => slide.index <= pageCount),
+  };
+});
 
 const topicMap = {
   "Bài 1": ["8 nét", "Quy tắc viết", "Pinyin", "Thanh điệu", "你 好 吗"],
@@ -932,8 +941,8 @@ function renderLessonCards() {
         <div class="lesson-topics">
           ${topics.map((topic) => `<span class="pill">${escapeHtml(topic)}</span>`).join("")}
         </div>
-        <button class="lesson-review-button" type="button" data-review-lesson="${escapeHtml(lesson.title)}">
-          <span>Xem nội dung slide</span><i data-lucide="arrow-right"></i>
+        <button class="lesson-review-button" type="button" data-open-chinese-course="${escapeHtml(lesson.id.replace("lesson-", ""))}">
+          <span>Mở bài giảng chi tiết</span><i data-lucide="arrow-right"></i>
         </button>
       </article>
     `;
