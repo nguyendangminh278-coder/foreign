@@ -1425,17 +1425,53 @@ function rerenderAll() {
   renderAudio();
 }
 
+function activateMainView(tabId) {
+  const tab = document.querySelector('#chineseApp .tab[data-tab="' + tabId + '"]');
+  const target = document.querySelector("#chineseApp #" + tabId);
+  if (!tab || !target) return;
+  document.querySelectorAll("#chineseApp .tab").forEach((item) => item.classList.remove("active"));
+  document.querySelectorAll("#chineseApp .view").forEach((view) => view.classList.remove("active"));
+  tab.classList.add("active");
+  target.classList.add("active");
+  refreshIcons();
+}
+
+function setCourseHubPanel(panelId) {
+  document.querySelectorAll("[data-course-hub-target]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.courseHubTarget === panelId);
+  });
+  document.querySelectorAll("[data-course-hub-panel]").forEach((panel) => {
+    const active = panel.dataset.courseHubPanel === panelId;
+    panel.hidden = !active;
+    panel.classList.toggle("active", active);
+  });
+  if (panelId === "audio") renderAudio();
+  refreshIcons();
+}
+
 function bindEvents() {
   $$(".tab").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      $$(".tab").forEach((item) => item.classList.remove("active"));
-      $$(".view").forEach((view) => view.classList.remove("active"));
-      tab.classList.add("active");
-      $(`#${tab.dataset.tab}`).classList.add("active");
-      refreshIcons();
-    });
+    tab.addEventListener("click", () => activateMainView(tab.dataset.tab));
   });
 
+  $$("[data-course-hub-target]").forEach((button) => {
+    button.addEventListener("click", () => setCourseHubPanel(button.dataset.courseHubTarget));
+  });
+
+  document.addEventListener("click", (event) => {
+    const quickLink = event.target.closest("[data-open-main-tab]");
+    if (!quickLink) return;
+    activateMainView(quickLink.dataset.openMainTab);
+    document.querySelector("#chineseApp #" + quickLink.dataset.openMainTab)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  window.addEventListener("chinese:listen-lesson", (event) => {
+    const lessonNumber = Math.max(1, Math.min(audioLessons.length, Number(event.detail?.lesson) || 1));
+    activateMainView("course");
+    selectAudio(lessonNumber - 1, false);
+    setCourseHubPanel("audio");
+    document.querySelector("[data-course-hub-panel='audio']")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   $("#audioList").addEventListener("click", (event) => {
     const button = event.target.closest("[data-audio-index]");
     if (!button) return;
