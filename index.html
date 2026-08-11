@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sổ học ngoại ngữ</title>
-    <link rel="stylesheet" href="styles.css?v=korean-docx-10-8-1" />
+    <link rel="stylesheet" href="styles.css?v=learning-flow-3" />
     <link rel="stylesheet" href="chinese-course.css?v=chinese-course-1" />
     <link rel="stylesheet" href="korean-practice.css?v=interactive-practice-1" />
     <link rel="stylesheet" href="ai-chat.css?v=gemini-flash-1" />
@@ -73,37 +73,19 @@
     </header>
 
     <main class="app-shell">
-      <nav class="tabbar" aria-label="Khu vực học">
-        <button class="tab active" data-tab="overview">
-          <i data-lucide="layout-dashboard"></i><span>Tổng quan</span>
+      <nav class="tabbar" aria-label="Khu vực học theo thứ tự">
+        <button class="tab active" data-tab="radicals">
+          <i data-lucide="sprout"></i><span>Tân thủ</span>
         </button>
         <button class="tab course-book-tab" data-tab="course">
           <i data-lucide="book-open-check"></i><span>Bài giảng</span>
         </button>
-        <button class="tab" data-tab="vocab">
-          <i data-lucide="book-open-text"></i><span>Từ vựng</span>
-        </button>
-        <button class="tab" data-tab="radicals">
-          <i data-lucide="graduation-cap"></i><span>Tân thủ</span>
-        </button>
-        <button class="tab" data-tab="cards">
-          <i data-lucide="copy"></i><span>Thẻ học</span>
-        </button>
-        <button class="tab" data-tab="audio">
-          <i data-lucide="headphones"></i><span>Nghe</span>
-        </button>
-        <button class="tab" data-tab="quiz">
-          <i data-lucide="circle-help"></i><span>Kiểm tra</span>
-        </button>
-        <button class="tab" data-tab="add">
-          <i data-lucide="plus"></i><span>Thêm mới</span>
-        </button>
         <button class="tab dictionary-tab" data-tab="dictionary">
-          <i data-lucide="library-big"></i><span>Từ điển+</span>
+          <i data-lucide="library-big"></i><span>Từ điển</span>
         </button>
       </nav>
 
-      <section id="overview" class="view active">
+      <section id="overview" class="view">
         <div class="dashboard-band">
           <div>
             <p class="eyebrow">Bộ học hiện tại</p>
@@ -171,7 +153,54 @@
       </section>
 
       <section id="course" class="view" aria-label="Sổ bài giảng tiếng Trung">
-        <div id="chineseCourseWorkspace"></div>
+        <nav class="course-hub-switch" aria-label="Nội dung trong bài giảng">
+          <button class="active" type="button" data-course-hub-target="lesson">
+            <i data-lucide="book-open-text"></i><span>Nội dung bài</span><small>Từ vựng · ngữ pháp · hội thoại</small>
+          </button>
+          <button type="button" data-course-hub-target="audio">
+            <i data-lucide="headphones"></i><span>Nghe theo bài</span><small>Audio · transcript · tốc độ</small>
+          </button>
+        </nav>
+        <div class="course-hub-panel active" data-course-hub-panel="lesson">
+          <div id="chineseCourseWorkspace"></div>
+        </div>
+        <div class="course-hub-panel" data-course-hub-panel="audio" hidden>
+          <div class="section-head course-audio-heading">
+            <div>
+              <p class="eyebrow">Nghe ngay trong bài giảng</p>
+              <h2>Luyện nghe theo từng bài khóa</h2>
+              <p class="section-subtitle">Chọn Bài 1–15, nghe audio và bám theo transcript đồng bộ.</p>
+            </div>
+            <div class="control-row">
+              <div class="segmented" role="group" aria-label="Tốc độ nghe">
+                <button class="segment" data-audio-speed="0.75">0.75x</button>
+                <button class="segment active" data-audio-speed="1">1x</button>
+                <button class="segment" data-audio-speed="1.25">1.25x</button>
+              </div>
+            </div>
+          </div>
+          <div class="audio-layout">
+            <section class="tool-panel audio-player-panel">
+              <p class="eyebrow" id="audioLessonLabel">Quyển 1</p>
+              <h3 id="audioTitle">Bài 1</h3>
+              <p class="audio-theme" id="audioTheme"></p>
+              <audio id="lessonAudio" controls preload="metadata"></audio>
+              <div class="audio-actions">
+                <button class="secondary-button" id="prevAudio"><i data-lucide="skip-back"></i><span>Bài trước</span></button>
+                <button class="secondary-button" id="rewindAudio"><i data-lucide="rotate-ccw"></i><span>10 giây</span></button>
+                <button class="secondary-button" id="forwardAudio"><i data-lucide="rotate-cw"></i><span>10 giây</span></button>
+                <button class="secondary-button" id="nextAudio"><i data-lucide="skip-forward"></i><span>Bài sau</span></button>
+                <button class="primary-button" id="markListened"><i data-lucide="check"></i><span>Đã nghe</span></button>
+              </div>
+              <p class="progress-line" id="audioProgress"></p>
+              <section class="audio-transcript" aria-label="Transcript bài nghe">
+                <div class="transcript-head"><h4>Transcript</h4><span id="audioTranscriptMeta"></span></div>
+                <div class="transcript-lines" id="audioTranscript"></div>
+              </section>
+            </section>
+            <aside class="audio-list" id="audioList" aria-label="Danh sách bài nghe"></aside>
+          </div>
+        </div>
       </section>
 
       <section id="vocab" class="view">
@@ -202,7 +231,19 @@
         <div class="vocab-list" id="vocabList"></div>
       </section>
 
-      <section id="radicals" class="view">
+      <section id="radicals" class="view active">
+        <section class="beginner-path" aria-labelledby="beginnerPathTitle">
+          <div class="beginner-path-copy">
+            <p class="eyebrow">Bắt đầu ở đây</p>
+            <h2 id="beginnerPathTitle">Học nền tảng trước, rồi mới vào 15 bài</h2>
+            <p>Nét viết, quy tắc và bộ thủ là phần cần thuộc trước. Hoàn thành nền tảng rồi chuyển sang bài giảng; mọi flashcard, kiểm tra và từ tự thêm được gom trong Từ điển.</p>
+          </div>
+          <ol class="beginner-path-steps">
+            <li class="current"><span>01</span><div><strong>Tân thủ</strong><small>Nét viết · quy tắc · bộ thủ</small></div><i data-lucide="arrow-down"></i></li>
+            <li><span>02</span><div><strong>Bài giảng</strong><small>Học nội dung và nghe theo bài</small></div><button type="button" data-open-main-tab="course" aria-label="Mở Bài giảng"><i data-lucide="arrow-right"></i></button></li>
+            <li><span>03</span><div><strong>Từ điển & ôn tập</strong><small>Tra từ · flashcard · kiểm tra · thêm từ</small></div><button type="button" data-open-main-tab="dictionary" aria-label="Mở Từ điển và ôn tập"><i data-lucide="arrow-right"></i></button></li>
+          </ol>
+        </section>
         <div class="section-head">
           <div>
             <p class="eyebrow">Tân thủ</p>
@@ -292,57 +333,6 @@
         <p class="progress-line" id="cardProgress"></p>
       </section>
 
-      <section id="audio" class="view">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Nghe ghi âm</p>
-            <h2>Luyện nghe theo bài</h2>
-          </div>
-          <div class="control-row">
-            <div class="segmented" role="group" aria-label="Tốc độ nghe">
-              <button class="segment" data-audio-speed="0.75">0.75x</button>
-              <button class="segment active" data-audio-speed="1">1x</button>
-              <button class="segment" data-audio-speed="1.25">1.25x</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="audio-layout">
-          <section class="tool-panel audio-player-panel">
-            <p class="eyebrow" id="audioLessonLabel">Quyển 1</p>
-            <h3 id="audioTitle">Bài 1</h3>
-            <p class="audio-theme" id="audioTheme"></p>
-            <audio id="lessonAudio" controls preload="metadata"></audio>
-            <div class="audio-actions">
-              <button class="secondary-button" id="prevAudio">
-                <i data-lucide="skip-back"></i><span>Bài trước</span>
-              </button>
-              <button class="secondary-button" id="rewindAudio">
-                <i data-lucide="rotate-ccw"></i><span>10 giây</span>
-              </button>
-              <button class="secondary-button" id="forwardAudio">
-                <i data-lucide="rotate-cw"></i><span>10 giây</span>
-              </button>
-              <button class="secondary-button" id="nextAudio">
-                <i data-lucide="skip-forward"></i><span>Bài sau</span>
-              </button>
-              <button class="primary-button" id="markListened">
-                <i data-lucide="check"></i><span>Đã nghe</span>
-              </button>
-            </div>
-            <p class="progress-line" id="audioProgress"></p>
-            <section class="audio-transcript" aria-label="Transcript bài nghe">
-              <div class="transcript-head">
-                <h4>Transcript</h4>
-                <span id="audioTranscriptMeta"></span>
-              </div>
-              <div class="transcript-lines" id="audioTranscript"></div>
-            </section>
-          </section>
-
-          <aside class="audio-list" id="audioList" aria-label="Danh sách bài nghe"></aside>
-        </div>
-      </section>
 
       <section id="quiz" class="view">
         <div class="section-head">
@@ -511,16 +501,16 @@
     <script src="data/lessons.js?v=lesson-15"></script>
     <script src="data/vocabulary.js?v=lesson-15"></script>
     <script src="data/transcripts.js?v=lesson-15"></script>
-    <script src="data/chinese-course.js?v=chinese-course-1"></script>
+    <script src="data/chinese-course.js?v=learning-flow-2"></script>
     <script src="data/korean.js?v=korean-vocab-pdf-1"></script>
     <script src="data/korean-lesson-1.js?v=korean-docx-10-8-1"></script>
     <script src="data/korean-practice.js?v=interactive-practice-1"></script>
     <script src="data/ielts.js?v=multilingual-2"></script>
     <script src="data/dictionary-sets.js?v=dictionary-1"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="app.js?v=chinese-course-1"></script>
-    <script src="chinese-course.js?v=chinese-course-1"></script>
-    <script src="dictionary-app.js?v=dictionary-1"></script>
+    <script src="app.js?v=learning-flow-2"></script>
+    <script src="chinese-course.js?v=learning-flow-2"></script>
+    <script src="dictionary-app.js?v=learning-flow-2"></script>
     <script src="ielts-app.js?v=multilingual-3"></script>
     <script src="language-app.js?v=interactive-practice-1"></script>
     <script src="korean-practice.js?v=interactive-practice-1"></script>

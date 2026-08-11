@@ -329,7 +329,7 @@
         <section class="zh-lesson-banner">
           <div class="zh-lesson-index">${String(current.number).padStart(2, "0")}</div>
           <div>${triplet(current.title, "title")}</div>
-          <div class="zh-lesson-source"><span>${escapeHtml(current.sourceFile)}</span><b>${current.pageCount} trang</b></div>
+          <div class="zh-lesson-source"><span>${escapeHtml(current.sourceFile)}</span><b>${current.pageCount} trang</b><button type="button" data-open-course-audio="${current.number}"><i data-lucide="headphones"></i>Nghe Bài ${current.number}</button></div>
         </section>
         <nav class="zh-course-sections" aria-label="Nội dung bài ${current.number}">
           ${sections.map(([id, icon, label]) => `<button class="${state.section === id ? "active" : ""}" type="button" data-course-section="${id}"><i data-lucide="${icon}"></i><span>${label}</span></button>`).join("")}
@@ -410,6 +410,12 @@
 
     const lessonButton = event.target.closest("[data-course-lesson]");
     if (lessonButton) { openLesson(Number(lessonButton.dataset.courseLesson)); return; }
+
+    const audioButton = event.target.closest("[data-open-course-audio]");
+    if (audioButton) {
+      window.dispatchEvent(new CustomEvent("chinese:listen-lesson", { detail: { lesson: Number(audioButton.dataset.openCourseAudio) } }));
+      return;
+    }
 
     const sectionButton = event.target.closest("[data-course-section]");
     if (sectionButton) {
