@@ -8,7 +8,9 @@
     customSentences: "hanReview.dictionary.sentences.v1",
     conversations: "hanReview.dictionary.conversations.v1",
     notifications: "hanReview.dictionary.notificationsRead.v1",
+    catalog: "hanReview.dictionary.catalogVersion.v1",
   };
+  const CATALOG_VERSION = "lesson-15-303-v1";
 
   const readStore = (key, fallback) => {
     try {
@@ -96,8 +98,16 @@
   ];
 
   const storedWords = readStore(STORE.words, null);
+  const storedCatalogVersion = readStore(STORE.catalog, "");
+  const syncedWords = Array.isArray(storedWords) ? [...storedWords] : [...seedWords];
+  if (Array.isArray(storedWords) && storedCatalogVersion !== CATALOG_VERSION) {
+    const savedIds = new Set(syncedWords.map((word) => word.id));
+    seedWords.forEach((word) => {
+      if (!savedIds.has(word.id)) syncedWords.push(word);
+    });
+  }
   const state = {
-    words: Array.isArray(storedWords) ? storedWords : seedWords,
+    words: syncedWords,
     screen: "library",
     search: "",
     addOpen: false,
@@ -115,7 +125,10 @@
     practice: { tab: "listening", question: null, answered: false, correct: 0, total: 0, selectedSentence: 0, showPinyin: true, writingResult: "" },
   };
 
-  if (!Array.isArray(storedWords)) writeStore(STORE.words, state.words);
+  if (!Array.isArray(storedWords) || storedCatalogVersion !== CATALOG_VERSION) {
+    writeStore(STORE.words, state.words);
+    writeStore(STORE.catalog, CATALOG_VERSION);
+  }
   if (!readStore(STORE.start, null)) writeStore(STORE.start, new Date().toISOString().slice(0, 10));
 
   const saveWords = () => writeStore(STORE.words, state.words);
@@ -161,7 +174,10 @@
     return levels.find((level) => count >= level.min && count < level.max) || levels.at(-1);
   }
   function navButton(screen, icon, label) {
-    return `<button class="dict-nav-button ${state.screen === screen ? "active" : ""}" type="button" data-dict-screen="${screen}"><i data-lucide="${icon}"></i><span>${label}</span></button>`;
+    return '<button class="dict-nav-button ' + (state.screen === screen ? "active" : "") + '" type="button" data-dict-screen="' + screen + '"><i data-lucide="' + icon + '"></i><span>' + label + '</span></button>';
+  }
+  function navAction(action, icon, label) {
+    return '<button class="dict-nav-button" type="button" data-dict-action="' + action + '"><i data-lucide="' + icon + '"></i><span>' + label + '</span></button>';
   }
 
   function renderShell() {
@@ -170,8 +186,8 @@
       <section class="dict-hero">
         <div>
           <p class="eyebrow">Không gian học chủ động</p>
-          <h2 id="dictionaryTitle">Từ điển & phòng luyện tập tiếng Trung</h2>
-          <p>Tra từ, gom bộ từ, luyện nhớ, nghe–viết và học hội thoại trong cùng một nơi.</p>
+          <h2 id="dictionaryTitle">Từ điển, flashcard và kiểm tra</h2>
+          <p>Tra từ, thêm từ, ôn flashcard và kiểm tra ngay trong một nơi. Kho mặc định bám theo 15 bài đã học.</p>
         </div>
         <div class="dict-hero-stats" aria-label="Thống kê nhanh">
           <div><strong>${state.words.length}</strong><span>từ trong sổ</span></div>
@@ -182,15 +198,11 @@
       <div class="dict-toolbar">
         <div class="dict-subnav" aria-label="Công cụ từ điển">
           ${navButton("library", "library-big", "Từ điển")}
-          ${navButton("sets", "layers-3", "Bộ từ")}
           ${navButton("flash", "gallery-horizontal-end", "Flashcard")}
-          ${navButton("practice", "headphones", "Luyện tập")}
-          ${navButton("sentences", "messages-square", "Hội thoại")}
-          ${navButton("stats", "chart-no-axes-combined", "Thống kê")}
+          ${navButton("practice", "badge-check", "Kiểm tra")}
+          ${navAction("open-add", "plus", "Thêm từ")}
+          ${navButton("stats", "chart-no-axes-combined", "Tiến độ")}
         </div>
-        <button class="dict-notification-button ${state.notificationRead ? "" : "has-new"}" type="button" data-dict-action="notifications" aria-label="Thông báo">
-          <i data-lucide="bell"></i><span>${state.notificationRead ? "Thông báo" : "3 tin mới"}</span>
-        </button>
       </div>
       <div class="dict-screen" id="dictScreen"></div>
       <div id="dictModalLayer"></div>
@@ -276,7 +288,7 @@
               <p>Lật thẻ để tăng lượt ôn. Chọn “Nhớ” 5 lần hoặc ôn 20 lần để đánh dấu đã thuộc.</p>
               <button class="secondary-button" type="button" data-dict-screen="flash"><i data-lucide="gallery-horizontal-end"></i><span>Bắt đầu ôn</span></button>
             </section>
-            <section class="dict-tip-card sea"><span class="dict-tip-icon"><i data-lucide="waves"></i></span><p class="eyebrow">298 mục từ</p><h3>10 bộ từ theo chủ đề</h3><p>Nhập môn, ăn uống, mua sắm, gia đình, thời tiết và nhiều chủ đề khác.</p><button class="secondary-button" type="button" data-dict-screen="sets"><i data-lucide="layers-3"></i><span>Khám phá bộ từ</span></button></section>`}
+            <section class="dict-tip-card sea"><span class="dict-tip-icon"><i data-lucide="book-open-check"></i></span><p class="eyebrow">15 bài PDF</p><h3>Học đúng theo giáo trình</h3><p>Kho từ mặc định được đồng bộ từ Bài 1–15; từ ngoài chỉ xuất hiện khi bạn tự thêm.</p><button class="secondary-button" type="button" data-open-main-tab="course"><i data-lucide="arrow-right"></i><span>Về bài giảng</span></button></section>`}
         </aside>
       </div>`;
   }
@@ -724,9 +736,10 @@
       writeStore(STORE.notifications, true);
       renderShell();
     } else if (action === "open-add") {
+      state.screen = "library";
       state.addOpen = true;
       state.draft = null;
-      renderScreen();
+      renderShell();
       setTimeout(() => root.querySelector("#dictCharacterInput")?.focus(), 50);
     } else if (action === "close-add") {
       state.addOpen = false;
