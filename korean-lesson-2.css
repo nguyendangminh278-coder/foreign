@@ -1,0 +1,912 @@
+/* Korean lesson 2 · 12/08 */
+#koreanApp .course-tabbar {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+#koreanApp .course-tab span {
+  overflow: visible;
+  text-overflow: clip;
+}
+
+#koreanApp .korean-path-card.lesson-two {
+  --path-glow: #eee8ff;
+  grid-column: 1 / -1;
+  border-color: #e7e0f5;
+  background: linear-gradient(135deg, rgba(255,255,255,.99), rgba(244,250,255,.96) 48%, rgba(251,246,255,.97));
+}
+
+#koreanApp .korean-path-card.lesson-two .path-glyph {
+  color: #6e73a5;
+  background: linear-gradient(155deg, #e3f5ff, #f1e8ff 55%, #fff0e7);
+}
+
+#koreanApp .lesson-two-view {
+  --ko2-blue: #dff3ff;
+  --ko2-blue-strong: #70a9c7;
+  --ko2-mint: #e5f8f1;
+  --ko2-peach: #fff0e6;
+  --ko2-lavender: #f0eaff;
+  --ko2-pink: #fff0f5;
+  --ko2-line: #deebf1;
+  color: #284b5d;
+}
+
+#koreanApp .lesson-two-heading {
+  align-items: flex-end;
+}
+
+#koreanApp .lesson-two-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr);
+  gap: 30px;
+  align-items: center;
+  min-height: 390px;
+  padding: clamp(28px, 5vw, 58px);
+  overflow: hidden;
+  border: 1px solid #d9ebf3;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(238,226,255,.95) 0 15%, transparent 36%),
+    radial-gradient(circle at 5% 100%, rgba(222,247,240,.9) 0 14%, transparent 34%),
+    linear-gradient(135deg, #fff 0%, #f7fcff 48%, #fffaf7 100%);
+  box-shadow: 0 24px 64px rgba(67, 115, 137, .11);
+}
+
+#koreanApp .lesson-two-hero::after {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  right: -50px;
+  bottom: -62px;
+  border: 24px solid rgba(158, 210, 233, .2);
+  border-radius: 50%;
+  content: "";
+}
+
+#koreanApp .lesson-two-hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+#koreanApp .lesson-date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 24px;
+  padding: 8px 12px;
+  border: 1px solid #d9eaf2;
+  border-radius: 999px;
+  color: #587b8d;
+  background: rgba(255,255,255,.78);
+  font-size: .78rem;
+  font-weight: 850;
+}
+
+#koreanApp .lesson-date-chip svg {
+  width: 16px;
+  height: 16px;
+}
+
+#koreanApp .lesson-two-hero h3 {
+  margin: 8px 0 8px;
+  color: #214e65;
+  font-size: clamp(2rem, 4.4vw, 3.55rem);
+  line-height: 1.18;
+  letter-spacing: -.035em;
+}
+
+#koreanApp .lesson-two-romanization {
+  color: #658392;
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+#koreanApp .lesson-two-reading {
+  display: inline-block;
+  margin: 9px 0 17px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  color: #786786;
+  background: var(--ko2-lavender);
+  font-size: .82rem;
+}
+
+#koreanApp .lesson-two-hero-copy > strong {
+  display: block;
+  color: #385e70;
+  font-size: 1.1rem;
+}
+
+#koreanApp .lesson-two-listen {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 11px 15px;
+  border: 1px solid #bcddec;
+  border-radius: 14px;
+  color: #39758e;
+  background: #fff;
+  font-weight: 850;
+}
+
+#koreanApp .lesson-two-listen:hover,
+#koreanApp .lesson-two-listen:focus-visible {
+  border-color: #7db9d2;
+  background: #f3fbff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+#koreanApp .lesson-two-listen svg {
+  width: 18px;
+  height: 18px;
+}
+
+#koreanApp .lesson-two-listen.compact {
+  margin-top: 0;
+}
+
+#koreanApp .lesson-two-hero-map {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+#koreanApp .lesson-two-hero-map div {
+  min-height: 122px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px;
+  border: 1px solid rgba(207,227,238,.95);
+  border-radius: 22px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 12px 30px rgba(76, 119, 140, .07);
+}
+
+#koreanApp .lesson-two-hero-map div:last-child {
+  grid-column: 1 / -1;
+  width: min(100%, 240px);
+  min-height: 104px;
+  justify-self: center;
+  background: linear-gradient(135deg, #fff, #f1ebff);
+}
+
+#koreanApp .lesson-two-hero-map div span {
+  color: #87a5b2;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+#koreanApp .lesson-two-hero-map div b {
+  margin: 5px 0 2px;
+  color: #315f75;
+  font-size: 1.1rem;
+}
+
+#koreanApp .lesson-two-hero-map div small {
+  color: #7a8d96;
+}
+
+#koreanApp .lesson-two-hero-map > svg {
+  width: 18px;
+  color: #8db3c5;
+}
+
+#koreanApp .lesson-two-jumpbar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0;
+  padding: 7px;
+  border: 1px solid #e0edf2;
+  border-radius: 20px;
+  background: rgba(255,255,255,.91);
+  box-shadow: 0 12px 32px rgba(67, 115, 137, .07);
+}
+
+#koreanApp .lesson-two-jumpbar button {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: #5b7481;
+  background: transparent;
+  font-weight: 800;
+}
+
+#koreanApp .lesson-two-jumpbar button:hover,
+#koreanApp .lesson-two-jumpbar button:focus-visible {
+  border-color: #cce3ed;
+  color: #39738b;
+  background: #f3fbff;
+  outline: none;
+}
+
+#koreanApp .lesson-two-jumpbar button span {
+  color: #8aa7b4;
+  font-size: .69rem;
+  font-weight: 900;
+}
+
+#koreanApp .lesson-two-section {
+  scroll-margin-top: 180px;
+  margin-top: 18px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--ko2-line);
+  border-radius: 30px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 18px 46px rgba(67, 115, 137, .075);
+}
+
+#koreanApp .lesson-two-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+#koreanApp .lesson-two-section-head > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+#koreanApp .lesson-two-section-head h3 {
+  margin-top: 2px;
+  color: #2b566a;
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+}
+
+#koreanApp .lesson-two-section-head > p {
+  max-width: 410px;
+  color: #7a8e98;
+  text-align: right;
+}
+
+#koreanApp .possession-lab {
+  display: grid;
+  grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr);
+  gap: 18px;
+}
+
+#koreanApp .possession-choice-list {
+  display: grid;
+  gap: 9px;
+}
+
+#koreanApp .possession-choice-list button {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 15px;
+  border: 1px solid #e1ebef;
+  border-radius: 17px;
+  color: #496a7a;
+  background: #fbfdfe;
+  text-align: left;
+}
+
+#koreanApp .possession-choice-list button.active {
+  border-color: #9dcde0;
+  color: #2e6680;
+  background: #edf9ff;
+  box-shadow: inset 4px 0 #83bfd7;
+}
+
+#koreanApp .possession-choice-list strong {
+  font-size: 1.12rem;
+}
+
+#koreanApp .possession-choice-list span {
+  color: #7d8f98;
+  font-size: .8rem;
+  text-align: right;
+}
+
+#koreanApp .possession-result {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) auto minmax(110px, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 292px;
+  padding: clamp(20px, 4vw, 38px);
+  border: 1px solid #dcebf1;
+  border-radius: 25px;
+  background: linear-gradient(140deg, #fbfeff, #f6f1ff);
+}
+
+#koreanApp .possession-owner,
+#koreanApp .possession-noun {
+  display: grid;
+  place-items: center;
+  min-height: 90px;
+  padding: 15px;
+  border-radius: 22px;
+  font-size: clamp(1.75rem, 4vw, 2.55rem);
+  font-weight: 900;
+}
+
+#koreanApp .possession-owner.je { background: var(--ko2-blue); }
+#koreanApp .possession-owner.uri { background: var(--ko2-mint); }
+#koreanApp .possession-noun { background: var(--ko2-peach); }
+#koreanApp .possession-plus { color: #91a5af; font-size: 1.4rem; font-weight: 900; }
+
+#koreanApp .possession-result > button {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #cbe3ed;
+  border-radius: 50%;
+  color: #4f88a1;
+  background: #fff;
+}
+
+#koreanApp .possession-result > div {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+#koreanApp .possession-result > div strong {
+  display: block;
+  color: #315f76;
+  font-size: 1.35rem;
+}
+
+#koreanApp .possession-result > div p { color: #6f8692; }
+#koreanApp .possession-result > div small { color: #806f8c; }
+
+#koreanApp .possession-result > em {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #71838c;
+  background: rgba(255,255,255,.8);
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+#koreanApp .lesson-two-culture-note {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  margin-top: 18px;
+  padding: 17px 19px;
+  border: 1px solid #eadff5;
+  border-radius: 19px;
+  background: #fbf8ff;
+}
+
+#koreanApp .lesson-two-culture-note > span {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: #7b6a9e;
+  background: #eee7ff;
+}
+
+#koreanApp .lesson-two-culture-note p {
+  margin-top: 4px;
+  color: #756f7c;
+}
+
+#koreanApp .lesson-two-pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#koreanApp .lesson-two-pattern-card {
+  padding: 22px;
+  border: 1px solid #e1edf2;
+  border-radius: 24px;
+  background: linear-gradient(155deg, #fff, #f9fcfd);
+}
+
+#koreanApp .lesson-two-pattern-card:nth-child(2) { background: linear-gradient(155deg, #fff, #fff8f2); }
+#koreanApp .lesson-two-pattern-card:nth-child(3) { background: linear-gradient(155deg, #fff, #f3fcf8); }
+#koreanApp .lesson-two-pattern-card:nth-child(4) { background: linear-gradient(155deg, #fff, #faf7ff); }
+
+#koreanApp .lesson-two-pattern-top {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+#koreanApp .lesson-two-pattern-top span {
+  padding: 5px 8px;
+  border-radius: 9px;
+  color: #57839a;
+  background: #e7f5fb;
+  font-size: .7rem;
+  font-weight: 900;
+}
+
+#koreanApp .lesson-two-pattern-top small {
+  color: #718792;
+  font-weight: 800;
+}
+
+#koreanApp .lesson-two-pattern-card h4 {
+  margin: 14px 0 9px;
+  color: #315d72;
+  font-size: 1.25rem;
+}
+
+#koreanApp .lesson-two-pattern-card > p {
+  min-height: 72px;
+  color: #74858d;
+  line-height: 1.6;
+}
+
+#koreanApp .lesson-two-pattern-examples {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+#koreanApp .lesson-two-pattern-examples button {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 12px;
+  border: 1px solid #e2ebef;
+  border-radius: 14px;
+  color: #46697a;
+  background: rgba(255,255,255,.86);
+  text-align: left;
+}
+
+#koreanApp .lesson-two-pattern-examples button:hover { border-color: #aad2e2; }
+#koreanApp .lesson-two-pattern-examples button span { display: grid; }
+#koreanApp .lesson-two-pattern-examples button small { color: #798a92; }
+#koreanApp .lesson-two-pattern-examples button em { color: #81758b; font-size: .72rem; font-style: normal; text-align: right; }
+#koreanApp .lesson-two-pattern-examples svg { width: 17px; height: 17px; color: #6d9fb5; }
+
+#koreanApp .sentence-anatomy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) auto minmax(80px, .55fr) auto minmax(0, 1.35fr) auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+#koreanApp .sentence-part {
+  position: relative;
+  min-height: 178px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 21px 16px 16px;
+  border: 1px solid rgba(211,229,237,.9);
+  border-radius: 22px;
+  text-align: center;
+}
+
+#koreanApp .sentence-part.mint { background: var(--ko2-mint); }
+#koreanApp .sentence-part.blue { background: var(--ko2-blue); }
+#koreanApp .sentence-part.peach { background: var(--ko2-peach); }
+#koreanApp .sentence-part.lavender { background: var(--ko2-lavender); }
+
+#koreanApp .sentence-part-number {
+  position: absolute;
+  top: 10px;
+  left: 11px;
+  color: #7d98a5;
+  font-size: .65rem;
+  font-weight: 900;
+}
+
+#koreanApp .sentence-part button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  color: #2e5c71;
+  background: transparent;
+  font-size: clamp(1.2rem, 2.4vw, 1.72rem);
+}
+
+#koreanApp .sentence-part button svg { width: 17px; height: 17px; opacity: .7; }
+#koreanApp .sentence-part > b { margin-top: 11px; color: #5d7783; font-size: .77rem; }
+#koreanApp .sentence-part > small { margin-top: 3px; color: #7d8b91; line-height: 1.35; }
+#koreanApp .sentence-part-arrow { width: 18px; color: #9bb2bd; }
+
+#koreanApp .liaison-note {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 15px;
+  align-items: center;
+  margin-top: 17px;
+  padding: 16px 18px;
+  border: 1px dashed #d9cfee;
+  border-radius: 18px;
+  background: #fcfaff;
+}
+
+#koreanApp .liaison-note > span {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  color: #6f62a0;
+  background: #eee8ff;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+#koreanApp .liaison-note p { margin-top: 3px; color: #78848a; }
+
+#koreanApp .lesson-two-vocab-toolbar {
+  display: grid;
+  grid-template-columns: minmax(230px, .7fr) minmax(0, 1.3fr);
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+#koreanApp .lesson-two-vocab-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+#koreanApp .lesson-two-vocab-filters button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid #dfebef;
+  border-radius: 12px;
+  color: #667f8b;
+  background: #fbfdfe;
+  font-size: .77rem;
+  font-weight: 800;
+}
+
+#koreanApp .lesson-two-vocab-filters button.active {
+  border-color: #a9d3e3;
+  color: #34718b;
+  background: #ebf8fe;
+}
+
+#koreanApp .lesson-two-vocab-filters svg { width: 15px; height: 15px; }
+
+#koreanApp .lesson-two-vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#koreanApp .lesson-two-vocab-card {
+  position: relative;
+  min-height: 244px;
+  display: flex;
+  flex-direction: column;
+  padding: 17px;
+  border: 1px solid #e1ebef;
+  border-radius: 20px;
+  background: linear-gradient(155deg, #fff, #f9fcfd);
+}
+
+#koreanApp .lesson-two-vocab-sound {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d5e7ee;
+  border-radius: 11px;
+  color: #5b91a8;
+  background: #f7fcff;
+}
+
+#koreanApp .lesson-two-vocab-sound svg { width: 16px; height: 16px; }
+
+#koreanApp .lesson-two-vocab-group {
+  max-width: calc(100% - 38px);
+  overflow: hidden;
+  color: #88a0ab;
+  font-size: .66rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#koreanApp .lesson-two-vocab-card > strong {
+  margin-top: 12px;
+  color: #2b586d;
+  font-size: clamp(1.25rem, 2.4vw, 1.72rem);
+  line-height: 1.25;
+}
+
+#koreanApp .lesson-two-vocab-card > p { color: #688391; font-size: .8rem; }
+
+#koreanApp .lesson-two-vocab-card > div {
+  display: grid;
+  gap: 1px;
+  margin: 13px 0 9px;
+  padding: 8px 10px;
+  border-radius: 11px;
+  background: var(--ko2-lavender);
+}
+
+#koreanApp .lesson-two-vocab-card > div small { color: #887a92; font-size: .63rem; }
+#koreanApp .lesson-two-vocab-card > div b { color: #6d5f79; font-size: .86rem; }
+#koreanApp .lesson-two-vocab-card > em { color: #4f6976; font-style: normal; font-weight: 750; }
+
+#koreanApp .lesson-two-word-note {
+  margin-top: auto;
+  padding-top: 9px;
+  color: #7f8e95;
+  font-size: .7rem;
+  line-height: 1.4;
+}
+
+#koreanApp .lesson-two-vocab-grid > .empty-state { grid-column: 1 / -1; }
+#koreanApp .lesson-two-vocab-count { margin: 13px 2px 0; color: #81919a; font-size: .75rem; text-align: right; }
+
+#koreanApp .scenario-workshop {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: 17px;
+}
+
+#koreanApp .scenario-list {
+  max-height: 460px;
+  display: grid;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+#koreanApp .scenario-list button {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e0ebef;
+  border-radius: 15px;
+  color: #5b7380;
+  background: #fbfdfe;
+  text-align: left;
+}
+
+#koreanApp .scenario-list button.active {
+  border-color: #a8d3e3;
+  color: #356d86;
+  background: #edf9fe;
+}
+
+#koreanApp .scenario-list button span { color: #91a6b0; font-size: .67rem; font-weight: 900; }
+#koreanApp .scenario-list button strong { font-size: .82rem; }
+#koreanApp .scenario-list button svg { width: 16px; height: 16px; }
+
+#koreanApp .scenario-stage {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid #dceaf0;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(239,231,255,.9), transparent 35%),
+    linear-gradient(145deg, #fff, #f7fcff);
+}
+
+#koreanApp .scenario-stage h4 { margin: 5px 0 20px; color: #3a6173; font-size: 1.15rem; }
+
+#koreanApp .scenario-chunks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+#koreanApp .scenario-chunks span {
+  padding: 12px 14px;
+  border-radius: 14px;
+  color: #315a6d;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  font-weight: 900;
+}
+
+#koreanApp .scenario-chunks .chunk-0 { background: var(--ko2-mint); }
+#koreanApp .scenario-chunks .chunk-1 { background: var(--ko2-blue); }
+#koreanApp .scenario-chunks .chunk-2 { background: var(--ko2-peach); }
+#koreanApp .scenario-chunks .chunk-3 { background: var(--ko2-lavender); }
+#koreanApp .scenario-chunks svg { width: 14px; height: 14px; color: #9aadb6; }
+
+#koreanApp .scenario-full-sentence {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 23px;
+  padding-top: 19px;
+  border-top: 1px dashed #d6e4ea;
+}
+
+#koreanApp .scenario-full-sentence strong { color: #2b5970; font-size: clamp(1.25rem, 3vw, 1.8rem); }
+
+#koreanApp .scenario-full-sentence button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid #c7e0eb;
+  border-radius: 12px;
+  color: #4d8198;
+  background: #fff;
+  font-weight: 800;
+}
+
+#koreanApp .scenario-stage > p:not(.eyebrow) { margin-top: 12px; color: #6d8490; }
+#koreanApp .scenario-stage > small { margin-top: 5px; color: #83758d; }
+
+#koreanApp .lesson-two-practice {
+  background: linear-gradient(145deg, #fff, #f7fcff 55%, #fcf8ff);
+}
+
+#koreanApp .lesson-two-score {
+  padding: 9px 12px;
+  border-radius: 12px;
+  color: #4c778b;
+  background: #eaf7fc;
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+#koreanApp .lesson-two-quiz-card {
+  max-width: 820px;
+  margin-inline: auto;
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid #dce9ef;
+  border-radius: 26px;
+  background: #fff;
+}
+
+#koreanApp .lesson-two-question-number { color: #88a2af; font-size: .72rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+#koreanApp .lesson-two-quiz-card h4 { margin: 8px 0 19px; color: #315b6f; font-size: clamp(1.15rem, 2.6vw, 1.5rem); }
+
+#koreanApp .lesson-two-options {
+  display: grid;
+  gap: 9px;
+}
+
+#koreanApp .lesson-two-options button {
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 13px;
+  border: 1px solid #e0eaf0;
+  border-radius: 16px;
+  color: #496a79;
+  background: #fbfdfe;
+  text-align: left;
+}
+
+#koreanApp .lesson-two-options button:hover:not(:disabled) { border-color: #a7d2e2; background: #f2fbff; }
+#koreanApp .lesson-two-options button span { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; color: #6e8b98; background: #eaf4f8; font-size: .75rem; font-weight: 900; }
+#koreanApp .lesson-two-options button.correct { border-color: #9bd5bc; color: #34735a; background: #edfbf4; }
+#koreanApp .lesson-two-options button.correct span { color: #2f7558; background: #d7f4e6; }
+#koreanApp .lesson-two-options button.incorrect { border-color: #eab7bd; color: #8a4a52; background: #fff2f3; }
+#koreanApp .lesson-two-options button.incorrect span { color: #92505a; background: #f9dfe3; }
+
+#koreanApp .lesson-two-feedback {
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 11px;
+  align-items: center;
+  margin-top: 15px;
+  padding: 12px 14px;
+  border: 1px solid #e2eaf0;
+  border-radius: 15px;
+  color: #71848e;
+  background: #fafcfd;
+}
+
+#koreanApp .lesson-two-feedback > span { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px; background: #eef5f8; }
+#koreanApp .lesson-two-feedback svg { width: 18px; height: 18px; }
+#koreanApp .lesson-two-feedback p { display: grid; gap: 2px; }
+#koreanApp .lesson-two-feedback.correct { border-color: #b9dfcc; color: #46745f; background: #f0fbf5; }
+#koreanApp .lesson-two-feedback.incorrect { border-color: #edc8cc; color: #86545b; background: #fff5f6; }
+
+#koreanApp .lesson-two-quiz-card > .primary-button {
+  margin-top: 15px;
+  margin-left: auto;
+}
+
+#koreanApp .lesson-two-quiz-card > .primary-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(.5);
+  opacity: .48;
+}
+
+@media (max-width: 1050px) {
+  #koreanApp .lesson-two-hero { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-hero-map { max-width: 560px; }
+  #koreanApp .sentence-anatomy { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #koreanApp .sentence-part-arrow { display: none; }
+  #koreanApp .lesson-two-vocab-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 820px) {
+  #koreanApp .course-tabbar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #koreanApp .korean-path-card.lesson-two { grid-column: auto; }
+  #koreanApp .lesson-two-heading,
+  #koreanApp .lesson-two-section-head { align-items: flex-start; flex-direction: column; }
+  #koreanApp .lesson-two-section-head > p { text-align: left; }
+  #koreanApp .lesson-two-jumpbar { grid-template-columns: repeat(5, minmax(105px, 1fr)); overflow-x: auto; }
+  #koreanApp .possession-lab,
+  #koreanApp .scenario-workshop { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-pattern-grid { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-pattern-card > p { min-height: 0; }
+  #koreanApp .sentence-anatomy { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .lesson-two-vocab-toolbar { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-vocab-filters { justify-content: flex-start; }
+  #koreanApp .lesson-two-vocab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .scenario-list { max-height: 310px; }
+}
+
+@media (max-width: 560px) {
+  #koreanApp .course-tabbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .lesson-two-hero { min-height: 0; padding: 24px 18px; border-radius: 25px; }
+  #koreanApp .lesson-two-hero h3 { font-size: 2rem; }
+  #koreanApp .lesson-two-hero-map { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-hero-map > svg { display: none; }
+  #koreanApp .lesson-two-hero-map div:last-child { grid-column: auto; width: 100%; }
+  #koreanApp .lesson-two-jumpbar { grid-template-columns: repeat(5, 112px); }
+  #koreanApp .lesson-two-section { padding: 18px; border-radius: 23px; }
+  #koreanApp .lesson-two-section-head > div:first-child { align-items: flex-start; }
+  #koreanApp .possession-result { grid-template-columns: 1fr auto 1fr; min-height: 0; padding: 20px 14px; }
+  #koreanApp .possession-result > button { grid-column: 1 / -1; justify-self: center; }
+  #koreanApp .possession-owner,
+  #koreanApp .possession-noun { min-height: 76px; font-size: 1.65rem; }
+  #koreanApp .lesson-two-culture-note { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-pattern-examples button { grid-template-columns: 1fr auto; }
+  #koreanApp .lesson-two-pattern-examples button em { grid-column: 1 / -1; text-align: left; }
+  #koreanApp .sentence-anatomy { grid-template-columns: 1fr; }
+  #koreanApp .sentence-part { min-height: 138px; }
+  #koreanApp .liaison-note { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-vocab-grid { grid-template-columns: 1fr; }
+  #koreanApp .lesson-two-vocab-card { min-height: 218px; }
+  #koreanApp .scenario-stage { min-height: 0; padding: 22px 17px; }
+  #koreanApp .scenario-full-sentence { align-items: flex-start; flex-direction: column; }
+  #koreanApp .lesson-two-quiz-card { padding: 19px 15px; border-radius: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #koreanApp .lesson-two-view button { transition: none; }
+}
