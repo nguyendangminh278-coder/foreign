@@ -1,0 +1,386 @@
+/* Bài 2 PDF expansion · family, occupations and native numbers */
+#koreanApp .native-number-section,
+#koreanApp .lesson-two-dialogue-section {
+  background:
+    radial-gradient(circle at 100% 0, rgba(234, 244, 255, .72), transparent 32%),
+    linear-gradient(145deg, #fff, #fbfdff);
+}
+
+#koreanApp .native-number-lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+  gap: 18px;
+}
+
+#koreanApp .native-number-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#koreanApp .native-number-board button {
+  position: relative;
+  min-height: 122px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 13px 8px;
+  border: 1px solid #dfeaf0;
+  border-radius: 19px;
+  color: #41687a;
+  background: #fbfdfe;
+}
+
+#koreanApp .native-number-board button:nth-child(4n + 1) { background: #f1fbff; }
+#koreanApp .native-number-board button:nth-child(4n + 2) { background: #f2fbf7; }
+#koreanApp .native-number-board button:nth-child(4n + 3) { background: #fff8f2; }
+#koreanApp .native-number-board button:nth-child(4n + 4) { background: #faf6ff; }
+
+#koreanApp .native-number-board button:hover,
+#koreanApp .native-number-board button:focus-visible,
+#koreanApp .native-number-board button.active {
+  border-color: #8fc7dd;
+  outline: none;
+  box-shadow: 0 11px 24px rgba(73, 124, 147, .12);
+  transform: translateY(-2px);
+}
+
+#koreanApp .native-number-board button.active::after {
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6db5d0;
+  content: "";
+}
+
+#koreanApp .native-number-board button > span {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  color: #91a7b1;
+  font-size: .66rem;
+  font-weight: 900;
+}
+
+#koreanApp .native-number-board button strong {
+  color: #2e5d72;
+  font-size: 1.55rem;
+}
+
+#koreanApp .native-number-board button small {
+  color: #7b8f98;
+}
+
+#koreanApp .native-counter-stage {
+  min-height: 255px;
+  padding: 22px;
+  border: 1px solid #dce9ef;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #fff, #f7f2ff);
+}
+
+#koreanApp .native-counter-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 11px 0 18px;
+  padding: 6px;
+  border: 1px solid #e0e9ee;
+  border-radius: 17px;
+  background: rgba(255,255,255,.8);
+}
+
+#koreanApp .native-counter-switch button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: #718792;
+  background: transparent;
+  text-align: left;
+}
+
+#koreanApp .native-counter-switch button strong {
+  grid-row: 1 / 3;
+  color: #4d7486;
+  font-size: 1.25rem;
+}
+
+#koreanApp .native-counter-switch button span {
+  font-size: .73rem;
+}
+
+#koreanApp .native-counter-switch button.active {
+  border-color: #c9dfeb;
+  color: #396e86;
+  background: #edf8fd;
+  box-shadow: 0 7px 18px rgba(73, 124, 147, .08);
+}
+
+#koreanApp .native-number-result {
+  position: relative;
+  min-height: 174px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: 16px;
+  border: 1px solid #e1d9ef;
+  border-radius: 20px;
+  background: rgba(255,255,255,.9);
+  text-align: center;
+}
+
+#koreanApp .number-transform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #7e8f97;
+  font-size: .8rem;
+}
+
+#koreanApp .number-transform svg {
+  width: 15px;
+  height: 15px;
+}
+
+#koreanApp .number-transform strong,
+#koreanApp .number-transform b {
+  color: #586b91;
+}
+
+#koreanApp .native-number-result > button {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 9px;
+  border: 1px solid #d2e4ec;
+  border-radius: 11px;
+  color: #56879c;
+  background: #f7fcff;
+  font-size: .72rem;
+  font-weight: 800;
+}
+
+#koreanApp .native-number-result > button svg {
+  width: 15px;
+  height: 15px;
+}
+
+#koreanApp .native-number-result h4 {
+  margin: 7px 0 2px;
+  color: #2e5a70;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+#koreanApp .native-number-result p { color: #6d8390; font-size: .78rem; }
+#koreanApp .native-number-result small { color: #80738a; }
+
+#koreanApp .native-number-result em {
+  margin-top: 7px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #4f806d;
+  background: #e8f7f0;
+  font-size: .73rem;
+  font-style: normal;
+  font-weight: 850;
+}
+
+#koreanApp .native-number-rule {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+  padding: 13px 15px;
+  border: 1px dashed #d9cfee;
+  border-radius: 17px;
+  color: #736c7a;
+  background: #fcfaff;
+}
+
+#koreanApp .native-number-rule svg {
+  width: 20px;
+  color: #826fa8;
+}
+
+#koreanApp .dialogue-fact-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+#koreanApp .dialogue-fact-strip > div {
+  display: grid;
+  gap: 2px;
+  padding: 14px;
+  border: 1px solid #e0eaf0;
+  border-radius: 16px;
+  background: #fafdff;
+}
+
+#koreanApp .dialogue-fact-strip > div:nth-child(2) { background: #fff8f2; }
+#koreanApp .dialogue-fact-strip > div:nth-child(3) { background: #f2fbf7; }
+#koreanApp .dialogue-fact-strip > div:nth-child(4) { background: #faf6ff; }
+
+#koreanApp .dialogue-fact-strip strong {
+  color: #315e73;
+  font-size: 1.05rem;
+}
+
+#koreanApp .dialogue-fact-strip span {
+  color: #778b95;
+  font-size: .72rem;
+}
+
+#koreanApp .lesson-two-dialogue {
+  display: grid;
+  gap: 10px;
+}
+
+#koreanApp .dialogue-line {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 28px;
+  gap: 14px;
+  align-items: start;
+  padding: 17px;
+  border: 1px solid #e0eaf0;
+  border-radius: 20px;
+  background: #fff;
+}
+
+#koreanApp .dialogue-line.daniel {
+  margin-right: 7%;
+  background: linear-gradient(145deg, #fff, #f0faff);
+}
+
+#koreanApp .dialogue-line.friend {
+  margin-left: 7%;
+  background: linear-gradient(145deg, #fff, #faf6ff);
+}
+
+#koreanApp .dialogue-speaker {
+  display: grid;
+  place-items: center;
+  min-height: 34px;
+  padding: 6px 8px;
+  border-radius: 11px;
+  color: #4d788c;
+  background: #e5f5fb;
+  font-size: .73rem;
+  font-weight: 900;
+}
+
+#koreanApp .dialogue-line.friend .dialogue-speaker {
+  color: #74658e;
+  background: #eee8fb;
+}
+
+#koreanApp .dialogue-korean {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#koreanApp .dialogue-korean strong {
+  color: #2f5c72;
+  font-size: 1.08rem;
+}
+
+#koreanApp .dialogue-korean button {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid #cfe3ec;
+  border-radius: 11px;
+  color: #578ba2;
+  background: #f7fcff;
+}
+
+#koreanApp .dialogue-korean button svg {
+  width: 16px;
+  height: 16px;
+}
+
+#koreanApp .dialogue-line p {
+  margin-top: 5px;
+  color: #6d8490;
+  font-size: .78rem;
+}
+
+#koreanApp .dialogue-line small {
+  display: block;
+  margin-top: 2px;
+  color: #81768a;
+}
+
+#koreanApp .dialogue-line em {
+  display: block;
+  margin-top: 8px;
+  color: #536d79;
+  font-style: normal;
+  font-weight: 750;
+}
+
+#koreanApp .dialogue-line > b {
+  color: #a0b0b7;
+  font-size: .66rem;
+}
+
+@media (max-width: 900px) {
+  #koreanApp .native-number-lab {
+    grid-template-columns: 1fr;
+  }
+
+  #koreanApp .dialogue-fact-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  #koreanApp .native-number-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #koreanApp .native-number-board button {
+    min-height: 100px;
+  }
+
+  #koreanApp .dialogue-fact-strip {
+    grid-template-columns: 1fr;
+  }
+
+  #koreanApp .dialogue-line,
+  #koreanApp .dialogue-line.daniel,
+  #koreanApp .dialogue-line.friend {
+    grid-template-columns: 1fr;
+    margin-inline: 0;
+  }
+
+  #koreanApp .dialogue-speaker {
+    width: max-content;
+  }
+
+  #koreanApp .dialogue-line > b {
+    position: absolute;
+    top: 12px;
+    right: 13px;
+  }
+}
