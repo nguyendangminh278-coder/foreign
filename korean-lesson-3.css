@@ -1,0 +1,566 @@
+/* Korean lesson 3 · 이게 뭐예요? */
+#koreanApp .course-tabbar {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+#koreanApp .korean-path-card.lesson-three {
+  --path-glow: #e8f7f1;
+  grid-column: 1 / -1;
+  border-color: #dceee7;
+  background: linear-gradient(135deg, rgba(255,255,255,.99), rgba(241,251,247,.96) 48%, rgba(248,245,255,.97));
+}
+
+#koreanApp .korean-path-card.lesson-three .path-glyph {
+  color: #548d83;
+  background: linear-gradient(155deg, #dcf5ed, #eaf1ff 58%, #fff0e8);
+}
+
+#koreanApp .lesson-three-view {
+  --ko3-ink: #315d68;
+  --ko3-muted: #72878e;
+  --ko3-line: #deebeb;
+  --ko3-mint: #e9f8f2;
+  --ko3-blue: #eaf5fb;
+  --ko3-lilac: #f3effb;
+  --ko3-peach: #fff2e9;
+  color: var(--ko3-ink);
+}
+
+#koreanApp .lesson-three-heading {
+  align-items: flex-start;
+}
+
+#koreanApp .lesson-three-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+  gap: 28px;
+  align-items: center;
+  min-height: 390px;
+  padding: clamp(28px, 5vw, 54px);
+  border: 1px solid #dcebea;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(221, 237, 255, .85), transparent 34%),
+    radial-gradient(circle at 4% 96%, rgba(224, 248, 237, .9), transparent 36%),
+    rgba(255,255,255,.98);
+  box-shadow: 0 24px 58px rgba(58, 104, 111, .09);
+}
+
+#koreanApp .lesson-three-hero::after {
+  content: "?";
+  position: absolute;
+  top: -70px;
+  right: 20px;
+  color: rgba(118, 167, 173, .08);
+  font-size: 20rem;
+  font-weight: 950;
+  pointer-events: none;
+}
+
+#koreanApp .lesson-three-hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+#koreanApp .lesson-three-date-chip {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid #cfe7de;
+  border-radius: 999px;
+  color: #4e8176;
+  background: rgba(241,251,247,.92);
+  font-size: .73rem;
+  font-weight: 900;
+}
+
+#koreanApp .lesson-three-date-chip svg {
+  width: 16px;
+}
+
+#koreanApp .lesson-three-hero h3 {
+  margin: 13px 0 5px;
+  color: #305f67;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 1.06;
+}
+
+#koreanApp .lesson-three-romanization {
+  color: #568592;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+#koreanApp .lesson-three-reading {
+  margin-top: 5px;
+  color: #8a7c94;
+  font-size: .82rem;
+}
+
+#koreanApp .lesson-three-hero-copy > strong {
+  display: block;
+  margin-top: 17px;
+  color: #3f5e66;
+  font-size: 1.1rem;
+}
+
+#koreanApp .lesson-three-listen {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 11px 16px;
+  border: 1px solid #c9e3e0;
+  border-radius: 999px;
+  color: #477c76;
+  background: rgba(255,255,255,.88);
+  font-weight: 850;
+}
+
+#koreanApp .lesson-three-listen:hover,
+#koreanApp .lesson-three-listen:focus-visible {
+  border-color: #8fc9bf;
+  background: #f1fbf8;
+  outline: none;
+}
+
+#koreanApp .lesson-three-listen svg {
+  width: 18px;
+}
+
+#koreanApp .lesson-three-summary-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(211,228,230,.9);
+  border-radius: 26px;
+  background: rgba(255,255,255,.74);
+  box-shadow: 0 18px 42px rgba(59, 105, 116, .08);
+  backdrop-filter: blur(14px);
+}
+
+#koreanApp .lesson-three-summary-card div {
+  display: grid;
+  gap: 3px;
+  min-height: 92px;
+  padding: 15px;
+  border-radius: 18px;
+  background: var(--ko3-blue);
+}
+
+#koreanApp .lesson-three-summary-card div:nth-child(2) { background: var(--ko3-mint); }
+#koreanApp .lesson-three-summary-card div:nth-child(3) { background: var(--ko3-lilac); }
+#koreanApp .lesson-three-summary-card div:nth-child(4) { background: var(--ko3-peach); }
+#koreanApp .lesson-three-summary-card strong { color: #426f79; font-size: 1.55rem; }
+#koreanApp .lesson-three-summary-card span { color: #72878e; font-size: .72rem; line-height: 1.4; }
+
+#koreanApp .lesson-three-jumpbar {
+  position: sticky;
+  top: 154px;
+  z-index: 11;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+  margin: 18px 0;
+  padding: 7px;
+  border: 1px solid #dcebea;
+  border-radius: 22px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 12px 32px rgba(60, 105, 111, .1);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+#koreanApp .lesson-three-jumpbar button {
+  min-height: 48px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  color: #607981;
+  background: transparent;
+  font-weight: 850;
+  transition: 160ms ease;
+}
+
+#koreanApp .lesson-three-jumpbar button span {
+  color: #8ba5a8;
+  font-size: .66rem;
+  font-weight: 950;
+}
+
+#koreanApp .lesson-three-jumpbar button:hover,
+#koreanApp .lesson-three-jumpbar button:focus-visible,
+#koreanApp .lesson-three-jumpbar button.active {
+  border-color: #bddfd7;
+  color: #3f766f;
+  background: linear-gradient(135deg, #ecfaf5, #eef5ff 58%, #fff4ed);
+  box-shadow: 0 7px 18px rgba(65, 119, 115, .1);
+  outline: none;
+}
+
+#koreanApp .lesson-three-section {
+  scroll-margin-top: 225px;
+  margin-top: 18px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--ko3-line);
+  border-radius: 30px;
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 18px 46px rgba(61, 103, 109, .07);
+}
+
+#koreanApp .lesson-three-section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+#koreanApp .lesson-three-section-head > div:first-child {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+#koreanApp .lesson-three-section-head h3 {
+  margin: 2px 0 0;
+  color: #355f68;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+#koreanApp .lesson-three-section-head > p {
+  max-width: 480px;
+  color: var(--ko3-muted);
+  font-size: .82rem;
+  line-height: 1.6;
+  text-align: right;
+}
+
+#koreanApp .lesson-three-vocab-toolbar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+#koreanApp .lesson-three-filter-row {
+  display: flex;
+  gap: 7px;
+  justify-content: flex-end;
+  overflow-x: auto;
+  padding: 2px;
+}
+
+#koreanApp .lesson-three-filter-row button {
+  flex: 0 0 auto;
+  padding: 8px 11px;
+  border: 1px solid #dce9e8;
+  border-radius: 999px;
+  color: #647c82;
+  background: #fbfdfd;
+  font-size: .72rem;
+  font-weight: 850;
+}
+
+#koreanApp .lesson-three-filter-row button.active {
+  border-color: #b6ddd2;
+  color: #43766c;
+  background: #edf9f5;
+}
+
+#koreanApp .lesson-three-vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+}
+
+#koreanApp .lesson-three-vocab-card {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  min-height: 190px;
+  padding: 18px;
+  border: 1px solid #e0eceb;
+  border-radius: 22px;
+  background: linear-gradient(155deg, #fff, #f1faf7);
+}
+
+#koreanApp .lesson-three-vocab-card:nth-child(4n + 2) { background: linear-gradient(155deg, #fff, #f1f7fc); }
+#koreanApp .lesson-three-vocab-card:nth-child(4n + 3) { background: linear-gradient(155deg, #fff, #f7f2fb); }
+#koreanApp .lesson-three-vocab-card:nth-child(4n + 4) { background: linear-gradient(155deg, #fff, #fff5ed); }
+
+#koreanApp .lesson-three-vocab-card > button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid #d9e8e6;
+  border-radius: 12px;
+  color: #558178;
+  background: rgba(255,255,255,.86);
+}
+
+#koreanApp .lesson-three-vocab-card > button svg { width: 16px; }
+#koreanApp .lesson-three-vocab-card > small { padding-right: 40px; color: #8b9b9e; font-size: .66rem; font-weight: 850; }
+#koreanApp .lesson-three-vocab-card > strong { margin-top: 4px; color: #315f67; font-size: 1.65rem; }
+#koreanApp .lesson-three-vocab-card > p { color: #5e838b; font-size: .78rem; }
+#koreanApp .lesson-three-vocab-card > b { color: #4f6065; font-size: .88rem; }
+#koreanApp .lesson-three-vocab-card > em { color: #8a7892; font-size: .7rem; font-style: normal; line-height: 1.4; }
+#koreanApp .lesson-three-vocab-count { margin-top: 12px; color: #839497; font-size: .75rem; text-align: right; }
+
+#koreanApp .lesson-three-review-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid #ddd8ea;
+  border-radius: 18px;
+  color: #6b6279;
+  background: #faf7ff;
+}
+
+#koreanApp .lesson-three-review-note svg { width: 20px; flex: 0 0 auto; }
+#koreanApp .lesson-three-review-note p { margin: 0; line-height: 1.55; }
+#koreanApp .lesson-three-review-note span { color: #8a8193; font-size: .76rem; }
+
+#koreanApp .lesson-three-pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#koreanApp .lesson-three-pattern-card {
+  padding: 21px;
+  border: 1px solid #dfeae9;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fff, #f0faf6);
+}
+
+#koreanApp .lesson-three-pattern-card:nth-child(2) { background: linear-gradient(145deg, #fff, #f3f0fb); }
+#koreanApp .lesson-three-pattern-card > span { display: inline-flex; padding: 6px 9px; border-radius: 999px; color: #497c72; background: #e6f7f1; font-size: .68rem; font-weight: 950; }
+#koreanApp .lesson-three-pattern-card h4 { margin: 12px 0 8px; color: #3f626a; font-size: 1.35rem; }
+#koreanApp .lesson-three-pattern-card > p { min-height: 74px; color: #708387; font-size: .81rem; line-height: 1.6; }
+#koreanApp .lesson-three-example-list { display: grid; gap: 8px; margin-top: 15px; }
+
+#koreanApp .lesson-three-example-list button {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3px 10px;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #e2eceb;
+  border-radius: 15px;
+  color: #426c73;
+  background: rgba(255,255,255,.82);
+  text-align: left;
+}
+
+#koreanApp .lesson-three-example-list button span { font-weight: 850; }
+#koreanApp .lesson-three-example-list button small { color: #87979a; }
+#koreanApp .lesson-three-example-list button em { grid-column: 1 / -1; color: #7e708a; font-size: .7rem; font-style: normal; }
+#koreanApp .lesson-three-example-list button svg { grid-row: 1 / 3; grid-column: 2; width: 17px; }
+
+#koreanApp .lesson-three-review-patterns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+#koreanApp .lesson-three-review-patterns div { padding: 14px 16px; border: 1px dashed #ddd8e8; border-radius: 18px; background: #fbf9ff; }
+#koreanApp .lesson-three-review-patterns small { color: #8b7e97; font-weight: 900; }
+#koreanApp .lesson-three-review-patterns strong { display: block; margin: 4px 0; color: #675c74; }
+#koreanApp .lesson-three-review-patterns p { color: #8b8491; font-size: .75rem; line-height: 1.5; }
+
+#koreanApp .lesson-three-distance-lab,
+#koreanApp .lesson-three-ownership-lab {
+  display: grid;
+  grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+  gap: 18px;
+}
+
+#koreanApp .lesson-three-choice-list { display: grid; gap: 9px; }
+#koreanApp .lesson-three-choice-list button { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 12px; border: 1px solid #dce9e7; border-radius: 17px; color: #5f777c; background: #fbfdfd; text-align: left; }
+#koreanApp .lesson-three-choice-list button span { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 13px; color: #4f8077; background: #e8f6f1; font-weight: 950; }
+#koreanApp .lesson-three-choice-list button strong { display: block; color: #536b70; }
+#koreanApp .lesson-three-choice-list button small { display: block; color: #92a0a2; font-size: .68rem; }
+#koreanApp .lesson-three-choice-list button.active { border-color: #a8d3c8; background: #effaf6; box-shadow: 0 8px 20px rgba(64, 120, 107, .08); }
+
+#koreanApp .lesson-three-distance-stage,
+#koreanApp .lesson-three-ownership-stage {
+  display: grid;
+  place-items: center;
+  min-height: 330px;
+  padding: 24px;
+  border: 1px solid #dce9e8;
+  border-radius: 25px;
+  background: radial-gradient(circle at 10% 90%, #e9f8f2, transparent 34%), radial-gradient(circle at 90% 10%, #edf2ff, transparent 32%), #fff;
+}
+
+#koreanApp .lesson-three-distance-scene { width: min(100%, 560px); display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: end; }
+#koreanApp .lesson-three-person { display: grid; gap: 6px; justify-items: center; color: #657d82; font-size: .7rem; font-weight: 850; }
+#koreanApp .lesson-three-person span { display: grid; width: 72px; height: 72px; place-items: center; border-radius: 50%; background: #eaf5fb; font-size: 2rem; }
+#koreanApp .lesson-three-object { display: grid; gap: 5px; place-items: center; min-width: 150px; padding: 22px; border: 2px solid #aed8cf; border-radius: 22px; background: #f2fbf8; box-shadow: 0 13px 28px rgba(59, 112, 104, .1); }
+#koreanApp .lesson-three-object strong { color: #326e65; font-size: 2rem; }
+#koreanApp .lesson-three-object small { color: #78908d; }
+#koreanApp .lesson-three-object-result { grid-column: 1 / -1; display: grid; gap: 4px; margin-top: 12px; padding: 14px; border-radius: 18px; color: #426a70; background: rgba(255,255,255,.85); text-align: center; }
+#koreanApp .lesson-three-object-result strong { font-size: 1.15rem; }
+#koreanApp .lesson-three-object-result span { color: #846f8d; font-size: .76rem; }
+
+#koreanApp .lesson-three-owner-pickers { display: grid; gap: 14px; }
+#koreanApp .lesson-three-owner-pickers label { display: grid; gap: 6px; color: #708388; font-size: .72rem; font-weight: 850; }
+#koreanApp .lesson-three-owner-pickers select { width: 100%; padding: 11px 13px; border: 1px solid #d7e7e5; border-radius: 14px; color: #4f6f73; background: white; }
+#koreanApp .lesson-three-owner-card { width: min(100%, 480px); padding: 24px; border: 1px solid #dce9e8; border-radius: 24px; background: rgba(255,255,255,.86); text-align: center; }
+#koreanApp .lesson-three-owner-card > small { color: #8b9b9e; }
+#koreanApp .lesson-three-owner-card > strong { display: block; margin: 8px 0 4px; color: #326b64; font-size: 2rem; }
+#koreanApp .lesson-three-owner-card > p { color: #677e83; }
+#koreanApp .lesson-three-owner-exchange { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; margin-top: 18px; }
+#koreanApp .lesson-three-owner-exchange div { padding: 13px; border-radius: 16px; background: #eef8f5; }
+#koreanApp .lesson-three-owner-exchange div:last-child { background: #f5f0fb; }
+#koreanApp .lesson-three-owner-exchange span { color: #91a0a2; font-size: .65rem; }
+#koreanApp .lesson-three-owner-exchange b { display: block; margin-top: 3px; color: #4f676d; font-size: .84rem; }
+#koreanApp .lesson-three-owner-exchange svg { width: 17px; color: #8aa2a4; }
+
+#koreanApp .lesson-three-dialogue { display: grid; gap: 10px; max-width: 900px; margin-inline: auto; }
+#koreanApp .lesson-three-dialogue-line { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+#koreanApp .lesson-three-dialogue-line:nth-child(even) { grid-template-columns: 1fr auto; }
+#koreanApp .lesson-three-dialogue-line:nth-child(even) > span { grid-column: 2; }
+#koreanApp .lesson-three-dialogue-line:nth-child(even) > button { grid-row: 1; grid-column: 1; background: #f6f1fb; }
+#koreanApp .lesson-three-dialogue-line > span { display: grid; width: 45px; height: 45px; place-items: center; border-radius: 15px; color: #4e786f; background: #e8f6f1; font-size: .66rem; font-weight: 950; }
+#koreanApp .lesson-three-dialogue-line > button { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; padding: 13px 15px; border: 1px solid #dfeae9; border-radius: 18px; color: #48676d; background: #f0f8fb; text-align: left; }
+#koreanApp .lesson-three-dialogue-line strong { font-size: .94rem; }
+#koreanApp .lesson-three-dialogue-line small { color: #819194; }
+#koreanApp .lesson-three-dialogue-line em { grid-column: 1 / -1; color: #816f8c; font-size: .72rem; font-style: normal; }
+#koreanApp .lesson-three-dialogue-line svg { grid-row: 1 / 3; grid-column: 2; width: 17px; }
+
+#koreanApp .lesson-three-practice-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+#koreanApp .lesson-three-practice-tabs button { padding: 9px 13px; border: 1px solid #dce8e7; border-radius: 999px; color: #667c82; background: #fbfdfd; font-weight: 850; }
+#koreanApp .lesson-three-practice-tabs button.active { border-color: #b7dcd3; color: #42746b; background: #edf9f5; }
+#koreanApp .lesson-three-correction-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+#koreanApp .lesson-three-correction-card { padding: 16px; border: 1px solid #e3e9e8; border-radius: 19px; background: #fff; }
+#koreanApp .lesson-three-correction-card > small { color: #a56e74; }
+#koreanApp .lesson-three-correction-card > p { margin: 5px 0 12px; color: #785e64; font-weight: 800; }
+#koreanApp .lesson-three-correction-card button { width: 100%; padding: 9px; border: 1px solid #dce9e6; border-radius: 13px; color: #4f756d; background: #f1faf7; font-weight: 850; }
+#koreanApp .lesson-three-correction-answer { display: grid; gap: 4px; margin-top: 11px; padding: 11px; border-radius: 14px; color: #3e7166; background: #eaf8f2; }
+#koreanApp .lesson-three-correction-answer span { color: #708a84; font-size: .72rem; line-height: 1.45; }
+#koreanApp .lesson-three-quiz { padding: 22px; border: 1px solid #dce9e7; border-radius: 24px; background: linear-gradient(145deg, #fff, #f2faf7); }
+#koreanApp .lesson-three-quiz-head { display: flex; justify-content: space-between; gap: 12px; color: #849598; font-size: .72rem; font-weight: 900; }
+#koreanApp .lesson-three-quiz h4 { margin: 13px 0 18px; color: #3e636a; font-size: 1.25rem; }
+#koreanApp .lesson-three-options { display: grid; gap: 9px; }
+#koreanApp .lesson-three-options button { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 11px 12px; border: 1px solid #dce8e7; border-radius: 15px; color: #576f75; background: #fff; text-align: left; }
+#koreanApp .lesson-three-options button span { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 10px; background: #edf6f4; font-size: .72rem; font-weight: 950; }
+#koreanApp .lesson-three-options button.correct { border-color: #9fd3bd; color: #33705b; background: #edfaf3; }
+#koreanApp .lesson-three-options button.incorrect { border-color: #e3b4b8; color: #89545a; background: #fff2f3; }
+#koreanApp .lesson-three-feedback { margin-top: 12px; min-height: 50px; padding: 12px; border-radius: 15px; color: #62777b; background: #f1f6f6; line-height: 1.5; }
+#koreanApp .lesson-three-next { margin-top: 12px; }
+
+#koreanApp .lesson-three-slide-toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr); gap: 12px; margin-bottom: 18px; }
+#koreanApp .lesson-three-slide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+#koreanApp .lesson-three-slide-card { overflow: hidden; border: 1px solid #dfe9e8; border-radius: 24px; background: #fff; box-shadow: 0 12px 30px rgba(58, 100, 108, .06); }
+#koreanApp .lesson-three-slide-card .lesson-slide-preview { aspect-ratio: 16 / 9; }
+#koreanApp .lesson-three-slide-body { padding: 17px; }
+#koreanApp .lesson-three-slide-meta { display: flex; justify-content: space-between; gap: 10px; color: #899a9d; font-size: .68rem; font-weight: 850; }
+#koreanApp .lesson-three-slide-meta em { padding: 4px 7px; border-radius: 999px; color: #577d75; background: #edf8f4; font-style: normal; }
+#koreanApp .lesson-three-slide-card h4 { margin: 9px 0 5px; color: #41656c; }
+#koreanApp .lesson-three-slide-card p { color: #7d8d90; font-size: .76rem; line-height: 1.5; }
+#koreanApp .lesson-three-slide-lines { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+#koreanApp .lesson-three-slide-lines span { padding: 6px 8px; border-radius: 10px; color: #627b80; background: #f3f8f8; font-size: .68rem; }
+
+@media (max-width: 1120px) {
+  #koreanApp .course-tabbar { display: flex; overflow-x: auto; scrollbar-width: none; }
+  #koreanApp .course-tabbar::-webkit-scrollbar { display: none; }
+  #koreanApp .course-tab { min-width: 120px; flex: 0 0 auto; }
+  #koreanApp .lesson-three-vocab-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  #koreanApp .lesson-three-hero { grid-template-columns: 1fr; }
+  #koreanApp .lesson-three-summary-card { max-width: 560px; }
+  #koreanApp .lesson-three-jumpbar { top: 144px; grid-template-columns: repeat(7, minmax(102px, 1fr)); overflow-x: auto; scrollbar-width: none; }
+  #koreanApp .lesson-three-pattern-grid,
+  #koreanApp .lesson-three-distance-lab,
+  #koreanApp .lesson-three-ownership-lab { grid-template-columns: 1fr; }
+  #koreanApp .lesson-three-vocab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  #koreanApp .lesson-three-heading,
+  #koreanApp .lesson-three-section-head { align-items: flex-start; flex-direction: column; }
+  #koreanApp .lesson-three-section-head > p { text-align: left; }
+  #koreanApp .lesson-three-hero { min-height: 0; padding: 24px 19px; border-radius: 25px; }
+  #koreanApp .lesson-three-hero h3 { font-size: 2.35rem; }
+  #koreanApp .lesson-three-jumpbar { top: 128px; display: flex; justify-content: center; gap: 5px; padding: 7px; overflow: visible; border-radius: 999px; }
+  #koreanApp .lesson-three-jumpbar button { width: 38px; height: 38px; min-height: 38px; flex: 0 0 38px; padding: 0; border-radius: 50%; font-size: 0; }
+  #koreanApp .lesson-three-jumpbar button span { font-size: .62rem; }
+  #koreanApp .lesson-three-section { scroll-margin-top: 190px; padding: 18px; border-radius: 23px; }
+  #koreanApp .lesson-three-vocab-toolbar,
+  #koreanApp .lesson-three-slide-toolbar { grid-template-columns: 1fr; }
+  #koreanApp .lesson-three-filter-row { justify-content: flex-start; }
+  #koreanApp .lesson-three-vocab-grid,
+  #koreanApp .lesson-three-pattern-grid,
+  #koreanApp .lesson-three-review-patterns,
+  #koreanApp .lesson-three-correction-grid,
+  #koreanApp .lesson-three-slide-grid { grid-template-columns: 1fr; }
+  #koreanApp .lesson-three-distance-scene { grid-template-columns: 1fr 1fr; }
+  #koreanApp .lesson-three-object { grid-column: 1 / -1; grid-row: 1; }
+  #koreanApp .lesson-three-owner-exchange { grid-template-columns: 1fr; }
+  #koreanApp .lesson-three-owner-exchange svg { transform: rotate(90deg); justify-self: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #koreanApp .lesson-three-view button { transition: none; }
+}
+
+#koreanApp .lesson-three-distance-scene {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+#koreanApp .lesson-three-distance-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+  padding: 12px;
+  border: 1px dashed #d9e8e5;
+  border-radius: 20px;
+  background: rgba(255,255,255,.62);
+}
+
+#koreanApp .lesson-three-distance-zone > small {
+  margin-top: auto;
+  color: #8c9c9e;
+  font-size: .65rem;
+  font-weight: 850;
+}
+
+#koreanApp .lesson-three-distance-zone .lesson-three-object {
+  grid-column: auto;
+  grid-row: auto;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 8px;
+}
+
+@media (max-width: 680px) {
+  #koreanApp .lesson-three-distance-scene { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  #koreanApp .lesson-three-distance-zone { min-height: 210px; padding: 7px; }
+  #koreanApp .lesson-three-distance-zone .lesson-three-object strong { font-size: 1.25rem; }
+  #koreanApp .lesson-three-distance-zone .lesson-three-person span { width: 50px; height: 50px; font-size: 1.5rem; }
+}
