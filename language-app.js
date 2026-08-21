@@ -5,6 +5,8 @@
   const koreanLessonOne = window.KOREAN_LESSON_ONE;
   const koreanLessonTwo = window.KOREAN_LESSON_TWO;
   const koreanLessonTwoPdf = window.KOREAN_LESSON_TWO_PDF;
+  const koreanLessonTwoExtension = window.KOREAN_LESSON_TWO_EXTENSION;
+  const koreanLessonTwoSlides = window.KOREAN_LESSON_TWO_SLIDES;
   const languageGate = document.querySelector("#languageGate");
   const languageApps = {
     zh: document.querySelector("#chineseApp"),
@@ -364,16 +366,16 @@
       <section class="course-view lesson-two-view" id="ko-lesson-2">
         <div class="section-head lesson-two-heading">
           <div>
-            <p class="eyebrow">Bài 02 · cập nhật đầy đủ từ 28 trang PDF</p>
+            <p class="eyebrow">Bài 02 & 2.2 · một lộ trình, không lặp Bài 1</p>
             <h2>${escapeHtml(koreanLessonTwoPdf.title)}</h2>
-            <p class="section-subtitle">${escapeHtml(koreanLessonTwoPdf.meaning)} Học gia đình, nghề nghiệp, câu hỏi–phủ định và số thuần Hàn.</p>
+            <p class="section-subtitle">${escapeHtml(koreanLessonTwoPdf.meaning)} Học theo hai chặng Bài 2 và Bài 2.2, có ghi rõ phần ôn từ Bài 1.</p>
           </div>
           <button class="secondary-button module-complete" type="button" data-complete-module="lesson-2"><i data-lucide="circle-check"></i><span>Đánh dấu đã học</span></button>
         </div>
 
         <section class="lesson-two-hero">
           <div class="lesson-two-hero-copy">
-            <span class="lesson-date-chip"><i data-lucide="book-open-text"></i>28 trang · 가족과 직업</span>
+            <span class="lesson-date-chip"><i data-lucide="book-open-text"></i>28 trang · Bài 2 + Bài 2.2</span>
             <p class="eyebrow">Câu trọng tâm Bài 2</p>
             <h3>${escapeHtml(koreanLessonTwoPdf.title)}</h3>
             <p class="lesson-two-romanization">${escapeHtml(koreanLessonTwoPdf.romanization)}</p>
@@ -391,16 +393,52 @@
         </section>
 
         <nav class="lesson-two-jumpbar" aria-label="Nội dung Bài 2">
-          <button type="button" data-scroll-ko2="ko2Possession"><span>01</span>Ngữ pháp</button>
-          <button type="button" data-scroll-ko2="ko2Vocabulary"><span>02</span>Từ vựng</button>
-          <button type="button" data-scroll-ko2="ko2Numbers"><span>03</span>Số đếm</button>
-          <button type="button" data-scroll-ko2="ko2Dialogue"><span>04</span>Hội thoại</button>
-          <button type="button" data-scroll-ko2="ko2Workshop"><span>05</span>Luyện tập</button>
+          <button type="button" data-scroll-ko2="ko2Slides"><span>01</span>Theo slide</button>
+          <button type="button" data-scroll-ko2="ko2Knowledge"><span>02</span>Bài 2 & 2.2</button>
+          <button type="button" data-scroll-ko2="ko2Vocabulary"><span>03</span>Từ vựng</button>
+          <button type="button" data-scroll-ko2="ko2Numbers"><span>04</span>Số đếm</button>
+          <button type="button" data-scroll-ko2="ko2Dialogue"><span>05</span>Hội thoại</button>
+          <button type="button" data-scroll-ko2="ko2Workshop"><span>06</span>Luyện tập</button>
         </nav>
+        <section class="lesson-two-section lesson-two-slide-section" id="ko2Slides">
+          <div class="lesson-two-section-head">
+            <div><span class="section-number">01</span><div><p class="eyebrow">28 trang PDF · học theo mạch gốc</p><h3>Theo slide Bài 2</h3></div></div>
+            <p>Mỗi trang được chuyển thành thẻ dễ đọc, có phiên âm, nghĩa Việt, nút nghe và ảnh gốc phóng to.</p>
+          </div>
+          <div class="lesson-two-slide-overview" aria-label="Tổng quan slide Bài 2">
+            <span><strong>28</strong> trang gốc</span>
+            <span><strong>7</strong> trang từ vựng</span>
+            <span><strong>3</strong> trang ngữ pháp</span>
+            <span><strong>16</strong> trang luyện tập</span>
+          </div>
+          <div class="lesson-slide-toolbar">
+            <label class="lesson-search-field"><i data-lucide="search"></i><input id="koLessonTwoSlideSearch" type="search" placeholder="Tìm từ, mẫu câu hoặc nội dung slide…" /></label>
+            <div class="lesson-filter-row" id="koLessonTwoSlideFilters">
+              <button class="active" type="button" data-ko2-slide-filter="all">Tất cả</button>
+              <button type="button" data-ko2-slide-filter="intro">Mở bài</button>
+              <button type="button" data-ko2-slide-filter="vocabulary">Từ vựng</button>
+              <button type="button" data-ko2-slide-filter="grammar">Ngữ pháp</button>
+              <button type="button" data-ko2-slide-filter="grammar-practice">Luyện ngữ pháp</button>
+              <button type="button" data-ko2-slide-filter="general-practice">Luyện tập chung</button>
+            </div>
+          </div>
+          <div class="korean-slide-list" id="koLessonTwoSlideList"></div>
+        </section>
+        <section class="lesson-two-section lesson-two-part-section" id="ko2Knowledge">
+          <div class="lesson-two-section-head">
+            <div><span class="section-number">02</span><div><p class="eyebrow">Cùng một task · hai chặng rõ ràng</p><h3>Bài 2 hay Bài 2.2?</h3></div></div>
+            <p>Chuyển chặng để xem kiến thức mới, phần ôn và nhóm từ tương ứng mà không rời khỏi Bài 2.</p>
+          </div>
+          <div class="lesson-two-part-tabs" id="koLessonTwoPartTabs" role="tablist" aria-label="Chọn phần Bài 2">
+            <button class="active" type="button" role="tab" aria-selected="true" data-ko2-part="lesson-2"><span>2</span><strong>Bài 2</strong><small>Hỏi · phủ định · đếm</small></button>
+            <button type="button" role="tab" aria-selected="false" data-ko2-part="lesson-2-2"><span>2.2</span><strong>Bài 2.2</strong><small>Phủ định kép · nối ý</small></button>
+          </div>
+          <div class="lesson-two-part-content" id="koLessonTwoPartContent"></div>
+        </section>
 
         <section class="lesson-two-section" id="ko2Possession">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">01</span><div><p class="eyebrow">Ôn từ ghi chú 12/08</p><h3>제 hay 우리?</h3></div></div>
+            <div><span class="section-number">03</span><div><p class="eyebrow">Ôn từ ghi chú 12/08</p><h3>제 hay 우리?</h3></div></div>
             <p>Chạm vào từng cụm để quan sát cách người Hàn chọn từ sở hữu.</p>
           </div>
           <div class="possession-lab">
@@ -415,7 +453,7 @@
 
         <section class="lesson-two-section lesson-two-pattern-section">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">02</span><div><p class="eyebrow">${getLessonTwoPatterns().length} mảnh ghép</p><h3>Ngữ pháp Bài 2</h3></div></div>
+            <div><span class="section-number">04</span><div><p class="eyebrow">${getLessonTwoPatterns().length} mảnh ghép</p><h3>Ngữ pháp Bài 2 & 2.2</h3></div></div>
             <p>Ví dụ nào cũng có phiên âm, cách đọc gần đúng và nút nghe.</p>
           </div>
           <div class="lesson-two-pattern-grid" id="koLessonTwoPatterns"></div>
@@ -423,7 +461,7 @@
 
         <section class="lesson-two-section sentence-anatomy-section" id="ko2Anatomy">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">03</span><div><p class="eyebrow">Ôn câu ngày 12/08</p><h3>Mổ xẻ cấu trúc câu</h3></div></div>
+            <div><span class="section-number">05</span><div><p class="eyebrow">Ôn câu ngày 12/08</p><h3>Mổ xẻ cấu trúc câu</h3></div></div>
             <button class="lesson-two-listen compact" type="button" data-speak-ko="${escapeHtml(koreanLessonTwo.sentence.text)}"><i data-lucide="volume-2"></i><span>Nghe câu</span></button>
           </div>
           <div class="sentence-anatomy" id="koLessonTwoAnatomy"></div>
@@ -432,8 +470,8 @@
 
         <section class="lesson-two-section" id="ko2Vocabulary">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">04</span><div><p class="eyebrow">Kho từ theo bài</p><h3>${getLessonTwoVocabulary().length} từ và cụm từ của Bài 2</h3></div></div>
-            <p>Gồm ghi chú 12/08, từ vựng PDF và các từ xuất hiện trong bài luyện.</p>
+            <div><span class="section-number">06</span><div><p class="eyebrow">Chỉ tính kiến thức mới</p><h3>${getLessonTwoVocabulary().length} từ và cụm từ của Bài 2 & 2.2</h3></div></div>
+            <p>Từ đã có ở Bài 1 được loại khỏi kho này và chỉ hiện trong hộp ôn tập có nhãn nguồn.</p>
           </div>
           <div class="lesson-two-vocab-toolbar">
             <label class="lesson-search-field"><i data-lucide="search"></i><input id="koLessonTwoVocabSearch" type="search" placeholder="Tìm chữ Hàn, phiên âm hoặc nghĩa…" /></label>
@@ -445,7 +483,7 @@
 
         <section class="lesson-two-section native-number-section" id="ko2Numbers">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">05</span><div><p class="eyebrow">Số thuần Hàn</p><h3>Đếm người và nói tuổi</h3></div></div>
+            <div><span class="section-number">07</span><div><p class="eyebrow">Số thuần Hàn</p><h3>Đếm người và nói tuổi</h3></div></div>
             <p>Chạm vào một số rồi đổi giữa đơn vị 명 và 살 để thấy dạng đúng.</p>
           </div>
           <div class="native-number-lab">
@@ -464,7 +502,7 @@
 
         <section class="lesson-two-section lesson-two-dialogue-section" id="ko2Dialogue">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">06</span><div><p class="eyebrow">Hội thoại trang 34–35</p><h3>${escapeHtml(koreanLessonTwoPdf.dialogue.title)}</h3></div></div>
+            <div><span class="section-number">08</span><div><p class="eyebrow">Hội thoại trang 34–35</p><h3>${escapeHtml(koreanLessonTwoPdf.dialogue.title)}</h3></div></div>
             <p>${escapeHtml(koreanLessonTwoPdf.dialogue.meaning)}</p>
           </div>
           <div class="dialogue-fact-strip">
@@ -477,7 +515,7 @@
         </section>
         <section class="lesson-two-section" id="ko2Workshop">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">07</span><div><p class="eyebrow">Xưởng ghép câu</p><h3>Chọn ý tiếng Việt, nhìn câu tự lắp ghép</h3></div></div>
+            <div><span class="section-number">09</span><div><p class="eyebrow">Xưởng ghép câu</p><h3>Chọn ý tiếng Việt, nhìn câu tự lắp ghép</h3></div></div>
             <p>Mỗi màu đại diện cho một vai trò trong câu.</p>
           </div>
           <div class="scenario-workshop">
@@ -488,7 +526,7 @@
 
         <section class="lesson-two-section lesson-two-practice" id="ko2Practice">
           <div class="lesson-two-section-head">
-            <div><span class="section-number">08</span><div><p class="eyebrow">Luyện ngay</p><h3>Tự kiểm tra trong phạm vi đã học</h3></div></div>
+            <div><span class="section-number">10</span><div><p class="eyebrow">Luyện ngay</p><h3>Tự kiểm tra trong phạm vi đã học</h3></div></div>
             <div class="lesson-two-score" id="koLessonTwoScore">0 đúng · 0 câu</div>
           </div>
           <div class="lesson-two-quiz-card">
@@ -507,7 +545,7 @@
     </main>
   `;
 
-  if (koreanApp && koreanData && koreanLessonOne && koreanLessonTwo && koreanLessonTwoPdf) {
+  if (koreanApp && koreanData && koreanLessonOne && koreanLessonTwo && koreanLessonTwoPdf && koreanLessonTwoExtension && koreanLessonTwoSlides) {
     koreanApp.innerHTML = koreanMarkup;
   }
 
@@ -596,6 +634,8 @@
     "general-practice": "Luyện tập chung",
   };
   let koreanSlideFilter = "all";
+  let koreanLessonTwoSlideFilter = "all";
+  let koreanLessonTwoPart = "lesson-2";
   let koreanVocabularyFilter = "all";
   let koreanLessonTwoVocabularyFilter = "all";
   let koreanLessonTwoPossessionIndex = 0;
@@ -616,7 +656,21 @@
   }
 
   function getLessonTwoVocabularyGroups() {
-    return [...koreanLessonTwo.vocabularyGroups, ...koreanLessonTwoPdf.vocabularyGroups];
+    const lessonOneTerms = new Set(getLessonVocabulary().map((word) => word.text.replace(/[.?!]$/g, "").trim()));
+    const seen = new Set();
+    return [
+      ...koreanLessonTwo.vocabularyGroups,
+      ...koreanLessonTwoPdf.vocabularyGroups,
+      ...koreanLessonTwoExtension.vocabularyGroups,
+    ].map((group) => ({
+      ...group,
+      words: group.words.filter((word) => {
+        const term = word.text.replace(/[.?!]$/g, "").trim();
+        if (lessonOneTerms.has(term) || seen.has(term)) return false;
+        seen.add(term);
+        return true;
+      }),
+    })).filter((group) => group.words.length);
   }
 
   function getLessonTwoVocabulary() {
@@ -624,7 +678,7 @@
   }
 
   function getLessonTwoPatterns() {
-    return [...koreanLessonTwo.patterns, ...koreanLessonTwoPdf.patterns];
+    return [...koreanLessonTwo.patterns, ...koreanLessonTwoPdf.patterns, ...koreanLessonTwoExtension.patterns];
   }
 
   function getLessonTwoScenarios() {
@@ -689,6 +743,110 @@
         </div>
       </article>
     `).join("") : `<div class="empty-state">Không có slide phù hợp với bộ lọc.</div>`;
+    refreshCourseIcons();
+  }
+  function getLessonTwoAnnotatedItems() {
+    return [
+      ...getLessonTwoVocabulary(),
+      ...getLessonVocabulary(),
+      ...getLessonTwoPatterns().flatMap((pattern) => pattern.examples || []),
+      ...(koreanLessonTwoPdf.dialogue?.lines || []),
+    ];
+  }
+
+  function renderKoreanLessonTwoLine(line) {
+    const [head, ...meaningParts] = String(line).split(" · ");
+    const cleanHead = head.replace(/[.?!]$/g, "");
+    const lookup = getLessonTwoAnnotatedItems().find((item) => item.text?.replace(/[.?!]$/g, "") === cleanHead);
+    const startsWithHangul = /^\s*[\uac00-\ud7af]/.test(head);
+    if (!startsWithHangul) {
+      return '<p class="lesson-slide-line plain"><i data-lucide="check"></i><span>' + escapeHtml(line) + '</span></p>';
+    }
+    const meaning = meaningParts.join(" · ") || lookup?.meaning || "";
+    const reading = lookup
+      ? lookup.romanization + (lookup.reading ? " · " + lookup.reading : "")
+      : "Nhấn để nghe";
+    return [
+      '<div class="lesson-slide-line annotated">',
+      '<button type="button" data-speak-ko="' + escapeHtml(head) + '">',
+      '<b>' + escapeHtml(head) + '</b>',
+      '<span>' + escapeHtml(reading) + '</span>',
+      '<i data-lucide="volume-2"></i>',
+      '</button>',
+      meaning ? '<small>' + escapeHtml(meaning) + '</small>' : "",
+      '</div>',
+    ].join("");
+  }
+
+  function renderLessonTwoSlides() {
+    const query = normalizeCourseSearch(koreanApp.querySelector("#koLessonTwoSlideSearch")?.value);
+    const slides = koreanLessonTwoSlides.filter((slide) => {
+      const bySection = koreanLessonTwoSlideFilter === "all" || slide.section === koreanLessonTwoSlideFilter;
+      const content = normalizeCourseSearch([slide.title, slide.summary, ...slide.lines].join(" "));
+      return bySection && (!query || content.includes(query));
+    });
+    const container = koreanApp.querySelector("#koLessonTwoSlideList");
+    container.innerHTML = slides.length ? slides.map((slide) => [
+      '<article class="korean-lesson-slide-card lesson-two-slide-card">',
+      '<button class="lesson-slide-preview" type="button" data-open-ko-slide="' + escapeHtml(slide.image) + '" data-ko-slide-title="Bài 2 · Trang ' + slide.index + ' · ' + escapeHtml(slide.title) + '">',
+      '<img src="' + escapeHtml(slide.image) + '" alt="Bản xem trước Bài 2 trang ' + slide.index + ': ' + escapeHtml(slide.title) + '" loading="lazy" />',
+      '<span><i data-lucide="maximize-2"></i>Mở trang gốc</span>',
+      '</button>',
+      '<div class="lesson-slide-content">',
+      '<div class="lesson-slide-meta"><span>Trang ' + slide.index + '/28</span><em>' + escapeHtml(koreanSlideSectionLabels[slide.section]) + '</em></div>',
+      '<h3>' + escapeHtml(slide.title) + '</h3>',
+      '<p class="lesson-slide-summary">' + escapeHtml(slide.summary) + '</p>',
+      '<div class="lesson-slide-lines">' + slide.lines.slice(0, 5).map(renderKoreanLessonTwoLine).join("") + '</div>',
+      '</div>',
+      '</article>',
+    ].join("")).join("") : '<div class="empty-state">Không có slide phù hợp với bộ lọc.</div>';
+    refreshCourseIcons();
+  }
+  function renderLessonTwoPart() {
+    const part = koreanLessonTwoExtension.parts.find((item) => item.id === koreanLessonTwoPart) || koreanLessonTwoExtension.parts[0];
+    const patterns = getLessonTwoPatterns().filter((pattern) => part.patternNumbers.includes(pattern.number));
+    const groups = getLessonTwoVocabularyGroups().filter((group) => part.vocabularyGroupIds.includes(group.id));
+    const newWordCount = groups.reduce((total, group) => total + group.words.length, 0);
+    koreanApp.querySelectorAll("[data-ko2-part]").forEach((button) => {
+      const active = button.dataset.ko2Part === part.id;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-selected", String(active));
+    });
+    const patternHtml = patterns.map((pattern) => [
+      '<article class="lesson-two-part-pattern">',
+      '<div><span>' + escapeHtml(pattern.number) + '</span><small>' + escapeHtml(pattern.source || part.label) + '</small></div>',
+      '<h5>' + escapeHtml(pattern.formula) + '</h5>',
+      '<p>' + escapeHtml(pattern.explanation) + '</p>',
+      pattern.examples?.[0] ? '<button type="button" data-speak-ko="' + escapeHtml(pattern.examples[0].text) + '"><i data-lucide="volume-2"></i><span>' + escapeHtml(pattern.examples[0].text) + '</span></button>' : "",
+      '</article>',
+    ].join("")).join("");
+    const groupHtml = groups.map((group) => [
+      '<button class="lesson-two-part-group" type="button" data-ko2-vocab-jump="' + escapeHtml(group.id) + '">',
+      '<span><i data-lucide="' + escapeHtml(group.icon || "tag") + '"></i></span>',
+      '<div><small>' + escapeHtml(group.origin || part.label) + '</small><strong>' + escapeHtml(group.title.replace(/ · .+$/, "")) + '</strong><em>' + group.words.length + ' mục mới</em></div>',
+      '<i data-lucide="arrow-down-right"></i>',
+      '</button>',
+    ].join("")).join("");
+    const reviewHtml = part.reviewGroups.map((review) => [
+      '<section class="lesson-two-review-group">',
+      '<div><span><i data-lucide="history"></i></span><div><strong>' + escapeHtml(review.source) + '</strong><small>Chỉ nhắc lại để hiểu ví dụ, không tính vào kho từ mới.</small></div></div>',
+      '<div class="lesson-two-review-chips">',
+      review.terms.map((term) => '<span>' + escapeHtml(term) + '</span>').join(""),
+      '</div>',
+      '</section>',
+    ].join("")).join("");
+    koreanApp.querySelector("#koLessonTwoPartContent").innerHTML = [
+      '<div class="lesson-two-part-intro">',
+      '<div><span class="lesson-two-part-badge">' + escapeHtml(part.label) + '</span><h4>' + escapeHtml(part.title) + '</h4><p>' + escapeHtml(part.description) + '</p></div>',
+      '<div class="lesson-two-part-stats"><span><strong>' + patterns.length + '</strong> công thức</span><span><strong>' + newWordCount + '</strong> mục mới</span></div>',
+      '</div>',
+      '<div class="lesson-two-dedupe-note"><i data-lucide="badge-check"></i><p><strong>Đã tách khỏi Bài 1</strong><span>' + escapeHtml(koreanLessonTwoExtension.dedupeNote) + '</span></p></div>',
+      '<div class="lesson-two-part-grid">',
+      '<section><div class="lesson-two-mini-heading"><span>Ngữ pháp trọng tâm</span><small>Nhấn câu mẫu để nghe</small></div><div class="lesson-two-part-patterns">' + patternHtml + '</div></section>',
+      '<section><div class="lesson-two-mini-heading"><span>Nhóm từ mới</span><small>Chạm để mở đúng bộ lọc</small></div><div class="lesson-two-part-groups">' + groupHtml + '</div></section>',
+      '</div>',
+      '<div class="lesson-two-review-list">' + reviewHtml + '</div>',
+    ].join("");
     refreshCourseIcons();
   }
 
@@ -818,7 +976,7 @@
   function renderLessonTwoPatterns() {
     koreanApp.querySelector("#koLessonTwoPatterns").innerHTML = getLessonTwoPatterns().map((pattern) => `
       <article class="lesson-two-pattern-card">
-        <div class="lesson-two-pattern-top"><span>${escapeHtml(pattern.number)}</span><small>${escapeHtml(pattern.title)}</small></div>
+        <div class="lesson-two-pattern-top"><span>${escapeHtml(pattern.number)}</span><small>${escapeHtml([pattern.source, pattern.title].filter(Boolean).join(" · "))}</small></div>
         <h4>${escapeHtml(pattern.formula)}</h4>
         <p>${escapeHtml(pattern.explanation)}</p>
         <div class="lesson-two-pattern-examples">
@@ -1245,6 +1403,7 @@
     });
     koreanApp.querySelector("#koNextQuestion").addEventListener("click", nextKoreanQuestion);
     koreanApp.querySelector("#koLessonSlideSearch").addEventListener("input", renderLessonSlides);
+    koreanApp.querySelector("#koLessonTwoSlideSearch").addEventListener("input", renderLessonTwoSlides);
     koreanApp.querySelector("#koLessonVocabSearch").addEventListener("input", renderLessonVocabulary);
     koreanApp.querySelector("#koLessonTwoVocabSearch").addEventListener("input", renderLessonTwoVocabulary);
     koreanApp.querySelector("#koLessonTwoNext").addEventListener("click", nextLessonTwoQuestion);
@@ -1256,6 +1415,18 @@
       if (openButton) activateKoreanTab(openButton.dataset.openKoreanTab);
       const lessonTwoJump = event.target.closest("[data-scroll-ko2]");
       if (lessonTwoJump) koreanApp.querySelector(`#${lessonTwoJump.dataset.scrollKo2}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const lessonTwoPartButton = event.target.closest("[data-ko2-part]");
+      if (lessonTwoPartButton) {
+        koreanLessonTwoPart = lessonTwoPartButton.dataset.ko2Part;
+        renderLessonTwoPart();
+      }
+      const lessonTwoVocabularyJump = event.target.closest("[data-ko2-vocab-jump]");
+      if (lessonTwoVocabularyJump) {
+        koreanLessonTwoVocabularyFilter = lessonTwoVocabularyJump.dataset.ko2VocabJump;
+        renderLessonTwoVocabularyFilters();
+        renderLessonTwoVocabulary();
+        koreanApp.querySelector("#ko2Vocabulary")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       const possessionButton = event.target.closest("[data-ko2-possession]");
       if (possessionButton) {
         koreanLessonTwoPossessionIndex = Number(possessionButton.dataset.ko2Possession);
@@ -1304,6 +1475,12 @@
         koreanApp.querySelectorAll("[data-ko-slide-filter]").forEach((button) => button.classList.toggle("active", button === slideFilterButton));
         renderLessonSlides();
       }
+      const lessonTwoSlideFilterButton = event.target.closest("[data-ko2-slide-filter]");
+      if (lessonTwoSlideFilterButton) {
+        koreanLessonTwoSlideFilter = lessonTwoSlideFilterButton.dataset.ko2SlideFilter;
+        koreanApp.querySelectorAll("[data-ko2-slide-filter]").forEach((button) => button.classList.toggle("active", button === lessonTwoSlideFilterButton));
+        renderLessonTwoSlides();
+      }
       const vocabularyFilterButton = event.target.closest("[data-ko-vocab-filter]");
       if (vocabularyFilterButton) {
         koreanVocabularyFilter = vocabularyFilterButton.dataset.koVocabFilter;
@@ -1322,7 +1499,7 @@
   }
 
   function initialize() {
-    if (!languageGate || !koreanApp || !koreanData || !koreanLessonOne || !koreanLessonTwo || !koreanLessonTwoPdf) return;
+    if (!languageGate || !koreanApp || !koreanData || !koreanLessonOne || !koreanLessonTwo || !koreanLessonTwoPdf || !koreanLessonTwoExtension || !koreanLessonTwoSlides) return;
     renderModules();
     renderAlphabet();
     fillComposer();
@@ -1332,6 +1509,8 @@
     renderReadingWords();
     renderLessonOutcomes();
     renderLessonSlides();
+    renderLessonTwoSlides();
+    renderLessonTwoPart();
     renderLessonReadingGuide();
     renderLessonVocabulary();
     renderLessonGrammar();

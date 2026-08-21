@@ -201,7 +201,7 @@
 
 #koreanApp .lesson-two-jumpbar {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 8px;
   margin: 18px 0;
   padding: 7px;
@@ -868,7 +868,7 @@
   #koreanApp .lesson-two-heading,
   #koreanApp .lesson-two-section-head { align-items: flex-start; flex-direction: column; }
   #koreanApp .lesson-two-section-head > p { text-align: left; }
-  #koreanApp .lesson-two-jumpbar { grid-template-columns: repeat(5, minmax(105px, 1fr)); overflow-x: auto; }
+  #koreanApp .lesson-two-jumpbar { grid-template-columns: repeat(6, minmax(105px, 1fr)); overflow-x: auto; }
   #koreanApp .possession-lab,
   #koreanApp .scenario-workshop { grid-template-columns: 1fr; }
   #koreanApp .lesson-two-pattern-grid { grid-template-columns: 1fr; }
@@ -887,7 +887,7 @@
   #koreanApp .lesson-two-hero-map { grid-template-columns: 1fr; }
   #koreanApp .lesson-two-hero-map > svg { display: none; }
   #koreanApp .lesson-two-hero-map div:last-child { grid-column: auto; width: 100%; }
-  #koreanApp .lesson-two-jumpbar { grid-template-columns: repeat(5, 112px); }
+  #koreanApp .lesson-two-jumpbar { grid-template-columns: repeat(6, 112px); }
   #koreanApp .lesson-two-section { padding: 18px; border-radius: 23px; }
   #koreanApp .lesson-two-section-head > div:first-child { align-items: flex-start; }
   #koreanApp .possession-result { grid-template-columns: 1fr auto 1fr; min-height: 0; padding: 20px 14px; }
@@ -897,6 +897,96 @@
   #koreanApp .lesson-two-culture-note { grid-template-columns: 1fr; }
   #koreanApp .lesson-two-pattern-examples button { grid-template-columns: 1fr auto; }
   #koreanApp .lesson-two-pattern-examples button em { grid-column: 1 / -1; text-align: left; }
+
+/* Sticky navigation: course level + in-lesson section shortcuts */
+#koreanApp .lesson-two-jumpbar {
+  position: sticky;
+  top: 154px;
+  z-index: 11;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 12px 32px rgba(67, 115, 137, .1);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+
+#koreanApp .lesson-two-jumpbar button {
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+#koreanApp .lesson-two-jumpbar button:focus {
+  border-color: #b8dce9;
+  color: #326d85;
+  background: linear-gradient(135deg, #eaf8fd, #f3efff 58%, #fff4ed);
+  box-shadow: 0 7px 18px rgba(64, 121, 148, .12);
+  outline: none;
+}
+
+#koreanApp .lesson-two-jumpbar button:focus span {
+  color: #36758e;
+}
+
+#koreanApp .lesson-two-section {
+  scroll-margin-top: 225px;
+}
+
+@media (max-width: 980px) {
+  #koreanApp .lesson-two-jumpbar {
+    top: 144px;
+  }
+}
+
+@media (max-width: 680px) {
+  #koreanApp .course-tabbar {
+    position: sticky;
+    top: 68px;
+    z-index: 12;
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    padding: 7px;
+    border-radius: 21px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #koreanApp .course-tabbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  #koreanApp .course-tab {
+    min-width: 116px;
+    flex: 0 0 auto;
+  }
+
+  #koreanApp .lesson-two-jumpbar {
+    top: 128px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px;
+    overflow: visible;
+    border-radius: 999px;
+  }
+
+  #koreanApp .lesson-two-jumpbar button {
+    width: 42px;
+    height: 42px;
+    min-height: 42px;
+    flex: 0 0 42px;
+    gap: 0;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0;
+  }
+
+  #koreanApp .lesson-two-jumpbar button span {
+    font-size: .66rem;
+  }
+
+  #koreanApp .lesson-two-section {
+    scroll-margin-top: 190px;
+  }
+}
   #koreanApp .sentence-anatomy { grid-template-columns: 1fr; }
   #koreanApp .sentence-part { min-height: 138px; }
   #koreanApp .liaison-note { grid-template-columns: 1fr; }
