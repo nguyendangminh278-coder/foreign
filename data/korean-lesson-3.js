@@ -106,6 +106,79 @@ window.KOREAN_LESSON_THREE = {
     { source: "Ôn Bài 1", formula: "N이에요 / 예요", note: "Dùng để gọi tên đồ vật: 연필이에요, 가위예요." },
     { source: "Ôn Bài 2", formula: "N이/가 아니에요", note: "Dùng để phủ định: 공책이 아니에요." },
   ],
+  studyNotes: {
+    demonstratives: [
+      { written: { text: "이것", romanization: "igeot", reading: "i-gơt" }, spoken: { text: "이거", romanization: "igeo", reading: "i-gơ" }, subject: { text: "이게", romanization: "ige", reading: "i-gê" }, usage: "Cái này · gần người nói" },
+      { written: { text: "그것", romanization: "geugeot", reading: "kư-gơt" }, spoken: { text: "그거", romanization: "geugeo", reading: "kư-gơ" }, subject: { text: "그게", romanization: "geuge", reading: "kư-gê" }, usage: "Cái đó · gần người nghe hoặc đã được nhắc đến" },
+      { written: { text: "저것", romanization: "jeogeot", reading: "chơ-gơt" }, spoken: { text: "저거", romanization: "jeogeo", reading: "chơ-gơ" }, subject: { text: "저게", romanization: "jeoge", reading: "chơ-gê" }, usage: "Cái kia · xa cả người nói và người nghe" },
+    ],
+    rules: [
+      { icon: "message-circle", title: "Rút gọn trong văn nói", formula: "것 → 거", explanation: "것 nghĩa là cái, việc hoặc thứ. Trong hội thoại, người Hàn thường rút gọn thành 거 để câu nói tự nhiên hơn." },
+      { icon: "badge-check", title: "Khi làm chủ ngữ", formula: "이것이 → 이게", explanation: "Khi 것 kết hợp với tiểu từ chủ ngữ 이, cả cụm được rút gọn: 이것이 → 이게, 그것이 → 그게, 저것이 → 저게." },
+      { icon: "key-round", title: "Biểu thị sở hữu", formula: "[Người] + 거예요", explanation: "Dùng để nói một đồ vật thuộc về ai: 제 거예요 là của tôi; 엄마 거예요 là của mẹ." },
+      { icon: "circle-help", title: "Từ để hỏi", formula: "무엇 / 뭐 · 누구", explanation: "무엇 và dạng nói gọn 뭐 hỏi “cái gì”; 누구 hỏi “ai”. Ví dụ: 이게 뭐예요? · 누구 거예요?" },
+    ],
+    vocabularyGroups: [
+      {
+        title: "Đồ dùng học tập & Văn phòng", icon: "pencil-ruler",
+        words: [
+          { text: "책", romanization: "chaek", reading: "chek", meaning: "sách" },
+          { text: "소설책", romanization: "soseolchaek", reading: "sô-sơl-chek", meaning: "sách tiểu thuyết" },
+          { text: "연필", romanization: "yeonpil", reading: "yơn-phil", meaning: "bút chì" },
+          { text: "색연필", romanization: "saegyeonpil", reading: "xeng-nyơn-phil", meaning: "bút chì màu" },
+          { text: "지우개", romanization: "jiugae", reading: "chi-u-ge", meaning: "cục tẩy" },
+          { text: "자", romanization: "ja", reading: "cha", meaning: "thước kẻ" },
+          { text: "가위", romanization: "gawi", reading: "ka-wi", meaning: "kéo" },
+          { text: "책상", romanization: "chaeksang", reading: "chek-ssang", meaning: "bàn học" },
+          { text: "칠판", romanization: "chilpan", reading: "chil-phan", meaning: "bảng đen" },
+          { text: "의자", romanization: "uija", reading: "ưi-ja", meaning: "cái ghế" },
+        ],
+      },
+      {
+        title: "Đồ dùng cá nhân & Phụ kiện", icon: "glasses",
+        words: [
+          { text: "가방", romanization: "gabang", reading: "ka-bang", meaning: "túi xách" },
+          { text: "안경", romanization: "angyeong", reading: "an-gyơng", meaning: "kính mắt" },
+          { text: "신발", romanization: "sinbal", reading: "shin-bal", meaning: "giày, dép" },
+          { text: "모자", romanization: "moja", reading: "mô-ja", meaning: "cái mũ" },
+          { text: "시계", romanization: "sigye", reading: "shi-gyê", meaning: "đồng hồ" },
+          { text: "손시계", romanization: "son sigye", reading: "xôn shi-gyê", meaning: "đồng hồ đeo tay" },
+          { text: "손목시계", romanization: "sonmok sigye", reading: "xôn-mok shi-gyê", meaning: "đồng hồ đeo tay", note: "Cách gọi thông dụng hơn 손시계." },
+        ],
+      },
+      {
+        title: "Thiết bị điện tử", icon: "laptop",
+        words: [
+          { text: "노트북", romanization: "noteubuk", reading: "nô-thư-buk", meaning: "laptop" },
+          { text: "컴퓨터", romanization: "keompyuteo", reading: "khơm-pyu-thơ", meaning: "máy vi tính" },
+          { text: "마우스", romanization: "mauseu", reading: "ma-u-xư", meaning: "chuột máy tính" },
+          { text: "마이크", romanization: "maikeu", reading: "ma-i-khư", meaning: "micro" },
+        ],
+      },
+      {
+        title: "Chủ đề khác", icon: "shapes",
+        words: [
+          { text: "자동차", romanization: "jadongcha", reading: "cha-dong-cha", meaning: "ô tô" },
+          { text: "레고", romanization: "rego", reading: "rê-gô", meaning: "bộ xếp hình Lego" },
+          { text: "색", romanization: "saek", reading: "sek", meaning: "màu sắc" },
+          { text: "색깔", romanization: "saekkkal", reading: "sek-kkal", meaning: "màu sắc" },
+        ],
+      },
+      {
+        title: "Gia đình & Nhân xưng", icon: "users-round",
+        words: [
+          { text: "할아버지", romanization: "harabeoji", reading: "ha-ra-bơ-ji", meaning: "ông", review: true },
+          { text: "엄마", romanization: "eomma", reading: "ơm-ma", meaning: "mẹ", review: true },
+          { text: "오빠", romanization: "oppa", reading: "ô-ppa", meaning: "anh trai (nữ gọi)", review: true },
+          { text: "형", romanization: "hyeong", reading: "hyơng", meaning: "anh trai (nam gọi)", review: true },
+          { text: "언니", romanization: "eonni", reading: "ơn-ni", meaning: "chị gái (nữ gọi)", review: true },
+          { text: "동생", romanization: "dongsaeng", reading: "đông-xeng", meaning: "em", review: true },
+          { text: "친구", romanization: "chingu", reading: "chin-gu", meaning: "bạn bè", review: true },
+          { text: "제", romanization: "je", reading: "chê", meaning: "của tôi (khiêm nhường)", review: true },
+        ],
+      },
+    ],
+  },
   slidePronunciations: [
     { text: "이게", romanization: "ige", reading: "i-gê", meaning: "cái này (gần người nói)" },
     { text: "그게", romanization: "geuge", reading: "kư-gê", meaning: "cái đó (gần người nghe)" },

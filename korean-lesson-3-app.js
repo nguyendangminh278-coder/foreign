@@ -34,6 +34,7 @@
   const vocabulary = vocabularyGroups.flatMap((group) => group.words.map((word) => ({ ...word, groupId: group.id, groupTitle: group.title })));
   const reviewTerms = [...new Set(data.vocabularyGroups.flatMap((group) => group.words.map((word) => cleanTerm(word.text))).filter((term) => previousTerms.has(term)))];
   const slidePronunciationLookup = new Map();
+  const noteData = data.studyNotes || { demonstratives: [], rules: [], vocabularyGroups: [] };
   const addSlidePronunciation = (item) => {
     const term = cleanTerm(item?.text);
     if (term && item?.romanization && item?.reading) slidePronunciationLookup.set(term, item);
@@ -136,7 +137,8 @@
       </section>
 
       <nav class="lesson-three-jumpbar" aria-label="Nội dung Bài 3">
-        <button class="active" type="button" data-ko3-scroll="ko3Vocabulary"><span>01</span>Từ vựng</button>
+        <button class="active" type="button" data-ko3-scroll="ko3Notes"><span>00</span>Ghi chú</button>
+        <button type="button" data-ko3-scroll="ko3Vocabulary"><span>01</span>Từ vựng</button>
         <button type="button" data-ko3-scroll="ko3Grammar"><span>02</span>Ngữ pháp</button>
         <button type="button" data-ko3-scroll="ko3Distance"><span>03</span>Vị trí</button>
         <button type="button" data-ko3-scroll="ko3Ownership"><span>04</span>Sở hữu</button>
@@ -144,6 +146,21 @@
         <button type="button" data-ko3-scroll="ko3Practice"><span>06</span>Luyện tập</button>
         <button type="button" data-ko3-scroll="ko3Slides"><span>07</span>Theo slide</button>
       </nav>
+
+      <section class="lesson-three-section lesson-three-notes-section" id="ko3Notes">
+        <div class="lesson-three-section-head"><div><span class="section-number">00</span><div><p class="eyebrow">Ghi nhớ trước khi luyện</p><h3>Notes Bài 3</h3></div></div><p>Đại từ chỉ định, cấu trúc sở hữu và toàn bộ nhóm từ đã xuất hiện trong bài tập.</p></div>
+        <div class="lesson-three-note-grammar">
+          <div class="lesson-three-note-table-card">
+            <div class="lesson-three-note-card-title"><span><i data-lucide="map-pinned"></i></span><div><small>Đại từ chỉ định</small><h4>Viết đầy đủ → nói gọn → làm chủ ngữ</h4></div></div>
+            <div class="lesson-three-note-table-wrap"><table><thead><tr><th>Dạng gốc · văn viết</th><th>Dạng ngắn · văn nói</th><th>Dạng làm chủ ngữ</th><th>Cách dùng</th></tr></thead><tbody>${noteData.demonstratives.map((row) => `<tr><td><button type="button" data-speak-ko="${escapeHtml(row.written.text)}"><strong>${escapeHtml(row.written.text)}</strong><small>${escapeHtml(row.written.romanization)} · ${escapeHtml(row.written.reading)}</small><i data-lucide="volume-2"></i></button></td><td><button type="button" data-speak-ko="${escapeHtml(row.spoken.text)}"><strong>${escapeHtml(row.spoken.text)}</strong><small>${escapeHtml(row.spoken.romanization)} · ${escapeHtml(row.spoken.reading)}</small><i data-lucide="volume-2"></i></button></td><td><button type="button" data-speak-ko="${escapeHtml(row.subject.text)}"><strong>${escapeHtml(row.subject.text)}</strong><small>${escapeHtml(row.subject.romanization)} · ${escapeHtml(row.subject.reading)}</small><i data-lucide="volume-2"></i></button></td><td>${escapeHtml(row.usage)}</td></tr>`).join("")}</tbody></table></div>
+          </div>
+          <div class="lesson-three-note-rule-grid">${noteData.rules.map((rule) => `<article><span><i data-lucide="${escapeHtml(rule.icon)}"></i></span><small>${escapeHtml(rule.title)}</small><strong>${escapeHtml(rule.formula)}</strong><p>${escapeHtml(rule.explanation)}</p></article>`).join("")}</div>
+        </div>
+        <div class="lesson-three-note-vocabulary">
+          <div class="lesson-three-note-vocab-intro"><div><span><i data-lucide="library-big"></i></span><div><small>Hệ thống từ vựng</small><h4>${noteData.vocabularyGroups.reduce((total, group) => total + group.words.length, 0)} từ theo 5 nhóm</h4></div></div><p><span class="lesson-three-note-review-badge">Ôn Bài 1–2</span> giúp nhận ra từ cũ, không tính lại vào số từ mới.</p></div>
+          <div class="lesson-three-note-vocab-grid">${noteData.vocabularyGroups.map((group) => `<article><header><span><i data-lucide="${escapeHtml(group.icon)}"></i></span><h5>${escapeHtml(group.title)}</h5></header><div>${group.words.map((word) => `<button type="button" data-speak-ko="${escapeHtml(word.text)}"><span class="lesson-three-note-word-head"><strong>${escapeHtml(word.text)}</strong>${word.review ? '<em>Ôn Bài 1–2</em>' : ""}<i data-lucide="volume-2"></i></span><small>${escapeHtml(word.romanization)} · ${escapeHtml(word.reading)}</small><b>${escapeHtml(word.meaning)}</b>${word.note ? `<mark>${escapeHtml(word.note)}</mark>` : ""}</button>`).join("")}</div></article>`).join("")}</div>
+        </div>
+      </section>
 
       <section class="lesson-three-section" id="ko3Vocabulary">
         <div class="lesson-three-section-head"><div><span class="section-number">01</span><div><p class="eyebrow">Chỉ tính kiến thức mới</p><h3>${vocabulary.length} từ của Bài 3</h3></div></div><p>Tìm theo chữ Hàn, phiên âm hoặc nghĩa; chạm loa để nghe phát âm.</p></div>
@@ -328,7 +345,7 @@
   }) : null;
   progressObserver?.observe(progressStat, { childList: true, characterData: true, subtree: true });
 
-  const jumpIds = ["ko3Vocabulary", "ko3Grammar", "ko3Distance", "ko3Ownership", "ko3Dialogue", "ko3Practice", "ko3Slides"];
+  const jumpIds = ["ko3Notes", "ko3Vocabulary", "ko3Grammar", "ko3Distance", "ko3Ownership", "ko3Dialogue", "ko3Practice", "ko3Slides"];
   function setActiveJump(id) {
     app.querySelectorAll("[data-ko3-scroll]").forEach((button) => button.classList.toggle("active", button.dataset.ko3Scroll === id));
   }
