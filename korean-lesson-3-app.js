@@ -33,6 +33,25 @@
   })).filter((group) => group.words.length);
   const vocabulary = vocabularyGroups.flatMap((group) => group.words.map((word) => ({ ...word, groupId: group.id, groupTitle: group.title })));
   const reviewTerms = [...new Set(data.vocabularyGroups.flatMap((group) => group.words.map((word) => cleanTerm(word.text))).filter((term) => previousTerms.has(term)))];
+  const slidePronunciationLookup = new Map();
+  const addSlidePronunciation = (item) => {
+    const term = cleanTerm(item?.text);
+    if (term && item?.romanization && item?.reading) slidePronunciationLookup.set(term, item);
+  };
+  data.vocabularyGroups.flatMap((group) => group.words || []).forEach(addSlidePronunciation);
+  data.patterns.flatMap((pattern) => pattern.examples || []).forEach(addSlidePronunciation);
+  (data.dialogue?.lines || []).forEach(addSlidePronunciation);
+  (data.slidePronunciations || []).forEach(addSlidePronunciation);
+
+  function renderSlideLine(line) {
+    const raw = String(line || "");
+    const [koreanText, ...meaningParts] = raw.split(" · ");
+    const explicitMeaning = meaningParts.join(" · ").trim();
+    const annotation = slidePronunciationLookup.get(cleanTerm(raw)) || slidePronunciationLookup.get(cleanTerm(koreanText));
+    if (!annotation) return `<span class="lesson-three-slide-line is-plain">${escapeHtml(raw)}</span>`;
+    const meaning = explicitMeaning || annotation.meaning || "";
+    return `<span class="lesson-three-slide-line is-annotated"><b>${escapeHtml(explicitMeaning ? koreanText : raw)}</b><small><span>${escapeHtml(annotation.romanization)}</span><i aria-hidden="true">·</i><span>${escapeHtml(annotation.reading)}</span></small>${meaning ? `<em>${escapeHtml(meaning)}</em>` : ""}</span>`;
+  }
 
   const sectionLabels = {
     intro: "Mở bài",
@@ -270,7 +289,7 @@
       return inSection && (!query || content.includes(query));
     });
     app.querySelector("#ko3SlideGrid").innerHTML = filtered.length ? filtered.map((slide) => `
-      <article class="lesson-three-slide-card"><button class="lesson-slide-preview" type="button" data-open-ko-slide="assets/korean/lesson-3/slides/slide-${String(slide.index).padStart(2, "0")}.jpg" data-ko-slide-title="Bài 3 · Trang ${slide.index} · ${escapeHtml(slide.title)}"><img src="assets/korean/lesson-3/slides/slide-${String(slide.index).padStart(2, "0")}.jpg" alt="Bài 3 trang ${slide.index}: ${escapeHtml(slide.title)}" loading="lazy" /><span><i data-lucide="maximize-2"></i>Mở trang gốc</span></button><div class="lesson-three-slide-body"><div class="lesson-three-slide-meta"><span>Trang ${slide.index}/${data.source.pageCount}</span><em>${escapeHtml(sectionLabels[slide.section])}</em></div><h4>${escapeHtml(slide.title)}</h4><p>${escapeHtml(slide.summary)}</p><div class="lesson-three-slide-lines">${slide.lines.map((line) => `<span>${escapeHtml(line)}</span>`).join("")}</div></div></article>
+      <article class="lesson-three-slide-card"><button class="lesson-slide-preview" type="button" data-open-ko-slide="assets/korean/lesson-3/slides/slide-${String(slide.index).padStart(2, "0")}.jpg" data-ko-slide-title="Bài 3 · Trang ${slide.index} · ${escapeHtml(slide.title)}"><img src="assets/korean/lesson-3/slides/slide-${String(slide.index).padStart(2, "0")}.jpg" alt="Bài 3 trang ${slide.index}: ${escapeHtml(slide.title)}" loading="lazy" /><span><i data-lucide="maximize-2"></i>Mở trang gốc</span></button><div class="lesson-three-slide-body"><div class="lesson-three-slide-meta"><span>Trang ${slide.index}/${data.source.pageCount}</span><em>${escapeHtml(sectionLabels[slide.section])}</em></div><h4>${escapeHtml(slide.title)}</h4><p>${escapeHtml(slide.summary)}</p><div class="lesson-three-slide-lines">${slide.lines.map(renderSlideLine).join("")}</div></div></article>
     `).join("") : '<div class="empty-state">Không có trang phù hợp.</div>';
     refreshIcons();
   }

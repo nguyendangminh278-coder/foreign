@@ -477,8 +477,13 @@
 #koreanApp .lesson-three-slide-meta em { padding: 4px 7px; border-radius: 999px; color: #577d75; background: #edf8f4; font-style: normal; }
 #koreanApp .lesson-three-slide-card h4 { margin: 9px 0 5px; color: #41656c; }
 #koreanApp .lesson-three-slide-card p { color: #7d8d90; font-size: .76rem; line-height: 1.5; }
-#koreanApp .lesson-three-slide-lines { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-#koreanApp .lesson-three-slide-lines span { padding: 6px 8px; border-radius: 10px; color: #627b80; background: #f3f8f8; font-size: .68rem; }
+#koreanApp .lesson-three-slide-lines { display: grid; grid-template-columns: repeat(auto-fit, minmax(142px, 1fr)); gap: 8px; margin-top: 12px; }
+#koreanApp .lesson-three-slide-line { display: grid; min-width: 0; gap: 3px; align-content: start; padding: 9px 10px; border: 1px solid #e7f0f1; border-radius: 12px; color: #627b80; background: linear-gradient(145deg, #f8fbff, #f7fbf9); font-size: .68rem; }
+#koreanApp .lesson-three-slide-line b { color: #3f626a; font-size: .8rem; line-height: 1.35; }
+#koreanApp .lesson-three-slide-line small { display: flex; flex-wrap: wrap; gap: 4px; color: #6585a4; font-size: .65rem; line-height: 1.35; }
+#koreanApp .lesson-three-slide-line small i { color: #a5b8c0; font-style: normal; }
+#koreanApp .lesson-three-slide-line em { color: #7d8d90; font-size: .65rem; font-style: normal; line-height: 1.35; }
+#koreanApp .lesson-three-slide-line.is-plain { display: inline-flex; align-items: center; min-height: 34px; }
 
 @media (max-width: 1120px) {
   #koreanApp .course-tabbar { display: flex; overflow-x: auto; scrollbar-width: none; }
