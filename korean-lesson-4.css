@@ -1,0 +1,287 @@
+#koreanApp .korean-path-card.lesson-four {
+  border-color: #dfeac8;
+  background: linear-gradient(145deg, #fffef9, #f6fbe9 55%, #fff3e5);
+}
+
+#koreanApp .korean-path-card.lesson-four .path-glyph {
+  color: #63835d;
+  background: linear-gradient(145deg, #eaf5d5, #fff0d7);
+}
+
+#koreanApp .lesson-four-view {
+  --ko4-green: #73965f;
+  --ko4-green-dark: #496f51;
+  --ko4-leaf: #edf6dc;
+  --ko4-sun: #fff1d5;
+  --ko4-blue: #ebf5f7;
+  --ko4-line: #e1ead5;
+}
+
+#koreanApp .lesson-four-hero {
+  border-color: #e1ebd3;
+  background:
+    radial-gradient(circle at 83% 22%, rgba(255, 211, 142, .36), transparent 23%),
+    radial-gradient(circle at 72% 78%, rgba(168, 204, 130, .28), transparent 27%),
+    linear-gradient(145deg, #fffef9, #f7fbe9 56%, #eef7f5);
+}
+
+#koreanApp .lesson-four-hero::before {
+  content: "🌿";
+  color: rgba(86, 125, 73, .12);
+  font-size: clamp(8rem, 20vw, 16rem);
+  line-height: 1;
+  transform: rotate(-12deg);
+}
+
+#koreanApp .lesson-four-hero .lesson-three-date-chip,
+#koreanApp .lesson-four-hero .lesson-three-listen {
+  border-color: #cfe0bc;
+  color: #527354;
+  background: rgba(246, 251, 234, .9);
+}
+
+#koreanApp .lesson-four-notes {
+  border-color: #e2ebd5;
+  background: linear-gradient(160deg, rgba(255,255,255,.98), rgba(249,252,241,.98));
+}
+
+#koreanApp .lesson-four-boundary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#koreanApp .lesson-four-boundary-grid article {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 2px 12px;
+  padding: 16px;
+  border: 1px solid #e2eadc;
+  border-radius: 20px;
+  background: #fff;
+}
+
+#koreanApp .lesson-four-boundary-grid article.review { background: linear-gradient(145deg, #fbf8ff, #fff); }
+#koreanApp .lesson-four-boundary-grid article.new { background: linear-gradient(145deg, #f5fae9, #fff); }
+
+#koreanApp .lesson-four-boundary-grid article > span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  grid-row: 1 / 4;
+  place-items: center;
+  border-radius: 14px;
+  color: #617c5c;
+  background: linear-gradient(135deg, #e9f4d9, #fff0d9);
+}
+
+#koreanApp .lesson-four-boundary-grid small {
+  color: #819283;
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+#koreanApp .lesson-four-boundary-grid h4 { margin: 1px 0 3px; color: #496a50; font-size: .94rem; }
+#koreanApp .lesson-four-boundary-grid p { color: #74877a; font-size: .72rem; line-height: 1.55; }
+
+#koreanApp .lesson-four-review-table {
+  margin-top: 12px;
+  overflow-x: auto;
+  border: 1px solid #e1ead7;
+  border-radius: 19px;
+  background: #fff;
+}
+
+#koreanApp .lesson-four-review-table table { width: 100%; min-width: 760px; border-collapse: collapse; }
+#koreanApp .lesson-four-review-table th { padding: 10px 12px; color: #637a67; background: #f2f8e8; font-size: .66rem; text-align: left; }
+#koreanApp .lesson-four-review-table td { padding: 10px 12px; border-top: 1px solid #e7ede0; color: #718176; font-size: .71rem; }
+#koreanApp .lesson-four-review-table td button { display: grid; width: 100%; gap: 2px; padding: 7px; border-radius: 10px; color: #4f7056; background: #fbfdf7; text-align: left; }
+#koreanApp .lesson-four-review-table td button:hover { background: #eef6df; }
+#koreanApp .lesson-four-review-table td button strong { font-size: .82rem; }
+#koreanApp .lesson-four-review-table td button small { color: #78909a; font-size: .61rem; }
+
+#koreanApp .lesson-four-accuracy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#koreanApp .lesson-four-accuracy-grid article {
+  display: flex;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid #f0dfca;
+  border-radius: 17px;
+  background: #fffaf3;
+}
+
+#koreanApp .lesson-four-accuracy-grid article > span { color: #b0774d; }
+#koreanApp .lesson-four-accuracy-grid article > span svg { width: 19px; }
+#koreanApp .lesson-four-accuracy-grid article div { display: grid; gap: 3px; }
+#koreanApp .lesson-four-accuracy-grid small { color: #9b7a61; font-size: .6rem; font-weight: 900; text-transform: uppercase; }
+#koreanApp .lesson-four-accuracy-grid s { color: #ae7b72; font-size: .68rem; }
+#koreanApp .lesson-four-accuracy-grid strong { color: #597258; font-size: .76rem; }
+#koreanApp .lesson-four-accuracy-grid p { color: #81786f; font-size: .64rem; line-height: 1.45; }
+
+#koreanApp .lesson-four-word-core { border-top: 3px solid #b7d49c; }
+#koreanApp .lesson-four-word-extension { border-top: 3px solid #f2cc91; }
+#koreanApp .lesson-four-word-review { border-top: 3px solid #d7c9e8; }
+
+#koreanApp .lesson-four-grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#koreanApp .lesson-four-grammar-card {
+  padding: 18px;
+  border: 1px solid var(--ko4-line);
+  border-radius: 22px;
+  background: linear-gradient(145deg, #fff, #fafcf4);
+}
+
+#koreanApp .lesson-four-grammar-card > span { color: #7f927b; font-size: .65rem; font-weight: 900; text-transform: uppercase; }
+#koreanApp .lesson-four-grammar-card > h4 { margin: 7px 0; color: var(--ko4-green-dark); font-size: 1.15rem; }
+#koreanApp .lesson-four-grammar-card > p { color: #728376; font-size: .73rem; line-height: 1.55; }
+
+#koreanApp .lesson-four-subject-rules,
+#koreanApp .lesson-four-ending-rules { display: grid; gap: 8px; margin-top: 14px; }
+
+#koreanApp .lesson-four-subject-rules button {
+  position: relative;
+  display: grid;
+  gap: 3px;
+  padding: 12px 38px 12px 12px;
+  border: 1px solid #e1ead7;
+  border-radius: 15px;
+  color: #55705a;
+  background: #fff;
+  text-align: left;
+}
+
+#koreanApp .lesson-four-subject-rules button:hover { background: #f3f8ea; }
+#koreanApp .lesson-four-subject-rules button > small { color: #7f927e; font-size: .62rem; }
+#koreanApp .lesson-four-subject-rules button > strong { font-size: .88rem; }
+#koreanApp .lesson-four-subject-rules button > em { color: #718d9b; font-size: .63rem; font-style: normal; }
+#koreanApp .lesson-four-subject-rules button > span { color: #7b887d; font-size: .66rem; }
+#koreanApp .lesson-four-subject-rules button > svg { position: absolute; top: 13px; right: 12px; width: 17px; }
+
+#koreanApp .lesson-four-ending-rules { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#koreanApp .lesson-four-ending-rules div { display: grid; gap: 4px; padding: 12px; border: 1px solid #e5ebdc; border-radius: 14px; background: #fff; }
+#koreanApp .lesson-four-ending-rules small { color: #7d8d7e; font-size: .61rem; }
+#koreanApp .lesson-four-ending-rules strong { color: #4f7155; font-size: .8rem; }
+#koreanApp .lesson-four-ending-rules span { color: #728791; font-size: .64rem; }
+
+#koreanApp .lesson-four-conjugation-lab {
+  display: grid;
+  grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr);
+  gap: 14px;
+}
+
+#koreanApp .lesson-four-conjugation-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+#koreanApp .lesson-four-conjugation-list button { display: grid; gap: 2px; padding: 10px; border: 1px solid #e0e9d7; border-radius: 14px; color: #5d765f; background: #fff; text-align: left; }
+#koreanApp .lesson-four-conjugation-list button.active { border-color: #a9c787; background: #f1f8e5; box-shadow: 0 7px 18px rgba(90, 125, 76, .11); }
+#koreanApp .lesson-four-conjugation-list strong { font-size: .82rem; }
+#koreanApp .lesson-four-conjugation-list span { color: #809084; font-size: .62rem; }
+
+#koreanApp .lesson-four-conjugation-stage {
+  display: grid;
+  gap: 12px;
+  align-content: center;
+  min-height: 340px;
+  padding: clamp(20px, 4vw, 36px);
+  border: 1px solid #dfead3;
+  border-radius: 24px;
+  background: radial-gradient(circle at 85% 15%, rgba(255,213,151,.35), transparent 26%), linear-gradient(145deg, #f8fcef, #fff);
+}
+
+#koreanApp .lesson-four-conjugation-question { display: grid; justify-items: center; gap: 5px; }
+#koreanApp .lesson-four-conjugation-question small { color: #819282; font-size: .64rem; text-transform: uppercase; }
+#koreanApp .lesson-four-conjugation-question strong { color: #486e50; font-size: 2rem; }
+#koreanApp .lesson-four-conjugation-question span { color: #78887b; font-size: .72rem; }
+#koreanApp .lesson-four-conjugation-question svg { margin-top: 5px; color: #9aaf91; }
+#koreanApp .lesson-four-conjugation-hidden { padding: 25px; border: 1px dashed #cdddbd; border-radius: 17px; color: #879585; background: rgba(255,255,255,.7); font-size: .75rem; text-align: center; }
+#koreanApp .lesson-four-conjugation-answer { position: relative; display: grid; gap: 4px; padding: 16px 45px 16px 16px; border: 1px solid #bdd69e; border-radius: 18px; color: #4f7255; background: #fff; text-align: left; }
+#koreanApp .lesson-four-conjugation-answer strong { font-size: 1.45rem; }
+#koreanApp .lesson-four-conjugation-answer span { color: #6f8d9a; font-size: .68rem; }
+#koreanApp .lesson-four-conjugation-answer em { color: #7d8b7d; font-size: .68rem; font-style: normal; line-height: 1.45; }
+#koreanApp .lesson-four-conjugation-answer svg { position: absolute; top: 18px; right: 16px; }
+#koreanApp .lesson-four-conjugation-stage > .primary-button { justify-self: center; }
+
+#koreanApp .lesson-four-opposites { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+#koreanApp .lesson-four-opposites article { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 6px; align-items: center; padding: 10px; border: 1px solid #e3ead9; border-radius: 18px; background: #fbfdf7; }
+#koreanApp .lesson-four-opposites article > svg { width: 17px; color: #99a991; }
+#koreanApp .lesson-four-opposites button { display: grid; min-width: 0; gap: 3px; padding: 9px; border-radius: 13px; color: #517058; background: #fff; text-align: center; }
+#koreanApp .lesson-four-opposites button:hover { background: #eef6e2; }
+#koreanApp .lesson-four-opposites button strong { font-size: .82rem; }
+#koreanApp .lesson-four-opposites button small { overflow: hidden; color: #748e9b; font-size: .57rem; text-overflow: ellipsis; white-space: nowrap; }
+#koreanApp .lesson-four-opposites button span { color: #7c897e; font-size: .62rem; }
+
+#koreanApp .lesson-four-garden-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 14px; }
+#koreanApp .lesson-four-garden-builder,
+#koreanApp .lesson-four-dialogue { padding: 16px; border: 1px solid #e0ead5; border-radius: 23px; background: linear-gradient(145deg, #fcfef8, #fff); }
+#koreanApp .lesson-four-ingredient-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+#koreanApp .lesson-four-ingredient-grid button { display: grid; gap: 3px; justify-items: center; padding: 9px 5px; border: 1px solid #e1e9d9; border-radius: 14px; color: #607660; background: #fff; }
+#koreanApp .lesson-four-ingredient-grid button.active { border-color: #a9c984; background: #eef7de; transform: translateY(-2px); }
+#koreanApp .lesson-four-ingredient-grid button > span { font-size: 1.45rem; }
+#koreanApp .lesson-four-ingredient-grid strong { font-size: .7rem; }
+#koreanApp .lesson-four-ingredient-grid small { color: #849086; font-size: .56rem; }
+#koreanApp .lesson-four-garden-result { display: grid; gap: 6px; margin-top: 12px; padding: 15px; border-radius: 18px; background: linear-gradient(145deg, #eefaDC, #fff3de); }
+#koreanApp .lesson-four-garden-visual { display: flex; min-height: 70px; flex-wrap: wrap; gap: 6px; align-items: flex-end; padding: 8px; border-radius: 14px; background: linear-gradient(#dff3f5 0 45%, #c8dd94 45% 68%, #9d7047 68%); }
+#koreanApp .lesson-four-garden-visual span { font-size: 2rem; filter: drop-shadow(0 4px 3px rgba(66,75,48,.15)); }
+#koreanApp .lesson-four-garden-result > small { color: #7d8f76; font-size: .6rem; text-transform: uppercase; }
+#koreanApp .lesson-four-garden-result > strong { color: #4c7153; font-size: .82rem; }
+#koreanApp .lesson-four-garden-result > button { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 10px; border-radius: 12px; color: #52735a; background: #fff; text-align: left; }
+#koreanApp .lesson-four-garden-result > button svg { width: 17px; }
+#koreanApp .lesson-four-garden-result > em { color: #75827a; font-size: .64rem; font-style: normal; line-height: 1.45; }
+
+#koreanApp .lesson-four-dialogue-title { padding-bottom: 12px; border-bottom: 1px solid #e5ebdf; }
+#koreanApp .lesson-four-dialogue-title small { color: #84927f; font-size: .62rem; font-weight: 900; text-transform: uppercase; }
+#koreanApp .lesson-four-dialogue-title h4 { margin: 4px 0; color: #4c6e51; font-size: .88rem; }
+#koreanApp .lesson-four-dialogue-title p { color: #728c98; font-size: .61rem; line-height: 1.4; }
+#koreanApp .lesson-four-dialogue-title strong { display: block; margin-top: 4px; color: #78867a; font-size: .66rem; }
+#koreanApp #ko4DialogueLines { display: grid; gap: 6px; max-height: 520px; margin-top: 10px; overflow-y: auto; padding-right: 3px; }
+#koreanApp #ko4DialogueLines button { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: 2px 8px; padding: 10px 34px 10px 9px; border: 1px solid #e5ebdf; border-radius: 14px; color: #526f57; background: #fff; text-align: left; }
+#koreanApp #ko4DialogueLines button:hover { background: #f3f8ea; }
+#koreanApp #ko4DialogueLines button > span { display: grid; width: 28px; height: 28px; grid-row: 1 / 4; place-items: center; border-radius: 9px; color: #6d8268; background: #eaf4dc; font-size: .58rem; font-weight: 900; }
+#koreanApp #ko4DialogueLines button > strong { font-size: .76rem; }
+#koreanApp #ko4DialogueLines button > small { color: #728c99; font-size: .58rem; line-height: 1.35; }
+#koreanApp #ko4DialogueLines button > em { color: #7b887d; font-size: .61rem; font-style: normal; }
+#koreanApp #ko4DialogueLines button > svg { position: absolute; top: 11px; right: 10px; width: 15px; }
+
+@media (max-width: 1040px) {
+  #koreanApp .lesson-four-grammar-grid,
+  #koreanApp .lesson-four-garden-layout { grid-template-columns: 1fr; }
+  #koreanApp .lesson-four-opposites { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  #koreanApp .lesson-four-boundary-grid,
+  #koreanApp .lesson-four-conjugation-lab { grid-template-columns: 1fr; }
+  #koreanApp .lesson-four-accuracy-grid { grid-template-columns: 1fr; }
+  #koreanApp .lesson-four-ending-rules { grid-template-columns: 1fr; }
+  #koreanApp .lesson-four-conjugation-list { grid-template-columns: repeat(5, minmax(100px, 1fr)); overflow-x: auto; padding-bottom: 3px; }
+  #koreanApp .lesson-four-conjugation-stage { min-height: 310px; }
+}
+
+@media (max-width: 560px) {
+  #koreanApp .lesson-four-opposites { grid-template-columns: 1fr; }
+  #koreanApp .lesson-four-ingredient-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #koreanApp .lesson-four-garden-builder,
+  #koreanApp .lesson-four-dialogue { padding: 12px; border-radius: 18px; }
+  #koreanApp .lesson-four-hero h3 { font-size: 1.85rem; }
+  #koreanApp .lesson-four-hero::before { position: absolute; top: 18px; right: -22px; font-size: 8rem; }
+  #koreanApp .lesson-four-hero .lesson-three-summary-card { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #koreanApp .lesson-four-view button { transition: none; }
+}

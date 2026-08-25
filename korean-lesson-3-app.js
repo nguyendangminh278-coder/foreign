@@ -326,9 +326,11 @@
       baseCount = new Set((Array.isArray(saved) ? saved : []).filter((id) => validBaseIds.has(id))).size;
     } catch {}
     const lessonDone = readLessonThreeCompletion();
+    let lessonFourDone = false;
+    try { lessonFourDone = localStorage.getItem("hanReview.korean.lesson4.completed") === "true"; } catch {}
     const stat = app.querySelector("#koStatCompleted");
     const button = app.querySelector("[data-ko3-complete]");
-    if (stat) stat.textContent = `${baseCount + (lessonDone ? 1 : 0)}/7`;
+    if (stat) stat.textContent = `${baseCount + (lessonDone ? 1 : 0) + (lessonFourDone ? 1 : 0)}/8`;
     if (button) {
       button.classList.toggle("completed", lessonDone);
       button.querySelector("span").textContent = lessonDone ? "Đã học" : "Đánh dấu đã học";
@@ -340,7 +342,7 @@
 
   const progressStat = app.querySelector("#koStatCompleted");
   const progressObserver = progressStat ? new MutationObserver(() => {
-    const expectedSuffix = "/7";
+    const expectedSuffix = "/8";
     if (!progressStat.textContent.endsWith(expectedSuffix)) updateProgress();
   }) : null;
   progressObserver?.observe(progressStat, { childList: true, characterData: true, subtree: true });
