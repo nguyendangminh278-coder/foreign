@@ -951,7 +951,7 @@ window.LESSON_VOCAB = [
     "pinyin": "shǒujī",
     "hanViet": "thủ cơ",
     "meaning": "điện thoại di động",
-    "note": "手 - tay. 4 ngón (4 gạch) trên bàn tay (手) của anh ấy có hoa tay. 机 - máy móc. Mấy móc được làm từ (kỷ 几 – mấy)khúc gỗ (mộc 木)."
+    "note": "手 là tay; 机 là máy. Mục này cũng nằm trong nhóm bổ sung “Động tác tay & điện thoại”."
   },
   {
     "id": "l10-s37-1-96f6",
@@ -1102,9 +1102,9 @@ window.LESSON_VOCAB = [
     "lesson": "Bài 11",
     "hanzi": "没什么",
     "pinyin": "méi shénme",
-    "hanViet": "một thậm ma",
-    "meaning": "không có gì",
-    "note": "没 - không. Cơn lũ (chấm thủy 氵) cuốn trôi khiến cho binh khí ( thù 殳) trôi hết chẳng còn lại gì. 什 - thậm. Một người ( nhân đứng 亻) đứng cạnh mười người khác ( thập 十).么 - nhỏ bé. Phẩy (丿) , (tư 厶) đều là nhỏ bé."
+    "hanViet": "một thập ma",
+    "meaning": "không có gì; không sao",
+    "note": "什么 thường đọc nhẹ ở âm tiết cuối. Mục này cũng xuất hiện trong nhóm từ bổ sung với 没."
   },
   {
     "id": "l11-s38-1-7530-82b3",
@@ -1725,7 +1725,7 @@ window.LESSON_VOCAB = [
     "pinyin": "kàn",
     "hanViet": "khán",
     "meaning": "nhìn, xem",
-    "note": "Gồm bộ thủ (tay 扌) + mục (mắt ). Lấy tay che mắt để nhìn."
+    "note": "Gồm 手 (tay) phía trên 目 (mắt): lấy tay che mắt để nhìn. Trong 看不惯, cả cụm có nghĩa không ưa hoặc thấy chướng mắt."
   },
   {
     "id": "l15-s8-1-53e3",

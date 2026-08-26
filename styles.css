@@ -7726,3 +7726,104 @@ body[data-current-language="en"] {
 @media (prefers-reduced-motion: reduce) {
   .course-hub-panel.active { animation: none; }
 }
+
+/* Chinese dictionary · complete 15-lesson topic catalog */
+.dict-filter-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  gap: 10px;
+  align-items: end;
+  margin: 18px 0 8px;
+  padding: 14px;
+  border: 1px solid #e2ebef;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(237, 229, 255, 0.72), transparent 38%),
+    linear-gradient(135deg, #fbfeff, #f7fcfa);
+}
+
+.dict-filter-panel label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: #637a86;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.dict-filter-panel label > span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dict-filter-panel label svg {
+  width: 15px;
+  height: 15px;
+  color: #6090a6;
+}
+
+.dict-filter-panel select,
+.dict-form-grid select {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 36px 9px 12px;
+  border: 1px solid #dce8ed;
+  border-radius: 14px;
+  outline: 0;
+  color: #3d5967;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.dict-filter-panel select:focus,
+.dict-form-grid select:focus {
+  border-color: #93c7da;
+  box-shadow: 0 0 0 3px rgba(118, 185, 213, 0.12);
+}
+
+.dict-reset-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 9px 13px;
+  border: 1px solid #e1e7eb;
+  border-radius: 14px;
+  color: #6e7f87;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.dict-reset-filter:hover { color: #3d7188; border-color: #c9e0e9; background: #f1f9fc; }
+.dict-reset-filter svg { width: 16px; }
+.dict-filter-summary { margin: 0 2px 14px; color: #79909a; font-size: 0.78rem; }
+
+.dict-topic-badge {
+  align-self: flex-start;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #58788a;
+  background: linear-gradient(135deg, #eaf7fc, #f2edff);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dict-word-card .dict-hanzi { margin-top: 8px; }
+.dict-modal-tags { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+.dict-modal-topic { padding: 6px 10px; border-radius: 99px; color: #6b648c; background: var(--dict-lilac); font-size: 0.78rem; font-weight: 700; }
+
+@media (max-width: 720px) {
+  .dict-filter-panel { grid-template-columns: 1fr 1fr; }
+  .dict-reset-filter { grid-column: 1 / -1; }
+}
+
+@media (max-width: 520px) {
+  .dict-filter-panel { grid-template-columns: 1fr; padding: 12px; }
+  .dict-reset-filter { grid-column: auto; }
+  .dict-filter-summary { line-height: 1.45; }
+  .dict-modal-tags { max-width: calc(100% - 48px); }
+}

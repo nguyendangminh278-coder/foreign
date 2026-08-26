@@ -116,6 +116,7 @@ const audioLessons = [
 
 const audioTranscripts = window.AUDIO_TRANSCRIPTS || {};
 const generatedVocabulary = window.LESSON_VOCAB || [];
+const extraVocabulary = window.CHINESE_EXTRA_VOCAB || [];
 
 const seedVocabulary = [
   { id: "l1-wo", lesson: "Bài 1", hanzi: "我", pinyin: "wǒ", hanViet: "ngã", meaning: "tôi", note: "Bản ngã, cái tôi." },
@@ -199,7 +200,7 @@ const seedVocabulary = [
   { id: "l4-xuexiao", lesson: "Bài 4", hanzi: "学校", pinyin: "xuéxiào", hanViet: "học hiệu", meaning: "trường học", note: "学 + 校." },
   { id: "l4-zaijian", lesson: "Bài 4", hanzi: "再见", pinyin: "zàijiàn", hanViet: "tái kiến", meaning: "tạm biệt", note: "明天见。 Mai gặp nhé." },
   { id: "l4-duibuqi", lesson: "Bài 4", hanzi: "对不起", pinyin: "duìbuqǐ", hanViet: "đối bất khởi", meaning: "xin lỗi", note: "Cụm giao tiếp trong bài khóa." },
-  { id: "l4-meiguanxi", lesson: "Bài 4", hanzi: "没关系", pinyin: "méiguānxi", hanViet: "một quan hệ", meaning: "không có gì", note: "Đáp lại 对不起." },
+  { id: "l4-meiguanxi", lesson: "Bài 4", hanzi: "没关系", pinyin: "méiguānxi", hanViet: "một quan hệ", meaning: "không sao; không có gì", note: "Đáp lại 对不起; mục này cũng xuất hiện trong nhóm từ bổ sung với 没." },
   { id: "l4-tiananmen", lesson: "Bài 4", hanzi: "天安门", pinyin: "Tiān'ānmén", hanViet: "Thiên An Môn", meaning: "Thiên An Môn", note: "去天安门: đi Thiên An Môn." },
   { id: "l5-zhe", lesson: "Bài 5", hanzi: "这", pinyin: "zhè", hanViet: "giá", meaning: "đây, này", note: "这 + 是: đây là..." },
   { id: "l5-shi", lesson: "Bài 5", hanzi: "是", pinyin: "shì", hanViet: "thị", meaning: "là, phải", note: "这是什么？ Đây là cái gì?" },
@@ -217,6 +218,8 @@ const seedVocabulary = [
   { id: "l5-shenti", lesson: "Bài 5", hanzi: "身体", pinyin: "shēntǐ", hanViet: "thân thể", meaning: "sức khỏe, cơ thể", note: "身体好吗？ Sức khỏe tốt không?" },
   { id: "l5-wang", lesson: "Bài 5", hanzi: "王", pinyin: "Wáng", hanViet: "Vương", meaning: "họ Vương", note: "王老师: thầy giáo Vương." },
 ];
+window.CHINESE_SEED_VOCAB = seedVocabulary;
+
 
 const seedRadicals = [
   { id: "stroke-dian", type: "Nét", symbol: "丶", name: "diǎn", meaning: "nét chấm", note: "Một dấu chấm, từ trên xuống dưới." },
@@ -338,7 +341,9 @@ function normalize(value) {
 }
 
 function allVocab() {
-  return [...seedVocabulary, ...generatedVocabulary, ...customVocab];
+  const taughtHanzi = new Set([...seedVocabulary, ...generatedVocabulary].map((item) => item.hanzi));
+  const newExtraVocabulary = extraVocabulary.filter((item) => !taughtHanzi.has(item.hanzi));
+  return [...seedVocabulary, ...generatedVocabulary, ...newExtraVocabulary, ...customVocab];
 }
 
 function allRadicals() {
@@ -364,7 +369,7 @@ const foundationGroups = [
 ];
 
 function lessonTitles(includeAll = true) {
-  const titles = lessons.map((lesson) => lesson.title);
+  const titles = [...lessons.map((lesson) => lesson.title), "Từ bổ sung"];
   return includeAll ? ["all", ...titles, "Tự thêm"] : titles;
 }
 

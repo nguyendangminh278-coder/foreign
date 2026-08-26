@@ -10,7 +10,7 @@
     notifications: "hanReview.dictionary.notificationsRead.v1",
     catalog: "hanReview.dictionary.catalogVersion.v1",
   };
-  const CATALOG_VERSION = "lesson-15-303-v1";
+  const CATALOG_VERSION = "topics-15-lessons-303-v1";
 
   const readStore = (key, fallback) => {
     try {
@@ -46,20 +46,80 @@
 
   const uid = (prefix = "word") => `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
   const sets = Array.isArray(window.CHINESE_PREMADE_SETS) ? window.CHINESE_PREMADE_SETS : [];
+  const seedLessonWords = Array.isArray(window.CHINESE_SEED_VOCAB) ? window.CHINESE_SEED_VOCAB : [];
   const lessonWords = Array.isArray(window.LESSON_VOCAB) ? window.LESSON_VOCAB : [];
+  const extraWords = Array.isArray(window.CHINESE_EXTRA_VOCAB) ? window.CHINESE_EXTRA_VOCAB : [];
+  const topics = Array.isArray(window.CHINESE_VOCAB_TOPICS) ? window.CHINESE_VOCAB_TOPICS : [];
+  const topicLabels = Object.fromEntries(topics.map((topic) => [topic.id, topic.label]));
+  const withTopic = typeof window.withChineseVocabularyTopic === "function"
+    ? window.withChineseVocabularyTopic
+    : (word) => ({ ...word, topicId: "giao-tiep", topic: "Giao tiếp thường ngày" });
+  const courseWords = [...seedLessonWords, ...lessonWords];
+  const COURSE_ENTRY_COUNT = courseWords.length;
+  const uniqueParts = (items) => [...new Set(items.filter(Boolean))];
+  const mergeText = (current, next) => {
+    const parts = uniqueParts([current, next].flatMap((value) => String(value || "").split("; ")));
+    return parts.join("; ");
+  };
+  const sourceLabel = (lessons, sources, scopes) => {
+    const lessonLabels = uniqueParts(lessons).sort((a, b) => Number(a.replace(/\D/g, "")) - Number(b.replace(/\D/g, "")));
+    const hasExtra = scopes.includes("extra");
+    if (lessonLabels.length) return `${lessonLabels.join(" · ")}${hasExtra ? " · Từ bổ sung" : ""}`;
+    if (hasExtra) return "Từ bổ sung";
+    return uniqueParts(sources).join(" · ") || "Từ điển cá nhân";
+  };
 
-  const seedWords = lessonWords.map((word) => ({
-    id: `lesson-${word.id}`,
-    character: word.hanzi,
-    pinyin: word.pinyin || "",
-    hanViet: word.hanViet || "",
-    meaning: word.meaning || "",
-    note: word.note || "",
-    source: word.lesson || "Bài học",
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    rememberCount: 0,
-  }));
+  function buildCatalog(words) {
+    const merged = new Map();
+    words.forEach((rawWord) => {
+      const word = withTopic(rawWord);
+      const character = String(word.hanzi || word.character || "").trim();
+      if (!character) return;
+      const rawSource = word.source || word.lesson || "Từ bổ sung";
+      const isLesson = /^Bài \d+$/.test(word.lesson || "");
+      const scope = isLesson ? "course" : "extra";
+      if (!merged.has(character)) {
+        merged.set(character, {
+          id: `lesson-${word.id}`,
+          character,
+          pinyin: word.pinyin || "",
+          hanViet: word.hanViet || "",
+          meaning: word.meaning || "",
+          note: word.note || "",
+          sources: [rawSource],
+          lessonSources: isLesson ? [word.lesson] : [],
+          scopes: [scope],
+          topicId: word.topicId,
+          topic: word.topic,
+          createdAt: new Date().toISOString(),
+          reviewCount: 0,
+          rememberCount: 0,
+        });
+        return;
+      }
+      const saved = merged.get(character);
+      saved.pinyin ||= word.pinyin || "";
+      saved.hanViet ||= word.hanViet || "";
+      saved.meaning = mergeText(saved.meaning, word.meaning);
+      saved.note = mergeText(saved.note, word.note);
+      saved.sources = uniqueParts([...saved.sources, rawSource]);
+      saved.lessonSources = uniqueParts([...saved.lessonSources, ...(isLesson ? [word.lesson] : [])]);
+      saved.scopes = uniqueParts([...saved.scopes, scope]);
+    });
+    return [...merged.values()].map((word) => ({
+      ...word,
+      source: sourceLabel(word.lessonSources, word.sources, word.scopes),
+    }));
+  }
+
+  const seedWords = buildCatalog([...courseWords, ...extraWords]);
+  const sourceOptions = [
+    { value: "all", label: "Toàn bộ kho từ" },
+    { value: "course", label: "Tất cả Bài 1–15" },
+    ...Array.from({ length: 15 }, (_, index) => ({ value: `Bài ${index + 1}`, label: `Bài ${index + 1}` })),
+    { value: "extra", label: "Từ bổ sung ngoài bài" },
+    { value: "personal", label: "Từ tự thêm" },
+  ];
 
   const curatedSentences = [
     { zh: "你好，很高兴认识你。", py: "Nǐ hǎo, hěn gāoxìng rènshi nǐ.", vi: "Xin chào, rất vui được gặp bạn." },
@@ -99,18 +159,40 @@
 
   const storedWords = readStore(STORE.words, null);
   const storedCatalogVersion = readStore(STORE.catalog, "");
-  const syncedWords = Array.isArray(storedWords) ? [...storedWords] : [...seedWords];
+  let syncedWords = Array.isArray(storedWords) ? [...storedWords] : [...seedWords];
   if (Array.isArray(storedWords) && storedCatalogVersion !== CATALOG_VERSION) {
-    const savedIds = new Set(syncedWords.map((word) => word.id));
-    seedWords.forEach((word) => {
-      if (!savedIds.has(word.id)) syncedWords.push(word);
+    const savedById = new Map(storedWords.map((word) => [word.id, word]));
+    const savedByCharacter = new Map(storedWords.map((word) => [word.character, word]));
+    syncedWords = seedWords.map((word) => {
+      const saved = savedById.get(word.id) || savedByCharacter.get(word.character);
+      return {
+        ...word,
+        createdAt: saved?.createdAt || word.createdAt,
+        reviewCount: Number(saved?.reviewCount || 0),
+        rememberCount: Number(saved?.rememberCount || 0),
+      };
+    });
+    const curatedCharacters = new Set(seedWords.map((word) => word.character));
+    storedWords.forEach((word) => {
+      if (word.id?.startsWith("lesson-") || curatedCharacters.has(word.character)) return;
+      const enriched = withTopic(word);
+      syncedWords.push({
+        ...word,
+        topicId: enriched.topicId,
+        topic: enriched.topic,
+        sources: word.sources || [word.source || "Tự thêm"],
+        lessonSources: word.lessonSources || [],
+        scopes: word.scopes || ["personal"],
+      });
     });
   }
   const state = {
     words: syncedWords,
     screen: "library",
     search: "",
+    sourceFilter: "all",
     addOpen: false,
+    topicFilter: "all",
     draft: null,
     selectedId: null,
     setFilter: "Tất cả",
@@ -185,14 +267,14 @@
     root.innerHTML = `
       <section class="dict-hero">
         <div>
-          <p class="eyebrow">Không gian học chủ động</p>
-          <h2 id="dictionaryTitle">Từ điển, flashcard và kiểm tra</h2>
-          <p>Tra từ, thêm từ, ôn flashcard và kiểm tra ngay trong một nơi. Kho mặc định bám theo 15 bài đã học.</p>
+          <p class="eyebrow">Kho từ Bài 1–15 đã được hệ thống hóa</p>
+          <h2 id="dictionaryTitle">Từ điển tiếng Trung theo chủ đề</h2>
+          <p>Đủ ${COURSE_ENTRY_COUNT} mục từ trong 15 bài slide, được gộp trùng và chia thành ${topics.length} chủ đề để tra cứu, ôn flashcard và kiểm tra.</p>
         </div>
         <div class="dict-hero-stats" aria-label="Thống kê nhanh">
-          <div><strong>${state.words.length}</strong><span>từ trong sổ</span></div>
+          <div><strong>${COURSE_ENTRY_COUNT}</strong><span>mục từ · 15 bài</span></div>
+          <div><strong>${state.words.length}</strong><span>thẻ không trùng</span></div>
           <div><strong>${summary.learned}</strong><span>đã thuộc</span></div>
-          <div><strong>${summary.studyDays}</strong><span>ngày học</span></div>
         </div>
       </section>
       <div class="dict-toolbar">
@@ -222,10 +304,29 @@
     if (state.screen === "practice" && state.practice.tab === "listening" && !state.practice.question) newListeningQuestion(false);
   }
 
+  function matchesSource(word) {
+    if (state.sourceFilter === "all") return true;
+    const scopes = Array.isArray(word.scopes) ? word.scopes : [];
+    const lessons = Array.isArray(word.lessonSources) ? word.lessonSources : [];
+    if (state.sourceFilter === "course") return scopes.includes("course") || lessons.length > 0;
+    if (state.sourceFilter === "extra") return scopes.includes("extra");
+    if (state.sourceFilter === "personal") return scopes.includes("personal") || (!word.id?.startsWith("lesson-") && !scopes.includes("course") && !scopes.includes("extra"));
+    return lessons.includes(state.sourceFilter);
+  }
+
+  function matchesTopic(word) {
+    return state.topicFilter === "all" || word.topicId === state.topicFilter;
+  }
+
+  function studyPoolWords() {
+    return state.words.filter((word) => matchesSource(word) && matchesTopic(word));
+  }
+
   function filteredWords() {
     const query = normalize(state.search);
-    if (!query) return state.words;
-    return state.words.filter((word) => normalize([word.character, word.pinyin, word.hanViet, word.meaning, word.source].join(" ")).includes(query));
+    return studyPoolWords().filter((word) => !query || normalize([
+      word.character, word.pinyin, word.hanViet, word.meaning, word.source, word.topic,
+    ].join(" ")).includes(query));
   }
 
   function wordCard(word) {
@@ -234,6 +335,7 @@
     return `
       <article class="dict-word-card ${learned ? "learned" : warm ? "familiar" : ""}" data-word-id="${escapeHtml(word.id)}" tabindex="0">
         <div class="dict-word-topline"><span>${escapeHtml(word.source || "Tự thêm")}</span>${learned ? '<b><i data-lucide="badge-check"></i> Đã thuộc</b>' : ""}</div>
+        <span class="dict-topic-badge">${escapeHtml(word.topic || "Giao tiếp thường ngày")}</span>
         <strong class="dict-hanzi">${escapeHtml(word.character)}</strong>
         <span class="dict-pinyin">${escapeHtml(word.pinyin || "Chưa có pinyin")}</span>
         <span class="dict-meaning">${escapeHtml(word.meaning || "Chưa có nghĩa")}</span>
@@ -246,9 +348,11 @@
     const grid = root.querySelector("#dictWordGrid");
     const count = root.querySelector("#dictResultCount");
     if (!grid) return;
+    const summary = root.querySelector("#dictActiveFilters");
     const words = filteredWords();
     if (count) count.textContent = `${words.length} từ`;
     grid.innerHTML = words.length ? words.map(wordCard).join("") : `<div class="dict-empty"><i data-lucide="search-x"></i><h3>Chưa tìm thấy từ phù hợp</h3><p>Thử tìm bằng chữ Hán, pinyin, Hán Việt hoặc nghĩa tiếng Việt.</p></div>`;
+    if (summary) summary.textContent = `${words.length} từ · ${sourceOptions.find((option) => option.value === state.sourceFilter)?.label || "Toàn bộ kho từ"} · ${state.topicFilter === "all" ? "Mọi chủ đề" : topicLabels[state.topicFilter]}`;
     refreshIcons();
   }
 
@@ -265,6 +369,7 @@
           <label><span>Nghĩa tiếng Việt</span><input name="meaning" required placeholder="cảm ơn" value="${escapeHtml(draft.meaning || "")}"></label>
           <label class="wide"><span>Ghi chú / mẹo nhớ</span><input name="note" placeholder="Ví dụ, ngữ cảnh hoặc mẹo nhớ..." value="${escapeHtml(draft.note || "")}"></label>
         </div>
+          <label><span>Chủ đề</span><select name="topicId">${topics.map((topic) => `<option value="${escapeHtml(topic.id)}" ${(draft.topicId || "giao-tiep") === topic.id ? "selected" : ""}>${escapeHtml(topic.label)}</option>`).join("")}</select></label>
         <div class="dict-form-actions"><button class="secondary-button" type="button" data-dict-action="lookup"><i data-lucide="search"></i><span>Tự điền thông tin</span></button><button class="primary-button" type="submit"><i data-lucide="save"></i><span>${draft.id ? "Lưu thay đổi" : "Thêm từ"}</span></button></div>
       </form>`;
   }
@@ -274,10 +379,22 @@
       <div class="dict-library-layout">
         <section class="dict-main-panel">
           <div class="dict-section-head">
-            <div><p class="eyebrow">Từ điển cá nhân</p><h3>Vốn từ của bạn</h3><p id="dictResultCount">${filteredWords().length} từ</p></div>
+            <div><p class="eyebrow">Từ điển đã phân loại</p><h3>Kho từ theo bài và chủ đề</h3><p id="dictResultCount">${filteredWords().length} từ</p></div>
             <button class="primary-button" type="button" data-dict-action="open-add"><i data-lucide="plus"></i><span>Thêm từ mới</span></button>
           </div>
           <div class="dict-search"><i data-lucide="search"></i><input id="dictSearchInput" type="search" value="${escapeHtml(state.search)}" placeholder="Tìm chữ Hán, pinyin, Hán Việt hoặc nghĩa..."><button type="button" data-dict-action="clear-search" aria-label="Xóa tìm kiếm"><i data-lucide="x"></i></button></div>
+          <div class="dict-filter-panel" aria-label="Lọc từ vựng">
+            <label>
+              <span><i data-lucide="book-open-check"></i> Phạm vi bài học</span>
+              <select id="dictSourceFilter">${sourceOptions.map((option) => `<option value="${escapeHtml(option.value)}" ${state.sourceFilter === option.value ? "selected" : ""}>${escapeHtml(option.label)}</option>`).join("")}</select>
+            </label>
+            <label>
+              <span><i data-lucide="shapes"></i> Chủ đề</span>
+              <select id="dictTopicFilter"><option value="all">Mọi chủ đề</option>${topics.map((topic) => `<option value="${escapeHtml(topic.id)}" ${state.topicFilter === topic.id ? "selected" : ""}>${escapeHtml(topic.label)}</option>`).join("")}</select>
+            </label>
+            <button class="dict-reset-filter" type="button" data-dict-action="reset-filters"><i data-lucide="rotate-ccw"></i><span>Đặt lại</span></button>
+          </div>
+          <p class="dict-filter-summary" id="dictActiveFilters">${filteredWords().length} từ · ${sourceOptions.find((option) => option.value === state.sourceFilter)?.label || "Toàn bộ kho từ"} · ${state.topicFilter === "all" ? "Mọi chủ đề" : topicLabels[state.topicFilter]}</p>
           <div class="dict-word-grid" id="dictWordGrid">${filteredWords().map(wordCard).join("")}</div>
         </section>
         <aside class="dict-side-column">
@@ -288,7 +405,7 @@
               <p>Lật thẻ để tăng lượt ôn. Chọn “Nhớ” 5 lần hoặc ôn 20 lần để đánh dấu đã thuộc.</p>
               <button class="secondary-button" type="button" data-dict-screen="flash"><i data-lucide="gallery-horizontal-end"></i><span>Bắt đầu ôn</span></button>
             </section>
-            <section class="dict-tip-card sea"><span class="dict-tip-icon"><i data-lucide="book-open-check"></i></span><p class="eyebrow">15 bài PDF</p><h3>Học đúng theo giáo trình</h3><p>Kho từ mặc định được đồng bộ từ Bài 1–15; từ ngoài chỉ xuất hiện khi bạn tự thêm.</p><button class="secondary-button" type="button" data-open-main-tab="course"><i data-lucide="arrow-right"></i><span>Về bài giảng</span></button></section>`}
+            <section class="dict-tip-card sea"><span class="dict-tip-icon"><i data-lucide="book-open-check"></i></span><p class="eyebrow">${COURSE_ENTRY_COUNT} mục · 15 bài</p><h3>Không bỏ sót từ trong slide</h3><p>Bài 1–5 và Bài 6–15 đã nằm chung trong Từ điển. Từ lặp được gộp thành một thẻ nhưng vẫn giữ đầy đủ nhãn bài xuất hiện.</p><button class="secondary-button" type="button" data-open-main-tab="course"><i data-lucide="arrow-right"></i><span>Về bài giảng</span></button></section>`}
         </aside>
       </div>`;
   }
@@ -320,7 +437,8 @@
   }
 
   function startFlashcards() {
-    let pool = state.flash.includeLearned ? [...state.words] : state.words.filter((word) => !isLearned(word));
+    const filteredPool = studyPoolWords();
+    let pool = state.flash.includeLearned ? [...filteredPool] : filteredPool.filter((word) => !isLearned(word));
     for (let i = pool.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
       [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -357,12 +475,13 @@
 
   function renderFlash() {
     if (!state.flash.active) {
-      const available = state.flash.includeLearned ? state.words.length : state.words.filter((word) => !isLearned(word)).length;
-      return `<section class="dict-focus-panel"><div class="dict-focus-copy"><span class="dict-focus-icon"><i data-lucide="gallery-horizontal-end"></i></span><p class="eyebrow">Flashcard thích ứng</p><h3>Chọn một phiên ôn vừa sức</h3><p>Từ đã thuộc được ẩn mặc định. Bạn có thể đưa chúng trở lại bất cứ lúc nào.</p></div><form id="dictFlashSetup" class="dict-setup-card"><label><span>Số thẻ</span><select name="limit"><option value="10">10 thẻ</option><option value="20" selected>20 thẻ</option><option value="50">50 thẻ</option><option value="9999">Tất cả</option></select></label><label class="dict-toggle"><input name="includeLearned" type="checkbox" ${state.flash.includeLearned ? "checked" : ""}><span></span><b>Gồm cả từ đã thuộc</b></label><label class="dict-toggle"><input name="autoAudio" type="checkbox" ${state.flash.autoAudio ? "checked" : ""}><span></span><b>Tự phát âm thanh</b></label><p>${available} từ sẵn sàng</p><button class="primary-button" type="submit" ${available ? "" : "disabled"}><i data-lucide="play"></i><span>Bắt đầu phiên ôn</span></button></form></section>`;
+      const availablePool = studyPoolWords();
+      const available = state.flash.includeLearned ? availablePool.length : availablePool.filter((word) => !isLearned(word)).length;
+      return `<section class="dict-focus-panel"><div class="dict-focus-copy"><span class="dict-focus-icon"><i data-lucide="gallery-horizontal-end"></i></span><p class="eyebrow">Flashcard theo chủ đề</p><h3>Chọn đúng nhóm bạn muốn ôn</h3><p>Lọc theo một bài hoặc một chủ đề. Từ đã thuộc được ẩn mặc định và có thể đưa trở lại bất cứ lúc nào.</p></div><form id="dictFlashSetup" class="dict-setup-card"><label><span>Phạm vi bài học</span><select id="dictFlashSourceFilter">${sourceOptions.map((option) => `<option value="${escapeHtml(option.value)}" ${state.sourceFilter === option.value ? "selected" : ""}>${escapeHtml(option.label)}</option>`).join("")}</select></label><label><span>Chủ đề</span><select id="dictFlashTopicFilter"><option value="all">Mọi chủ đề</option>${topics.map((topic) => `<option value="${escapeHtml(topic.id)}" ${state.topicFilter === topic.id ? "selected" : ""}>${escapeHtml(topic.label)}</option>`).join("")}</select></label><label><span>Số thẻ</span><select name="limit"><option value="10">10 thẻ</option><option value="20" selected>20 thẻ</option><option value="50">50 thẻ</option><option value="9999">Tất cả</option></select></label><label class="dict-toggle"><input name="includeLearned" type="checkbox" ${state.flash.includeLearned ? "checked" : ""}><span></span><b>Gồm cả từ đã thuộc</b></label><label class="dict-toggle"><input name="autoAudio" type="checkbox" ${state.flash.autoAudio ? "checked" : ""}><span></span><b>Tự phát âm thanh</b></label><p>${available} từ sẵn sàng trong phạm vi đã chọn</p><button class="primary-button" type="submit" ${available ? "" : "disabled"}><i data-lucide="play"></i><span>Bắt đầu phiên ôn</span></button></form></section>`;
     }
     const word = state.flash.deck[state.flash.index];
     if (!word) return `<div class="dict-empty"><h3>Không còn thẻ để ôn</h3></div>`;
-    return `<section class="dict-flash-room"><div class="dict-flash-top"><button class="secondary-button" type="button" data-dict-action="end-flash"><i data-lucide="arrow-left"></i><span>Kết thúc</span></button><p>${state.flash.index + 1} / ${state.flash.deck.length}</p><button class="dict-icon-button" type="button" data-dict-action="speak-current"><i data-lucide="volume-2"></i></button></div><button class="dict-study-card ${state.flash.flipped ? "flipped" : ""}" type="button" data-dict-action="flip"><div class="dict-study-card-inner"><div class="dict-study-front"><small>Chạm để lật</small><strong>${escapeHtml(word.character)}</strong><span>${escapeHtml(word.pinyin)}</span></div><div class="dict-study-back"><small>${escapeHtml(word.hanViet || "Hán Việt")}</small><strong>${escapeHtml(word.meaning)}</strong><p>${escapeHtml(word.note || "Nghe lại và đặt một câu ngắn với từ này.")}</p></div></div></button><div class="dict-flash-memory"><span>Độ nhớ ${Number(word.rememberCount || 0)}/5</span><div><i style="width:${Math.min(100, Number(word.rememberCount || 0) * 20)}%"></i></div><span>${Number(word.reviewCount || 0)} lượt ôn</span></div><div class="dict-flash-actions"><button type="button" class="dict-memory-button forget" data-dict-action="forget"><i data-lucide="rotate-ccw"></i><span>Không nhớ</span></button><button type="button" class="dict-icon-button large" data-dict-action="flash-prev"><i data-lucide="chevron-left"></i></button><button type="button" class="dict-icon-button large" data-dict-action="flash-next"><i data-lucide="chevron-right"></i></button><button type="button" class="dict-memory-button remember" data-dict-action="remember"><i data-lucide="check"></i><span>Nhớ</span></button></div><button class="dict-master-button ${isLearned(word) ? "active" : ""}" type="button" data-dict-action="toggle-mastered"><i data-lucide="badge-check"></i><span>${isLearned(word) ? "Đã đánh dấu thuộc" : "Đánh dấu đã thuộc"}</span></button></section>`;
+    return `<section class="dict-flash-room"><div class="dict-flash-top"><button class="secondary-button" type="button" data-dict-action="end-flash"><i data-lucide="arrow-left"></i><span>Kết thúc</span></button><p>${state.flash.index + 1} / ${state.flash.deck.length} · ${escapeHtml(word.topic || "Giao tiếp")}</p><button class="dict-icon-button" type="button" data-dict-action="speak-current"><i data-lucide="volume-2"></i></button></div><button class="dict-study-card ${state.flash.flipped ? "flipped" : ""}" type="button" data-dict-action="flip"><div class="dict-study-card-inner"><div class="dict-study-front"><small>${escapeHtml(word.source || "Từ điển")} · chạm để lật</small><strong>${escapeHtml(word.character)}</strong><span>${escapeHtml(word.pinyin)}</span></div><div class="dict-study-back"><small>${escapeHtml(word.hanViet || "Hán Việt")}</small><strong>${escapeHtml(word.meaning)}</strong><p>${escapeHtml(word.note || "Nghe lại và đặt một câu ngắn với từ này.")}</p></div></div></button><div class="dict-flash-memory"><span>Độ nhớ ${Number(word.rememberCount || 0)}/5</span><div><i style="width:${Math.min(100, Number(word.rememberCount || 0) * 20)}%"></i></div><span>${Number(word.reviewCount || 0)} lượt ôn</span></div><div class="dict-flash-actions"><button type="button" class="dict-memory-button forget" data-dict-action="forget"><i data-lucide="rotate-ccw"></i><span>Không nhớ</span></button><button type="button" class="dict-icon-button large" data-dict-action="flash-prev"><i data-lucide="chevron-left"></i></button><button type="button" class="dict-icon-button large" data-dict-action="flash-next"><i data-lucide="chevron-right"></i></button><button type="button" class="dict-memory-button remember" data-dict-action="remember"><i data-lucide="check"></i><span>Nhớ</span></button></div><button class="dict-master-button ${isLearned(word) ? "active" : ""}" type="button" data-dict-action="toggle-mastered"><i data-lucide="badge-check"></i><span>${isLearned(word) ? "Đã đánh dấu thuộc" : "Đánh dấu đã thuộc"}</span></button></section>`;
   }
   function sample(array, count) {
     const copy = [...array];
@@ -455,7 +574,7 @@
       return;
     }
     const setAppearances = sets.filter((set) => set.words.some((item) => item.character === word.character)).length;
-    layer.innerHTML = `<div class="dict-modal-backdrop" data-dict-action="close-modal"><section class="dict-modal dict-word-modal" role="dialog" aria-modal="true" aria-label="Chi tiết từ" onclick="event.stopPropagation()"><div class="dict-modal-head"><span class="dict-modal-source">${escapeHtml(word.source || "Từ điển cá nhân")}</span><button class="dict-icon-button" type="button" data-dict-action="close-modal"><i data-lucide="x"></i></button></div><div class="dict-word-showcase"><button class="dict-speak-orb" type="button" data-speak-text="${escapeHtml(word.character)}"><i data-lucide="volume-2"></i></button><strong>${escapeHtml(word.character)}</strong><span>${escapeHtml(word.pinyin || "Chưa có pinyin")}</span></div><div class="dict-detail-grid"><div><small>Hán Việt</small><strong>${escapeHtml(word.hanViet || "Đang bổ sung")}</strong></div><div><small>Nghĩa tiếng Việt</small><strong>${escapeHtml(word.meaning)}</strong></div><div><small>Lượt ôn</small><strong>${Number(word.reviewCount || 0)}</strong></div><div><small>Độ nhớ</small><strong>${Number(word.rememberCount || 0)}/5</strong></div></div>${word.note ? `<div class="dict-word-note"><i data-lucide="notebook-pen"></i><p>${escapeHtml(word.note)}</p></div>` : ""}<p class="dict-community-line"><i data-lucide="users-round"></i> Xuất hiện trong ${setAppearances} bộ từ dựng sẵn.</p><div class="dict-modal-actions"><button class="dict-danger-button" type="button" data-dict-action="delete-word"><i data-lucide="trash-2"></i><span>Xóa</span></button><button class="secondary-button" type="button" data-dict-action="edit-word"><i data-lucide="pencil"></i><span>Chỉnh sửa</span></button><button class="primary-button" type="button" data-dict-action="toggle-word-mastered"><i data-lucide="badge-check"></i><span>${isLearned(word) ? "Bỏ đánh dấu thuộc" : "Đã thuộc"}</span></button></div></section></div>`;
+    layer.innerHTML = `<div class="dict-modal-backdrop" data-dict-action="close-modal"><section class="dict-modal dict-word-modal" role="dialog" aria-modal="true" aria-label="Chi tiết từ" onclick="event.stopPropagation()"><div class="dict-modal-head"><div class="dict-modal-tags"><span class="dict-modal-source">${escapeHtml(word.source || "Từ điển cá nhân")}</span><span class="dict-modal-topic">${escapeHtml(word.topic || "Giao tiếp thường ngày")}</span></div><button class="dict-icon-button" type="button" data-dict-action="close-modal"><i data-lucide="x"></i></button></div><div class="dict-word-showcase"><button class="dict-speak-orb" type="button" data-speak-text="${escapeHtml(word.character)}"><i data-lucide="volume-2"></i></button><strong>${escapeHtml(word.character)}</strong><span>${escapeHtml(word.pinyin || "Chưa có pinyin")}</span></div><div class="dict-detail-grid"><div><small>Hán Việt</small><strong>${escapeHtml(word.hanViet || "Đang bổ sung")}</strong></div><div><small>Nghĩa tiếng Việt</small><strong>${escapeHtml(word.meaning)}</strong></div><div><small>Lượt ôn</small><strong>${Number(word.reviewCount || 0)}</strong></div><div><small>Độ nhớ</small><strong>${Number(word.rememberCount || 0)}/5</strong></div></div>${word.note ? `<div class="dict-word-note"><i data-lucide="notebook-pen"></i><p>${escapeHtml(word.note)}</p></div>` : ""}<p class="dict-community-line"><i data-lucide="users-round"></i> Xuất hiện trong ${setAppearances} bộ từ dựng sẵn.</p><div class="dict-modal-actions"><button class="dict-danger-button" type="button" data-dict-action="delete-word"><i data-lucide="trash-2"></i><span>Xóa</span></button><button class="secondary-button" type="button" data-dict-action="edit-word"><i data-lucide="pencil"></i><span>Chỉnh sửa</span></button><button class="primary-button" type="button" data-dict-action="toggle-word-mastered"><i data-lucide="badge-check"></i><span>${isLearned(word) ? "Bỏ đánh dấu thuộc" : "Đã thuộc"}</span></button></div></section></div>`;
     refreshIcons();
     setTimeout(() => speak(word.character), 100);
   }
@@ -481,7 +600,7 @@
     if (saved) return saved;
     for (const set of sets) {
       const found = set.words.find((word) => word.character === clean);
-      if (found) return { ...found, source: set.title };
+      if (found) return { ...withTopic(found), source: set.title, scopes: ["personal"] };
     }
     return null;
   }
@@ -489,7 +608,7 @@
   function fillWordForm(info) {
     const form = root.querySelector("#dictWordForm");
     if (!form || !info) return;
-    ["character", "pinyin", "hanViet", "meaning", "note"].forEach((key) => {
+    ["character", "pinyin", "hanViet", "meaning", "note", "topicId"].forEach((key) => {
       if (form.elements[key] && info[key]) form.elements[key].value = info[key];
     });
   }
@@ -564,7 +683,7 @@
     const set = sets.find((item) => item.id === setId);
     if (!set) return;
     const existing = new Set(state.words.map((word) => word.character));
-    const additions = set.words.filter((word) => !existing.has(word.character)).map((word) => ({ ...word, id: uid("set"), note: `Từ bộ ${set.title}`, source: set.title, createdAt: new Date().toISOString(), reviewCount: 0, rememberCount: 0 }));
+    const additions = set.words.filter((word) => !existing.has(word.character)).map((word) => ({ ...withTopic(word), id: uid("set"), note: `Từ bộ ${set.title}`, source: set.title, sources: [set.title], lessonSources: [], scopes: ["personal"], createdAt: new Date().toISOString(), reviewCount: 0, rememberCount: 0 }));
     state.words.push(...additions);
     saveWords();
     renderShell();
@@ -617,6 +736,15 @@
   }
 
   root.addEventListener("click", (event) => {
+    const closeButton = event.target.closest('.dict-modal [data-dict-action="close-modal"]');
+    if (!closeButton) return;
+    event.preventDefault();
+    state.notificationOpen = false;
+    state.selectedId = null;
+    renderModals();
+  }, { capture: true });
+
+  root.addEventListener("click", (event) => {
     const deleteSentence = event.target.closest("[data-delete-sentence]");
     if (deleteSentence) {
       event.preventDefault();
@@ -636,6 +764,15 @@
       setScreen(screenButton.dataset.dictScreen);
       return;
     }
+
+    const sourceFilter = event.target.closest("[data-dict-source-filter]");
+    if (sourceFilter) {
+      state.sourceFilter = sourceFilter.dataset.dictSourceFilter;
+      state.search = "";
+      renderScreen();
+      return;
+    }
+
 
     const speakButton = event.target.closest("[data-speak-text]");
     if (speakButton) {
@@ -750,6 +887,13 @@
       const input = root.querySelector("#dictSearchInput");
       if (input) input.value = "";
       renderWordGrid();
+    } else if (action === "reset-filters") {
+      state.search = "";
+      state.sourceFilter = "all";
+      state.topicFilter = "all";
+      state.flash.active = false;
+      renderScreen();
+      toast("Đã đặt lại phạm vi và chủ đề.");
     } else if (action === "lookup") {
       lookupCurrentWord();
     } else if (action === "delete-word") {
@@ -817,6 +961,18 @@
   });
 
   root.addEventListener("change", (event) => {
+    if (["dictSourceFilter", "dictFlashSourceFilter"].includes(event.target.id)) {
+      state.sourceFilter = event.target.value;
+      state.flash.active = false;
+      renderScreen();
+      return;
+    }
+    if (["dictTopicFilter", "dictFlashTopicFilter"].includes(event.target.id)) {
+      state.topicFilter = event.target.value;
+      state.flash.active = false;
+      renderScreen();
+      return;
+    }
     if (event.target.id === "dictStartDate" && event.target.value) {
       writeStore(STORE.start, event.target.value);
       renderScreen();
@@ -835,9 +991,9 @@
       }
       if (data.id) {
         const index = state.words.findIndex((word) => word.id === data.id);
-        if (index >= 0) state.words[index] = { ...state.words[index], ...data, character, source: state.words[index].source || "Tự thêm" };
+        if (index >= 0) state.words[index] = { ...state.words[index], ...data, character, topic: topicLabels[data.topicId] || "Giao tiếp thường ngày", source: state.words[index].source || "Tự thêm" };
       } else {
-        state.words.unshift({ ...data, id: uid(), character, source: "Tự thêm", createdAt: new Date().toISOString(), reviewCount: 0, rememberCount: 0 });
+        state.words.unshift({ ...data, id: uid(), character, topic: topicLabels[data.topicId] || "Giao tiếp thường ngày", source: "Tự thêm", sources: ["Tự thêm"], lessonSources: [], scopes: ["personal"], createdAt: new Date().toISOString(), reviewCount: 0, rememberCount: 0 });
       }
       saveWords();
       state.addOpen = false;
