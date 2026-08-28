@@ -27,6 +27,7 @@
   const allWords = [...lessonWords, ...reviewWords];
   const coreCount = lessonWords.filter((word) => word.scope === "core").length;
   const extensionCount = lessonWords.filter((word) => word.scope === "extension").length;
+  const sessionCount = lessonWords.filter((word) => word.scope === "session4").length;
   const annotationLookup = new Map();
   const addAnnotation = (item) => {
     const key = cleanTerm(item?.text || item?.sentence || item?.answer);
@@ -40,6 +41,7 @@
   };
   allWords.forEach(addAnnotation);
   data.grammar.politeEnding.examples.forEach(addAnnotation);
+  data.grammar.politeEnding.detailRules.flatMap((rule) => rule.examples).forEach(addAnnotation);
   data.conjugationItems.forEach(addAnnotation);
   data.subjectPractice.forEach(addAnnotation);
   data.dialogue.lines.forEach(addAnnotation);
@@ -53,6 +55,7 @@
     "general-practice": "Luyện tập chung",
   };
   let vocabFilter = "all";
+  let grammarRuleIndex = 0;
   let conjugationIndex = 0;
   let conjugationRevealed = false;
   let practiceMode = "corrections";
@@ -75,7 +78,7 @@
   if (headerCopy) headerCopy.textContent = "Bảng chữ cái nền tảng · Bài 1–4: Giới thiệu, gia đình, đồ vật & miêu tả";
   const headerStats = app.querySelectorAll(".header-stats > div strong");
   if (headerStats[0]) headerStats[0].textContent = "4";
-  if (headerStats[2]) headerStats[2].textContent = String(54 + coreCount + extensionCount);
+  if (headerStats[2]) headerStats[2].textContent = String(54 + coreCount + extensionCount + sessionCount);
 
   const overviewCopy = app.querySelector("#ko-overview .band-copy");
   if (overviewCopy) overviewCopy.textContent = "Học bảng chữ cái trước; dùng Bài 1 để giới thiệu, Bài 2 để nói về gia đình, Bài 3 để hỏi đồ vật, rồi Bài 4 để miêu tả khu vườn bằng 이/가 và -아요/-어요.";
@@ -91,7 +94,7 @@
       <span class="path-number">BÀI 04 · ${data.source.pageCount} TRANG</span>
       <div class="path-glyph" aria-hidden="true">밭</div>
       <div>
-        <p class="eyebrow">${coreCount} từ PDF · ${extensionCount} từ bạn bổ sung · ${data.quiz.length + data.corrections.length} lượt luyện</p>
+        <p class="eyebrow">${coreCount} từ PDF · ${sessionCount} từ ghi chú Buổi 4 · ${data.quiz.length + data.corrections.length} lượt luyện</p>
         <h3>${escapeHtml(data.title)}</h3>
         <p>${escapeHtml(data.meaning)} · rau củ, miêu tả và đuôi -아요/-어요.</p>
         <button class="lesson-review-button" type="button" data-open-korean-tab="ko-lesson-4"><span>Học Bài 4</span><i data-lucide="arrow-right"></i></button>
@@ -119,8 +122,8 @@
         <div class="lesson-three-summary-card" aria-label="Tổng quan Bài 4">
           <div><strong>${data.source.pageCount}</strong><span>trang nguồn đã đối chiếu và chuyển thành thẻ học</span></div>
           <div><strong>${coreCount}</strong><span>từ cốt lõi trong PDF và bài luyện</span></div>
-          <div><strong>${extensionCount}</strong><span>từ bổ sung do bạn cung cấp, có gắn nhãn riêng</span></div>
-          <div><strong>${data.quiz.length + data.corrections.length}</strong><span>lượt sửa lỗi và trắc nghiệm</span></div>
+          <div><strong>${sessionCount}</strong><span>động từ từ DOCX “Ngữ pháp 아/어요”</span></div>
+          <div><strong>${data.grammar.politeEnding.detailRules.length}</strong><span>nhóm quy tắc và co âm có ví dụ</span></div>
         </div>
       </section>
 
@@ -150,10 +153,20 @@
       </section>
 
       <section class="lesson-three-section" id="ko4Grammar">
-        <div class="lesson-three-section-head"><div><span class="section-number">02</span><div><p class="eyebrow">Hai cấu trúc mới</p><h3>Ngữ pháp trọng tâm</h3></div></div><p>Chọn chủ thể bằng 이/가, rồi chia vị ngữ với đuôi lịch sự thân mật.</p></div>
+        <div class="lesson-three-section-head"><div><span class="section-number">02</span><div><p class="eyebrow">Ghi chú Buổi 4 · 아/어요</p><h3>Ngữ pháp trọng tâm</h3></div></div><p>Nhìn trật tự câu, chọn đuôi theo nguyên âm cuối rồi kiểm tra dạng co âm.</p></div>
+        <article class="lesson-four-order-card">
+          <div class="lesson-four-order-copy"><span>S + O + V</span><h4>${escapeHtml(data.grammar.sentenceOrder.title)}</h4><p>${escapeHtml(data.grammar.sentenceOrder.explanation)}</p></div>
+          <div class="lesson-four-order-rows">${data.grammar.sentenceOrder.rows.map((row) => `<div class="lesson-four-order-row"><div><small>${escapeHtml(row.language)}</small><strong>${escapeHtml(row.roles.join(" + "))}</strong></div><div class="lesson-four-order-track">${row.words.map((word, index) => `<span data-role="${escapeHtml(row.roles[index])}"><small>${escapeHtml(row.roles[index])}</small><b>${escapeHtml(word)}</b></span>`).join('<i data-lucide="arrow-right"></i>')}</div><p>${escapeHtml(row.sentence)}${row.romanization ? `<small>${escapeHtml(row.romanization)} · ${escapeHtml(row.reading)}</small>` : ""}</p>${row.romanization ? `<button type="button" data-speak-ko="${escapeHtml(row.sentence)}" aria-label="Nghe ${escapeHtml(row.sentence)}"><i data-lucide="volume-2"></i></button>` : ""}</div>`).join("")}</div>
+        </article>
         <div class="lesson-four-grammar-grid">
           <article class="lesson-four-grammar-card"><span>01 · ${escapeHtml(data.grammar.subjectParticles.title)}</span><h4>N + 이/가 + A/V-아요/어요</h4><p>${escapeHtml(data.grammar.subjectParticles.explanation)}</p><div class="lesson-four-subject-rules">${data.grammar.subjectParticles.rules.map((rule) => `<button type="button" data-speak-ko="${escapeHtml(rule.example)}"><small>${escapeHtml(rule.condition)} → <b>${escapeHtml(rule.particle)}</b></small><strong>${escapeHtml(rule.example)}</strong><em>${escapeHtml(rule.romanization)} · ${escapeHtml(rule.reading)}</em><span>${escapeHtml(rule.meaning)}</span><i data-lucide="volume-2"></i></button>`).join("")}</div></article>
           <article class="lesson-four-grammar-card"><span>02 · ${escapeHtml(data.grammar.politeEnding.title)}</span><h4>Thân từ + -아요/-어요</h4><p>${escapeHtml(data.grammar.politeEnding.explanation)}</p><div class="lesson-four-ending-rules">${data.grammar.politeEnding.rules.map((rule) => `<div><small>${escapeHtml(rule.condition)}</small><strong>${escapeHtml(rule.ending)} · ${escapeHtml(rule.reading)}</strong><span>${escapeHtml(rule.example)}</span></div>`).join("")}</div></article>
+        </div>
+        <div class="lesson-four-ending-flow" aria-label="Bốn bước chia đuôi -아요/-어요">${data.grammar.politeEnding.steps.map((step, index) => `<article><span>${escapeHtml(step.number)}</span><i data-lucide="${escapeHtml(step.icon)}"></i><div><strong>${escapeHtml(step.title)}</strong><small>${escapeHtml(step.detail)}</small></div>${index < data.grammar.politeEnding.steps.length - 1 ? '<b data-lucide="chevron-right"></b>' : ""}</article>`).join("")}</div>
+        <div class="lesson-four-rule-lab">
+          <div class="lesson-four-rule-lab-head"><div><p class="eyebrow">Chọn một nhóm để xem công thức</p><h4>9 nhóm chia đuôi và co âm</h4></div><span><i data-lucide="mouse-pointer-click"></i>Tương tác</span></div>
+          <div class="lesson-four-rule-tabs" id="ko4RuleTabs"></div>
+          <div class="lesson-four-rule-stage" id="ko4RuleStage"></div>
         </div>
       </section>
 
@@ -203,14 +216,22 @@
       const content = normalize([word.text, word.romanization, word.reading, word.meaning, word.note, word.groupTitle].join(" "));
       return inGroup && (!query || content.includes(query));
     });
-    const scopeLabel = { core: "Trong PDF", extension: "Bạn bổ sung", review: "Ôn Bài 1–3" };
+    const scopeLabel = { core: "Trong PDF", extension: "Bạn bổ sung", session4: "DOCX Buổi 4", review: "Ôn Bài 1–3" };
     app.querySelector("#ko4VocabularyGrid").innerHTML = filtered.length ? filtered.map((word) => `
       <article class="lesson-three-vocab-card lesson-four-word-${word.scope}">
         <button type="button" data-speak-ko="${escapeHtml(word.text)}" aria-label="Nghe ${escapeHtml(word.text)}"><i data-lucide="volume-2"></i></button>
         <small>${escapeHtml(word.groupTitle)} · ${scopeLabel[word.scope]}</small><strong>${escapeHtml(word.text)}</strong><p>${escapeHtml(word.romanization)} · ${escapeHtml(word.reading)}</p><b>${escapeHtml(word.meaning)}</b>${word.note ? `<em>${escapeHtml(word.note)}</em>` : ""}
       </article>
     `).join("") : '<div class="empty-state">Không tìm thấy từ phù hợp.</div>';
-    app.querySelector("#ko4VocabCount").textContent = `Đang hiện ${filtered.length}/${allWords.length} từ · ${coreCount} từ PDF · ${extensionCount} bổ sung · ${reviewWords.length} ôn tập`;
+    app.querySelector("#ko4VocabCount").textContent = `Đang hiện ${filtered.length}/${allWords.length} từ · ${coreCount} từ PDF · ${sessionCount} từ DOCX · ${extensionCount} bổ sung · ${reviewWords.length} ôn tập`;
+    refreshIcons();
+  }
+
+  function renderGrammarRule() {
+    const rules = data.grammar.politeEnding.detailRules;
+    const active = rules[grammarRuleIndex];
+    app.querySelector("#ko4RuleTabs").innerHTML = rules.map((rule, index) => `<button class="${index === grammarRuleIndex ? "active" : ""}" type="button" data-ko4-rule="${index}">${escapeHtml(rule.label)}</button>`).join("");
+    app.querySelector("#ko4RuleStage").innerHTML = `<div class="lesson-four-rule-summary"><small>Điều kiện</small><h5>${escapeHtml(active.condition)}</h5><strong>${escapeHtml(active.formula)}</strong><p>${escapeHtml(active.note)}</p></div><div class="lesson-four-rule-examples">${active.examples.map((item) => `<button type="button" data-speak-ko="${escapeHtml(item.result)}"><span><small>Dạng từ điển</small><b>${escapeHtml(item.base)}</b></span><i data-lucide="arrow-right"></i><span><small>Dạng lịch sự</small><strong>${escapeHtml(item.result)}</strong></span><em>${escapeHtml(item.romanization)} · ${escapeHtml(item.reading)}<br>${escapeHtml(item.meaning)}</em><i data-lucide="volume-2"></i></button>`).join("")}</div>`;
     refreshIcons();
   }
 
@@ -342,6 +363,7 @@
 
   renderVocabularyFilters();
   renderVocabulary();
+  renderGrammarRule();
   renderConjugation();
   renderOpposites();
   renderGarden();
@@ -356,6 +378,8 @@
   app.addEventListener("click", (event) => {
     const vocabButton = event.target.closest("[data-ko4-vocab-filter]");
     if (vocabButton) { vocabFilter = vocabButton.dataset.ko4VocabFilter; renderVocabularyFilters(); renderVocabulary(); }
+    const ruleButton = event.target.closest("[data-ko4-rule]");
+    if (ruleButton) { grammarRuleIndex = Number(ruleButton.dataset.ko4Rule); renderGrammarRule(); }
     const conjugationButton = event.target.closest("[data-ko4-conjugation]");
     if (conjugationButton) { conjugationIndex = Number(conjugationButton.dataset.ko4Conjugation); conjugationRevealed = false; renderConjugation(); }
     if (event.target.closest("[data-ko4-conjugation-reveal]")) { conjugationRevealed = !conjugationRevealed; renderConjugation(); }

@@ -5,7 +5,7 @@ window.KOREAN_LESSON_FOUR = {
   romanization: "Halmeoni teotbadi aju keoyo.",
   reading: "Hal-mơ-ni thơt-ppa-chi a-ju khơ-yô.",
   meaning: "Vườn rau của bà rất lớn.",
-  summary: "Miêu tả khu vườn bằng 이/가 và đuôi lịch sự -아요/-어요; học rau củ, tính từ và cảm xúc.",
+  summary: "Miêu tả khu vườn bằng 이/가 và học đầy đủ cách chia đuôi lịch sự thân mật -아요/-어요 từ ghi chú Buổi 4.",
   source: {
     title: "Bài 4.pdf",
     pageCount: 34,
@@ -16,7 +16,7 @@ window.KOREAN_LESSON_FOUR = {
   },
   lessonBoundary: {
     review: "Đại từ chỉ định 이거/그거/저거, dạng chủ ngữ 이게/그게/저게 và sở hữu N + 거예요 là phần ôn Bài 3.",
-    new: "Kiến thức mới của Bài 4 là tiểu từ chủ ngữ 이/가 và cách chia động từ, tính từ với -아요/-어요.",
+    new: "Kiến thức mới của Bài 4 là tiểu từ chủ ngữ 이/가, trật tự S + O + V và cách chia động từ, tính từ với -아요/-어요, gồm cả các dạng co âm thường gặp.",
   },
   reviewDemonstratives: [
     { position: "Gần người nói", object: { text: "이거 / 이게", romanization: "igeo / ige", reading: "i-gơ / i-gê" }, place: { text: "여기", romanization: "yeogi", reading: "yơ-gi" }, meaning: "cái này / ở đây" },
@@ -132,6 +132,44 @@ window.KOREAN_LESSON_FOUR = {
         { text: "없다", romanization: "eopda", reading: "ơp-tta", meaning: "không có", scope: "extension" },
       ],
     },
+    {
+      id: "session-four-verbs",
+      title: "Động từ trong ghi chú Buổi 4",
+      icon: "route",
+      words: [
+        { text: "앉다", romanization: "anjda", reading: "an-tta", meaning: "ngồi", scope: "session4" },
+        { text: "놀다", romanization: "nolda", reading: "nôl-da", meaning: "chơi", scope: "session4" },
+        { text: "먹다", romanization: "meokda", reading: "mơk-tta", meaning: "ăn", scope: "session4" },
+        { text: "읽다", romanization: "ikda", reading: "ik-tta", meaning: "đọc", scope: "session4" },
+        { text: "공부하다", romanization: "gongbuhada", reading: "công-bu-ha-da", meaning: "học", scope: "session4" },
+        { text: "운동하다", romanization: "undonghada", reading: "un-đông-ha-da", meaning: "tập thể dục", scope: "session4" },
+        { text: "수영하다", romanization: "suyeonghada", reading: "su-yơng-ha-da", meaning: "bơi", scope: "session4" },
+        { text: "화장하다", romanization: "hwajanghada", reading: "hoa-jang-ha-da", meaning: "trang điểm", scope: "session4" },
+        { text: "가다", romanization: "gada", reading: "ka-da", meaning: "đi", scope: "session4" },
+        { text: "자다", romanization: "jada", reading: "cha-da", meaning: "ngủ", scope: "session4" },
+        { text: "만나다", romanization: "mannada", reading: "man-na-da", meaning: "gặp", scope: "session4" },
+        { text: "오다", romanization: "oda", reading: "ô-da", meaning: "đến", scope: "session4" },
+        { text: "보다", romanization: "boda", reading: "bô-da", meaning: "xem, nhìn", scope: "session4" },
+        { text: "서다", romanization: "seoda", reading: "xơ-da", meaning: "đứng", scope: "session4" },
+        { text: "배우다", romanization: "baeuda", reading: "be-u-da", meaning: "học, học hỏi", scope: "session4" },
+        { text: "만들다", romanization: "mandeulda", reading: "man-dưl-da", meaning: "làm, tạo ra", scope: "session4" },
+        { text: "쓰다", romanization: "sseuda", reading: "ssư-da", meaning: "viết; dùng; đắng", scope: "session4" },
+        { text: "끄다", romanization: "kkeuda", reading: "kkư-da", meaning: "tắt", scope: "session4" },
+        { text: "마시다", romanization: "masida", reading: "ma-shi-da", meaning: "uống", scope: "session4" },
+        { text: "기다리다", romanization: "gidarida", reading: "ki-da-ri-da", meaning: "chờ, đợi", scope: "session4" },
+        { text: "그리다", romanization: "geurida", reading: "kư-ri-da", meaning: "vẽ", scope: "session4" },
+        { text: "보내다", romanization: "bonaeda", reading: "bô-ne-da", meaning: "gửi; trải qua", scope: "session4" },
+        { text: "지내다", romanization: "jinaeda", reading: "chi-ne-da", meaning: "sống; trải qua", scope: "session4" },
+        { text: "일어나다", romanization: "ireonada", reading: "i-rơ-na-da", meaning: "thức dậy", scope: "session4" },
+        { text: "일하다", romanization: "ilhada", reading: "il-ha-da", meaning: "làm việc", scope: "session4" },
+        { text: "쉬다", romanization: "swida", reading: "shuy-da", meaning: "nghỉ ngơi", scope: "session4" },
+        { text: "사다", romanization: "sada", reading: "sa-da", meaning: "mua", scope: "session4" },
+        { text: "팔다", romanization: "palda", reading: "phal-da", meaning: "bán", scope: "session4" },
+        { text: "듣다", romanization: "deutda", reading: "tưt-tta", meaning: "nghe", scope: "session4" },
+        { text: "말하다", romanization: "malhada", reading: "mal-ha-da", meaning: "nói", scope: "session4" },
+        { text: "가르치다", romanization: "gareuchida", reading: "ka-rư-chi-da", meaning: "dạy", scope: "session4" },
+      ],
+    },
   ],
   reviewGroups: [
     {
@@ -198,6 +236,14 @@ window.KOREAN_LESSON_FOUR = {
     { left: { text: "좋다", meaning: "tốt" }, right: { text: "나쁘다", meaning: "xấu, tệ" } },
   ],
   grammar: {
+    sentenceOrder: {
+      title: "Trật tự câu: động từ/tính từ đứng cuối",
+      explanation: "Dạng từ điển của động từ và tính từ kết thúc bằng 다. Khi đưa vào câu, vị ngữ vẫn đứng ở cuối; vì vậy câu tiếng Hàn thường theo trật tự S + O + V, khác tiếng Việt S + V + O.",
+      rows: [
+        { language: "Tiếng Việt", words: ["Tôi", "ăn", "cơm"], roles: ["S", "V", "O"], sentence: "Tôi ăn cơm." },
+        { language: "Tiếng Hàn", words: ["저는", "밥을", "먹어요"], roles: ["S", "O", "V"], sentence: "저는 밥을 먹어요.", romanization: "Jeoneun babeul meogeoyo.", reading: "Chơ-nưn ba-bưl mơ-gơ-yô.", meaning: "Tôi ăn cơm." },
+      ],
+    },
     subjectParticles: {
       title: "Tiểu từ chủ ngữ 이/가",
       explanation: "이/가 đứng sau danh từ để đánh dấu chủ thể mang trạng thái hoặc thực hiện hành động. Bài 4 dùng cấu trúc N이/가 + tính từ/động từ đã chia.",
@@ -208,11 +254,90 @@ window.KOREAN_LESSON_FOUR = {
     },
     politeEnding: {
       title: "Đuôi lịch sự thân mật -아요/-어요",
-      explanation: "Bỏ 다 để lấy thân từ, sau đó chọn -아요 hay -어요 theo nguyên âm cuối. Đây là đuôi câu lịch sự thường dùng trong giao tiếp hằng ngày.",
+      explanation: "-아요/-어요 là đuôi câu lịch sự, thân mật và không làm đổi nghĩa gốc. Bỏ 다 để lấy thân từ, nhìn nguyên âm ngay trước 다, chọn đuôi rồi co âm nếu cần.",
       rules: [
         { condition: "Nguyên âm cuối ㅏ hoặc ㅗ", ending: "-아요", reading: "a-yô", example: "좋다 → 좋아요" },
         { condition: "Các nguyên âm còn lại", ending: "-어요", reading: "ơ-yô", example: "먹다 → 먹어요" },
         { condition: "Thân từ kết thúc bằng 하다", ending: "-해요", reading: "he-yô", example: "조용하다 → 조용해요" },
+      ],
+      steps: [
+        { number: "01", title: "Bỏ 다", detail: "먹다 → 먹", icon: "scissors" },
+        { number: "02", title: "Nhìn nguyên âm cuối", detail: "ㅏ/ㅗ hay nguyên âm khác?", icon: "scan-search" },
+        { number: "03", title: "Chọn đuôi", detail: "-아요 / -어요 / -해요", icon: "git-branch" },
+        { number: "04", title: "Co âm nếu cần", detail: "오 + 아요 → 와요", icon: "merge" },
+      ],
+      detailRules: [
+        {
+          id: "a-o", label: "ㅏ/ㅗ + 아요", condition: "Nguyên âm cuối là ㅏ hoặc ㅗ", formula: "thân từ + 아요", note: "Nếu âm tiết cuối có patchim, giữ nguyên thân từ rồi thêm 아요.",
+          examples: [
+            { base: "앉다", result: "앉아요", romanization: "anjayo", reading: "an-ja-yô", meaning: "ngồi" },
+            { base: "많다", result: "많아요", romanization: "manayo", reading: "ma-na-yô", meaning: "nhiều" },
+            { base: "놀다", result: "놀아요", romanization: "norayo", reading: "nô-ra-yô", meaning: "chơi" },
+          ],
+        },
+        {
+          id: "other", label: "Nguyên âm khác + 어요", condition: "Nguyên âm cuối không phải ㅏ/ㅗ", formula: "thân từ + 어요", note: "Đây là quy tắc mặc định cho các nguyên âm còn lại.",
+          examples: [
+            { base: "먹다", result: "먹어요", romanization: "meogeoyo", reading: "mơ-gơ-yô", meaning: "ăn" },
+            { base: "읽다", result: "읽어요", romanization: "ilgeoyo", reading: "il-gơ-yô", meaning: "đọc" },
+          ],
+        },
+        {
+          id: "hada", label: "하다 → 해요", condition: "Từ có dạng ...하다", formula: "하다 → 해요", note: "Không dùng 하아요; 하 + 여요 đã co thành 해요 trong cách nói hiện đại.",
+          examples: [
+            { base: "공부하다", result: "공부해요", romanization: "gongbuhaeyo", reading: "công-bu-he-yô", meaning: "học" },
+            { base: "운동하다", result: "운동해요", romanization: "undonghaeyo", reading: "un-đông-he-yô", meaning: "tập thể dục" },
+            { base: "수영하다", result: "수영해요", romanization: "suyeonghaeyo", reading: "su-yơng-he-yô", meaning: "bơi" },
+          ],
+        },
+        {
+          id: "a-contract", label: "ㅏ + 아요 → ㅏ요", condition: "Thân từ không patchim, kết thúc bằng ㅏ", formula: "ㅏ + 아요 → ㅏ요", note: "Hai âm ㅏ trùng nhau nên chỉ giữ một âm ㅏ.",
+          examples: [
+            { base: "가다", result: "가요", romanization: "gayo", reading: "ka-yô", meaning: "đi" },
+            { base: "자다", result: "자요", romanization: "jayo", reading: "cha-yô", meaning: "ngủ" },
+            { base: "만나다", result: "만나요", romanization: "mannayo", reading: "man-na-yô", meaning: "gặp" },
+          ],
+        },
+        {
+          id: "o-contract", label: "ㅗ + 아요 → ㅘ요", condition: "Thân từ không patchim, kết thúc bằng ㅗ", formula: "ㅗ + 아요 → ㅘ요", note: "ㅗ và ㅏ kết hợp thành nguyên âm ㅘ.",
+          examples: [
+            { base: "오다", result: "와요", romanization: "wayo", reading: "oa-yô", meaning: "đến" },
+            { base: "보다", result: "봐요", romanization: "bwayo", reading: "boa-yô", meaning: "xem, nhìn" },
+          ],
+        },
+        {
+          id: "eo-u-contract", label: "ㅓ/ㅜ co âm", condition: "Thân từ kết thúc bằng ㅓ hoặc ㅜ", formula: "ㅓ + 어요 → ㅓ요 · ㅜ + 어요 → ㅝ요", note: "ㅓ trùng nhau được rút gọn; ㅜ kết hợp với ㅓ thành ㅝ.",
+          examples: [
+            { base: "서다", result: "서요", romanization: "seoyo", reading: "xơ-yô", meaning: "đứng" },
+            { base: "배우다", result: "배워요", romanization: "baewoyo", reading: "be-uô-yô", meaning: "học, học hỏi" },
+          ],
+        },
+        {
+          id: "eu", label: "ㅡ bất quy tắc", condition: "Thân từ kết thúc bằng ㅡ và không có patchim", formula: "bỏ ㅡ rồi chọn 아요/어요", note: "Với từ từ hai âm tiết trở lên, nhìn nguyên âm của âm tiết liền trước. 만들다 có patchim ㄹ nên không bỏ ㅡ: 만들어요.",
+          examples: [
+            { base: "크다", result: "커요", romanization: "keoyo", reading: "khơ-yô", meaning: "to" },
+            { base: "쓰다", result: "써요", romanization: "sseoyo", reading: "ssơ-yô", meaning: "viết; dùng; đắng" },
+            { base: "예쁘다", result: "예뻐요", romanization: "yeppeoyo", reading: "yê-ppơ-yô", meaning: "đẹp" },
+            { base: "나쁘다", result: "나빠요", romanization: "nappayo", reading: "na-ppa-yô", meaning: "xấu, tệ" },
+            { base: "아프다", result: "아파요", romanization: "apayo", reading: "a-pha-yô", meaning: "đau, ốm" },
+            { base: "만들다", result: "만들어요", romanization: "mandeureoyo", reading: "man-dư-rơ-yô", meaning: "làm, tạo ra" },
+          ],
+        },
+        {
+          id: "i-contract", label: "ㅣ + 어요 → ㅕ요", condition: "Thân từ không patchim, kết thúc bằng ㅣ", formula: "ㅣ + 어요 → ㅕ요", note: "ㅣ và ㅓ kết hợp thành nguyên âm ㅕ.",
+          examples: [
+            { base: "마시다", result: "마셔요", romanization: "masyeoyo", reading: "ma-shyơ-yô", meaning: "uống" },
+            { base: "기다리다", result: "기다려요", romanization: "gidaryeoyo", reading: "ki-da-ryơ-yô", meaning: "chờ, đợi" },
+            { base: "그리다", result: "그려요", romanization: "geuryeoyo", reading: "kư-ryơ-yô", meaning: "vẽ" },
+          ],
+        },
+        {
+          id: "ae-e", label: "ㅐ/ㅔ + 요", condition: "Thân từ kết thúc bằng ㅐ hoặc ㅔ", formula: "chỉ thêm 요", note: "Dạng co âm đã trùng với âm của đuôi nên bề mặt chỉ cần thêm 요.",
+          examples: [
+            { base: "보내다", result: "보내요", romanization: "bonaeyo", reading: "bô-ne-yô", meaning: "gửi; trải qua" },
+            { base: "지내다", result: "지내요", romanization: "jinaeyo", reading: "chi-ne-yô", meaning: "sống; trải qua" },
+          ],
+        },
       ],
       examples: [
         { text: "좋아요", romanization: "joayo", reading: "chô-a-yô", meaning: "tốt, thích" },
@@ -235,6 +360,36 @@ window.KOREAN_LESSON_FOUR = {
     { base: "길다", baseMeaning: "dài", answer: "길어요", romanization: "gireoyo", reading: "ki-rơ-yô", rule: "Nguyên âm ㅣ → -어요." },
     { base: "아프다", baseMeaning: "đau", answer: "아파요", romanization: "apayo", reading: "a-pha-yô", rule: "ㅡ rơi; nguyên âm trước là ㅏ → -아요." },
     { base: "나쁘다", baseMeaning: "xấu, tệ", answer: "나빠요", romanization: "nappayo", reading: "na-ppa-yô", rule: "ㅡ rơi; nguyên âm trước là ㅏ → -아요." },
+    { base: "앉다", baseMeaning: "ngồi", answer: "앉아요", romanization: "anjayo", reading: "an-ja-yô", rule: "Nguyên âm ㅏ → thêm -아요." },
+    { base: "놀다", baseMeaning: "chơi", answer: "놀아요", romanization: "norayo", reading: "nô-ra-yô", rule: "Nguyên âm ㅗ → thêm -아요." },
+    { base: "먹다", baseMeaning: "ăn", answer: "먹어요", romanization: "meogeoyo", reading: "mơ-gơ-yô", rule: "Nguyên âm ㅓ → thêm -어요." },
+    { base: "읽다", baseMeaning: "đọc", answer: "읽어요", romanization: "ilgeoyo", reading: "il-gơ-yô", rule: "Nguyên âm ㅣ → thêm -어요; khi nối âm đọc gần [일거요]." },
+    { base: "공부하다", baseMeaning: "học", answer: "공부해요", romanization: "gongbuhaeyo", reading: "công-bu-he-yô", rule: "하다 → 해요." },
+    { base: "운동하다", baseMeaning: "tập thể dục", answer: "운동해요", romanization: "undonghaeyo", reading: "un-đông-he-yô", rule: "하다 → 해요." },
+    { base: "수영하다", baseMeaning: "bơi", answer: "수영해요", romanization: "suyeonghaeyo", reading: "su-yơng-he-yô", rule: "하다 → 해요." },
+    { base: "가다", baseMeaning: "đi", answer: "가요", romanization: "gayo", reading: "ka-yô", rule: "ㅏ + 아요 co thành ㅏ요." },
+    { base: "자다", baseMeaning: "ngủ", answer: "자요", romanization: "jayo", reading: "cha-yô", rule: "ㅏ + 아요 co thành ㅏ요." },
+    { base: "만나다", baseMeaning: "gặp", answer: "만나요", romanization: "mannayo", reading: "man-na-yô", rule: "ㅏ + 아요 co thành ㅏ요." },
+    { base: "오다", baseMeaning: "đến", answer: "와요", romanization: "wayo", reading: "oa-yô", rule: "ㅗ + 아요 → ㅘ요." },
+    { base: "보다", baseMeaning: "xem, nhìn", answer: "봐요", romanization: "bwayo", reading: "boa-yô", rule: "ㅗ + 아요 → ㅘ요." },
+    { base: "서다", baseMeaning: "đứng", answer: "서요", romanization: "seoyo", reading: "xơ-yô", rule: "ㅓ + 어요 rút gọn thành ㅓ요." },
+    { base: "배우다", baseMeaning: "học, học hỏi", answer: "배워요", romanization: "baewoyo", reading: "be-uô-yô", rule: "ㅜ + 어요 → ㅝ요." },
+    { base: "만들다", baseMeaning: "làm, tạo ra", answer: "만들어요", romanization: "mandeureoyo", reading: "man-dư-rơ-yô", rule: "들 có patchim ㄹ nên không bỏ ㅡ; thêm -어요." },
+    { base: "쓰다", baseMeaning: "viết; dùng; đắng", answer: "써요", romanization: "sseoyo", reading: "ssơ-yô", rule: "Bỏ ㅡ rồi thêm -어요 → 써요." },
+    { base: "끄다", baseMeaning: "tắt", answer: "꺼요", romanization: "kkeoyo", reading: "kkơ-yô", rule: "Bỏ ㅡ rồi thêm -어요 → 꺼요." },
+    { base: "마시다", baseMeaning: "uống", answer: "마셔요", romanization: "masyeoyo", reading: "ma-shyơ-yô", rule: "ㅣ + 어요 → ㅕ요." },
+    { base: "기다리다", baseMeaning: "chờ, đợi", answer: "기다려요", romanization: "gidaryeoyo", reading: "ki-da-ryơ-yô", rule: "ㅣ + 어요 → ㅕ요." },
+    { base: "그리다", baseMeaning: "vẽ", answer: "그려요", romanization: "geuryeoyo", reading: "kư-ryơ-yô", rule: "ㅣ + 어요 → ㅕ요." },
+    { base: "보내다", baseMeaning: "gửi; trải qua", answer: "보내요", romanization: "bonaeyo", reading: "bô-ne-yô", rule: "ㅐ + 어요 co lại; bề mặt chỉ thêm 요." },
+    { base: "지내다", baseMeaning: "sống; trải qua", answer: "지내요", romanization: "jinaeyo", reading: "chi-ne-yô", rule: "ㅐ + 어요 co lại; bề mặt chỉ thêm 요." },
+    { base: "일어나다", baseMeaning: "thức dậy", answer: "일어나요", romanization: "ireonayo", reading: "i-rơ-na-yô", rule: "ㅏ + 아요 co thành ㅏ요." },
+    { base: "일하다", baseMeaning: "làm việc", answer: "일해요", romanization: "ilhaeyo", reading: "il-he-yô", rule: "하다 → 해요." },
+    { base: "쉬다", baseMeaning: "nghỉ", answer: "쉬어요", romanization: "swieoyo", reading: "shuy-ơ-yô", rule: "ㅟ + 어요; thường đọc liền tự nhiên." },
+    { base: "사다", baseMeaning: "mua", answer: "사요", romanization: "sayo", reading: "sa-yô", rule: "ㅏ + 아요 co thành ㅏ요." },
+    { base: "팔다", baseMeaning: "bán", answer: "팔아요", romanization: "parayo", reading: "pha-ra-yô", rule: "Nguyên âm ㅏ và có patchim ㄹ → thêm -아요." },
+    { base: "듣다", baseMeaning: "nghe", answer: "들어요", romanization: "deureoyo", reading: "tư-rơ-yô", rule: "Bất quy tắc ㄷ: 듣- → 들- trước nguyên âm, rồi thêm -어요." },
+    { base: "말하다", baseMeaning: "nói", answer: "말해요", romanization: "malhaeyo", reading: "mal-he-yô", rule: "하다 → 해요." },
+    { base: "가르치다", baseMeaning: "dạy", answer: "가르쳐요", romanization: "gareuchyeoyo", reading: "ka-rư-chyơ-yô", rule: "ㅣ + 어요 → ㅕ요." },
   ],
   subjectPractice: [
     { noun: "꽃", particle: "이", predicate: "예뻐요", sentence: "꽃이 예뻐요.", romanization: "Kkochi yeppeoyo.", reading: "Kko-chi yê-ppơ-yô.", meaning: "Hoa đẹp." },
@@ -306,6 +461,10 @@ window.KOREAN_LESSON_FOUR = {
     { prompt: "Chọn câu đúng: “Vườn hoa rộng.”", options: ["꽃밭이 넓어요.", "꽃밭가 넓어요.", "꽃밭이 넓아요."], answer: "꽃밭이 넓어요.", explanation: "꽃밭 có patchim nên dùng 이; 넓다 → 넓어요." },
     { prompt: "하다 khi chia lịch sự thân mật đổi thành gì?", options: ["해요", "하아요", "하여요만"], answer: "해요", explanation: "하다 → 해요." },
     { prompt: "Câu nào thuộc kiến thức mới của Bài 4?", options: ["N이/가 + A/V-아요/어요", "N + 거예요", "이거/그거/저거"], answer: "N이/가 + A/V-아요/어요", explanation: "Hai lựa chọn còn lại là phần ôn Bài 3." },
+    { prompt: "오다 chia với -아요/-어요 thành dạng nào?", options: ["와요", "오아요", "어요"], answer: "와요", explanation: "ㅗ + 아요 co thành ㅘ요: 오다 → 와요." },
+    { prompt: "마시다 chia đúng là gì?", options: ["마셔요", "마시아요", "마사요"], answer: "마셔요", explanation: "ㅣ + 어요 co thành ㅕ요: 마시다 → 마셔요." },
+    { prompt: "Câu tiếng Hàn cơ bản thường theo trật tự nào?", options: ["S + O + V", "S + V + O", "V + S + O"], answer: "S + O + V", explanation: "Động từ/tính từ thường đứng cuối câu tiếng Hàn." },
+    { prompt: "Từ nào không bỏ ㅡ khi chia trong nhóm này?", options: ["만들다 → 만들어요", "크다 → 커요", "쓰다 → 써요"], answer: "만들다 → 만들어요", explanation: "Âm tiết 들 có patchim ㄹ, nên không áp dụng co âm ㅡ như 크다 hoặc 쓰다." },
   ],
   slideAnnotations: [
     { text: "할머니 텃밭이 아주 커요.", romanization: "Halmeoni teotbadi aju keoyo.", reading: "Hal-mơ-ni thơt-ppa-chi a-ju khơ-yô.", meaning: "Vườn rau của bà rất lớn." },
