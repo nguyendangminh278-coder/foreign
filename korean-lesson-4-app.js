@@ -322,18 +322,9 @@
     try { localStorage.setItem("hanReview.korean.lesson4.completed", String(value)); } catch {}
   }
   function updateProgress() {
-    let baseCount = 0;
-    try {
-      const saved = JSON.parse(localStorage.getItem("hanReview.korean.completed") || "[]");
-      const validBaseIds = new Set(["alphabet", "compose", "batchim", "practice", "lesson-1", "lesson-2"]);
-      baseCount = new Set((Array.isArray(saved) ? saved : []).filter((id) => validBaseIds.has(id))).size;
-    } catch {}
-    let lessonThreeDone = false;
-    try { lessonThreeDone = localStorage.getItem("hanReview.korean.lesson3.completed") === "true"; } catch {}
     const lessonFourDone = readLessonFourCompletion();
-    const stat = app.querySelector("#koStatCompleted");
     const button = app.querySelector("[data-ko4-complete]");
-    if (stat) stat.textContent = `${baseCount + (lessonThreeDone ? 1 : 0) + (lessonFourDone ? 1 : 0)}/8`;
+    window.updateKoreanProgress();
     if (button) {
       button.classList.toggle("completed", lessonFourDone);
       button.querySelector("span").textContent = lessonFourDone ? "Đã học" : "Đánh dấu đã học";

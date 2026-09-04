@@ -1367,7 +1367,7 @@
     koreanApp.querySelectorAll("[data-module-card]").forEach((card) => {
       card.classList.toggle("completed", completedModules.has(card.dataset.moduleCard));
     });
-    koreanApp.querySelector("#koStatCompleted").textContent = `${completedModules.size}/6`;
+    window.updateKoreanProgress(completedModules.size);
     try {
       localStorage.setItem("hanReview.korean.completed", JSON.stringify([...completedModules]));
     } catch {
