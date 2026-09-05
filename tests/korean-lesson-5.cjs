@@ -9,6 +9,13 @@ const root = path.resolve(__dirname, "..");
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, "data/korean-lesson-5.js"), "utf8"), context);
 const data = context.window.KOREAN_LESSON_FIVE;
+const supplement = data.supplementVocabulary.flatMap((group) => group.words);
+assert.equal(supplement.length, 33);
+assert.equal(new Set([...data.actions, ...data.context, ...supplement].map((w) => w.id)).size, 64);
+for (const w of supplement) for (const field of ["text", "romanization", "reading", "meaning", "polite", "politeRomanization", "politeReading", "exampleMeaning"]) assert.ok(w[field], `${w.id}: ${field}`);
+assert.ok(!supplement.some((w) => ["먹다", "마시다", "좋아하다", "산책하다"].includes(w.text)));
+assert.equal(supplement.find((w) => w.text === "걷다").polite, "걸어요");
+assert.equal(supplement.find((w) => w.text === "받다").polite, "받아요");
 assert.equal(data.actions.length, 20);
 assert.equal(data.context.length, 11);
 assert.equal(data.slides.length, 35);
@@ -37,7 +44,7 @@ fs.mkdirSync(path.join(root, "tmp"), { recursive: true });
     await page.locator('[data-enter-language="ko"]').click();
     await page.locator('[data-korean-tab="ko-lesson-5"]').click();
     await page.locator("#ko-lesson-5.active").waitFor();
-    assert.equal(await page.locator("#ko5-vocab-grid .ko5-word").count(), 31);
+    assert.equal(await page.locator("#ko5-vocab-grid .ko5-word").count(), 64);
     assert.equal(await page.locator("#ko5-slide-grid .ko5-slide").count(), 35);
     assert.equal(await page.locator("#koStatCompleted").textContent(), "0/9");
     await page.screenshot({ path: path.join(root, "tmp/ko5-desktop.png") });
@@ -49,6 +56,32 @@ fs.mkdirSync(path.join(root, "tmp"), { recursive: true });
     await page.locator('[data-ko5-filter="context"]').click();
     assert.equal(await page.locator("#ko5-vocab-grid .ko5-word").count(), 11);
     await page.locator('[data-ko5-filter="all"]').click();
+    await page.locator('[data-ko5-filter="supplement"]').click();
+    assert.equal(await page.locator("#ko5-vocab-grid .ko5-word").count(), 33);
+    for (const group of data.supplementVocabulary) {
+      await page.locator(`[data-ko5-filter="${group.id}"]`).click();
+      assert.equal(await page.locator("#ko5-vocab-grid .ko5-word").count(), group.words.length);
+    }
+    await page.locator('[data-ko5-filter="supplement"]').click();
+    await page.locator("#ko5-search").fill("걸어요");
+    assert.equal(await page.locator("#ko5-vocab-grid h4").innerText(), "걷다");
+    assert.match(await page.locator("#ko5-vocab-grid").innerText(), /georeoyo/);
+    await page.locator("#ko5-search").fill("");
+    await page.locator('[data-ko5-filter="new-place-time"]').click();
+    await page.locator("#ko5-vocab-grid").screenshot({ path: path.join(root, "tmp/ko5-supplement.png") });
+    await page.locator('[data-ko5-filter="all"]').click();
+    await page.locator('[data-ko5-order-view="time"]').click();
+    assert.equal(await page.locator(".ko5-order-parts strong").first().innerText(), "아침에");
+    assert.equal(await page.locator('[data-ko5-order-view="time"]').getAttribute("aria-pressed"), "true");
+    assert.match(await page.locator("#ko5-order-map-content").innerText(), /아침에 식당에서 저는 빵을 먹어요/);
+    await page.locator('[data-ko5-order-view="subject"]').click();
+    assert.equal(await page.locator(".ko5-order-parts strong").first().innerText(), "저는");
+    await page.locator(".ko5-order-map").screenshot({ path: path.join(root, "tmp/ko5-order-map.png") });
+    await page.locator(".ko5-location-lab").screenshot({ path: path.join(root, "tmp/ko5-locations.png") });
+    await page.locator(".ko5-review-notes summary").click();
+    await page.locator('.ko5-review-notes [data-open-korean-tab="ko-lesson-4"]').first().click();
+    await page.locator("#ko-lesson-4.active").waitFor();
+    await page.locator('[data-korean-tab="ko-lesson-5"]').click();
     await page.locator("#ko5-place").selectOption("kitchen");
     assert.ok(await page.locator('[data-ko5-action="cook"]').count());
     assert.equal(await page.locator('[data-ko5-action="bike"]').count(), 0);
@@ -126,11 +159,12 @@ fs.mkdirSync(path.join(root, "tmp"), { recursive: true });
         assert.ok(overflow <= 2, `Horizontal overflow ${overflow}px, ${width}px / ${section}`);
       }
       if (width === 390) {
+        await page.locator(".ko5-order-map").screenshot({ path: path.join(root, "tmp/ko5-order-mobile.png") });
         await page.locator('.ko5-jumpbar [data-ko5-jump="builder"]').click();
         await page.screenshot({ path: path.join(root, "tmp/ko5-mobile.png") });
       }
     }
     assert.deepEqual(errors, []);
-    console.log("PASS: 31 vocabulary entries, 35 images, search/filters, builder/TTS dispatch, reading 6/6, particles 6/6, all 8 reorder tasks, writing drafts, modal, persisted progress across lessons, and 390/768/1440px layouts.");
+    console.log("PASS: 31 PDF + 33 supplemental entries, topic filters, annotated forms, sentence-order switch, review links, 35 images, builder/TTS, reading 6/6, particles 6/6, 8 reorder tasks, drafts, modal, persisted progress, and 390/768/1440px layouts.");
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

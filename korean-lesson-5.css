@@ -130,6 +130,46 @@
 #koreanApp .ko5-slide-words small, #koreanApp .ko5-slide-words span { color: #65818e; font-size: .73rem; overflow-wrap: anywhere; }
 #koreanApp .ko5-path { background: #fff; border-color: #dbeaf1; }
 #koreanApp .ko5-path .path-glyph { background: #eff7fb; }
+#koreanApp .ko5-toolbar { align-items: stretch; }
+#koreanApp .ko5-toolbar > .lesson-search-field { flex-basis: 100%; }
+#koreanApp .ko5-word-note { padding: 10px 12px; border-radius: 10px; background: #fbf8f1; font-size: .76rem; color: #6e786e; }
+#koreanApp .ko5-boundary-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+#koreanApp .ko5-boundary-grid article { padding: 18px; background: #faf8fd; border-radius: 16px; }
+#koreanApp .ko5-boundary-grid h4 { margin-top: 9px; }
+#koreanApp .ko5-boundary-grid p { font-size: .85rem; }
+#koreanApp .ko5-boundary-grid article > div { display: flex; flex-wrap: wrap; gap: 8px; }
+#koreanApp .ko5-review-notes { margin: 0 0 20px; }
+#koreanApp .ko5-variant-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+#koreanApp .ko5-variant-grid article { padding: 15px; border-radius: 14px; background: #f5f9fc; }
+#koreanApp .ko5-variant-grid article > div { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+#koreanApp .ko5-variant-grid svg { width: 16px; height: 16px; color: #8ba0ae; }
+#koreanApp .ko5-variant-grid article > span { display: block; margin-top: 8px; font-size: .78rem; color: #6e8795; overflow-wrap: anywhere; }
+#koreanApp .ko5-variant-grid p { margin: 5px 0 0; font-size: .85rem; }
+#koreanApp .ko5-location-lab, #koreanApp .ko5-order-map { margin-top: 28px; }
+#koreanApp .ko5-location-lab > .ko5-practice-head > p { font-size: .86rem; color: #698292; }
+#koreanApp .ko5-location-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+#koreanApp .ko5-location-grid > article { min-width: 0; padding: 18px; border: 1px solid #dbe9f5; border-radius: 18px; background: #fbfdff; }
+#koreanApp .ko5-location-grid > article:nth-child(2) { background: #fcfbff; border-color: #e8e1f3; }
+#koreanApp .ko5-location-grid > article:nth-child(3) { background: #fbfefa; border-color: #e2ecdb; }
+#koreanApp .ko5-location-grid header { display: flex; align-items: baseline; gap: 12px; padding-bottom: 12px; }
+#koreanApp .ko5-location-grid header b { font-size: 2rem; color: #5d859c; }
+#koreanApp .ko5-location-grid header span { color: #7b90a1; }
+#koreanApp .ko5-location-grid h5 { font-size: 1.05rem; }
+#koreanApp .ko5-location-grid p { font-size: .86rem; }
+#koreanApp .ko5-location-grid .ko5-line { padding-inline: 0; }
+#koreanApp .ko5-order-map { padding: 22px; border: 1px solid #e4e6ef; border-radius: 20px; }
+#koreanApp .ko5-order-map h4 { margin-top: 14px; font-size: 1.3rem; }
+#koreanApp .ko5-order-map > p { font-size: .87rem; }
+#koreanApp .ko5-order-parts { display: grid; grid-template-columns: minmax(0,1fr) 15px minmax(0,1fr) 15px minmax(0,1fr) 15px minmax(0,1fr) 15px minmax(0,1fr); gap: 7px; align-items: center; margin: 20px 0 10px; }
+#koreanApp .ko5-order-parts > div { display: grid; min-width: 0; gap: 10px; align-content: start; align-self: stretch; border-radius: 14px; padding: 15px 10px; background: #eef6fc; }
+#koreanApp .ko5-order-parts > div:nth-of-type(2) { background: #fff8e8; }
+#koreanApp .ko5-order-parts > div:nth-of-type(3) { background: #eef8f3; }
+#koreanApp .ko5-order-parts > div:nth-of-type(4) { background: #fcf1eb; }
+#koreanApp .ko5-order-parts > div:nth-of-type(5) { background: #f5f0fb; }
+#koreanApp .ko5-order-parts small { font-size: .73rem; line-height: 1.6; }
+#koreanApp .ko5-order-parts strong { font-size: 1.22rem; }
+#koreanApp .ko5-order-parts span { font-size: .74rem; color: #6c8597; overflow-wrap: anywhere; }
+#koreanApp .ko5-order-parts svg { width: 15px; height: 15px; color: #9faebb; }
 @media (max-width: 1000px) {
   /* Let the tall summary header scroll away; keep only the two useful navigation rows. */
   #koreanApp:has(#ko-lesson-5.active) .app-header { position: static; }
@@ -140,6 +180,8 @@
   #koreanApp .ko5 .ko5-jumpbar { display: flex; top: 64px; overflow-x: auto; justify-content: flex-start; }
   #koreanApp .ko5 .ko5-jumpbar button { flex: 0 0 auto; width: auto; height: auto; min-height: 42px; padding: 10px 14px; font-size: .85rem; border-radius: 12px; }
   #koreanApp .ko5 .ko5-jumpbar button span { font-size: .67rem; }
+  #koreanApp .ko5-location-grid { grid-template-columns: 1fr; }
+  #koreanApp .ko5-location-grid .ko5-line { padding-inline: 10px; }
 }
 @media (max-width: 680px) {
   #koreanApp .ko5-hero { grid-template-columns: 1fr; padding: 22px; }
@@ -156,4 +198,9 @@
   #koreanApp .ko5-dialogue .ko5-number { width: 26px; height: 26px; font-size: .66rem; }
   #koreanApp .ko5-sentence-stage h4 { font-size: 1.4rem; }
   #koreanApp .ko5-grammar-card { padding: 16px; }
+  #koreanApp .ko5-boundary-grid, #koreanApp .ko5-variant-grid { grid-template-columns: 1fr; }
+  #koreanApp .ko5-order-map { padding: 16px; }
+  #koreanApp .ko5-order-parts { display: flex; flex-wrap: wrap; gap: 8px; }
+  #koreanApp .ko5-order-parts > div { flex: 1 1 115px; }
+  #koreanApp .ko5-order-parts svg { display: none; }
 }

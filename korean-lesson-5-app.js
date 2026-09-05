@@ -6,7 +6,8 @@
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const normalize = (s) => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const icons = () => window.lucide?.createIcons?.();
-  const words = [...data.actions, ...data.context];
+  const supplementWords = data.supplementVocabulary.flatMap((group) => group.words);
+  const words = [...data.actions, ...data.context, ...supplementWords];
   const wordById = new Map(words.map((w) => [w.id, w]));
   const places = data.context.filter((p) => data.actions.some((a) => a.places.includes(p.id)));
   const previousWords = new Set([
@@ -30,24 +31,27 @@
   const overview = app.querySelector("#ko-overview .band-copy");
   if (overview) overview.textContent = "Bắt đầu từ bảng chữ cái. Học giới thiệu ở Bài 1, gia đình ở Bài 2, đồ vật ở Bài 3, miêu tả ở Bài 4, rồi nói mình làm gì và ở đâu trong Bài 5.";
   app.querySelector("#ko-overview .hero-actions")?.insertAdjacentHTML("beforeend", '<button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-5"><i data-lucide="bike"></i><span>Học Bài 5</span></button>');
-  app.querySelector("#ko-overview .korean-path-grid")?.insertAdjacentHTML("beforeend", `<article class="korean-path-card ko5-path"><span class="path-number">BÀI 05 · 35 TRANG</span><div class="path-glyph" aria-hidden="true">🚲</div><div><p class="eyebrow">20 cụm hoạt động · 11 từ bổ trợ</p><h3 lang="ko">${esc(data.title)}</h3><p>${esc(data.romanization)}</p><p>${esc(data.meaning)}</p><button class="lesson-review-button" type="button" data-open-korean-tab="ko-lesson-5">Học Bài 5 <i data-lucide="arrow-right"></i></button></div></article>`);
+  app.querySelector("#ko-overview .korean-path-grid")?.insertAdjacentHTML("beforeend", `<article class="korean-path-card ko5-path"><span class="path-number">BÀI 05 · 35 TRANG</span><div class="path-glyph" aria-hidden="true">🚲</div><div><p class="eyebrow">31 mục từ PDF · ${supplementWords.length} mục mới bổ sung</p><h3 lang="ko">${esc(data.title)}</h3><p>${esc(data.romanization)}</p><p>${esc(data.meaning)}</p><button class="lesson-review-button" type="button" data-open-korean-tab="ko-lesson-5">Học Bài 5 <i data-lucide="arrow-right"></i></button></div></article>`);
 
   app.querySelector("#ko-lesson-vocab").insertAdjacentHTML("beforebegin", `
     <section class="course-view lesson-three-view ko5" id="ko-lesson-5">
       <div class="section-head"><div><p class="eyebrow">Sổ học tiếng Hàn / Bài 05</p><h2>Một ngày ở công viên</h2><p class="section-subtitle">Từ hoạt động nhỏ đến câu kể trọn vẹn: ai, ở đâu, làm gì.</p></div><button class="secondary-button" type="button" data-ko5-complete aria-pressed="false">Đánh dấu đã học</button></div>
-      <div class="ko5-hero"><div><span class="ko5-tag">Bài 5.pdf · 35 trang đã đối chiếu</span><h3 lang="ko">${esc(data.title)}</h3><p class="ko5-roma">${esc(data.romanization)}</p><p>${esc(data.meaning)}</p>${speak(data.title, "Nghe câu trọng tâm")}<div class="ko5-hero-stats"><span><b>20</b> cụm hoạt động</span><span><b>11</b> từ bổ trợ</span><span><b>2</b> tiểu từ trọng tâm</span></div></div><div class="ko5-park-art" aria-hidden="true"><span class="ko5-sun"></span><span class="ko5-tree">🌳</span><span class="ko5-bike">🚲</span><span class="ko5-flower">🌼</span><span class="ko5-cloud">☁️</span><span class="ko5-path-line"></span></div></div>
+      <div class="ko5-hero"><div><span class="ko5-tag">Bài 5 · Theo PDF & ghi chú bổ sung</span><h3 lang="ko">${esc(data.title)}</h3><p class="ko5-roma">${esc(data.romanization)}</p><p>${esc(data.meaning)}</p>${speak(data.title, "Nghe câu trọng tâm")}<div class="ko5-hero-stats"><span><b>31</b> mục từ PDF</span><span><b>${supplementWords.length}</b> mục bổ sung</span><span><b>2</b> tiểu từ trọng tâm</span></div></div><div class="ko5-park-art" aria-hidden="true"><span class="ko5-sun"></span><span class="ko5-tree">🌳</span><span class="ko5-bike">🚲</span><span class="ko5-flower">🌼</span><span class="ko5-cloud">☁️</span><span class="ko5-path-line"></span></div></div>
       <nav class="lesson-three-jumpbar ko5-jumpbar" aria-label="Nội dung Bài 5">${sections.map(([id, title], i) => `<button type="button" data-ko5-jump="${id}" ${i === 0 ? 'class="active" aria-current="location"' : ""}><span>0${i + 1}</span>${title}</button>`).join("")}</nav>
-      <section class="ko5-section" id="ko5-vocab">${heading("01", "Từ vựng theo hoạt động", "Trang 3–10 · Học cụm hoàn chỉnh để ghép câu ngay.")}
-        <p class="ko5-note">Phiên âm Latin giúp theo dõi chữ; cách đọc tiếng Việt chỉ gần đúng, không thay thế phát âm tiếng Hàn. Nút nghe dùng giọng tổng hợp của trình duyệt, không phải audio gốc của PDF.</p>
+      <section class="ko5-section" id="ko5-vocab">${heading("01", "Từ vựng theo chủ đề", "Học theo PDF hoặc chọn nhóm từ bổ sung để bắt đầu phần mới.")}
+        <p class="ko5-note">31 mục từ PDF và ${supplementWords.length} mục bổ sung sau khi đối chiếu bài cũ. Phiên âm tiếng Việt chỉ gần đúng; nút nghe dùng giọng tổng hợp tiếng Hàn của trình duyệt.</p>
         <div class="ko5-toolbar"><label class="lesson-search-field"><i data-lucide="search"></i><input type="search" id="ko5-search" placeholder="Tìm chữ Hàn, phiên âm, nghĩa…" aria-label="Tìm từ vựng Bài 5"></label><div class="ko5-filters" id="ko5-filters"></div></div>
         <p id="ko5-word-count" class="ko5-muted" aria-live="polite"></p><div class="ko5-vocab-grid" id="ko5-vocab-grid"></div>
+        <details class="ko5-details ko5-duplicate-note"><summary>Các dạng tương đương đã có trong bài</summary><p class="ko5-muted">Cùng một hoạt động có thể được nói gọn hoặc dùng tiểu từ 을/를 (eul/reul). Học chúng cùng nhau để tránh đếm trùng.</p><div class="ko5-variant-grid">${data.duplicateVariants.map((item) => `<article><div><span lang="ko">${esc(item.variant)}</span><i data-lucide="arrow-left-right"></i><strong lang="ko">${esc(item.existing)}</strong></div><span>${esc(item.romanization)}</span><p>${esc(item.meaning)}</p></article>`).join("")}</div></details>
       </section>
       <section class="ko5-section" id="ko5-grammar">${heading("02", "Làm gì? Ở đâu?", "Trang 11–12 · Nhìn vai trò của từ trước khi chọn tiểu từ.")}
+        <details class="ko5-details ko5-review-notes"><summary>Đã học: chủ đề, chủ ngữ và đuôi lịch sự</summary><div class="ko5-boundary-grid"><article><span class="ko5-tag">ÔN BÀI 1 & 4</span><h4>은/는 · 이/가</h4><span class="ko5-roma">eun/neun · i/ga</span><p>${esc(data.reviewSummary.particles)}</p><div><button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-1">Chủ đề · Bài 1</button><button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-4">Chủ ngữ · Bài 4</button></div></article><article><span class="ko5-tag">ÔN BÀI 4</span><h4>-아요 / -어요 / -해요</h4><span class="ko5-roma">ayo / eoyo / haeyo · đuôi lịch sự thân mật</span><p>${esc(data.reviewSummary.ending)}</p><button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-4">Ôn bảng chia đuôi</button></article></div></details>
         <div class="ko5-formula"><span><small>Ai? · Chủ đề</small><b>저는</b><em>jeoneun · tôi</em></span><span><small>Ở đâu? · Địa điểm</small><b>공원<span class="ko5-mark">에서</span></b><em>gongwoneseo · ở công viên</em></span><span><small>Cái gì? · Tân ngữ</small><b>자전거<span class="ko5-mark">를</span></b><em>jajeongeoreul · xe đạp</em></span><span><small>Làm gì? · Động từ</small><b>타요.</b><em>tayo · đi / cưỡi</em></span></div>
         <div class="ko5-two-cols"><article class="ko5-grammar-card"><span class="ko5-tag">ĐỊA ĐIỂM</span><h4>N + 에서 <small>eseo</small></h4><p>Gắn <b>에서</b> vào nơi diễn ra hành động: đọc ở thư viện, chơi ở công viên… Có hay không có batchim đều dùng <b>에서</b>.</p><p class="ko5-note">Viết liền với danh từ địa điểm; động từ thường ở cuối câu.</p>${data.grammarExamples.slice(0, 3).map(annotated).join("")}</article>
         <article class="ko5-grammar-card"><span class="ko5-tag">TÂN NGỮ</span><h4>N + 을 / 를 <small>eul / reul</small></h4><p>Đánh dấu đối tượng của hành động: đọc <b>sách</b>, uống <b>sữa</b>. Đây không phải tiểu từ chủ đề hay chủ ngữ.</p><div class="ko5-rule"><span>Có batchim → <b>을 · eul</b></span><strong>책 → 책을</strong><small>chaek → chaegeul · sách</small></div><div class="ko5-rule"><span>Không có batchim → <b>를 · reul</b></span><strong>우유 → 우유를</strong><small>uyu → uyureul · sữa</small></div>${data.grammarExamples.slice(3, 5).map(annotated).join("")}</article></div>
-        <details class="ko5-details"><summary>Phân biệt 에 (e) và 에서 (eseo) · trang 33</summary><div class="ko5-two-cols"><article><h4>Vị trí tồn tại: đang ở đâu?</h4>${annotated(data.grammarExamples[5])}</article><article><h4>Địa điểm hành động: làm gì ở đó?</h4>${annotated(data.grammarExamples[6])}</article></div><p class="ko5-note">Trong cặp ví dụ này: 에 + 있어요 (e + isseoyo) diễn tả vị trí; 에서 + động từ chỉ nơi thực hiện hành động. Không suy rộng rằng 에 chỉ có một cách dùng.</p></details>
-        <div class="ko5-review-note"><div><b>Kiến thức đã học ở Bài 4</b><p>Đuôi lịch sự -아요/-어요 (ayo/eoyo): 하다 → 해요 (hada → haeyo, làm); 보다 → 봐요 (boda → bwayo, xem); 마시다 → 마셔요 (masida → masyeoyo, uống).</p></div><button class="secondary-button" type="button" data-open-korean-tab="ko-lesson-4">Ôn cách chia đuôi</button></div>
+        <section class="ko5-location-lab"><div class="ko5-practice-head"><div><span class="ko5-tag">MỞ RỘNG CÓ CHỌN LỌC</span><h4>Phân biệt 에 (e) và 에서 (eseo)</h4></div><p>Đừng dịch cả hai đơn giản là “ở”. Hãy nhìn động từ phía cuối câu.</p></div><div class="ko5-location-grid">${data.locationContrast.map((item) => `<article><header><b>${esc(item.marker)}</b><span>${esc(item.romanization)}</span></header><h5>${esc(item.title)}</h5><p>${esc(item.description)}</p>${item.examples.map(annotated).join("")}</article>`).join("")}</div></section>
+        <section class="ko5-order-map"><span class="ko5-tag">MỘT KHUNG CÂU DỄ ÁP DỤNG</span><h4>Ai · Khi nào · Ở đâu · Làm gì</h4><p>${esc(data.sentenceOrder.note)}</p><div class="ko5-filters" aria-label="Đổi cách sắp xếp ví dụ"><button type="button" data-ko5-order-view="subject" aria-pressed="true">Chủ đề trước</button><button type="button" data-ko5-order-view="time" aria-pressed="false">Thời gian trước</button></div><div id="ko5-order-map-content"></div><p class="ko5-note">Đây là khung cho câu có tân ngữ. Câu miêu tả, vị trí hoặc đi đến đâu có thể không có tân ngữ; không cần điền đủ mọi thành phần.</p></section>
+        <p class="ko5-note">${esc(data.sentenceOrder.timeNote)}</p>
         <p class="ko5-note">Đính chính trang 11: 만아요 → 만나요 (mannayo · gặp). Phần bài học dùng câu đã sửa; ảnh nguồn được giữ nguyên để đối chiếu.</p>
       </section>
       <section class="ko5-section" id="ko5-builder">${heading("03", "Phòng ghép câu", "Chọn nơi và hoạt động · chỉ dùng các cụm trong Bài 5.")}
@@ -72,10 +76,23 @@
 
   function renderVocabulary() {
     const query = normalize($("#ko5-search").value);
-    const filtered = words.filter((w) => (vocabGroup === "all" || w.group === vocabGroup) && normalize([w.text, w.romanization, w.reading, w.meaning, w.polite || ""].join(" ")).includes(query));
-    $("#ko5-filters").innerHTML = [["all", "Tất cả · 31"], ["actions", "Hoạt động · 20"], ["context", "Từ bổ trợ · 11"]].map(([id, label]) => `<button type="button" data-ko5-filter="${id}" aria-pressed="${id === vocabGroup}">${label}</button>`).join("");
-    $("#ko5-word-count").textContent = `${filtered.length} / 31 mục trong phần từ vựng của PDF (không phải 31 từ mới hoàn toàn).`;
-    $("#ko5-vocab-grid").innerHTML = filtered.length ? filtered.map((w) => `<article class="ko5-word"><header><span class="ko5-word-emoji" aria-hidden="true">${w.emoji}</span><span>Trang ${w.page}${previousWords.has(w.text) ? " · Đã gặp ở bài trước" : ""}</span>${speak(w.text)}</header><h4 lang="ko">${esc(w.text)}</h4><span class="ko5-roma">${esc(w.romanization)}</span><p class="ko5-reading-hint">Đọc gần đúng · ${esc(w.reading)}</p><p>${esc(w.meaning)}</p>${w.polite ? `<div class="ko5-polite"><small>Dùng trong câu</small><strong lang="ko">${esc(w.polite)}</strong><span>${esc(w.politeRomanization)}</span>${speak(w.polite)}</div>` : ""}<a class="ko5-naver" target="_blank" rel="noopener noreferrer" href="https://korean.dict.naver.com/kovidict/#/search?query=${encodeURIComponent(w.text)}">Tra Naver ↗</a></article>`).join("") : '<p class="empty-state">Không tìm thấy từ phù hợp. Thử bỏ bớt từ khóa hoặc chọn Tất cả.</p>';
+    const filtered = words.filter((w) => (vocabGroup === "all" || (vocabGroup === "supplement" && w.page === "Bổ sung") || w.group === vocabGroup) && normalize([w.text, w.romanization, w.reading, w.meaning, w.polite || ""].join(" ")).includes(query));
+    const filters = [["all", `Tất cả · ${words.length}`], ["actions", "PDF: hoạt động · 20"], ["context", "PDF: bổ trợ · 11"], ["supplement", `Bổ sung · ${supplementWords.length}`], ...data.supplementVocabulary.map((group) => [group.id, `${group.title} · ${group.words.length}`])];
+    $("#ko5-filters").innerHTML = filters.map(([id, label]) => `<button type="button" data-ko5-filter="${id}" aria-pressed="${id === vocabGroup}">${esc(label)}</button>`).join("");
+    $("#ko5-word-count").textContent = `${filtered.length} / ${words.length} mục · 31 từ/cụm theo PDF + ${supplementWords.length} mục bổ sung.`;
+    $("#ko5-vocab-grid").innerHTML = filtered.length ? filtered.map((w) => {
+      const supplemental = w.page === "Bổ sung";
+      const groupTitle = data.supplementVocabulary.find((group) => group.id === w.group)?.title;
+      return `<article class="ko5-word ${supplemental ? "is-supplement" : ""}"><header><span class="ko5-word-emoji" aria-hidden="true">${w.emoji}</span><span>${supplemental ? `Bổ sung · ${esc(groupTitle)}` : `Trang ${w.page}`}${previousWords.has(w.text) ? " · Đã gặp ở bài trước" : ""}</span>${speak(w.text)}</header><h4 lang="ko">${esc(w.text)}</h4><span class="ko5-roma">${esc(w.romanization)}</span><p class="ko5-reading-hint">Đọc gần đúng · ${esc(w.reading)}</p><p>${esc(w.meaning)}</p>${w.polite ? `<div class="ko5-polite"><small>${w.exampleLabel || "Dùng trong câu"}</small><strong lang="ko">${esc(w.polite)}</strong><span>${esc(w.politeRomanization)}</span>${w.politeReading ? `<span>Đọc gần đúng · ${esc(w.politeReading)}</span>` : ""}${w.exampleMeaning ? `<span>${esc(w.exampleMeaning)}</span>` : ""}${speak(w.polite)}</div>` : ""}${w.note ? `<p class="ko5-word-note">${esc(w.note)}</p>` : ""}<a class="ko5-naver" target="_blank" rel="noopener noreferrer" href="https://korean.dict.naver.com/kovidict/#/search?query=${encodeURIComponent(w.text)}">Tra Naver ↗</a></article>`;
+    }).join("") : '<p class="empty-state">Không tìm thấy từ phù hợp. Thử bỏ bớt từ khóa hoặc chọn Tất cả.</p>';
+    icons();
+  }
+  function renderOrderMap(order = "subject") {
+    const indices = order === "time" ? [1, 2, 0, 3, 4] : [0, 1, 2, 3, 4];
+    const parts = indices.map((i) => data.sentenceOrder.parts[i]);
+    const example = order === "time" ? data.sentenceOrder.alternate : data.sentenceOrder.example;
+    $("#ko5-order-map-content").innerHTML = `<div class="ko5-order-parts">${parts.map((part) => `<div><small>${esc(part.role)}</small><strong lang="ko">${esc(part.text)}</strong><span>${esc(part.romanization)}</span></div>`).join('<i data-lucide="chevron-right" aria-hidden="true"></i>')}</div>${annotated(example)}`;
+    view.querySelectorAll("[data-ko5-order-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ko5OrderView === order)));
     icons();
   }
   function renderBuilder() {
@@ -152,6 +169,7 @@
     if (b.dataset.ko5Filter) { vocabGroup = b.dataset.ko5Filter; renderVocabulary(); }
     if (b.dataset.ko5Action) { actionId = b.dataset.ko5Action; renderBuilder(); }
     if (b.dataset.ko5Mode) { mode = b.dataset.ko5Mode; renderExercise(); }
+    if (b.dataset.ko5OrderView) renderOrderMap(b.dataset.ko5OrderView);
     if (b.dataset.ko5Particle) { const i = Number(b.dataset.question); if (!particleAnswers.has(i)) { particleAnswers.set(i, b.dataset.ko5Particle); renderParticles(); icons(); } }
     if (b.dataset.ko5ReadingAnswer) { const i = Number(b.dataset.question); if (!readingAnswers.has(i)) { readingAnswers.set(i, b.dataset.ko5ReadingAnswer); renderReadingQuiz(); } }
     if (b.dataset.ko5Reset === "particles") { particleAnswers.clear(); renderParticles(); icons(); }
@@ -190,5 +208,5 @@
       $(".ko5-jumpbar").querySelectorAll("button").forEach((b) => { const current = b.dataset.ko5Jump === active; b.classList.toggle("active", current); if (current) b.setAttribute("aria-current", "location"); else b.removeAttribute("aria-current"); });
     });
   }, { passive: true });
-  setupOrder(); renderVocabulary(); renderBuilder(); renderReadingQuiz(); renderExercise(); renderSlides(); updateComplete(); icons();
+  setupOrder(); renderVocabulary(); renderOrderMap(); renderBuilder(); renderReadingQuiz(); renderExercise(); renderSlides(); updateComplete(); icons();
 })();

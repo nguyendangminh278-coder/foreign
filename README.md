@@ -14,4 +14,8 @@ Nguồn: `Bài 5.pdf` (35 trang). Vào **Tiếng Hàn → Bài 5** để học h
 - Đọc hiểu và chọn tiểu từ có chấm đáp án. Ghép câu/tự viết dùng câu mẫu vì có thể có nhiều cách diễn đạt đúng. Không gọi AI hay dịch tự động để tạo từ ngoài bài.
 - Tiến độ đã học lưu tại máy bằng `localStorage`; câu tự viết và kết quả luyện chỉ giữ trong phiên hiện tại.
 
+Ghi chú bổ sung Bài 5: thêm **33 mục từ/cụm từ** chia thành động từ (12), sinh hoạt (12), trạng thái/sở thích (2), địa điểm/thời gian (7). Mỗi mục có phiên âm, cách đọc gần đúng, dạng lịch sự hoặc ví dụ và liên kết tra Naver. Giữ riêng 31 mục PDF; không thêm lại từ đã học ở Bài 1–4 hay đếm riêng các biến thể như `산책하다` / `산책을 하다`. Ba từ `식당`, `시장`, `아침` từng xuất hiện trong ví dụ Bài 5 nay có thẻ tra cứu riêng.
+
+Ngữ pháp bổ sung có bảng so sánh `에` / `에서`, sơ đồ đổi giữa trật tự chủ đề trước và thời gian trước, ghi chú tiểu từ thời gian. Chủ đề/chủ ngữ và chia đuôi đã học được gom vào phần ôn có liên kết về bài cũ. Bộ ghép câu giữ phạm vi cụm từ PDF.
+
 Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesson-5.cjs`. Có thể đặt `BROWSER_PATH` tới Chromium/Edge và `TEST_URL` tới máy chủ local; mặc định kiểm tra trực tiếp `index.html`. Ảnh kiểm tra được ghi vào `tmp/` (không đưa lên Git).
