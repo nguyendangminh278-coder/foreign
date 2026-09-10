@@ -1,0 +1,18 @@
+#koreanApp .kwb { margin-top: 18px; }
+#koreanApp .kwb-controls { display: grid; grid-template-columns: minmax(0,1fr) 125px; gap: 14px; }
+#koreanApp .kwb-controls label { display: grid; gap: 8px; font-size: .9rem; }
+#koreanApp .kwb select, #koreanApp .kwb textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 12px; color: #36556a; background: #fff; border: 1px solid #cddfe9; border-radius: 12px; }
+#koreanApp .kwb-question { border: 1px solid #dce8ee; border-radius: 22px; padding: 24px; background: #fff; }
+#koreanApp .kwb-question h4 { margin-top: 18px; font-size: 1.35rem; overflow-wrap: anywhere; }
+#koreanApp .kwb-options, #koreanApp .kwb-built { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+#koreanApp .kwb-options button, #koreanApp .kwb-built button { display: grid; gap: 7px; min-width: 75px; border: 1px solid #d5e5ed; background: #f2f8fc; color: #36556a; border-radius: 13px; padding: 12px 17px; }
+#koreanApp .kwb-options small, #koreanApp .kwb-built small { font-size: .85rem; }
+#koreanApp .kwb-options button:disabled { cursor: default; }
+#koreanApp .kwb-options button:disabled:not(.correct):not(.incorrect) { opacity: .45; }
+#koreanApp .kwb-built { min-height: 90px; align-items: center; border: 1px dashed #b7d1df; padding: 16px; border-radius: 14px; }
+#koreanApp .kwb-built button { background: #fff5e7; }
+#koreanApp .kwb-question textarea { margin-bottom: 14px; resize: vertical; min-height: 100px; }
+#koreanApp .kwb-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 18px 0; }
+#koreanApp .kwb-feedback:not(:empty) { margin-top: 20px; border-top: 1px solid #e0ebee; padding-top: 10px; }
+#koreanApp .kwb-source-image { display: block; max-width: 100%; border-radius: 14px; margin: 16px auto; }
+@media(max-width:680px) { #koreanApp .kwb-controls { grid-template-columns: minmax(0,1fr) 85px; } #koreanApp .kwb-question { padding: 18px 14px; } #koreanApp .kwb-bottom button { flex: 1 1 auto; } }

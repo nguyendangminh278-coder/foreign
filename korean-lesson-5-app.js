@@ -142,10 +142,13 @@
     $("#ko5-exercise").innerHTML = `<p class="ko5-note">8 câu gợi ý từ trang 17. Có thể dùng chủ đề hoặc chủ ngữ phù hợp ngữ cảnh; đây là đáp án mẫu để tự đối chiếu, không chấm duy nhất một cách diễn đạt. Nội dung bạn gõ chỉ giữ trong phiên trang này.</p><div class="ko5-quiz-grid">${data.sentencePrompts.map((p, i) => `<article class="ko5-question"><h5>${i + 1}. ${esc(p.prompt)}</h5><p class="ko5-roma">${esc(p.romanization)}</p><p>${esc(p.sample.meaning)}</p><label class="ko5-label" for="ko5-draft-${i}">Câu của bạn</label><textarea id="ko5-draft-${i}" data-ko5-draft="${i}" rows="2" placeholder="Gõ câu tiếng Hàn…">${esc(drafts.get(i) || "")}</textarea><details class="ko5-details"><summary>Xem câu mẫu</summary>${annotated(p.sample)}</details></article>`).join("")}</div>`;
   }
   function renderExercise() {
-    $("#ko5-modes").innerHTML = [["particles", "Chọn tiểu từ · 6"], ["order", "Sắp xếp câu · 8"], ["write", "Tự viết câu · 8"]].map(([id, text]) => `<button type="button" data-ko5-mode="${id}" aria-pressed="${mode === id}">${text}</button>`).join("");
+    $("#ko5-modes").innerHTML = [["particles", "Chọn tiểu từ · 6"], ["order", "Sắp xếp câu · 8"], ["write", "Tự viết câu · 8"], ["workbook", "Bộ bài tập DOCX · 84"]].map(([id, text]) => `<button type="button" data-ko5-mode="${id}" aria-pressed="${mode === id}">${text}</button>`).join("");
     if (mode === "particles") renderParticles();
     else if (mode === "order") renderOrder();
-    else renderWriting();
+    else if (mode === "workbook") {
+      $("#ko5-exercise").innerHTML = `<p class="ko5-note">9 dạng · 84 câu trong tài liệu bạn gửi. Những từ cần dùng thêm được giải nghĩa bên dưới; bài tập không sinh từ ngoài tài liệu.</p><details class="ko5-details"><summary>Từ hỗ trợ trong bộ bài tập</summary><div class="ko5-slide-words">${window.KOREAN_LESSON_FIVE_WORKBOOK.vocabulary.map((w) => `<div><strong>${esc(w.text)}</strong><small>${esc(w.romanization)} · ${esc(w.reading)}</small><span>${esc(w.meaning)}</span>${speak(w.text)}</div>`).join("")}</div></details><div id="ko5-workbook"></div>`;
+      window.KoreanWorkbook.mount($("#ko5-workbook"), window.KOREAN_LESSON_FIVE_WORKBOOK, "ko5-docx");
+    } else renderWriting();
     icons();
   }
   function renderSlides() {

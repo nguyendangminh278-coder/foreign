@@ -19,3 +19,10 @@ Ghi chú bổ sung Bài 5: thêm **33 mục từ/cụm từ** chia thành độn
 Ngữ pháp bổ sung có bảng so sánh `에` / `에서`, sơ đồ đổi giữa trật tự chủ đề trước và thời gian trước, ghi chú tiểu từ thời gian. Chủ đề/chủ ngữ và chia đuôi đã học được gom vào phần ôn có liên kết về bài cũ. Bộ ghép câu giữ phạm vi cụm từ PDF.
 
 Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesson-5.cjs`. Có thể đặt `BROWSER_PATH` tới Chromium/Edge và `TEST_URL` tới máy chủ local; mặc định kiểm tra trực tiếp `index.html`. Ảnh kiểm tra được ghi vào `tmp/` (không đưa lên Git).
+
+## Tiếng Hàn · Bài 6 và bộ luyện Bài 5
+
+- **Bài 6:** đối chiếu đủ 28 trang `Bài 6.pdf`; có 20 mục phần từ vựng, 1 mục từ tiêu đề/bài đọc và 10 mục ôn tập. Học `하고`, `에 있어요`, vị trí đồ vật qua tranh tương tác, ghép câu, đọc 12 đoạn và 44 câu luyện. Giữ ảnh nguồn để đối chiếu các trang chữ bị chồng trong PDF. Các bài vẽ theo cặp và bản đồ có hướng dẫn kèm trang gốc; không có audio gốc.
+- **Bài 5 → Luyện tập → Bộ bài tập DOCX:** đủ 84 câu trong 9 dạng của `Bai_tap_luyen_tap_Ngu_phap_tieng_Han.docx`. Tiểu từ chủ đề/chủ ngữ chấp nhận nhiều lựa chọn khi thiếu ngữ cảnh; câu 9 phần sửa lỗi vốn đúng được giữ nguyên. Câu tự viết chỉ đối chiếu mẫu, không chấm sai theo so khớp văn bản.
+- Dữ liệu mới: `data/korean-lesson-6.js`, `data/korean-lesson-5-workbook.js`; giao diện luyện dùng chung `korean-workbook.js`. Bài làm giữ trong phiên; tiến độ hoàn thành Bài 6 lưu cục bộ cùng các bài trước.
+- Chạy `node tests/korean-lesson-6.cjs` để kiểm tra dữ liệu, chức năng mới và bố cục 390/768/1440px.
