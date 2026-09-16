@@ -26,3 +26,11 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 - **Bài 5 → Luyện tập → Bộ bài tập DOCX:** đủ 84 câu trong 9 dạng của `Bai_tap_luyen_tap_Ngu_phap_tieng_Han.docx`. Tiểu từ chủ đề/chủ ngữ chấp nhận nhiều lựa chọn khi thiếu ngữ cảnh; câu 9 phần sửa lỗi vốn đúng được giữ nguyên. Câu tự viết chỉ đối chiếu mẫu, không chấm sai theo so khớp văn bản.
 - Dữ liệu mới: `data/korean-lesson-6.js`, `data/korean-lesson-5-workbook.js`; giao diện luyện dùng chung `korean-workbook.js`. Bài làm giữ trong phiên; tiến độ hoàn thành Bài 6 lưu cục bộ cùng các bài trước.
 - Chạy `node tests/korean-lesson-6.cjs` để kiểm tra dữ liệu, chức năng mới và bố cục 390/768/1440px.
+
+## Tiếng Hàn · Bài 7
+
+- Đối chiếu đủ 31 trang `Bài 7.pdf`: thứ trong tuần, buổi trong ngày, đích đến và lịch sinh hoạt. Có 30 mục ở bảng từ vựng gốc và 13 mục hỗ trợ từ phần đọc/luyện; không coi từ ôn tập là từ mới.
+- Lịch bảy ngày tương tác tạo câu theo thời gian + nơi đến (`에 가요`) hoặc nơi hành động (`에서`); chỉ kết hợp hoạt động và địa điểm trong bài. 14 câu đọc về gia đình Noa, 5 câu giới thiệu khu phố, 5 thẻ luyện nói và 41 câu bài tập. Chữ Hàn đi kèm phiên âm, nghĩa và giọng tổng hợp, không phải audio gốc.
+- Trang 13 có lựa chọn “Không thêm” cho `오늘`; trang 12 nêu rõ nghĩa “về nhà” khi sửa `집에서 가요`. Trang 25–27 luyện lịch hiện tại theo mẫu Hàn, không thêm thì quá khứ từ lời hướng dẫn tiếng Việt. Bài mở dùng mẫu đối chiếu, không tự chấm sai các cách nói khác.
+- Dữ liệu: `data/korean-lesson-7.js`; giao diện: `korean-lesson-7-app.js`, `korean-lesson-7.css`; ảnh nguồn: `assets/korean/lesson-7/slides/`. Tiến độ hoàn thành lưu cục bộ; lựa chọn lịch và bài luyện chỉ giữ trong phiên.
+- Kiểm tra: `node tests/korean-lesson-7.cjs` (Edge/Playwright, bố cục 390/768/1440px); chạy lại bộ Bài 5 và 6 để kiểm tra hồi quy.

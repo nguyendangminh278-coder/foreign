@@ -1,0 +1,47 @@
+#koreanApp .ko7-intro { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:18px 22px; border:1px solid #e2edf3; border-radius:20px; background:white; }
+#koreanApp .ko7-intro > span { padding:8px 12px; border-radius:12px; background:#eff7fc; font-size:.86rem; }
+#koreanApp .ko7-intro > span:nth-child(2) { background:#fbf2ea; }
+#koreanApp .ko7-intro > span:nth-child(3) { background:#f3f1fb; }
+#koreanApp .ko7-grammar-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko7 .ko5-grammar-card h4 { font-size:1.2rem; }
+#koreanApp .ko7 .ko5-rule strong { overflow-wrap:anywhere; }
+#koreanApp .ko7-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
+#koreanApp .ko7-compare > article { padding:18px; border-radius:18px; background:#f3f9fc; }
+#koreanApp .ko7-compare > article:nth-child(2) { background:#f5f9f2; }
+#koreanApp .ko7-weekdays { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:10px; margin:24px 0; }
+#koreanApp .ko7-weekdays > button { display:grid; justify-items:center; gap:6px; padding:18px 6px; border:1px solid #e2eaf0; border-radius:18px; background:#f4f9fd; color:#416175; min-width:0; }
+#koreanApp .ko7-weekdays > button:nth-child(2) { background:#fdf3f5; }
+#koreanApp .ko7-weekdays > button:nth-child(3) { background:#f3f9ee; }
+#koreanApp .ko7-weekdays > button:nth-child(4) { background:#eff9f8; }
+#koreanApp .ko7-weekdays > button:nth-child(5) { background:#fff5eb; }
+#koreanApp .ko7-weekdays > button:nth-child(6) { background:#f7f2fd; }
+#koreanApp .ko7-weekdays > button:nth-child(7) { background:#f2f5fc; }
+#koreanApp .ko7-weekdays > button[aria-pressed="true"] { border-color:#7caac7; box-shadow:inset 0 0 0 1px #7caac7; }
+#koreanApp .ko7-weekdays small { font-size:.7rem; }
+#koreanApp .ko7-weekdays strong { font-size:1.05rem; }
+#koreanApp .ko7-weekdays span { font-size:.72rem; overflow-wrap:anywhere; }
+#koreanApp .ko7-weekdays b { font-size:1.65rem; margin-top:5px; }
+#koreanApp .ko7-planner { display:grid; grid-template-columns:1fr 1.2fr; gap:24px; }
+#koreanApp .ko7-controls { display:grid; align-content:start; gap:16px; min-width:0; }
+#koreanApp .ko7-controls label { display:grid; gap:8px; font-size:.86rem; font-weight:650; }
+#koreanApp .ko7-controls select { font-weight:400; }
+#koreanApp .ko7-built { align-self:start; padding:26px; background:#f5faff; border:1px solid #e0ecf5; border-radius:24px; text-align:center; min-width:0; }
+#koreanApp .ko7-built .ko5-line > strong { font-size:1.45rem; }
+#koreanApp .ko7-scene { display:block; font-size:3.2rem; margin-bottom:14px; }
+#koreanApp .ko7-actions { display:flex; flex-wrap:wrap; gap:10px; }
+#koreanApp .ko7-speaking { padding:24px; margin-top:24px; border:1px solid #e7e3ee; border-radius:22px; }
+#koreanApp .ko7-speaking h4 { margin-top:12px; font-size:1.25rem; }
+#koreanApp .ko7-answer { padding:14px; border-radius:14px; background:#f6f3fb; margin:14px 0; }
+#koreanApp #ko7-speaking-card { margin:16px 0; }
+@media(max-width:1000px) {
+  #koreanApp:has(#ko-lesson-7.active) .app-header { position:static; }
+  #koreanApp:has(#ko-lesson-7.active) .course-tabbar { position:sticky; top:0; }
+  #koreanApp .ko7-grammar-grid { grid-template-columns:1fr; }
+  #koreanApp .ko7-weekdays { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+@media(max-width:680px) {
+  #koreanApp .ko7-weekdays { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+  #koreanApp .ko7-weekdays > button { padding:12px 5px; }
+  #koreanApp .ko7-compare, #koreanApp .ko7-planner { grid-template-columns:1fr; }
+  #koreanApp .ko7-built, #koreanApp .ko7-speaking { padding:18px 12px; }
+}
