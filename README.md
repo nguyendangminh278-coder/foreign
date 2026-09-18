@@ -34,3 +34,11 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 - Trang 13 có lựa chọn “Không thêm” cho `오늘`; trang 12 nêu rõ nghĩa “về nhà” khi sửa `집에서 가요`. Trang 25–27 luyện lịch hiện tại theo mẫu Hàn, không thêm thì quá khứ từ lời hướng dẫn tiếng Việt. Bài mở dùng mẫu đối chiếu, không tự chấm sai các cách nói khác.
 - Dữ liệu: `data/korean-lesson-7.js`; giao diện: `korean-lesson-7-app.js`, `korean-lesson-7.css`; ảnh nguồn: `assets/korean/lesson-7/slides/`. Tiến độ hoàn thành lưu cục bộ; lựa chọn lịch và bài luyện chỉ giữ trong phiên.
 - Kiểm tra: `node tests/korean-lesson-7.cjs` (Edge/Playwright, bố cục 390/768/1440px); chạy lại bộ Bài 5 và 6 để kiểm tra hồi quy.
+
+## Tiếng Hàn · Bài 8
+
+- Nguồn `Bài 8.pdf`, đủ 36 trang. Có 41 mục bảng từ gốc (12 tháng, 12 giờ, 5 mốc phút, 12 từ khác) và 23 mục hỗ trợ từ ghi chú/bài đọc/bài luyện. Từ cũ giữ nhãn ôn; phiên âm, nghĩa và nút nghe đi cùng nội dung học.
+- Ngữ pháp `안`, `-(으)ㄹ 거예요`, người nhận với `한테`; bảng đổi 16 động từ; đồng hồ SVG chỉnh giờ/phút/AM-PM, đọc rưỡi; bộ đọc ngày tháng có kiểm tra số ngày hợp lệ và lưu ý 29/2.
+- Ba đoạn đọc gồm 15 câu về Noa, Youngjun và Yuna kể sinh nhật cún Coco; bộ lập kế hoạch tiệc sinh nhật dùng từ trong tài liệu. Không có audio gốc, không tạo lịch hẹn hay gửi lời mời; bộ ghép chỉ giữ trong phiên.
+- 67 câu tương tác thuộc 11 dạng. Trang 17 câu 9 được sửa khung thành `친구와 같이 춤을 ___` và giải thích rõ, không bắt dùng mỗi từ đúng một lần. Trang 25 chỉ có ngày/tháng, không thêm năm sinh. Câu tự viết dùng mẫu đối chiếu; các cách phủ định hợp lệ có/không có tiểu từ được chấp nhận.
+- Dữ liệu: `data/korean-lesson-8.js`; giao diện: `korean-lesson-8-app.js`, `korean-lesson-8.css`; ảnh: `assets/korean/lesson-8/slides/`. Test: `node tests/korean-lesson-8.cjs`, có thể đặt `TEST_URL` để chạy trên GitHub Pages sau triển khai.
