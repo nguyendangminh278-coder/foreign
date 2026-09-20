@@ -42,3 +42,12 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 - Ba đoạn đọc gồm 15 câu về Noa, Youngjun và Yuna kể sinh nhật cún Coco; bộ lập kế hoạch tiệc sinh nhật dùng từ trong tài liệu. Không có audio gốc, không tạo lịch hẹn hay gửi lời mời; bộ ghép chỉ giữ trong phiên.
 - 67 câu tương tác thuộc 11 dạng. Trang 17 câu 9 được sửa khung thành `친구와 같이 춤을 ___` và giải thích rõ, không bắt dùng mỗi từ đúng một lần. Trang 25 chỉ có ngày/tháng, không thêm năm sinh. Câu tự viết dùng mẫu đối chiếu; các cách phủ định hợp lệ có/không có tiểu từ được chấp nhận.
 - Dữ liệu: `data/korean-lesson-8.js`; giao diện: `korean-lesson-8-app.js`, `korean-lesson-8.css`; ảnh: `assets/korean/lesson-8/slides/`. Test: `node tests/korean-lesson-8.cjs`, có thể đặt `TEST_URL` để chạy trên GitHub Pages sau triển khai.
+
+## Tiếng Hàn · Bài 9
+
+- Đối chiếu đủ 27 trang `Bài 9.pdf`: động vật, địa điểm, hoạt động, `하고 같이` và quá khứ `-았/었/였어요`. Có 30 mục bảng từ gốc và 9 mục hỗ trợ từ chính PDF; không tính tất cả là từ mới. Phiên âm, nghĩa và nút nghe đi cùng từ/câu học.
+- Bảng đổi 20 động từ/tính từ, bản đồ chọn 6 con vật theo số nguồn, bộ kể chuyến đi với 3 người đồng hành và 6 địa điểm. Chọn hoạt động ở vườn thú là luyện nói tự do, không chấm rằng mọi địa điểm đều cho phép hoạt động đó.
+- 15 câu đọc về Thomas; 56 câu luyện thuộc 10 dạng (gồm ví dụ số 1 trong bài ghép con vật). Chọn đáp án/chia từ có chấm, ghép câu/tự viết đối chiếu mẫu. Bài Yuna có 6 chỗ trống sau câu ví dụ.
+- Sửa `거복이` thành `거북이` (rùa), `도착하다` thành “đến nơi”, giải thích `했어요` là rút gọn. Trang 17 đổi `동물이` thành `동물한테` để đúng nghĩa “cho động vật ăn”. Bài đọc giữ `오늘` theo góc nhìn lời kể và ghi chú khác với lời dẫn kỳ nghỉ hè trước. Giữ toàn bộ ảnh gốc.
+- Dữ liệu: `data/korean-lesson-9.js`; giao diện: `korean-lesson-9-app.js`, `korean-lesson-9.css`; ảnh: `assets/korean/lesson-9/slides/`. Không có audio gốc; nghe bằng giọng tổng hợp. Tiến độ lưu cục bộ, câu tự viết chỉ giữ trong phiên.
+- Kiểm tra: `node tests/korean-lesson-9.cjs`; hỗ trợ `TEST_URL` để kiểm tra bản GitHub Pages, và chạy lại các bộ Bài 5–8. Tiến độ toàn khóa cập nhật thành 13 mô-đun (bảng chữ cái và Bài 1–9).

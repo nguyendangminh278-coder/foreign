@@ -40,7 +40,7 @@ assert.match(d.buildRoutine(5,3,'library','do').romanization,/toyoil jeonyeoge d
     await page.locator('[data-enter-language="ko"]').click();
     await page.locator('[data-korean-tab="ko-lesson-7"]').click();
     await page.locator('#ko-lesson-7.active').waitFor();
-    assert.equal(await page.locator('#koStatCompleted').textContent(),'0/12');
+    assert.equal(await page.locator('#koStatCompleted').textContent(),'0/13');
     assert.equal(await page.locator('#ko7-vocab-grid .ko5-word').count(),43);
     await page.locator('[data-ko7-filter="days"]').click();
     assert.equal(await page.locator('#ko7-vocab-grid .ko5-word').count(),7);
@@ -92,7 +92,7 @@ assert.match(d.buildRoutine(5,3,'library','do').romanization,/toyoil jeonyeoge d
     await page.locator('#ko7-slide-filter').selectOption('all');
     assert.equal(await page.locator('#ko7-slide-grid img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));return imgs.filter(i=>!i.naturalWidth).length;}),0);
     await page.locator('[data-ko7-complete]').click();
-    assert.equal(await page.locator('#koStatCompleted').textContent(),'1/12');
+    assert.equal(await page.locator('#koStatCompleted').textContent(),'1/13');
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:1000});
       for(const id of ['vocab','grammar','week','reading','practice','slides']){
@@ -103,7 +103,7 @@ assert.match(d.buildRoutine(5,3,'library','do').romanization,/toyoil jeonyeoge d
       if(width!==768){await page.locator('.ko7-jumpbar [data-ko7-jump="week"]').click();await page.screenshot({path:path.join(root,`tmp/ko7-${width}.png`)});}
     }
     await page.locator('.ko7-jumpbar [data-ko7-jump="grammar"]').click();await page.screenshot({path:path.join(root,'tmp/ko7-grammar.png')});
-    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/12');
+    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/13');
     assert.deepEqual(errors,[]);
     console.log('PASS: 31 source pages, 43 annotated entries (30 core), 41 exercises, 336 routine combinations, source exceptions, TTS, modal, progress, session preservation and responsive navigation.');
   }finally{await browser.close();}

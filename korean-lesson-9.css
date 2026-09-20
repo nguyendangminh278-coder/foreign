@@ -1,0 +1,42 @@
+#koreanApp .ko9-intro { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:18px 22px; border:1px solid #e2edf3; border-radius:20px; background:#fff; }
+#koreanApp .ko9-intro > span { padding:8px 12px; border-radius:12px; background:#eff7fc; font-size:.86rem; }
+#koreanApp .ko9-intro > span:nth-child(2) { background:#f4f8ef; }
+#koreanApp .ko9-intro > span:nth-child(3) { background:#faf2f7; }
+#koreanApp .ko9-grammar-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko9 .ko5-grammar-card h4 { font-size:1.2rem; }
+#koreanApp .ko9 .ko5-rule strong { overflow-wrap:anywhere; }
+#koreanApp .ko9-panel { margin-top:26px; padding:24px; border:1px solid #e2eaf0; border-radius:22px; background:white; }
+#koreanApp .ko9-panel > h4 { font-size:1.3rem; margin:12px 0 18px; }
+#koreanApp .ko9-transform { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:16px; margin-top:20px; }
+#koreanApp .ko9-transform article { padding:20px; border-radius:18px; background:#f6f8fb; }
+#koreanApp .ko9-transform article:last-child { background:#f2f8f3; }
+#koreanApp .ko9-arrow { font-size:2rem; color:#94b6bd; }
+#koreanApp .ko9-zoo-layout { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); align-items:start; gap:24px; }
+#koreanApp .ko9-map { display:block; border:1px solid #e3edf0; border-radius:22px; overflow:hidden; background:#fff; width:100%; padding:0; color:#527083; cursor:zoom-in; }
+#koreanApp .ko9-map img { display:block; width:100%; height:auto; }
+#koreanApp .ko9-map > span { display:block; padding:12px; }
+#koreanApp .ko9-animal-buttons { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; margin-top:16px; }
+#koreanApp .ko9-animal-buttons button { display:grid; justify-items:center; gap:6px; border:1px solid #e2eaf0; border-radius:18px; background:#fff; padding:12px 5px; color:#5d7888; }
+#koreanApp .ko9-animal-buttons b { font-size:1.7rem; }
+#koreanApp .ko9-animal-buttons [aria-pressed=true] { background:#edf6fc; border-color:#94c3de; box-shadow:0 3px 12px #7197ad16; }
+#koreanApp .ko9-animal-result { padding:22px; border:1px solid #e5eee4; border-radius:22px; background:#f8fbf6; }
+#koreanApp .ko9-animal-result hr { border:0; border-top:1px solid #e0eade; margin:18px 0; }
+#koreanApp .ko9-animal-emoji { display:block; font-size:3.5rem; margin-bottom:16px; }
+#koreanApp .ko9-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko9-controls label { display:grid; gap:8px; min-width:0; font-size:.86rem; font-weight:650; }
+#koreanApp .ko9-trip { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
+#koreanApp .ko9-trip > div { padding:18px; background:#f1f8fd; border-radius:18px; }
+#koreanApp .ko9-trip > div:last-child { background:#fcf5f1; }
+#koreanApp .ko9-actions { display:flex; flex-wrap:wrap; gap:10px; }
+@media(max-width:1000px) {
+  #koreanApp:has(#ko-lesson-9.active) .app-header { position:static; }
+  #koreanApp:has(#ko-lesson-9.active) .course-tabbar { position:sticky; top:0; }
+  #koreanApp .ko9-grammar-grid { grid-template-columns:1fr; }
+}
+@media(max-width:680px) {
+  #koreanApp .ko9-zoo-layout, #koreanApp .ko9-controls, #koreanApp .ko9-trip, #koreanApp .ko9-transform { grid-template-columns:1fr; }
+  #koreanApp .ko9-panel { padding:18px 12px; }
+  #koreanApp .ko9-arrow { text-align:center; transform:rotate(90deg); }
+  #koreanApp .ko9-animal-buttons { gap:5px; }
+  #koreanApp .ko9-animal-buttons b { font-size:1.4rem; }
+}
