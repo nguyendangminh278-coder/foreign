@@ -563,6 +563,13 @@
     if (window.lucide?.createIcons) window.lucide.createIcons();
   }
 
+  function updateLanguageFavicon(language) {
+    const icon = document.querySelector("#languageFavicon");
+    if (!icon) return;
+    const filename = { zh: "chinese", ko: "korean" }[language] || "default";
+    icon.setAttribute("href", `assets/icons/${filename}.svg`);
+  }
+
   function showLanguageGate() {
     Object.values(languageApps).forEach((app) => {
       if (app) app.hidden = true;
@@ -570,6 +577,7 @@
     languageGate.hidden = false;
     document.body.removeAttribute("data-current-language");
     document.title = "Sổ học ngoại ngữ";
+    updateLanguageFavicon();
     window.scrollTo({ top: 0, behavior: "smooth" });
     refreshCourseIcons();
   }
@@ -583,6 +591,7 @@
     });
     document.body.dataset.currentLanguage = language;
     document.title = titleMap[language];
+    updateLanguageFavicon(language);
     window.scrollTo({ top: 0, behavior: "smooth" });
     refreshCourseIcons();
   }
