@@ -51,3 +51,12 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 - Sửa `거복이` thành `거북이` (rùa), `도착하다` thành “đến nơi”, giải thích `했어요` là rút gọn. Trang 17 đổi `동물이` thành `동물한테` để đúng nghĩa “cho động vật ăn”. Bài đọc giữ `오늘` theo góc nhìn lời kể và ghi chú khác với lời dẫn kỳ nghỉ hè trước. Giữ toàn bộ ảnh gốc.
 - Dữ liệu: `data/korean-lesson-9.js`; giao diện: `korean-lesson-9-app.js`, `korean-lesson-9.css`; ảnh: `assets/korean/lesson-9/slides/`. Không có audio gốc; nghe bằng giọng tổng hợp. Tiến độ lưu cục bộ, câu tự viết chỉ giữ trong phiên.
 - Kiểm tra: `node tests/korean-lesson-9.cjs`; hỗ trợ `TEST_URL` để kiểm tra bản GitHub Pages, và chạy lại các bộ Bài 5–8. Tiến độ toàn khóa cập nhật thành 13 mô-đun (bảng chữ cái và Bài 1–9).
+
+## Tiếng Hàn · Bài 10
+
+- Đối chiếu đủ 29 trang `Bài 10.pdf`: bốn mùa, thời tiết, bất quy tắc ㅂ, dạng tiếp diễn 고 있어요. Có 30 mục bảng từ gốc và 23 mục hỗ trợ ngữ pháp/hội thoại/văn hóa trong chính PDF; không coi tất cả là từ mới. Mỗi mục có phiên âm, nghĩa và nghe bằng giọng tổng hợp.
+- Bảng so sánh 9 từ bất quy tắc / 4 từ giữ nguyên ㅂ, 8 động từ tiếp diễn; bộ chọn bốn mùa; 24 tổ hợp thành phố/thời tiết giả định, không phải dự báo trực tiếp. Góc vẽ bằng chuột/cảm ứng và viết đoạn giới thiệu có lựa chọn mô tả bằng chữ thay thế.
+- 10 lượt thoại Yuna–Ella, 57 câu thuộc 13 dạng, bao gồm hoạt động/món ăn theo mùa. Trang 14 nhận cả 피어요 / 펴요 và các cách hiện tại/tiếp diễn hợp ngữ cảnh. Trang 12 yêu cầu riêng 고 있어요; 걷다 giữ ㄷ trước 고.
+- Trang 19 không kèm audio cho Steve/Nicole nên không bịa đáp án; Suji → New York là ví dụ nguồn. Không dùng audio tiếng Trung trùng số bài. Trang 23 phân biệt kỳ nghỉ đông của Yuna với Giáng sinh mùa hè ở Úc của Ella. Ảnh nguồn giữ nguyên, phần chữ chồng được trình bày lại.
+- Dữ liệu `data/korean-lesson-10.js`, giao diện `korean-lesson-10-app.js` / `korean-lesson-10.css`, ảnh `assets/korean/lesson-10/slides/`. Bài làm, tranh và đoạn viết giữ trong phiên; tiến độ hoàn thành lưu cục bộ (14 mô-đun toàn khóa).
+- Kiểm tra `node tests/korean-lesson-10.cjs`, hỗ trợ `TEST_URL`. Kiểm tra lại các bài cũ và favicon khi triển khai. Đối chiếu dạng rút gọn với [한국어기초사전: 피다](https://krdict.korean.go.kr/jpn/dicSearch/SearchView?ParaWordNo=73270); phạm vi bất quy tắc với [국립국어원](https://korean.go.kr/front/mcfaq/mcfaqView.do?mcfaq_seq=8733&mn_id=&pageIndex=31).

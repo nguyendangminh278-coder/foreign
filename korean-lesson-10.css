@@ -1,0 +1,53 @@
+#koreanApp .ko10-intro { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:18px 22px; border:1px solid #e2edf3; border-radius:20px; background:#fff; }
+#koreanApp .ko10-intro > span { padding:8px 12px; border-radius:12px; background:#eff7fc; font-size:.86rem; }
+#koreanApp .ko10-intro > span:nth-child(2) { background:#faf2f7; }
+#koreanApp .ko10-intro > span:nth-child(3) { background:#f4f8ef; }
+#koreanApp .ko10-grammar-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko10 .ko5-grammar-card h4 { font-size:1.18rem; }
+#koreanApp .ko10 .ko5-rule strong { overflow-wrap:anywhere; }
+#koreanApp .ko10-panel { margin-top:26px; padding:24px; border:1px solid #e2eaf0; border-radius:22px; background:#fff; }
+#koreanApp .ko10-panel > h4 { font-size:1.3rem; margin:12px 0 18px; }
+#koreanApp .ko10-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko10-controls label { display:grid; gap:8px; min-width:0; font-size:.86rem; font-weight:650; }
+#koreanApp .ko10-transform { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:16px; margin-top:20px; }
+#koreanApp .ko10-transform article { padding:20px; border-radius:18px; background:#f6f8fb; }
+#koreanApp .ko10-transform article:last-child { background:#f2f8f3; }
+#koreanApp .ko10-arrow { font-size:2rem; color:#94b6bd; }
+#koreanApp .ko10-actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin:14px 0; }
+#koreanApp .ko10-actions input[type=color] { width:44px; height:36px; vertical-align:middle; border:1px solid #dae7ed; border-radius:8px; background:white; }
+#koreanApp .ko10-seasons { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+#koreanApp .ko10-seasons button { display:grid; justify-items:center; gap:8px; background:#fff; color:#537586; border:1px solid #e1eaf0; border-radius:20px; padding:18px 8px; }
+#koreanApp .ko10-seasons b { font-size:2.4rem; }
+#koreanApp .ko10-seasons strong { font-size:1.2rem; }
+#koreanApp .ko10-seasons small { font-size:.78rem; }
+#koreanApp .ko10-seasons [aria-pressed=true] { background:#fdf3f7; border-color:#d6b7c8; box-shadow:0 3px 12px #7197ad16; }
+#koreanApp .ko10-seasons button:nth-child(2)[aria-pressed=true] { background:#fffaec; border-color:#ddca96; }
+#koreanApp .ko10-seasons button:nth-child(3)[aria-pressed=true] { background:#fcf4eb; border-color:#dfc1a0; }
+#koreanApp .ko10-seasons button:nth-child(4)[aria-pressed=true] { background:#edf7fd; border-color:#a9d0e4; }
+#koreanApp .ko10-season-result { display:grid; grid-template-columns:120px minmax(0,1fr); gap:24px; align-items:center; border:1px solid #eee6eb; border-radius:22px; padding:24px; margin-top:20px; background:#fffbfd; }
+#koreanApp .ko10-season-result[data-season=summer] { background:#fffdf5; }
+#koreanApp .ko10-season-result[data-season=autumn] { background:#fffaf5; }
+#koreanApp .ko10-season-result[data-season=winter] { background:#f7fbff; }
+#koreanApp .ko10-season-glyph { font-size:5rem; text-align:center; }
+#koreanApp .ko10-forecast { margin-top:24px; padding:24px; background:#f4f9fc; border-radius:20px; }
+#koreanApp .ko10-weather-glyph { display:block; font-size:3.5rem; margin-bottom:14px; }
+#koreanApp .ko10-city-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:20px; }
+#koreanApp .ko10-speaker { display:inline-flex; border-radius:10px; background:#f0f5fc; padding:9px 12px; font-size:.85rem; color:#5b7994; }
+#koreanApp .ko10 #ko10-dialogue > article:nth-child(even) .ko10-speaker { background:#fbf1f4; color:#9c6e7c; }
+#koreanApp .ko10-culture-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+#koreanApp .ko10-culture-grid > article { padding:20px; border:1px solid #e3ebef; border-radius:18px; }
+#ko10-canvas { display:block; width:100%; height:auto; min-height:160px; border:1px dashed #b8d1df; border-radius:16px; background:#fff; touch-action:none; cursor:crosshair; margin:16px 0; }
+#ko10-story { resize:vertical; }
+@media(max-width:1000px) {
+  #koreanApp:has(#ko-lesson-10.active) .app-header { position:static; }
+  #koreanApp:has(#ko-lesson-10.active) .course-tabbar { position:sticky; top:0; }
+  #koreanApp .ko10-grammar-grid { grid-template-columns:1fr; }
+}
+@media(max-width:680px) {
+  #koreanApp .ko10-controls, #koreanApp .ko10-transform, #koreanApp .ko10-city-list, #koreanApp .ko10-culture-grid { grid-template-columns:1fr; }
+  #koreanApp .ko10-panel { padding:18px 12px; }
+  #koreanApp .ko10-arrow { text-align:center; transform:rotate(90deg); }
+  #koreanApp .ko10-seasons { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  #koreanApp .ko10-season-result { grid-template-columns:1fr; gap:8px; padding:16px; }
+  #koreanApp .ko10-season-glyph { font-size:3rem; }
+}

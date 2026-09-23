@@ -34,7 +34,7 @@ assert.throws(()=>d.trip(3,0));
     await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href,{waitUntil:'load'});
     await page.addStyleTag({content:'html, body, * { scroll-behavior: auto !important; }'});
     await page.locator('[data-enter-language="ko"]').click();await page.locator('[data-korean-tab="ko-lesson-9"]').click();
-    await page.locator('#ko-lesson-9.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/13');
+    await page.locator('#ko-lesson-9.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/14');
     assert.equal(await page.locator('#ko9-vocab-grid .ko5-word').count(),39);
     await page.locator('[data-ko9-filter="animals"]').click();assert.equal(await page.locator('#ko9-vocab-grid .ko5-word').count(),8);
     await page.locator('#ko9-search').fill('geobugi');assert.equal(await page.locator('#ko9-vocab-grid h4').innerText(),'거북이');
@@ -71,7 +71,7 @@ assert.throws(()=>d.trip(3,0));
     await page.locator('#ko9-slide-grid [data-open-ko-slide]').first().click();assert.ok(await page.locator('#koSlideDialog').isVisible());await page.keyboard.press('Escape');
     await page.locator('#ko9-slide-filter').selectOption('all');
     assert.equal(await page.locator('#ko9-slide-grid img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));return imgs.filter(i=>!i.naturalWidth).length;}),0);
-    await page.locator('[data-ko9-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/13');
+    await page.locator('[data-ko9-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:1000});
       for(const id of ['vocab','grammar','zoo','reading','practice','slides']){
@@ -82,7 +82,7 @@ assert.throws(()=>d.trip(3,0));
       if(width!==768){await page.locator('.ko9-jumpbar [data-ko9-jump="zoo"]').click();await page.screenshot({path:path.join(root,`tmp/ko9-${width}.png`)});}
     }
     for(const section of ['grammar','reading','practice']){await page.locator(`.ko9-jumpbar [data-ko9-jump="${section}"]`).click();await page.screenshot({path:path.join(root,`tmp/ko9-${section}.png`)});}
-    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/13');assert.deepEqual(errors,[]);
+    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');assert.deepEqual(errors,[]);
     console.log('PASS: 27 slides, 39 annotated entries (30 core), 20 past forms, 56 exercises, 15 reading sentences, all 18 trip combinations, zoo numbering, source corrections, TTS, modal, saved progress, and 390/768/1440px layouts.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
