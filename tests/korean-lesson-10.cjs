@@ -33,7 +33,7 @@ assert.throws(()=>d.forecast(3,0));
     await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href,{waitUntil:'load'});
     await page.addStyleTag({content:'html, body, * { scroll-behavior: auto !important; }'});
     await page.locator('[data-enter-language="ko"]').click();await page.locator('[data-korean-tab="ko-lesson-10"]').click();
-    await page.locator('#ko-lesson-10.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/14');
+    await page.locator('#ko-lesson-10.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/15');
     assert.equal(await page.locator('#ko10-vocab-grid .ko5-word').count(),53);
     await page.locator('[data-ko10-filter="weather"]').click();assert.equal(await page.locator('#ko10-vocab-grid .ko5-word').count(),8);
     await page.locator('#ko10-search').fill('chupda');assert.equal(await page.locator('#ko10-vocab-grid h4').innerText(),'춥다');
@@ -71,7 +71,7 @@ assert.throws(()=>d.forecast(3,0));
     await page.locator('#ko10-slide-filter').selectOption('vocab');assert.equal(await page.locator('#ko10-slide-grid .ko5-slide').count(),7);
     await page.locator('#ko10-slide-grid [data-open-ko-slide]').first().click();assert.ok(await page.locator('#koSlideDialog').isVisible());await page.keyboard.press('Escape');await page.locator('#ko10-slide-filter').selectOption('all');
     assert.equal(await page.locator('#ko10-slide-grid img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));return imgs.filter(i=>!i.naturalWidth).length;}),0);
-    await page.locator('[data-ko10-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');
+    await page.locator('[data-ko10-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:1000});
       for(const id of ['vocab','grammar','weather','reading','practice','slides']){
@@ -82,7 +82,7 @@ assert.throws(()=>d.forecast(3,0));
       if(width!==768){await page.locator('.ko10-jumpbar [data-ko10-jump="weather"]').click();await page.screenshot({path:path.join(root,`tmp/ko10-${width}.png`)});}
     }
     for(const section of ['grammar','reading','practice']){await page.locator(`.ko10-jumpbar [data-ko10-jump="${section}"]`).click();await page.screenshot({path:path.join(root,`tmp/ko10-${section}.png`)});}
-    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');assert.deepEqual(errors,[]);
+    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');assert.deepEqual(errors,[]);
     console.log('PASS: 29 slides, 53 annotated entries (30 core), 21 forms, 57 exercises including multiple valid answers, 10 dialogue turns, 24 weather combinations, canvas/drafts, TTS, modal, saved progress and 390/768/1440px layouts.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

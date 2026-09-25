@@ -30,7 +30,7 @@ for(const s of six.slides){assert.ok(fs.statSync(path.join(root,`assets/korean/l
     await page.locator('[data-enter-language="ko"]').click();
     await page.locator('[data-korean-tab="ko-lesson-6"]').click();
     await page.locator('#ko-lesson-6.active').waitFor();
-    assert.equal(await page.locator('#koStatCompleted').textContent(),'0/14');
+    assert.equal(await page.locator('#koStatCompleted').textContent(),'0/15');
     assert.equal(await page.locator('#ko6-vocab-grid .ko5-word').count(),31);
     await page.locator('[data-ko6-filter="position"]').click();
     assert.equal(await page.locator('#ko6-vocab-grid .ko5-word').count(),8);
@@ -64,7 +64,7 @@ for(const s of six.slides){assert.ok(fs.statSync(path.join(root,`assets/korean/l
     await page.locator('#ko6-slide-filter').selectOption('all');
     assert.equal(await page.locator('#ko6-slide-grid img, .ko6-room img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));return imgs.filter(i=>!i.naturalWidth).length;}),0);
     await page.locator('[data-ko6-complete]').click();
-    assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');
+    assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:950});
       for(const id of ['vocab','grammar','lab','reading','practice','slides']){
@@ -100,7 +100,7 @@ for(const s of six.slides){assert.ok(fs.statSync(path.join(root,`assets/korean/l
     await page.locator('[data-ko5-mode="particles"]').click();await page.locator('[data-ko5-mode="workbook"]').click();
     assert.equal(await wb.locator('[data-kwb-draft]').inputValue(),'저는 집에서 영화를 봐요.');
     await page.screenshot({path:path.join(root,'tmp/ko5-workbook.png')});
-    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');
+    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');
     assert.deepEqual(errors,[]);
     console.log('PASS: 28 PDF pages, 31 annotated entries, 44 lesson 6 exercises, 84 DOCX exercises, multiple valid answers, conjugation grading, open-answer handling, builder, TTS, modal, progress persistence and responsive navigation.');
   }finally{await browser.close();}

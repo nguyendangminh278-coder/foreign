@@ -43,7 +43,7 @@ for(let venue=0;venue<4;venue++)for(let activity=0;activity<4;activity++)for(let
     await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href,{waitUntil:'load'});
     await page.addStyleTag({content:'html, body, * { scroll-behavior: auto !important; }'});
     await page.locator('[data-enter-language="ko"]').click();await page.locator('[data-korean-tab="ko-lesson-8"]').click();
-    await page.locator('#ko-lesson-8.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/14');
+    await page.locator('#ko-lesson-8.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/15');
     assert.equal(await page.locator('#ko8-vocab-grid .ko5-word').count(),64);
     await page.locator('[data-ko8-filter="months"]').click();assert.equal(await page.locator('#ko8-vocab-grid .ko5-word').count(),12);
     await page.locator('#ko8-search').fill('yuwol');assert.equal(await page.locator('#ko8-vocab-grid h4').innerText(),'유월');
@@ -87,7 +87,7 @@ for(let venue=0;venue<4;venue++)for(let activity=0;activity<4;activity++)for(let
     await page.locator('#ko8-slide-grid [data-open-ko-slide]').first().click();assert.ok(await page.locator('#koSlideDialog').isVisible());await page.keyboard.press('Escape');
     await page.locator('#ko8-slide-filter').selectOption('all');
     assert.equal(await page.locator('#ko8-slide-grid img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));return imgs.filter(i=>!i.naturalWidth).length;}),0);
-    await page.locator('[data-ko8-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');
+    await page.locator('[data-ko8-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:1000});
       for(const id of ['vocab','grammar','time','birthday','practice','slides']){
@@ -105,7 +105,7 @@ for(let venue=0;venue<4;venue++)for(let activity=0;activity<4;activity++)for(let
       await page.waitForFunction(id=>Math.abs(document.querySelector('#ko8-'+id).getBoundingClientRect().top-235)<3,section);
       await page.screenshot({path:path.join(root,`tmp/ko8-${section}.png`)});
     }
-    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/14');assert.deepEqual(errors,[]);
+    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');assert.deepEqual(errors,[]);
     console.log('PASS: 36 source pages, 64 annotated entries (41 core), 67 exercises, 15 reading sentences, all 366 month/day combinations, 384 time variants, 64 party combinations, source correction, conjugations, TTS, modal, progress and 390/768/1440px layouts.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

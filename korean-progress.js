@@ -1,7 +1,7 @@
 // One progress total for the alphabet modules and every available numbered lesson.
 (() => {
   const baseIds = new Set(["alphabet", "compose", "batchim", "practice", "lesson-1", "lesson-2"]);
-  const extensions = [[3, "KOREAN_LESSON_THREE"], [4, "KOREAN_LESSON_FOUR"], [5, "KOREAN_LESSON_FIVE"], [6, "KOREAN_LESSON_SIX"], [7, "KOREAN_LESSON_SEVEN"], [8, "KOREAN_LESSON_EIGHT"], [9, "KOREAN_LESSON_NINE"], [10, "KOREAN_LESSON_TEN"]];
+  const extensions = [[3, "KOREAN_LESSON_THREE"], [4, "KOREAN_LESSON_FOUR"], [5, "KOREAN_LESSON_FIVE"], [6, "KOREAN_LESSON_SIX"], [7, "KOREAN_LESSON_SEVEN"], [8, "KOREAN_LESSON_EIGHT"], [9, "KOREAN_LESSON_NINE"], [10, "KOREAN_LESSON_TEN"], [11, "KOREAN_LESSON_ELEVEN"]];
   let sessionBase = 0;
   window.updateKoreanProgress = (baseCount) => {
     if (Number.isInteger(baseCount)) sessionBase = baseCount;
