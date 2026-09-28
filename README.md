@@ -1,5 +1,12 @@
 # Foreign Language Study Notebook
 
+## Ghi chú từ vựng & quá khứ theo chủ đề
+
+- Mục Tiếng Hàn → Từ vựng có danh sách ôn 49 từ theo 10 chủ đề (không phải toàn bộ kho từ). Đối chiếu các bài 1–12 cho thấy 48 mục đã xuất hiện dưới dạng từ/cụm tương ứng, 1 mục mới là `등산하다`. Mỗi mục có phiên âm, nghĩa, liên kết bài cũ và Naver; các biến thể `수영하다`/`수영을 하다`, `공부하다`/`공부를 하다` được gộp khi tra cứu.
+- Bài 9 → Ngữ pháp dùng chung bảng chia quá khứ: 20 dạng gốc + 28 dạng bổ sung, không lặp `타다`, `달리다`. Bộ lọc gồm 하다, ㄷ bất quy tắc, giữ ㅅ, thân có phụ âm cuối, thân nguyên âm. 30 từ trong ghi chú có nút mở đúng dạng chia từ danh sách chủ đề.
+- `하였어요 → 했어요` là rút gọn, đã có trong Bài 9; `필요하다` là tính từ chỉ trạng thái. `만들다`, `씻다`, `입다` không thuộc nhóm thân nguyên âm. `걷다` đổi ㄷ nhưng `받다` giữ ㄷ; `벗다`, `웃다`, `씻다` giữ ㅅ.
+- Nội dung Bài 1 cũ vẫn nằm trong phần mở rộng ngay dưới danh sách chủ đề. Các bài gốc không bị tăng số từ PDF hoặc thêm mục trùng. Dữ liệu bổ sung: `data/korean-topic-supplement.js`; giao diện: `korean-topic-supplement-app.js` / `.css`. Kiểm tra `node tests/korean-topic-supplement.cjs` và hồi quy Bài 5, 9, 12.
+
 Website học tiếng Trung, tiếng Hàn và IELTS với bài học dạng slide, từ điển, luyện tập và trợ giảng AI.
 
 Mở `index.html` để sử dụng cục bộ. Xem [AI-SETUP.md](AI-SETUP.md) để cấu hình Gemini Flash free tier an toàn.

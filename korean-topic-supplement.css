@@ -1,0 +1,8 @@
+#ko-topic-review { margin-bottom:28px; scroll-margin-top:80px; }
+#ko-topic-review .ko5-word { min-width:0; }
+#ko-topic-review .ko5-polite { display:grid; gap:8px; padding:14px; margin:14px 0; border-radius:14px; background:#f4f8fc; }
+#ko-topic-review .ko-topic-links { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0; }
+#ko-topic-review .ko-topic-links button { font-size:.75rem; padding:7px 10px; }
+#ko9-past-group { margin-bottom:12px; }
+#koreanApp:has(#ko-lesson-vocab.active) .app-header { position:static; }
+#koreanApp:has(#ko-lesson-vocab.active) .course-tabbar { position:sticky; top:0; }
