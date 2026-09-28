@@ -33,7 +33,7 @@ assert.throws(()=>d.winners([0,-1,0,0,0]));assert.throws(()=>d.winners([100,0,0,
     await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href,{waitUntil:'load'});
     await page.addStyleTag({content:'html, body, * { scroll-behavior: auto !important; }'});
     await page.locator('[data-enter-language="ko"]').click();await page.locator('[data-korean-tab="ko-lesson-11"]').click();
-    await page.locator('#ko-lesson-11.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/15');
+    await page.locator('#ko-lesson-11.active').waitFor();assert.equal(await page.locator('#koStatCompleted').textContent(),'0/16');
     assert.equal(await page.locator('#ko11-vocab-grid .ko5-word').count(),30);
     await page.locator('[data-ko11-filter="activities"]').click();assert.equal(await page.locator('#ko11-vocab-grid .ko5-word').count(),8);
     await page.locator('#ko11-search').fill('baiollineul');assert.equal(await page.locator('#ko11-vocab-grid h4').innerText(),'바이올린을 켜다');
@@ -68,7 +68,7 @@ assert.throws(()=>d.winners([0,-1,0,0,0]));assert.throws(()=>d.winners([100,0,0,
     await wb.locator('[data-kwb-section]').selectOption('0');await wb.locator('[data-kwb-draft]').fill('해요');await wb.locator('[data-kwb-check]').click();assert.match(await wb.locator('.kwb-feedback').innerText(),/Chưa đúng/);
     await page.locator('#ko11-slide-filter').selectOption('vocab');assert.equal(await page.locator('#ko11-slide-grid .ko5-slide').count(),5);await page.locator('#ko11-slide-grid [data-open-ko-slide]').first().click();assert.ok(await page.locator('#koSlideDialog').isVisible());await page.keyboard.press('Escape');await page.locator('#ko11-slide-filter').selectOption('all');
     assert.equal(await page.locator('#ko11-slide-grid img').evaluateAll(async imgs=>{await Promise.all(imgs.map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));return imgs.filter(i=>!i.naturalWidth).length;}),0);
-    await page.locator('[data-ko11-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');
+    await page.locator('[data-ko11-complete]').click();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/16');
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:1000});
       for(const id of ['vocab','grammar','friends','reading','practice','slides']){await page.locator(`.ko11-jumpbar [data-ko11-jump="${id}"]`).click();await page.waitForFunction(id=>{const el=document.querySelector('#ko11-'+id);return Math.abs(el.getBoundingClientRect().top-parseFloat(getComputedStyle(el).scrollMarginTop))<3;},id);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=2,`overflow at ${width}/${id}`);}
@@ -76,7 +76,7 @@ assert.throws(()=>d.winners([0,-1,0,0,0]));assert.throws(()=>d.winners([100,0,0,
     }
     for(const section of ['grammar','reading','practice']){await page.locator(`.ko11-jumpbar [data-ko11-jump="${section}"]`).click();await page.screenshot({path:path.join(root,`tmp/ko11-${section}.png`)});}
     await page.locator('[data-ko11-vote="0"]').fill('3');await page.locator('[data-ko11-vote="1"]').fill('3');await page.locator('#ko11-poll').evaluate(e=>window.scrollTo(0,scrollY+e.getBoundingClientRect().top-235));await page.screenshot({path:path.join(root,'tmp/ko11-poll.png')});
-    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/15');assert.deepEqual(errors,[]);
+    await page.reload();assert.equal(await page.locator('#koStatCompleted').textContent(),'1/16');assert.deepEqual(errors,[]);
     console.log('PASS: 29 slides, 30 entries (18 core), 18 register pairs, 58 exercises, 10 dialogue turns, 16 routines, 128 interviews, poll validation/ties/reset, mirror game, TTS, modal, drafts, progress and 390/768/1440px layouts.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -68,3 +68,12 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 - Ghi chú sửa `평사` → `평서`; hỏi sinh nhật bạn dùng `너는` thay `나는`. Mẫu bạn thân dùng `나는` thay `저는`, không kết luận mọi kết hợp 저 + thân mật đều sai. Danh từ đổi 이에요/예요 → 이야/야, 거예요 → 거야, không chỉ bỏ 요. Trang 23 dùng 켜다 cho violin nhất quán với bảng từ.
 - Trang 17 thiếu audio/transcript ghép tên: không tạo đáp án đoán và không dùng nhầm audio tiếng Trung. Đọc hiểu phân biệt việc hôm qua, việc hiện tại và kế hoạch tương lai; Minji làm bài tập là dự định được nhắc, không khẳng định đã làm hôm qua. Giữ ảnh gốc để đối chiếu các trang bị chồng chữ.
 - Dữ liệu `data/korean-lesson-11.js`; giao diện `korean-lesson-11-app.js` / `korean-lesson-11.css`; ảnh `assets/korean/lesson-11/slides/`; test `node tests/korean-lesson-11.cjs` hỗ trợ `TEST_URL`. Đối chiếu cách đổi 거예요/거야 với [국립국어원](https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=27&pageIndex=1&qna_seq=332792&searchCondition=&searchKeyword=).
+
+## Tiếng Hàn · Bài 12
+
+- Đủ 35 trang `Bài 12.pdf`, 29 mục bảng từ gốc + 15 mục hỗ trợ, 13 cặp chia lời đề nghị/mong muốn, 13 lượt hội thoại Minji và 61 câu luyện thuộc 10 dạng. Không coi toàn bộ mục từ là từ mới. Từ/câu học có phiên âm, nghĩa và nghe tổng hợp.
+- Thực đơn 8 món đúng số thứ tự/giá trong PDF; ngân sách $20, số phần 0–9, cảnh báo vượt ngân sách và đầu vào không hợp lệ. Không đặt hàng/thanh toán thật, giá không phải giá hiện tại. Các biến thể món của Minji không có giá trong nguồn nên không gán giá tự suy đoán.
+- Chọn món đã thử/có vẻ cay, năm cặp mong muốn–gợi ý, tám thẻ nhập vai có thể xếp lại và đổi món, chọn loại tteokbokki và sáu nguyên liệu. Trải nghiệm cá nhân không chấm cứng. Bài làm/lựa chọn giữ trong phiên, hoàn thành bài lưu cục bộ; toàn khóa 16 mô-đun.
+- Bổ sung `듣다 → 들으세요` và `만들다 → 만드세요`, nhưng giữ `듣고 / 만들고 싶어요`. Trang 19 thiếu audio Youngjun: chỉ giữ ví dụ số 1, không đoán các thành viên còn lại. Trang 30 thiếu thẻ rời: bộ tám lượt là mẫu biên soạn từ câu trong bài, có ghi nhãn. Không dùng audio khóa tiếng Trung.
+- Ảnh nguồn giữ nguyên. Phần loại tteokbokki có bảng tên/ảnh đối chiếu, không chấm nhận diện chắc chắn từ màu ảnh nhỏ. Ghi đầy đủ `친구의 제안` cho nhãn ngắn `친구 제안` của nguồn.
+- Dữ liệu `data/korean-lesson-12.js`; giao diện `korean-lesson-12-app.js` / `korean-lesson-12.css`; ảnh `assets/korean/lesson-12/slides/`. Kiểm tra `node tests/korean-lesson-12.cjs` (hỗ trợ `TEST_URL`). Tham chiếu ngữ pháp: [한국어기초사전 · 싶다](https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62657).
