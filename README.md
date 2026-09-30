@@ -9,6 +9,14 @@
 
 Website học tiếng Trung, tiếng Hàn và IELTS với bài học dạng slide, từ điển, luyện tập và trợ giảng AI.
 
+## Tiếng Hàn · Bài 13
+
+- Đối chiếu đủ 31 trang `Bài 13.pdf`: 24 mục bảng từ gốc và 11 mục hỗ trợ, 13 cặp hỏi ý kiến/rủ cùng làm, 15 lượt hội thoại Yuna–Rachel, 58 câu luyện thuộc 10 dạng. Nội dung học có phiên âm, nghĩa và nghe tổng hợp.
+- Học `-(으)ㄹ까?`, `-(으)ㄹ까요?` và `-자`; nhớ `만들까?`/`놀까?` giữ ㄹ. Tiêu đề được chuẩn hóa thành `파자마 파티를 하자!`, sửa cách ghi sân sau thành `뒷마당`. Trang 13 được viết lại khung câu hoàn chỉnh, câu hoạt động game/bánh quy nhận cả hai lựa chọn phù hợp.
+- Bộ lập kế hoạch chọn thời gian, địa điểm, giờ gặp và hoạt động; túi đồ 10 mục, ô vẽ cảm ứng/chuột kèm mô tả bằng chữ; Bingo 3×3 với 9 từ nguồn, gọi không lặp, chỉ đánh dấu từ đã gọi và thắng khi có hai đường hoàn chỉnh. Nội dung tự viết và ván chơi giữ trong phiên; tiến độ bài lưu cục bộ (17 mô-đun).
+- Đọc hiểu xác nhận bốn bạn, sân sau nhà Yuna và đến chậm nhất lúc 4 giờ. Câu nguồn hỏi giờ bắt đầu có lựa chọn “Chưa đủ thông tin”, vì hội thoại chỉ cho hạn đến. Thẻ địa điểm phụ lục 201 chưa có trong PDF này; bộ kế hoạch dùng địa điểm đã học. Giữ 31 ảnh nguồn để đối chiếu.
+- Dữ liệu `data/korean-lesson-13.js`, giao diện `korean-lesson-13-app.js` / `korean-lesson-13.css`, ảnh `assets/korean/lesson-13/slides/`. Kiểm tra `node tests/korean-lesson-13.cjs`, hỗ trợ `TEST_URL` để xác minh GitHub Pages. Không dùng audio số 13 của khóa tiếng Trung cho bài Hàn.
+
 Mở `index.html` để sử dụng cục bộ. Xem [AI-SETUP.md](AI-SETUP.md) để cấu hình Gemini Flash free tier an toàn.
 
 ## Tiếng Hàn · Bài 5
