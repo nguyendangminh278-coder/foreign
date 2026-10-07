@@ -23,11 +23,11 @@
   });
   const loadLesson14 = async () => {
     if (!document.querySelector('link[href^="korean-lesson-14.css"]')) {
-      const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'korean-lesson-14.css?v=lesson-14-1'; document.head.appendChild(link);
+      const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'korean-lesson-14.css?v=lesson-14-2'; document.head.appendChild(link);
     }
     try {
-      await loadScript('data/korean-lesson-14.js?v=lesson-14-1');
-      await loadScript('korean-lesson-14-app.js?v=lesson-14-1');
+      await loadScript('data/korean-lesson-14.js?v=lesson-14-2');
+      await loadScript('korean-lesson-14-app.js?v=lesson-14-2');
       window.updateKoreanProgress?.();
     } catch (error) { console.error('Không thể tải Bài 14 tiếng Hàn', error); }
   };
