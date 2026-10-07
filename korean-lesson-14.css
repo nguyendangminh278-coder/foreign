@@ -1,0 +1,19 @@
+#koreanApp .ko14-intro{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:18px 22px;border:1px solid #d9ebe8;border-radius:20px;background:linear-gradient(135deg,#fffdf7,#f4fbfa)}
+#koreanApp .ko14-intro>span{padding:8px 12px;border-radius:12px;background:#edf8f6;font-size:.86rem}
+#koreanApp .ko14-intro>span:nth-child(2){background:#fff3e9}#koreanApp .ko14-intro>span:nth-child(3){background:#f5f0fb}
+#koreanApp .ko14-grammar-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#koreanApp .ko14-panel{padding:24px;margin:24px 0;border:1px solid #dce9e7;border-radius:22px;background:#fff}
+#koreanApp .ko14-panel h4{font-size:1.3rem;margin:12px 0 18px}
+#koreanApp .ko14-form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+#koreanApp .ko14-form-grid>article{padding:16px;border-radius:16px;background:#f4faf9;min-width:0}#koreanApp .ko14-form-grid>article:nth-child(even){background:#fff7ef}
+#koreanApp .ko14-speaker{display:inline-flex;padding:8px 11px;border-radius:10px;background:#edf8f6;color:#497a70;font-size:.82rem;font-weight:700}
+#koreanApp .ko14-hide-translation #ko14-dialogue .ko5-line p{display:none}
+#koreanApp .ko14-lab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+#koreanApp .ko14-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#koreanApp .ko14-controls label{display:grid;gap:7px;font-size:.82rem;min-width:0}
+#koreanApp #ko14-routine,#koreanApp #ko14-advice-result{margin-top:18px;padding:18px;border-radius:18px;background:#f6fbfa}
+#koreanApp .ko14-command{padding:16px;border-radius:16px;background:#fff5ec;margin:16px 0}
+#koreanApp .ko14-gonggi{display:grid;gap:10px}#koreanApp .ko14-gonggi button{text-align:left;padding:14px;border:1px solid #e4e8ef;border-radius:14px;background:#fbfbfd;color:#56606d}
+#koreanApp .ko14 .ko5-slide-card img,#koreanApp #ko14-workbook .kwb-source-image{display:none}
+@media(max-width:1050px){#koreanApp:has(#ko-lesson-14.active) .app-header{position:static}#koreanApp:has(#ko-lesson-14.active) .course-tabbar{position:sticky;top:0}#koreanApp .ko14-grammar-grid,#koreanApp .ko14-form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){#koreanApp .ko14-lab-grid,#koreanApp .ko14-grammar-grid,#koreanApp .ko14-form-grid,#koreanApp .ko14-controls{grid-template-columns:1fr}#koreanApp .ko14-panel{padding:18px 12px}}

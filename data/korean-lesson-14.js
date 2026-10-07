@@ -1,0 +1,53 @@
+(() => {
+  'use strict';
+  const line=(text,romanization,meaning)=>({text,romanization,meaning});
+  const vocab=[
+    ['game','게임을 하다','geimeul hada','Chơi game','🎮',3,'activities'],['comics','만화책을 읽다','manhwachaegeul ikda','Đọc truyện tranh','📚',3,'activities'],['homework','숙제를 하다','sukjereul hada','Làm bài tập','📒',3,'activities'],['exercise','운동하다','undonghada','Vận động; tập thể dục','🏃',3,'activities'],
+    ['draw','그림을 그리다','geurimeul geurida','Vẽ tranh','🎨',4,'activities'],['badminton','배드민턴을 치다','baedeuminteoneul chida','Chơi cầu lông','🏸',4,'activities'],['hideandseek','숨바꼭질','sumbakkokjil','Trò trốn tìm','🌳',4,'activities'],['tidy','방 정리','bang jeongni','Dọn/sắp xếp phòng','🧺',4,'activities'],
+    ['already','벌써','beolsseo','Đã… rồi; mới đó mà đã…','⏰',5,'other'],['stop','그만하다','geumanhada','Dừng lại; thôi','✋',5,'other'],['seeker','술래','sullae','Người đi tìm/người bắt trong trò chơi','🙈',5,'other'],['count','세다','seda','Đếm','🔢',5,'other'],['hide','숨다','sumda','Trốn','🌿',5,'other'],['wash','손을 씻다','soneul ssitda','Rửa tay','🧼',5,'other'],['cookie','쿠키','kuki','Bánh quy','🍪',5,'other'],
+    ['wait','기다리다','gidarida','Đợi; chờ','⌛',6,'other'],['museum','미술관','misulgwan','Bảo tàng mỹ thuật','🖼️',6,'other'],['throw','버리다','beorida','Bỏ; vứt đi','🗑️',6,'other'],['cola','콜라','kolla','Cola','🥤',6,'other'],['evenly','골고루','golgoru','Đều khắp; ăn đa dạng/đủ loại tùy ngữ cảnh','🍽️',6,'other'],['sleepin','늦잠을 자다','neutjameul jada','Ngủ nướng; dậy muộn','🛌',6,'other'],['hands','손을 내리다 / 올리다','soneul naerida / ollida','Hạ tay / giơ tay','🙋',6,'other'],
+    ['trash','쓰레기','sseuregi','Rác','🗑️',21,'support'],['run','뛰다','ttwida','Chạy; nhảy','🏃',9,'support'],['fight','싸우다','ssauda','Đánh nhau; tranh cãi','💬',9,'support'],['gongi','공기놀이','gongginori','Trò Gonggi','🟣',25,'support'],['jegi','제기차기','jegichagi','Trò đá cầu kiểu Hàn','🪶',25,'support'],['ddakji','딱지치기','ttakjichigi','Trò đập thẻ giấy Ddakji','🟦',25,'support']
+  ].map(([id,text,romanization,meaning,emoji,page,group])=>({id,text,romanization,meaning,emoji,page,group,core:group!=='support'}));
+  const words=Object.fromEntries(vocab.map(w=>[w.id,w]));
+  const forms=[
+    ['먹다','meokda','먹어','meogeo','먹지 마','meokji ma'],['보다','boda','봐','bwa','보지 마','boji ma'],['울다','ulda','울어','ureo','울지 마','ulji ma'],['뛰다','ttwida','뛰어','ttwieo','뛰지 마','ttwiji ma'],['싸우다','ssauda','싸워','ssawo','싸우지 마','ssauji ma'],['마시다','masida','마셔','masyeo','마시지 마','masiji ma'],['숨다','sumda','숨어','sumeo','숨지 마','sumji ma'],['버리다','beorida','버려','beoryeo','버리지 마','beoriji ma'],['기다리다','gidarida','기다려','gidaryeo','기다리지 마','gidariji ma'],['씻다','ssitda','씻어','ssiseo','씻지 마','ssitji ma'],['하다','hada','해','hae','하지 마','haji ma'],['치다','chida','쳐','chyeo','치지 마','chiji ma'],['정리하다','jeongnihada','정리해','jeongnihae','정리하지 마','jeongnihaji ma']
+  ].map(([text,romanization,command,commandRoma,negative,negativeRoma])=>({text,romanization,command,commandRoma,negative,negativeRoma,politeNegative:negative+'세요'}));
+  const grammar=[
+    {title:'Yêu cầu thân mật · -아/어',formula:'Dạng -아/어요 bỏ 요 → -아/어',explanation:'Dùng để yêu cầu hoặc ra lệnh một cách thân mật. Chỉ nên dùng với bạn bè, người thân hoặc người nhỏ tuổi hơn.',examples:[line('이 선물을 받아.','I seonmureul bada.','Nhận món quà này đi.'),line('손을 잘 씻어.','Soneul jal ssiseo.','Rửa tay kỹ nhé.')]},
+    {title:'Đừng… · -지 마(세요)',formula:'V + 지 마 / 지 마세요',explanation:'Bỏ 다 rồi thêm 지 마. Dạng lịch sự là 지 마세요. Chuẩn hóa khoảng trắng: 하지 마, không viết 하지마.',examples:[line('지금 가지 마.','Jigeum gaji ma.','Đừng đi bây giờ.'),line('늦게 오지 마세요.','Neutge oji maseyo.','Xin đừng đến muộn.')]},
+    {title:'Không làm ≠ Đừng làm',formula:'안 해요 ↔ 하지 마세요',explanation:'안 diễn tả việc không làm; -지 마(세요) là lời yêu cầu người nghe đừng làm.',examples:[line('저는 게임을 안 해요.','Jeoneun geimeul an haeyo.','Tôi không chơi game.'),line('게임을 너무 많이 하지 마.','Geimeul neomu mani haji ma.','Đừng chơi game quá nhiều.')]}
+  ];
+  const reading=[
+    ['Youngjun','민서야, 우리 이제 이 게임하자.','Minseoya, uri ije i geimhaja.','Minseo ơi, giờ mình chơi trò này nào.'],['Mẹ','얘들아, 컴퓨터 게임 너무 많이 하지 마.','Yaedeura, keompyuteo geim neomu mani haji ma.','Các con, đừng chơi game máy tính quá nhiều.'],['Minseo','엄마, 이 게임도 하고 싶어요.','Eomma, i geimdo hago sipeoyo.','Mẹ ơi, con còn muốn chơi trò này nữa.'],['Mẹ','벌써 두 시간 했어. 이제 그만해. 그리고 좀 정리해.','Beolsseo du sigan haesseo. Ije geumanhae. Geurigo jom jeongnihae.','Các con đã chơi hai tiếng rồi. Giờ dừng lại và dọn dẹp một chút.'],['Youngjun','네, 엄마. 그럼 우리 밖에서 놀자.','Ne, eomma. Geureom uri bakkeseo nolja.','Vâng, mẹ. Vậy mình ra ngoài chơi nào.'],['Minseo','알았어, 오빠.','Arasseo, oppa.','Vâng, anh.'],
+    ['Youngjun','우리 뭘 할까? 배드민턴 칠까? 숨바꼭질 할까?','Uri mwol halkka? Baedeuminteon chilkka? Sumbakkokjil halkka?','Mình làm gì nhỉ? Chơi cầu lông hay trốn tìm?'],['Minseo','숨바꼭질 하자. 오빠가 먼저 술래를 해.','Sumbakkokjil haja. Oppaga meonjeo sullaereul hae.','Chơi trốn tìm nào. Anh làm người đi tìm trước nhé.'],['Youngjun','그래. 이제 열까지 셀 거야. 너는 빨리 숨어. 하나, 둘, 셋, 넷…','Geurae. Ije yeolkkaji sel geoya. Neoneun ppalli sumeo. Hana, dul, set, net…','Được. Anh sẽ đếm đến mười. Em trốn nhanh đi.'],['Minseo','숨바꼭질도 재미있었어. 다음에 또 하자.','Sumbakkokjildo jaemiisseosseo. Daeume tto haja.','Trốn tìm cũng vui. Lần sau chơi nữa nhé.'],['Mẹ','얘들아, 간식 먹어.','Yaedeura, gansik meogeo.','Các con, ăn đồ ăn nhẹ đi.'],['Youngjun & Minseo','와, 간식 먹자!','Wa, gansik meokja!','Ồ, ăn đồ ăn nhẹ nào!'],['Mẹ','아, 그냥 먹지 마. 먼저 손을 씻어.','A, geunyang meokji ma. Meonjeo soneul ssiseo.','À, đừng ăn ngay như thế. Rửa tay trước đi.'],['Youngjun & Minseo','네, 엄마. 간식 감사합니다!','Ne, eomma. Gansik gamsahamnida!','Vâng, mẹ. Cảm ơn mẹ vì đồ ăn nhẹ!']
+  ].map(([speaker,text,romanization,meaning])=>({speaker,text,romanization,meaning}));
+  const when=[line('주말에','jumare','Cuối tuần'),line('방과 후에','banggwa hue','Sau giờ học'),line('오늘','oneul','Hôm nay')];
+  const companions=[line('친구하고','chinguhago','với bạn'),line('형제하고','hyeongjehago','với anh/chị/em'),line('부모님하고','bumonimhago','với bố mẹ')];
+  const activities=['game','comics','exercise','draw','badminton','hideandseek'].map(id=>words[id]);
+  const advice=[line('숙제를 먼저 해.','Sukjereul meonjeo hae.','Làm bài tập trước nhé.'),line('게임을 너무 많이 하지 마.','Geimeul neomu mani haji ma.','Đừng chơi game quá nhiều.'),line('골고루 먹어.','Golgoru meogeo.','Ăn đa dạng các món nhé.'),line('운동을 열심히 해.','Undongeul yeolsimhi hae.','Chăm vận động nhé.')];
+  const frogCommands=[line('손 올려!','Son ollyeo!','Giơ tay!'),line('손 내려!','Son naeryeo!','Hạ tay!'),line('웃어!','Useo!','Cười đi!'),line('웃지 마!','Utji ma!','Đừng cười!')];
+  const gonggi=['Nhặt từng viên','Nhặt hai viên','Nhặt ba rồi một viên','Nhặt bốn viên','Chuyền qua mu bàn tay'].map((title,i)=>({step:i+1,title}));
+  const negativeItems=forms.slice(0,9).map(f=>({prompt:f.text,answers:[f.negative,f.politeNegative],sample:line(f.negative,f.negativeRoma,'Đừng '+f.text.replace('다','')),explanation:'Bỏ 다 rồi thêm -지 마; dạng lịch sự thêm -세요.'}));
+  const fillOptions=[line('손을 씻어요','soneul ssiseoyo','Rửa tay'),line('기다려요','gidaryeoyo','Đợi'),line('숨어요','sumeoyo','Trốn'),words.seeker,words.museum,words.cola,words.cookie];
+  const fillRaw=[['식사 전에 ___.','손을 씻어요'],['친구를 ___.','기다려요'],['숨바꼭질할 때 아이들은 ___.','숨어요'],['숨바꼭질에서 잡는 사람은 ___예요.','술래'],['저는 ___에 가서 그림을 봐요.','미술관'],['저는 ___를 마셔요.','콜라'],['엄마와 함께 ___를 만들어요.','쿠키']];
+  const fill=fillRaw.map(([prompt,a])=>({prompt,options:fillOptions,answers:[a],sample:line(prompt.replace('___',a),'',prompt.replace('___',a)),explanation:'Chọn từ/cụm phù hợp với ngữ cảnh.'}));
+  const translate=[['손을 씻어.','Soneul ssiseo.','Hãy rửa tay.'],['숙제를 해.','Sukjereul hae.','Hãy làm bài tập.'],['방을 정리해.','Bangeul jeongnihae.','Hãy dọn dẹp phòng.'],['친구를 기다려.','Chingureul gidaryeo.','Hãy đợi bạn.'],['배드민턴을 쳐.','Baedeuminteoneul chyeo.','Hãy chơi cầu lông.'],['콜라를 마시지 마.','Kollareul masiji ma.','Đừng uống cola.'],['게임을 하지 마.','Geimeul haji ma.','Đừng chơi game.'],['교실에서 뛰지 마.','Gyosireseo ttwiji ma.','Đừng chạy trong lớp.']].map(s=>({prompt:s[2],sample:line(...s),explanation:'Đối chiếu một câu mẫu đúng theo ngữ pháp của bài.'}));
+  const readQuiz=[
+    {prompt:'Hai bạn đã chơi game trong bao lâu?',options:[line('한 시간','han sigan','Một giờ'),line('두 시간','du sigan','Hai giờ'),line('세 시간','se sigan','Ba giờ')],answers:['두 시간'],sample:line('두 시간 했어요.','Du sigan haesseoyo.','Hai giờ.'),explanation:'Mẹ nói 벌써 두 시간 했어.'},
+    {prompt:'Ai làm người đi tìm trước?',options:[line('영준','Yeongjun','Youngjun'),line('민서','Minseo','Minseo')],answers:['영준'],sample:line('영준이 먼저 술래를 해요.','Yeongjuni meonjeo sullaereul haeyo.','Youngjun làm người đi tìm trước.'),explanation:'Minseo bảo anh làm 술래 trước.'}
+  ];
+  const sourceOpen=(page,prompt)=>({prompt,image:`assets/korean/lesson-14/slides/slide-${String(page).padStart(2,'0')}.jpg`,sample:line('직접 써 보세요.','Jikjeop sseo boseyo.','Hãy tự viết rồi đối chiếu với tranh nguồn.'),explanation:'Bài mở: có thể có nhiều câu đúng nếu dùng đúng mẫu ngữ pháp.'});
+  const slides=Array.from({length:27},(_,i)=>({page:i+1,title:i===0?'Đừng chơi game quá nhiều':i===1?'Nội dung bài học':i<6?'Từ vựng':i<8?'Ngữ pháp':i<12?'Luyện tập ngữ pháp':i<26?'Luyện tập chung':'Kết thúc'}));
+  window.KOREAN_LESSON_FOURTEEN={
+    title:'게임을 너무 많이 하지 마.',romanization:'Geimeul neomu mani haji ma.',meaning:'Đừng chơi game quá nhiều.',vocabulary:vocab,words,forms,grammar,reading,when,companions,activities,advice,frogCommands,gonggi,slides,
+    notes:['술래 là người đi tìm/người bắt trong trò chơi.','늦잠을 자다 là ngủ nướng/dậy muộn; khác 늦게 자다 là đi ngủ muộn.','손을 내리다 / 올리다 lần lượt là hạ tay / giơ tay.','Chuẩn hóa chính tả khoảng trắng: 하지 마.'],
+    workbook:{sections:[
+      {id:'negative',title:'Trang 9 · Chia -지 마',type:'exact',note:'Viết lời nhắc “đừng…”; chấp nhận dạng thân mật hoặc lịch sự.',items:negativeItems},
+      {id:'fill',title:'Trang 10 · Điền từ',type:'choice',note:'Chọn từ/cụm phù hợp.',items:fill},
+      {id:'translate',title:'Trang 12 · Dịch câu',type:'open',note:'Viết câu yêu cầu rồi đối chiếu mẫu.',items:translate},
+      {id:'reading',title:'Trang 16–18 · Đọc hiểu',type:'choice',note:'Trả lời theo hội thoại.',items:readQuiz},
+      {id:'command',title:'Trang 20 · Lời yêu cầu',type:'open',note:'Nhìn tranh và luyện -아/어.',items:[sourceOpen(20,'Viết một lời yêu cầu theo tranh trang 20.')]},
+      {id:'prohibit',title:'Trang 21 · Lời nhắc đừng',type:'open',note:'Dùng -지 마 / -지 마세요.',items:[sourceOpen(21,'Viết một lời nhắc “đừng…” theo tranh trang 21.')]},
+      {id:'tradition',title:'Trang 25 · Trò chơi truyền thống',type:'open',note:'Quan sát tranh và gọi tên trò chơi.',items:[sourceOpen(25,'Gọi tên các trò chơi truyền thống trong tranh.')]}]}
+  };
+})();
