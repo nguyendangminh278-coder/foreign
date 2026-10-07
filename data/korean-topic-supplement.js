@@ -36,7 +36,7 @@
     ['사자','saja','Sư tử','animals'],['토끼','tokki','Thỏ','animals'],['원숭이','wonsungi','Khỉ','animals'],['식물원','singmurwon','Vườn thực vật','places'],['수족관','sujokgwan','Thủy cung','places'],['동물원','dongmurwon','Vườn thú; sở thú','places'],['캠핑장','kaempingjang','Khu cắm trại','places'],['거북이','geobugi','Rùa','animals'],['먹다','meokda','Ăn','food'],['쉬다','swida','Nghỉ ngơi','states'],['오다','oda','Đến','movement'],['햄버거','haembeogeo','Hamburger','food'],['달리기','dalligi','Việc chạy bộ; môn chạy; cuộc chạy đua tùy ngữ cảnh (danh từ)','leisure'],['공부하다','gongbuhada','Học bài; học tập','study'],['보다','boda','Xem; nhìn','study'],['가다','gada','Đi','movement'],['기린','girin','Hươu cao cổ','animals'],['호랑이','horangi','Hổ','animals'],['동영상','dongyeongsang','Video; clip','study'],
   ];
   const aliases={'수영하다':['수영을 하다'],'공부하다':['공부를 하다'],'만들다':['음식을 만들다'],'입다':['옷을 입다'],'타다':['자전거를 타다'],'보다':['TV를 보다']};
-  const sourceNames=['ONE','TWO','THREE','FOUR','FIVE','SIX','SEVEN','EIGHT','NINE','TEN','ELEVEN','TWELVE','THIRTEEN'];
+  const sourceNames=['ONE','TWO','THREE','FOUR','FIVE','SIX','SEVEN','EIGHT','NINE','TEN','ELEVEN','TWELVE','THIRTEEN','FOURTEEN'];
   const sources=sourceNames.flatMap((name,i)=>Object.entries(window).filter(([key])=>key===`KOREAN_LESSON_${name}`||key.startsWith(`KOREAN_LESSON_${name}_`)).map(([,data])=>({lesson:i+1,data})));
   function findWords(data){const found=[],seen=new WeakSet();function visit(value){if(!value||typeof value!=='object'||seen.has(value))return;seen.add(value);if(value.text&&value.romanization&&value.meaning)found.push(value);Object.values(value).forEach(visit);}visit(data);return found;}
   const index=sources.map(s=>({...s,entries:findWords(s.data)}));

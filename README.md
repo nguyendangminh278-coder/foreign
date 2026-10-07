@@ -9,6 +9,14 @@
 
 Website học tiếng Trung, tiếng Hàn và IELTS với bài học dạng slide, từ điển, luyện tập và trợ giảng AI.
 
+## Tiếng Hàn · Bài 14
+
+- Đủ 27 trang `Bài 14.pdf`, 22 mục bảng từ gốc + 10 mục hỗ trợ, 20 cặp lời yêu cầu/lời nhắc đừng, 14 lượt hội thoại Youngjun–Minseo và 49 câu luyện thuộc 8 dạng. Từ/câu có phiên âm, nghĩa và nghe tổng hợp.
+- Học câu yêu cầu thân mật -아/어, -지 마 / -지 마세요 và phân biệt với 안. Chuẩn hóa khoảng trắng `하지 마`; sửa 술래 thành người đi tìm/người bắt, 늦잠을 자다 thành ngủ nướng/dậy muộn, thứ tự hạ tay/giơ tay và nghĩa 골고루 theo ngữ cảnh. Danh từ 숨바꼭질, 방 정리 được đưa vào câu với động từ phù hợp.
+- Bộ tạo câu thời gian rảnh (72 tổ hợp), chọn tình huống luyện lời khuyên, trò ếch xanh 8 câu ở hai chế độ làm theo/làm ngược, mô phỏng chọn số viên qua 5 giai đoạn Gonggi kèm trang hướng dẫn tay. Việc tự viết và lượt chơi giữ trong phiên; hoàn thành bài lưu cục bộ (18 mô-đun).
+- Đọc hiểu phân biệt gợi ý cầu lông với hoạt động trốn tìm thật sự chơi, hai giờ là thời lượng chơi game, Youngjun làm người đi tìm và đếm đến mười. Từ đã xuất hiện được dùng lại; dữ liệu chủ đề nhận thêm nguồn Bài 14.
+- Dữ liệu `data/korean-lesson-14.js`, giao diện `korean-lesson-14-app.js` / `korean-lesson-14.css`, ảnh `assets/korean/lesson-14/slides/`. Kiểm tra `node tests/korean-lesson-14.cjs`, hỗ trợ `TEST_URL`. Tham chiếu khoảng trắng: [국립국어원 · 하지 마](https://www.korean.go.kr/front/mcfaq/mcfaqView.do?mcfaq_seq=5937&mn_id=62).
+
 ## Tiếng Hàn · Bài 13
 
 - Đối chiếu đủ 31 trang `Bài 13.pdf`: 24 mục bảng từ gốc và 11 mục hỗ trợ, 13 cặp hỏi ý kiến/rủ cùng làm, 15 lượt hội thoại Yuna–Rachel, 58 câu luyện thuộc 10 dạng. Nội dung học có phiên âm, nghĩa và nghe tổng hợp.

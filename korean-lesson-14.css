@@ -1,0 +1,58 @@
+#koreanApp .ko14-intro { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:18px 22px; border:1px solid #e2edf3; border-radius:20px; background:white; }
+#koreanApp .ko14-intro > span { padding:8px 12px; border-radius:12px; background:#f0f7fb; font-size:.86rem; }
+#koreanApp .ko14-intro > span:nth-child(2) { background:#f2f8ef; }
+#koreanApp .ko14-intro > span:nth-child(3) { background:#faf2f7; }
+#koreanApp .ko14-grammar-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko14 .ko5-grammar-card h4 { font-size:1.18rem; }
+#koreanApp .ko14 .ko5-rule strong { overflow-wrap:anywhere; }
+#koreanApp .ko14-panel { padding:24px; margin:24px 0; border:1px solid #e2eaf0; border-radius:22px; background:white; }
+#koreanApp .ko14-panel h4 { font-size:1.3rem; margin:12px 0 18px; }
+#koreanApp .ko14-panel-title { display:flex; align-items:center; gap:18px; }
+#koreanApp .ko14-panel-title > span { font-size:3.4rem; }
+#koreanApp .ko14-controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+#koreanApp .ko14-controls label { display:grid; gap:8px; min-width:0; font-size:.86rem; }
+#koreanApp .ko14-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
+#koreanApp .ko14-compare > article { padding:20px; border-radius:18px; background:#f1f8fd; }
+#koreanApp .ko14-compare > article:last-child { background:#fcf3f5; }
+#koreanApp .ko14-actions { display:flex; flex-wrap:wrap; gap:12px; margin:16px 0; }
+#koreanApp .ko14-check { display:flex; align-items:center; gap:10px; margin:16px 0; }
+#koreanApp .ko14 input[type=checkbox] { width:18px; height:18px; accent-color:#81a9b8; }
+#koreanApp .ko14-routine { display:flex; align-items:center; gap:22px; padding:22px; margin:20px 0; background:#f3f9fd; border-radius:18px; }
+#koreanApp .ko14-routine > span { font-size:3.4rem; }
+#koreanApp .ko14-wish { padding:20px; background:#faf5fc; border-radius:18px; margin-top:20px; }
+#koreanApp .ko14-tips { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:16px 0; }
+#koreanApp .ko14-tips > div { padding:18px; background:#f6faf3; border-radius:18px; }
+#koreanApp .ko14-frog-panel { background:linear-gradient(135deg,#fff,#f8fcf7); }
+#koreanApp .ko14-frog-options { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:20px 0; }
+#koreanApp .ko14-frog-options button { display:grid; justify-items:center; gap:9px; padding:18px 10px; border:1px solid #dce8df; border-radius:18px; background:white; color:#5b7684; }
+#koreanApp .ko14-frog-options b { font-size:2.5rem; }
+#koreanApp .ko14-frog-options small, #koreanApp .ko14-frog-options span { font-size:.8rem; }
+#koreanApp .ko14-frog-options button:disabled { opacity:.65; }
+#koreanApp #ko14-frog-question { padding:18px; background:#f5f8fc; border-radius:18px; }
+#koreanApp #ko14-frog-feedback:empty { display:none; }
+#koreanApp #ko14-frog-feedback { padding:18px; background:#fdf8ed; border-radius:18px; }
+#koreanApp .ko14-air-stone { display:flex; align-items:center; justify-content:center; gap:12px; padding:18px; color:#7a6a6a; }
+#koreanApp .ko14-air-stone > span { font-size:2.5rem; }
+#koreanApp .ko14-stones { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+#koreanApp .ko14-stones button { display:flex; align-items:center; justify-content:center; gap:8px; padding:18px 8px; background:white; border:1px solid #e0e8ee; border-radius:18px; color:#486675; }
+#koreanApp .ko14-stones button > span { display:grid; place-items:center; width:58px; height:58px; border-radius:50%; font-weight:700; color:#355362; box-shadow:inset 0 -5px 0 #0000000c; }
+#koreanApp .ko14-stones [aria-pressed=true] { background:#f3f8fc; border-color:#99bfce; }
+#koreanApp .ko14-speaker { display:inline-flex; padding:9px 12px; background:#f0f5fc; border-radius:10px; font-size:.82rem; color:#5b7994; }
+#ko14-story, #ko14-note { resize:vertical; }
+#ko14-workbook .kwb-source-image { width:100%; height:auto; aspect-ratio:1500/844; object-fit:contain; }
+#ko14-workbook [data-kwb-check]:hover, #ko14-workbook [data-kwb-check]:focus-visible { transform:none; }
+#koreanApp .ko14-panel .primary-button:hover, #koreanApp .ko14-panel .primary-button:focus-visible { transform:none; }
+@media(max-width:1000px) {
+ #koreanApp:has(#ko-lesson-14.active) .app-header { position:static; }
+ #koreanApp:has(#ko-lesson-14.active) .course-tabbar { position:sticky; top:0; }
+ #koreanApp .ko14-grammar-grid { grid-template-columns:1fr; }
+}
+@media(max-width:680px) {
+ #koreanApp .ko14-controls, #koreanApp .ko14-compare, #koreanApp .ko14-tips { grid-template-columns:1fr; }
+ #koreanApp .ko14-panel { padding:18px 12px; }
+ #koreanApp .ko14-frog-options { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+ #koreanApp .ko14-routine { flex-direction:column; align-items:flex-start; padding:18px; }
+ #koreanApp .ko14-stones { gap:6px; }
+ #koreanApp .ko14-stones button { padding:14px 3px; }
+ #koreanApp .ko14-stones button > span { width:42px; height:42px; }
+}
