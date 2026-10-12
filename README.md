@@ -100,3 +100,11 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 - Bổ sung `듣다 → 들으세요` và `만들다 → 만드세요`, nhưng giữ `듣고 / 만들고 싶어요`. Trang 19 thiếu audio Youngjun: chỉ giữ ví dụ số 1, không đoán các thành viên còn lại. Trang 30 thiếu thẻ rời: bộ tám lượt là mẫu biên soạn từ câu trong bài, có ghi nhãn. Không dùng audio khóa tiếng Trung.
 - Ảnh nguồn giữ nguyên. Phần loại tteokbokki có bảng tên/ảnh đối chiếu, không chấm nhận diện chắc chắn từ màu ảnh nhỏ. Ghi đầy đủ `친구의 제안` cho nhãn ngắn `친구 제안` của nguồn.
 - Dữ liệu `data/korean-lesson-12.js`; giao diện `korean-lesson-12-app.js` / `korean-lesson-12.css`; ảnh `assets/korean/lesson-12/slides/`. Kiểm tra `node tests/korean-lesson-12.cjs` (hỗ trợ `TEST_URL`). Tham chiếu ngữ pháp: [한국어기초사전 · 싶다](https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62657).
+
+## Tiếng Hàn · Bài 15
+
+- Đối chiếu đủ 32 trang `Bài 15.pdf`: xác nhận `-지(요)?` và lựa chọn danh từ `(이)나`. Có 24 mục bảng gốc + 25 mục hỗ trợ ngay trong PDF, không coi tất cả là từ mới; kèm phiên âm, nghĩa, nghe tổng hợp và tra Naver. Giữ ảnh gốc để đối chiếu.
+- 14 lượt hội thoại Nick–Minji–Yuna; 58 câu luyện thuộc 13 dạng. Chọn/viết đáp án có chấm; câu mở và ghép câu dùng mẫu đối chiếu. Câu khác nhóm số 5 nhận cả hai mục không phải động vật; câu ghép núi/biển được bổ sung từ nối thiếu.
+- Tạo kế hoạch hai địa điểm, bảng lịch tháng 7 mẫu 35 ô (5 tuần × 7 thứ, không gán năm/ngày), thêm/thay/xóa theo ô; chọn hai món/phim/trò chơi cho tiệc cuối kỳ; mô hình chọn nhà cho chú heo thứ tư. Các câu sinh tự động dùng phiên âm nối âm phù hợp, không chỉ nối hậu tố Latin vào từ gốc.
+- Sửa `전시회` thành “triển lãm”, `곧` thành “sắp”. Lời Nick “ngày mai là ngày cuối học kỳ” mâu thuẫn tiêu đề nguồn “nghỉ từ ngày mai”: giữ lời thoại, ghi chú rõ và chấm câu đúng/sai theo lời Nick. Yuna đi Hàn Quốc tuần đầu tháng 7; sinh nhật Minji tuần thứ ba tháng 6; anh của Nick thích bóng chày. Kịch bản phụ lục 203 và audio gốc không có trong PDF nên không tự dựng transcript/audio.
+- Dữ liệu `data/korean-lesson-15.js`; giao diện `korean-lesson-15-app.js` / `korean-lesson-15.css`; ảnh `assets/korean/lesson-15/slides/`; kiểm tra `node tests/korean-lesson-15.cjs`, hỗ trợ `TEST_URL` cho bản triển khai. Toàn khóa có 19 mô-đun tiến độ. Bài làm/lịch/lựa chọn giữ trong phiên, dấu hoàn thành lưu cục bộ tại máy.
