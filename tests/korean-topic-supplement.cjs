@@ -13,7 +13,7 @@ console.log('Audit:',JSON.stringify({words:d.words.length,newWords:d.words.filte
  const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'});
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href);await page.addStyleTag({content:'* {scroll-behavior:auto!important}'});
+  await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href,{waitUntil:'domcontentloaded',timeout:60000});await page.addStyleTag({content:'* {scroll-behavior:auto!important}'});
   await page.locator('[data-enter-language="ko"]').click();await page.locator('[data-korean-tab="ko-lesson-vocab"]').click();
   assert.equal(await page.locator('#ko-topic-words .ko5-word').count(),49);
   for(const t of d.topics){await page.locator(`[data-ko-topic="${t.id}"]`).click();assert.equal(await page.locator('#ko-topic-words .ko5-word').count(),d.words.filter(w=>w.topic===t.id).length);}
