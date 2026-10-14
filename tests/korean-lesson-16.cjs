@@ -2,8 +2,8 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {pathToFileURL}=require('node:url'),{chromium}=require('playwright');
 const root=path.resolve(__dirname,'..'),context={window:{}};
 vm.runInNewContext(fs.readFileSync(path.join(root,'data/korean-lesson-16.js'),'utf8'),context);const d=context.window.KOREAN_LESSON_SIXTEEN;
-assert.equal(d.slides.length,31);assert.equal(d.vocabulary.length,47);assert.equal(d.vocabulary.filter(w=>w.core).length,27);assert.equal(d.reading.length,19);assert.equal(d.workbook.sections.reduce((n,s)=>n+s.items.length,0),63);
-assert.equal(new Set(d.vocabulary.map(w=>w.text)).size,47);assert.equal(d.route.map(r=>r.id).join(','),'plane,bus,train,ship');
+assert.equal(d.slides.length,31);assert.equal(d.vocabulary.length,54);assert.equal(d.vocabulary.filter(w=>w.core).length,27);assert.equal(d.reading.length,19);assert.equal(d.workbook.sections.reduce((n,s)=>n+s.items.length,0),63);
+assert.equal(new Set(d.vocabulary.map(w=>w.text)).size,54);assert.equal(d.route.map(r=>r.id).join(','),'plane,bus,train,ship');
 for(const s of d.slides){assert.ok(fs.statSync(path.join(root,`assets/korean/lesson-16/slides/slide-${String(s.page).padStart(2,'0')}.jpg`)).size>1000);for(const id of s.words)assert.ok(d.words[id]);}
 for(const w of [...d.vocabulary,...d.reading,...d.means])assert.ok(w.text&&w.romanization&&w.meaning);
 for(const section of d.workbook.sections)for(const q of section.items){assert.ok(q.sample.text&&q.sample.romanization&&q.sample.meaning);if(/[가-힣]/.test(q.prompt))assert.ok(q.promptRomanization);if(section.type==='choice')for(const a of q.answers)assert.ok(q.options.some(o=>o.text===a));if(section.type==='exact')assert.ok(q.answers.length);}
@@ -17,7 +17,7 @@ fs.mkdirSync(path.join(root,'tmp'),{recursive:true});
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(process.env.TEST_URL||pathToFileURL(path.join(root,'index.html')).href,{waitUntil:'domcontentloaded',timeout:60000});await page.addStyleTag({content:'*{scroll-behavior:auto!important}'});await page.locator('[data-enter-language="ko"]').click();await page.locator('[data-korean-tab="ko-lesson-16"]').click();
-  assert.equal(await page.locator('#koStatCompleted').textContent(),'0/20');assert.equal(await page.locator('#ko16-words .ko5-word').count(),47);
+  assert.equal(await page.locator('#koStatCompleted').textContent(),'0/20');assert.equal(await page.locator('#ko16-words .ko5-word').count(),54);
   await page.locator('[data-ko16-filter="transport"]').click();assert.equal(await page.locator('#ko16-words .ko5-word').count(),10);await page.locator('#ko16-search').fill('xe tai');assert.equal(await page.locator('#ko16-words h4').innerText(),'트럭');await page.locator('#ko16-search').fill('');await page.locator('[data-ko16-filter="all"]').click();
   for(let i=0;i<d.forms.length;i++){await page.locator('#ko16-verb').selectOption(String(i));assert.ok((await page.locator('#ko16-forms').innerText()).includes(d.forms[i].intent));}
   for(let i=0;i<d.means.length;i++){await page.locator('#ko16-means').selectOption(String(i));assert.ok((await page.locator('#ko16-forms').innerText()).includes(d.means[i].text));}
@@ -45,6 +45,6 @@ fs.mkdirSync(path.join(root,'tmp'),{recursive:true});
   for(const section of ['grammar','reading','practice']){await page.locator(`.ko16-jumpbar [data-ko16-jump="${section}"]`).click();await page.screenshot({path:path.join(root,`tmp/ko16-${section}.png`)});}
   for(const [id,name]of [['ko16-days','jeju'],['ko16-canvas','drawing'],['ko16-vacation','plan']]){await page.locator('#'+id).evaluate(e=>window.scrollTo(0,scrollY+e.getBoundingClientRect().top-235));await page.screenshot({path:path.join(root,`tmp/ko16-${name}.png`)});}
   await page.reload({waitUntil:'domcontentloaded',timeout:60000});assert.equal(await page.locator('#koStatCompleted').textContent(),'1/20');assert.deepEqual(errors,[]);
-  console.log(`PASS: 31 PDF pages, 47 annotated entries (27 core), 63 exercises, 19 reading sentences, ${plans} vacation combinations, 25 Jeju combinations, route, grammar, canvas/timer/score, culture comparison, speech, drafts, progress and responsive 390/768/1440 layouts.`);
+  console.log(`PASS: 31 PDF pages, 54 annotated entries (27 core, 7 supplemental), 63 exercises, 19 reading sentences, ${plans} vacation combinations, 25 Jeju combinations, route, grammar, canvas/timer/score, culture comparison, speech, drafts, progress and responsive 390/768/1440 layouts.`);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

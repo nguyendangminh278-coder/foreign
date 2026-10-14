@@ -112,6 +112,7 @@ Kiểm tra bằng Node.js có thư viện `playwright`: `node tests/korean-lesso
 ## Tiếng Hàn · Bài 16
 
 - Đủ 31 trang `Bài 16.pdf`: ý định `-(으)려고 하다` và phương tiện/công cụ `(으)로`. Có 47 mục từ/cụm (27 mục bảng tranh/chú giải + 20 mục hỗ trợ), gồm cả từ ôn, mỗi mục có phiên âm, nghĩa, nghe tổng hợp và tra Naver. Trang 4–7 là cùng sơ đồ hiện dần đáp án; phần luyện gộp câu trùng, ảnh nguồn vẫn giữ đầy đủ.
+- Bổ sung 7 mục trên lớp: 층, 2층, 지하 2층, 고속버스, 속도, 배고프다, 주말; tổng 54 mục. Bộ lọc Bổ sung có chủ đề, hướng dẫn đọc và ví dụ kèm phiên âm/nghĩa; 주말 ghi ôn Bài 7. Giữ tìm kiếm các cách viết người học nhập như 고속 버스, 배 고프다, B2. Các mục này không gán số trang PDF.
 - Bài đọc Rachel được chia 19 câu có phiên âm/nghĩa; 63 câu luyện thuộc 9 dạng: hành trình, hoạt động du lịch, đọc hiểu, chia ý định, gắn tiểu từ phương tiện, lịch Jeju, đến trường, công cụ và tự viết. Phân biệt batchim ㄹ với ㄺ; ôn `듣다 → 들으려고 해요` từ kiến thức bất quy tắc cũ.
 - Sơ đồ bốn chặng: Mỹ–Incheon bằng máy bay, Incheon–Seoul bằng xe buýt, Seoul–Busan bằng tàu hỏa, Busan–Jeju bằng tàu thủy. Đây là hành trình của nhân vật, không phải tuyến vận tải hiện hành. Bộ tạo kế hoạch giới hạn địa điểm/hoạt động trong bài; lịch 5 ngày Jeju có thể chỉnh và khôi phục theo sách.
 - Vùng vẽ bằng chuột/cảm ứng, mô tả chữ thay thế, chế độ tự do hoặc 10 giây, ẩn/mở đề và bảng điểm hai đội. Đồng hồ dừng khi chuyển bài/ngôn ngữ hoặc rời trang. So sánh kỳ nghỉ bằng số tuần người học nhập; thẻ văn hóa ghi thời gian theo sách, không khẳng định lịch chung cho mọi trường/năm.
