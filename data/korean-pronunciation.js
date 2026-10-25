@@ -1,0 +1,76 @@
+(() => {
+  'use strict';
+  const sources={
+    standard:{title:'국립국어원 · Quy định phát âm chuẩn',url:'https://www.korean.go.kr/kornorms/m/m_regltn.do?regltn_code=0002'},
+    cluster:{title:'국립국어원 · Vì sao 읽고 đọc [일꼬]',url:'https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=&pageIndex=1&qna_seq=321743'},
+    ui:{title:'국립국어원 · Cách đọc ㅢ và cách viết',url:'https://www.korean.go.kr/kornorms/m/m_regltn.do'},
+    pitch:{title:'Sun-Ah Jun · Ngữ điệu tiếng Hàn Seoul (UCLA)',url:'https://escholarship.org/uc/item/90d6532f'},
+  };
+  const rules=[
+    {id:'onset',title:'Thường · căng · bật hơi',formula:'ㄱ / ㄲ / ㅋ · ㄷ / ㄸ / ㅌ · ㅂ / ㅃ / ㅍ · ㅈ / ㅉ / ㅊ',summary:'Phân biệt cách tạo phụ âm đầu, không chỉ dựa vào chữ Latin.',tips:['Âm thường: tạo âm nhẹ, không siết mạnh. Không đồng nhất ㄱ với “g”, ㄷ với “đ” của tiếng Việt trong mọi vị trí.','Âm căng: khép/siết chắc rồi bật gọn; không cố thổi ra nhiều hơi. Âm bật hơi có luồng hơi rõ hơn.','Đặt bàn tay trước miệng để cảm nhận hơi, rồi so sánh âm thường–căng–bật hơi. Đây là mẹo tập, không phải máy chấm phát âm.'],caution:'Cao độ, thời điểm bật hơi và ngữ cảnh cùng tham gia phân biệt âm. Không đọc một âm căng bằng cách thêm dấu sắc tiếng Việt.',source:'standard',section:'§2–4'},
+    {id:'final',title:'7 âm cuối của batchim',formula:'[ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ] · k / n / t / l / m / p / ng',summary:'Khi đứng cuối từ hoặc trước phụ âm, nhiều chữ cuối quy về cùng một âm.',tips:['Âm cuối k, t, p được chặn gọn, không bật thành một âm tiết “cờ/tờ/pờ”.','ㅅ, ㅆ, ㅈ, ㅊ, ㅌ thường quy về [ㄷ] ở vị trí cuối; ㅋ/ㄲ về [ㄱ], ㅍ về [ㅂ].','Trước nguyên âm, hãy xét nối âm; với ㅎ và batchim kép, xem quy tắc riêng.'],caution:'Âm cuối bị chặn không có nghĩa là phải thêm thanh nặng. Giữ chính tả khi viết.',source:'standard',section:'§8–12'},
+    {id:'liaison',title:'Nối âm sang ㅇ',formula:'Batchim + tiểu từ/đuôi bắt đầu bằng nguyên âm → nối sang âm tiết sau',summary:'ㅇ đầu âm tiết không phát âm; phụ âm cuối có thể nối sang đó.',tips:['Đọc liền thay vì ngắt từng ô chữ. Ví dụ 한국어 → [한구거].','Ở 옷이, chữ ㅅ nối sang 이 thành [오시]; không đổi thành ㄷ rồi đọc [오디].','ㅇ cuối là âm ng, khác ㅇ câm đầu âm tiết. Batchim kép và ㅎ có cách xử lý riêng.'],caution:'Không dùng công thức này mù quáng cho mọi ranh giới từ: từ ghép và thêm ㄴ có quy tắc khác.',source:'standard',section:'§13–15'},
+    {id:'tense',title:'Căng âm · 된소리되기',formula:'Sau âm cuối [ㄱ ㄷ ㅂ], ㄱ ㄷ ㅂ ㅅ ㅈ → ㄲ ㄸ ㅃ ㅆ ㅉ',summary:'Giữ âm cuối, làm phụ âm đầu tiếp theo căng hơn.',tips:['Nhận diện chỗ tiếp giáp hai âm tiết: 식 + 당 có ㄱ trước ㄷ, nên đọc [식땅].','국가 đọc [국까]; 학교 đọc [학꾜]. Chữ viết vẫn giữ như ban đầu.','Một số môi trường ngữ pháp và từ ghép cũng gây căng âm; không phải sau mọi batchim đều tự động căng.'],caution:'Căng âm và bật hơi là hai hiện tượng khác nhau: ㄲ không phải ㅋ, ㄸ không phải ㅌ.',source:'standard',section:'§23–28'},
+    {id:'nasal',title:'Mũi hóa · 비음화',formula:'[ㄱ ㄷ ㅂ] + ㄴ/ㅁ → [ㅇ ㄴ ㅁ] + ㄴ/ㅁ',summary:'Âm tắc cuối chuyển thành âm mũi trước ㄴ hoặc ㅁ.',tips:['ㄱ gặp ㄴ/ㅁ thường nghe thành ng: 한국말 → [한궁말].','ㅂ gặp ㄴ/ㅁ thành m: 합니다 → [함니다].','Nhóm âm cuối quy về ㄷ chuyển thành ㄴ: 있는 → [인는].'],caution:'Việc đổi âm dựa vào âm tiếp theo, không phải mọi ㄱ đều đổi thành ng. 미국 đứng riêng vẫn có âm cuối k.',source:'standard',section:'§18–19'},
+    {id:'liquid',title:'ㄴ và ㄹ gặp nhau',formula:'Nhiều tổ hợp ㄴ+ㄹ / ㄹ+ㄴ → [ㄹㄹ]',summary:'Đọc nối hai vị trí bằng âm l; cũng có môi trường ㄹ chuyển sang n.',tips:['반려동물 đọc [발려동물], vì ㄴ trước ㄹ chuyển thành ㄹ.','Trong 연필로 và 지하철로, hai ㄹ nối thành âm l liền; không rung mạnh như “r” tiếng Việt.','Sau ㅁ/ㅇ, ㄹ thường thành ㄴ; với ㄱ/ㅂ trước ㄹ, có thể còn xảy ra mũi hóa.'],caution:'Một số từ không theo cách ㄴ+ㄹ → ㄹㄹ thông thường. Tra từng từ khi chưa chắc, không tự đổi mọi ㄹ thành l hoặc n.',source:'standard',section:'§19–20'},
+    {id:'aspiration',title:'Bật hơi khi gặp ㅎ',formula:'ㄱ/ㄷ/ㅂ/ㅈ + ㅎ, hoặc ㅎ + ㄱ/ㄷ/ㅈ → âm bật hơi phù hợp',summary:'Hai phụ âm kết hợp thành ㅋ, ㅌ, ㅍ hoặc ㅊ.',tips:['좋다 → [조타]: ㅎ và ㄷ hợp thành ㅌ.','축하해 → [추카해]: ㄱ và ㅎ hợp thành ㅋ.','Với ㄶ/ㅀ, còn giữ ㄴ/ㄹ trước âm bật hơi, như 많다 → [만타].'],caution:'ㅎ gặp nguyên âm có thể mất âm, nhưng gặp phụ âm không phải lúc nào cũng mất.',source:'standard',section:'§12'},
+    {id:'h-drop',title:'Lược ㅎ trước nguyên âm',formula:'ㅎ / ㄶ / ㅀ + đuôi bắt đầu bằng nguyên âm',summary:'Trong các dạng động/tính từ này, ㅎ không được phát ra.',tips:['좋아요 đọc [조아요], không đọc thêm h giữa hai nguyên âm.','많아요 đọc [마나요]: giữ ㄴ và nối sang 아.','싫어요 đọc [시러요]: giữ ㄹ và nối sang 어.'],caution:'So sánh 좋아요 với 좋다: cách đọc phụ thuộc đuôi đứng sau, không bỏ ㅎ ở mọi nơi.',source:'standard',section:'§12.4'},
+    {id:'palatal',title:'ㄷ/ㅌ + 이 thành ㅈ/ㅊ',formula:'ㄷ/ㅌ + nguyên âm ㅣ của tiểu từ/hậu tố → [ㅈ/ㅊ]',summary:'Một số chỗ nối với 이 thay đổi cả vị trí phát âm.',tips:['같이 đọc [가치], không phải [가티].','밭이 đọc [바치], nhưng 밭에 đọc [바테]. Hãy nhìn đúng nguyên âm sau.','굳이 đọc [구지].'],caution:'Đây không phải quy tắc đổi mọi 디/티 ở bất kỳ từ nào thành 지/치.',source:'standard',section:'§17'},
+    {id:'clusters',title:'Batchim kép & ngoại lệ',formula:'Đọc theo từ và âm phía sau · không chọn cố định “chữ trái” hoặc “chữ phải”',summary:'Cùng một gốc từ có thể cho nhiều cách đọc khi đổi đuôi.',tips:['읽다 → [익따], 읽어요 → [일거요], đọc từng dạng cạnh nhau để thấy sự khác biệt.','읽고 → [일꼬]: với ㄺ ở cuối thân động từ trước ㄱ, giữ ㄹ; âm sau căng.','닭 đứng riêng → [닥]. 밟다 → [밥따] là trường hợp cần nhớ; 넓다 → [널따] không xử lý giống 밟다.'],caution:'Các bước hiển thị giúp nhận ra kết quả, không phải thuật toán suy ra mọi từ mới.',source:'cluster',section:'§10–14; đối chiếu riêng 읽고'},
+    {id:'n-add',title:'Thêm ㄴ ở một số từ ghép',formula:'Ranh giới từ ghép/phái sinh + 이/야/여/요/유 → có thể thêm ㄴ',summary:'Âm ㄴ được thêm có thể kéo theo mũi hóa hoặc biến âm khác.',tips:['색연필 đọc [생년필]: thêm ㄴ trước 연, rồi ㄱ chuyển thành ㅇ trước ㄴ.','나뭇잎 đọc [나문닙]; đây là ví dụ có 사이시옷 và thêm âm ở chỗ ghép.','Không thấy ㄴ trong chính tả không có nghĩa là không có âm n trong cách đọc.'],caution:'Không thêm ㄴ sau mọi batchim gặp ㅇ. Đối chiếu 한국어 [한구거] với 색연필 [생년필].',source:'standard',section:'§29–30'},
+    {id:'ui',title:'Các cách đọc 의 / ㅢ',formula:'Đầu từ · sau phụ âm · ngoài âm tiết đầu · tiểu từ sở hữu',summary:'ㅢ không luôn được đọc giống nhau.',tips:['의사 giữ âm 의 ở đầu từ; không dùng [이사] thay cho nghĩa bác sĩ.','ㅢ có phụ âm đầu như 희 trong 희망 được đọc [히].','의 ngoài âm tiết đầu có thể đọc [이]; 의 làm tiểu từ sở hữu có thể đọc [에], bên cạnh cách đọc nguyên dạng.'],caution:'Dạng được chấp nhận có thể nhiều hơn một. Bài luyện nhận các biến thể được ghi trong ví dụ.',source:'ui',section:'Phát âm §5'},
+    {id:'pitch',title:'Cao độ · “huyền–ngang”',formula:'Đầu cụm giọng Seoul: khởi đầu thấp hoặc cao tùy nhóm âm đầu',summary:'Dấu tiếng Việt chỉ là mẹo ghi chú, không phải thanh điệu cố định của từ Hàn.',tips:['Ở đầu cụm, âm thường, âm vang hoặc nguyên âm thường khởi đầu thấp; âm căng, bật hơi, ㅅ, ㅎ thường khởi đầu cao.','Sơ đồ thấp→cao / cao→cao chỉ minh họa khởi đầu một cụm ngắn. Ngữ cảnh, trọng tâm và cuối câu có thể đổi đường giọng.','Giữ riêng hai việc: 식당 đổi phụ âm thành [식땅]; cao độ đầu cụm là lớp ngữ điệu khác.'],caution:'Không chấm đúng/sai giọng nói bằng dấu huyền, sắc hay nặng. Những ký hiệu viết tắt chưa rõ trong ảnh không được coi là quy tắc bắt buộc.',source:'pitch',section:'Mô hình ngữ điệu Seoul của Sun-Ah Jun'},
+  ];
+  // Latin guides approximate the displayed surface pronunciation, not official Romanization.
+  const ex=(id,rule,text,pronunciation,reading,meaning,steps,distractors,core=true,variants=[])=>({id,rule,text,pronunciation,reading,meaning,steps,distractors,core,answers:[pronunciation,...variants]});
+  const examples=[
+    ex('sleep','onset','자다','자다','ja-da','Ngủ',['ㅈ là phụ âm thường.','Đọc tự nhiên, không siết thành ㅉ và không thổi thành ㅊ.'],['짜다','차다']),
+    ex('salty','onset','짜다','짜다','jja-da','Mặn',['ㅉ là phụ âm căng.','Khép chắc rồi bật gọn; không thêm hơi mạnh.'],['자다','차다']),
+    ex('tea','onset','차','차','cha','Trà; xe (tùy ngữ cảnh)',['ㅊ là phụ âm bật hơi.','Cảm nhận luồng hơi khi mở âm.'],['자','짜']),
+    ex('clothes','final','옷','옫','ot','Quần áo',['Chữ cuối là ㅅ.','Ở cuối từ, âm cuối quy về [ㄷ], chặn t gọn.'],['오스','오']),
+    ex('flower','final','꽃','꼳','kkot','Hoa',['Chữ cuối là ㅊ.','Ở cuối từ, ㅊ quy về [ㄷ]; không thêm một âm “chờ”.'],['꼬츠','꼬']),
+    ex('front','final','앞','압','ap','Phía trước',['Chữ cuối là ㅍ.','Cuối từ đọc âm p không bật hơi ra.'],['아프','아']),
+    ex('usa','final','미국','미국','mi-guk','Mỹ',['Tách 미 + 국; chữ cuối là ㄱ.','Đọc âm cuối k gọn; không có ㄴ/ㅁ sau để gây mũi hóa.'],['미궁','미구']),
+    ex('korean','liaison','한국어','한구거','han-gu-geo','Tiếng Hàn',['한국 + 어; ㅇ đầu 어 không có âm.','ㄱ ở cuối 국 nối sang 어.','Ghép lại: [한구거].'],['한궁어','한국어']),
+    ex('clothes-subject','liaison','옷이','오시','o-si','Quần áo + tiểu từ chủ ngữ',['옷 + 이.','ㅅ nối nguyên giá trị sang 이.'],['오디','옫이']),
+    ex('flowers-object','liaison','꽃을','꼬츨','kko-cheul','Hoa + tiểu từ tân ngữ',['꽃 + 을.','ㅊ nối sang 을; không đổi trước thành ㄷ.'],['꼬들','꼳을']),
+    ex('eat-polite','liaison','먹어요','머거요','meo-geo-yo','Ăn (lịch sự)',['먹 + 어요.','ㄱ nối sang 어.'],['멍어요','먹어요']),
+    ex('restaurant','tense','식당','식땅','sik-ttang','Nhà hàng',['식 + 당: ㄱ đứng trước ㄷ.','ㄷ ở 당 chuyển thành ㄸ.','Giữ ㄱ ở cuối 식: [식땅].'],['식탕','싱당']),
+    ex('country','tense','국가','국까','guk-kka','Quốc gia',['국 + 가: ㄱ đứng trước ㄱ.','Phụ âm đầu 가 căng thành ㄲ.'],['국카','궁가']),
+    ex('school','tense','학교','학꾜','hak-kkyo','Trường học',['학 + 교: ㄱ đứng trước ㄱ.','교 được đọc với âm ㄲ căng.'],['하교','항교']),
+    ex('semester','tense','학기','학끼','hak-kki','Học kỳ',['학 + 기.','ㄱ đầu 기 căng thành ㄲ.'],['하기','학키']),
+    ex('express','tense','고속버스','고속뻐스','go-sok-ppeo-seu','Xe buýt cao tốc',['고속 + 버스: ㄱ đứng trước ㅂ.','ㅂ chuyển thành ㅃ; không đổi thành ㅍ.'],['고속퍼스','고송버스']),
+    ex('korean-speech','nasal','한국말','한궁말','han-gung-mal','Tiếng Hàn',['한국 + 말: âm cuối ㄱ trước ㅁ.','ㄱ → ㅇ, giữ ㅁ.'],['한구말','한국말']),
+    ex('soup','nasal','국물','궁물','gung-mul','Nước canh',['ㄱ cuối 국 đứng trước ㅁ.','Đổi ㄱ thành ㅇ.'],['구물','국물'],false),
+    ex('doing','nasal','합니다','함니다','ham-ni-da','Làm (trang trọng)',['합 + 니다: ㅂ đứng trước ㄴ.','ㅂ chuyển thành ㅁ.'],['합니따','하미다']),
+    ex('existing','nasal','있는','인는','in-neun','Có / đang ở (dạng bổ nghĩa)',['있 + 는: âm cuối thuộc nhóm [ㄷ].','Trước ㄴ, âm cuối đổi thành ㄴ.'],['읻는','이쓰는']),
+    ex('pet','liquid','반려동물','발려동물','bal-lyeo-dong-mul','Thú cưng',['반 + 려: ㄴ gặp ㄹ.','ㄴ đồng hóa thành ㄹ; đọc nối l.'],['반녀동물','바려동물']),
+    ex('pencil','liquid','연필로','연필로','yeon-pil-lo','Bằng bút chì',['필 + 로: ㄹ cuối và ㄹ đầu nối nhau.','Đọc l liền, không thêm nguyên âm ở giữa.'],['연피로','연핀노']),
+    ex('silla','liquid','신라','실라','sil-la','Silla (tên vương quốc xưa)',['ㄴ + ㄹ.','Đọc thành ㄹ + ㄹ.'],['신나','시라'],false),
+    ex('national','liquid','국립','궁닙','gung-nip','Thuộc quốc gia / quốc lập',['ㄹ sau âm cuối ㄱ chuyển thành ㄴ.','ㄱ trước ㄴ mũi hóa thành ㅇ.'],['굴립','국립'],false),
+    ex('good','aspiration','좋다','조타','jo-ta','Tốt',['좋 + 다: ㅎ gặp ㄷ.','Hợp thành phụ âm bật hơi ㅌ.'],['조따','조다']),
+    ex('congratulate','aspiration','축하해','추카해','chu-ka-hae','Chúc mừng (thân mật)',['축 + 하: ㄱ gặp ㅎ.','Hợp thành ㅋ.'],['축까해','충하해']),
+    ex('many','aspiration','많다','만타','man-ta','Nhiều',['많 có ㄶ, theo sau là ㄷ.','Giữ ㄴ; ㅎ + ㄷ → ㅌ.'],['만따','마타']),
+    ex('good-polite','h-drop','좋아요','조아요','jo-a-yo','Tốt / thích (tùy ngữ cảnh)',['좋 + 아요.','ㅎ mất trước đuôi nguyên âm.'],['조하요','조타요']),
+    ex('many-polite','h-drop','많아요','마나요','ma-na-yo','Nhiều (lịch sự)',['많 + 아요.','Bỏ ㅎ; ㄴ còn lại nối sang 아.'],['만하요','마타요']),
+    ex('dislike','h-drop','싫어요','시러요','si-reo-yo','Không thích (lịch sự)',['싫 + 어요.','Bỏ ㅎ; ㄹ nối sang 어.'],['실허요','시터요']),
+    ex('together','palatal','같이','가치','ga-chi','Cùng nhau',['같 + 이.','ㅌ kết hợp với 이 của hậu tố → ㅊ.'],['가티','가디']),
+    ex('field','palatal','밭이','바치','ba-chi','Ruộng/vườn + tiểu từ chủ ngữ',['밭 + 이.','ㅌ trước 이 của tiểu từ → ㅊ.'],['바티','바디']),
+    ex('insist','palatal','굳이','구지','gu-ji','Nhất quyết / cố (tùy ngữ cảnh)',['굳 + 이.','ㄷ chuyển thành ㅈ ở môi trường này.'],['구디','구티'],false),
+    ex('read','clusters','읽다','익따','ik-tta','Đọc',['읽- có batchim kép ㄺ.','Ở dạng này giữ âm ㄱ; ㄷ sau đọc căng.'],['일다','일따']),
+    ex('read-polite','clusters','읽어요','일거요','il-geo-yo','Đọc (lịch sự)',['읽 + 어요.','ㄹ ở lại cuối; ㄱ nối sang 어.'],['이거요','익어요']),
+    ex('read-and','clusters','읽고','일꼬','il-kko','Đọc rồi / đọc và…',['Thân đọc 읽- kết hợp đuôi -고.','Trường hợp ㄺ của thân động từ trước ㄱ: âm cuối giữ ㄹ, âm sau căng.'],['익꼬','일고']),
+    ex('chicken','clusters','닭','닥','dak','Gà',['Batchim kép ㄺ ở cuối từ.','Đọc âm cuối ㄱ.'],['달','달그']),
+    ex('wide','clusters','넓다','널따','neol-tta','Rộng',['넓- có ㄼ.','Ở từ này giữ ㄹ, đuôi ㄷ đọc căng.'],['넙따','너따']),
+    ex('step','clusters','밟다','밥따','bap-tta','Giẫm, đạp',['밟- có ㄼ.','Ghi nhớ ngoại lệ trước phụ âm: giữ ㅂ, sau đó ㄷ căng.'],['발따','바따'],false),
+    ex('color-pencil','n-add','색연필','생년필','saeng-nyeon-pil','Bút chì màu',['색 + 연필 là từ ghép.','Thêm ㄴ trước 연: xét cụm ㄱ + ㄴ.','Mũi hóa ㄱ thành ㅇ → [생년필].'],['새견필','색연필']),
+    ex('leaf','n-add','나뭇잎','나문닙','na-mun-nip','Lá cây',['Từ ghép có 사이시옷 trước 잎.','Đọc với ㄴ ở cuối âm tiết trước và ㄴ đầu âm tiết sau.'],['나무십','나무입']),
+    ex('doctor','ui','의사','의사','ui-sa','Bác sĩ',['의 là âm tiết đầu của từ.','Giữ nguyên âm ㅢ; không tự đổi thành 이.'],['이사','에사']),
+    ex('hope','ui','희망','히망','hi-mang','Hy vọng',['희 có phụ âm đầu ㅎ đi với ㅢ.','ㅢ ở đây đọc thành ㅣ.'],['흐망','헤망'],false),
+    ex('our','ui','우리의','우리의','u-ri-ui / u-ri-e','Của chúng ta / chúng tôi',['의 ở đây là tiểu từ sở hữu.','Đọc [우리의] hoặc [우리에] đều được.'],['우리이','우레'],true,['우리에']),
+    ex('meaning','ui','의의','의의','ui-ui / ui-i','Ý nghĩa',['의 thứ nhất ở đầu từ giữ âm ㅢ.','의 thứ hai có thể đọc [의] hoặc [이].'],['이이','에의'],false,['의이']),
+  ];
+  const pitch=[{text:'바다',pronunciation:'바다',reading:'ba-da',meaning:'Biển',pattern:'LH',reason:'ㅂ thường: thường khởi đầu thấp ở đầu cụm.'},{text:'미국',pronunciation:'미국',reading:'mi-guk',meaning:'Mỹ',pattern:'LH',reason:'ㅁ vang: thường khởi đầu thấp; âm cuối ㄱ chặn gọn.'},{text:'식당',pronunciation:'식땅',reading:'sik-ttang',meaning:'Nhà hàng',pattern:'HH',reason:'ㅅ: thường khởi đầu cao; đồng thời ㄷ ở 당 căng thành ㄸ.'},{text:'국가',pronunciation:'국까',reading:'guk-kka',meaning:'Quốc gia',pattern:'LH',reason:'ㄱ thường ở đầu cụm: khởi đầu thấp; ㄱ thứ hai căng thành ㄲ.'},{text:'한국',pronunciation:'한국',reading:'han-guk',meaning:'Hàn Quốc',pattern:'HH',reason:'ㅎ: thường khởi đầu cao. Không gắn dấu thanh cố định cho cả từ.'}];
+  const finals=[['ㄱ ㄲ ㅋ','ㄱ','k','Khép phía sau lưỡi, không thêm “cờ”.'],['ㄴ','ㄴ','n','Đầu lưỡi chạm vùng lợi trên.'],['ㄷ ㅅ ㅆ ㅈ ㅊ ㅌ','ㄷ','t','Chặn đầu lưỡi, không bật thêm âm.'],['ㄹ','ㄹ','l','Giữ đầu lưỡi, nghe gần l ở cuối.'],['ㅁ','ㅁ','m','Khép môi, âm đi qua mũi.'],['ㅂ ㅍ','ㅂ','p','Khép môi rồi dừng, không thêm “pờ”.'],['ㅇ','ㅇ','ng','Âm mũi phía sau; khác ㅇ câm đầu âm tiết.']];
+  window.KOREAN_PRONUNCIATION={rules,examples,pitch,finals,sources};
+})();
